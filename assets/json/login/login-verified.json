@@ -1,0 +1,27 @@
+{
+    "status": true,
+    "data": {
+        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNWU2N2Q2Yzc0OGI0NGE4NThlY2FlM2Y4MmM3MjczYjA1M2RkY2M0ZjIwNDkwMDA2MDMzOTM2NzQ3YTk3ZjI0NTk5MzdhNGIxMTc2NTA4MjciLCJpYXQiOjE2Nzc5MTExNzkuMTcxMTI4LCJuYmYiOjE2Nzc5MTExNzkuMTcxMTMxLCJleHAiOjE3MDk1MzM1NzkuMTY2ODM0LCJzdWIiOiI1MDAiLCJzY29wZXMiOltdfQ.Cc3tcBHkO_m54_NhfaaqudVCxVo0_X6fQcpKL8tc0PdVuFQx1aWNE_oZMiFHzQWWFGQYBYgq83VUQcP8KlPpJcnOjUhluo5BB5fDLOkOVtpAluX6kw-1VRDCsapExXCyc2TxXgScb50DhZpGuw4R1HqNwTrv_Gvptj8dHhtaptvLr8C2jqm6U9Kb8DekyIrC64jnX-R7-3cV8sMWCa6s1xkk3PYRpPSFm9M9Sg6PDGiE47l8G0632EuTCdhVUAAeMot7UaZ5q4S6KPnqnbVxnwOPh5-AulCgPbAbPZ-vKRAViOoty0fFZnjcFpL-_-Vfx9l0kAuS1dei_1Nc5ql1fxT-zuXmF7B5iIgBS3WTuVvcTVCwy9pt1ZIgGf1CugHoxFiVwQeY__f0WPdMYJAy2JrYT8Wqpp0NHDc6K514mVutx8_GvwPdlYz1oDKRJhRe5AsJM5tg_kKgQUBuBgIdzLoAN2w-YDxIMAjCiVm5tXi321GSUv4qO8cEbpgj_VuJ0H3RdY5RT5L9ESFO0kkSqr1X239QQA7Xj7oMngtVhCjXxG0ZhjiFUT_zDUSbSMTNBwz-cdZckWz3hefNTC2XgYvJ1cEUKWq3Tv2P3B5DXZHEiMxNEYTXE8uYwzzZl5vdgfXGr-eRg-xAkkhKLdyUnagQ5AfaSHUf_PCQj0etMI4",
+        "data": {
+            "id": 500,
+            "name": "saurab",
+            "name_np": "सौरभ",
+            "ward_id": 11,
+            "email": "saurab.ghimire@cellapp.co",
+            "address": "djsn",
+            "mobile": "9843217549",
+            "gender": "female",
+            "user_img": "https://staging.kathmandumetro.smartpalika.io/images/user/noImg.jpg"
+        },
+        "role": {
+            "role_name": "resident",
+            "role_order": 5
+        },
+        "role_desig": {
+            "designation": "Resident",
+            "role_name": "internal_role",
+            "role_order": "guest"
+        }
+    },
+    "message": "तपाइको लागिन सफल भएको छ ।"
+}

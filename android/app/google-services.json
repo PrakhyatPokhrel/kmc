@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "457110248831",
+    "project_id": "kathmandu-metropolitan-c-35dbb",
+    "storage_bucket": "kathmandu-metropolitan-c-35dbb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:457110248831:android:f244626cae04ef72688e4a",
+        "android_client_info": {
+          "package_name": "co.cellapp.smartpalika.kathmandumetropolitancity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "457110248831-q63cja9ar94sq9d4sgakad6onn79q7nk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGq9AQJ477swFtVbxi32s26ES74MCcvHE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "457110248831-q63cja9ar94sq9d4sgakad6onn79q7nk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "457110248831-elc2o0fghpqlcnn6sa1p49fck0j9pjai.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.walingNew"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
