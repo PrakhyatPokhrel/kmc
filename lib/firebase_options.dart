@@ -50,6 +50,7 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
+    trackingId: "4084705064",
     apiKey: 'AIzaSyDGq9AQJ477swFtVbxi32s26ES74MCcvHE',
     appId: '1:457110248831:android:f244626cae04ef72688e4a',
     messagingSenderId: '457110248831',
@@ -63,7 +64,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '457110248831',
     projectId: 'kathmandu-metropolitan-c-35dbb',
     storageBucket: 'kathmandu-metropolitan-c-35dbb.appspot.com',
-    iosClientId: '457110248831-ling72k85naqenk3phtnf6vev7ivs934.apps.googleusercontent.com',
+    iosClientId:
+        '457110248831-ling72k85naqenk3phtnf6vev7ivs934.apps.googleusercontent.com',
     iosBundleId: 'co.cellapp.smartpalika.kathmandumetropolitancity',
   );
 }

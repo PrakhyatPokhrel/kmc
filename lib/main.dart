@@ -69,7 +69,7 @@ void main() async {
 
   await FlutterDownloader.initialize(debug: false);
   final FirebaseAnalytics firebaseAnalytics = FirebaseAnalytics.instance;
-  firebaseAnalytics.logAppOpen();
+  await firebaseAnalytics.logAppOpen();
 
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {

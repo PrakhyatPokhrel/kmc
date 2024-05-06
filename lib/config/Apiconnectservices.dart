@@ -638,19 +638,17 @@ verifyotpFogotAPi(data) async {
   http.Response response = await http.post(Uri.parse(checkforgotopt),
       headers: {
         'Content-Type': 'application/json',
-        'accept':"application/json",
+        'accept': "application/json",
       },
       body: jsonEncode(data));
-  if (response.statusCode == 200 ) {
-    
+  if (response.statusCode == 200) {
     var a = json.decode(response.body);
-    if(a['status']){
+    if (a['status']) {
       return json.decode(response.body);
-    }else{
-
-       EasyLoading.showError(a['message']);
+    } else {
+      EasyLoading.showError(a['message']);
     }
-  }else{
+  } else {
     var a = json.decode(response.body);
     EasyLoading.showError(a['message']);
   }
@@ -716,12 +714,12 @@ householdpasswordset(data) async {
 //   return karmachari;
 // }
 
-  getBibagh() async {
-    _dio.interceptors.add(_dioCacheManager.interceptor);
-    var response = await _dio.get(bibagh, options: _cacheOption);
+getBibagh() async {
+  _dio.interceptors.add(_dioCacheManager.interceptor);
+  var response = await _dio.get(bibagh, options: _cacheOption);
 
-    return response.data;
-  }
+  return response.data;
+}
 
 loginApi(data) async {
   var connectivityResult = await (Connectivity().checkConnectivity());
@@ -740,16 +738,16 @@ loginApi(data) async {
 
     if (response.statusCode == 200) {
       final FirebaseAnalytics firebaseAnalytics = FirebaseAnalytics.instance;
-      firebaseAnalytics.logLogin();
-      firebaseAnalytics.setUserProperty(
+      await firebaseAnalytics.logLogin();
+      await firebaseAnalytics.setUserProperty(
           name: "Name", value: jsonDecode(response.body)['data']['name']);
-      firebaseAnalytics.setUserProperty(
+      await firebaseAnalytics.setUserProperty(
           name: "Email", value: jsonDecode(response.body)['data']['email']);
       dynamic d = json.decode(response.body);
       if (d['data']['status'] == "user_not_verified") {
         resendEmailOtp(data);
         EasyLoading.dismiss();
-        
+
         print(data['phone']);
         Get.to(SignUpOTP(
           mobile: data['phone'],
@@ -770,7 +768,6 @@ loginApi(data) async {
     }
   }
 }
-
 
 //!LOGOUT API
 logoutApi(data) async {
@@ -1220,7 +1217,6 @@ verifySignUpapi(data) async {
     EasyLoading.showError(d['message']);
   }
 }
-
 
 resendEmailOtp(data) async {
   http.Response response = await http.post(
