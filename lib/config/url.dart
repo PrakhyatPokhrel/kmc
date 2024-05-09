@@ -407,3 +407,6 @@ const server_maintain ="$BASE_URL/api/server-maintainance";
 //kmc pratinidhi karmachari url
 const pratinidhi = "";
 const karmachari = "";
+
+//offline payment
+const offlinePaymentUrl = '$BASE_URL/paymentmodule/api/cash-payment';

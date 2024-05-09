@@ -271,6 +271,9 @@ class _SecondProfileState extends State<SecondProfile> {
                                           } else if ('${snapshot.data[index]['status']}' ==
                                               "on_progress") {
                                             finalprocessingalertboxcall();
+                                          } else if ("${snapshot.data[index]['status']}" ==
+                                              "cash_payment_pending") {
+                                            paymentPendingAlert();
                                           } else {
                                             approvedactionsheet(
                                                 snapshot.data[index]);
@@ -331,6 +334,42 @@ class _SecondProfileState extends State<SecondProfile> {
             ),
           )),
     );
+  }
+  paymentPendingAlert() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            title: Text('paymentpendingtitle'.tr,
+                textAlign: TextAlign.center, style: TextStyle(color: primary)),
+            content: Text('paymentpendingbody'.tr,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16, height: 1.5)),
+            actions: [
+              Center(
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(tertiary),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ))),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 10),
+                    child: Text('ठिक छ'),
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ),
+            ],
+          );
+        });
   }
 
   Widget? actionsheet(a, label, wardNumber) {

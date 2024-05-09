@@ -40,6 +40,7 @@ class _PaymentdetailsState extends State<Paymentdetails> {
   late final String clinetId;
   late final String secretKey;
   late final String khaltiPublicKey;
+  bool selfPaymentCheckbox = false;
   @override
   void initState() {
     List<WardEsewaModel> esewaWard =
@@ -289,6 +290,58 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                   ],
                 ),
               ),
+              Row(
+                children: [
+                  Checkbox(
+                      value: selfPaymentCheckbox,
+                      onChanged: (value) async {
+                      EasyLoading.show(status: 'Please wait...'.tr);
+                        try {
+                          await offlinePayment(
+                              widget.data['entry_id'].toString());
+                          EasyLoading.dismiss();
+                          Navigator.pop(context);
+                          setState(() {
+                            selfPaymentCheckbox = !selfPaymentCheckbox;
+                          });
+                          paymentPendingAlert();
+                          // EasyLoading.;
+                          // Get.off(BottomNavBar());
+                        } catch (e) {
+                          EasyLoading.dismiss();
+                          EasyLoading.showError(
+                              "प्रक्रिया  असफल भएको छ, फेरि प्रायस गर्नु होला");
+                        }
+                      }),
+                  SizedBox(width: 2),
+                  InkWell(
+                    onTap: () async {
+                      EasyLoading.show(status: 'Please wait...'.tr);
+                      try {
+                        await offlinePayment(
+                            widget.data['entry_id'].toString());
+                        EasyLoading.dismiss();
+                        Navigator.pop(context);
+                        setState(() {
+                          selfPaymentCheckbox = !selfPaymentCheckbox;
+                        });
+                        paymentPendingAlert();
+
+                        // EasyLoading.showSuccess("प्रक्रिया सफल भएको छ");
+                      } catch (e) {
+                        EasyLoading.dismiss();
+                        EasyLoading.showError(
+                            "प्रक्रिया  असफल भएको छ, फेरि प्रायस गर्नु होला");
+                      }
+                    },
+                    child: Text("अफलाइन (आफै गएर भुक्तानी गर्ने )",
+                        style: TextStyle(
+                          color: primary,
+                          // fontSize: 18,
+                        )),
+                  )
+                ],
+              ),
               Container(
                   margin: EdgeInsets.only(top: 16),
                   decoration: BoxDecoration(
@@ -374,6 +427,43 @@ class _PaymentdetailsState extends State<Paymentdetails> {
         ),
       ),
     );
+  }
+
+  paymentPendingAlert() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            title: Text("प्रक्रिया सफल भएको छ",
+                textAlign: TextAlign.center, style: TextStyle(color: primary)),
+            content: Text('paymentpendingbody'.tr,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16, height: 1.5)),
+            actions: [
+              Center(
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(tertiary),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ))),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 10),
+                    child: Text('ठिक छ'),
+                  ),
+                  onPressed: () {
+                    Get.off(BottomNavBar());
+                  },
+                ),
+              ),
+            ],
+          );
+        });
   }
 
   _payEsewa() {

@@ -50,8 +50,11 @@ class Messages extends Translations {
           "EMAIL": "Email",
           "on_progress": "Final Processing",
           "processingdocumenttitle": "Initial Processing",
+          "paymentpendingtitle": "Payment Pending",
           "processingdocumentbody":
               "Your application is being processed! Thank you",
+          "paymentpendingbody":
+              "Your application is ready.Please go to your ward office to pay and collect it.",
           "finalprocessingdocumenttitle": "Final Processing",
           "finalprocessingdocumentbody":
               "Your application is almost processed! Thank you",
@@ -90,7 +93,7 @@ class Messages extends Translations {
           "janata-kakshya": "Janata",
           "janata-connect": "janata-Connect",
           "Judicial_committee": "Judicial Committee",
-          "Ijalas":"Ijalas",
+          "Ijalas": "Ijalas",
           "select_province": "Please Select Province",
           "kanun": "Law",
           "karyapalika": "Karyapalika",
@@ -197,7 +200,7 @@ class Messages extends Translations {
           "test_phase_message":
               "These services are in testing phase for now. They will be fully available after some time.",
           "update": "Please Update",
-          "more_info":"More Information",
+          "more_info": "More Information",
           "in_process": "In Process",
           "completed": "Completed",
           "ward_services_text": "Click here for Ward Services",
@@ -416,8 +419,10 @@ class Messages extends Translations {
           'upload_all_required_documents':
               'Please upload all required documents',
           'OTP_does_not_match': 'OTP does not match',
-          'server_error': 'Could not connect to the server, please try again later.',
-          'server_connection_error': 'Could not connect to the server, please try again later.',
+          'server_error':
+              'Could not connect to the server, please try again later.',
+          'server_connection_error':
+              'Could not connect to the server, please try again later.',
           "appointment_purpose": "Appointment Purpose",
           'no_internet_connection': 'No Internet Connection',
           'email_or_password_incorrect':
@@ -463,7 +468,8 @@ class Messages extends Translations {
           "owner_house_number": "House Number",
           "no_data_found": "No Data Found",
           "no_data_found_toilet": "Unable to locate toilet within 3 kms.",
-          "no_data_found_tourist": "Unable to locate tourist area within 3 kms.",
+          "no_data_found_tourist":
+              "Unable to locate tourist area within 3 kms.",
           "empty_data": "No Data Found",
           "PurbaKarmachari": "Former Employee ",
           "rajpatra": "Gazette",
@@ -524,23 +530,24 @@ class Messages extends Translations {
               "Please enable storage permission in App Settings",
           "nepali": "Nepali",
           'please_try_again_later': 'Problem! Please try again later',
-          'name':'Name',
-          'number':'Mobile Number',
-          'organization':'Organization',
-          'designation':'Designation',
-          'date':'Date',
-          'priority':'Priority',
-          'appointment':"Appointment",
-          'toilet':"Toilet",
-          'feedback_developer':"Feedback to Developer",
-          'status':"Status",
-          'province':"Province",
-          'nearby_toilet':"Nearby Toilet",
-          'nearby_area':"Nearby Tourist Area",
-          'permission_request':"Allow location permission for using this service",
-          'near_landmark':"Nearby Landmark",
-          'phone_no':"This field must not be empty",
-          'nepalikeyboard':"This field must not be empty"
+          'name': 'Name',
+          'number': 'Mobile Number',
+          'organization': 'Organization',
+          'designation': 'Designation',
+          'date': 'Date',
+          'priority': 'Priority',
+          'appointment': "Appointment",
+          'toilet': "Toilet",
+          'feedback_developer': "Feedback to Developer",
+          'status': "Status",
+          'province': "Province",
+          'nearby_toilet': "Nearby Toilet",
+          'nearby_area': "Nearby Tourist Area",
+          'permission_request':
+              "Allow location permission for using this service",
+          'near_landmark': "Nearby Landmark",
+          'phone_no': "This field must not be empty",
+          'nepalikeyboard': "This field must not be empty"
         },
         'hi_IN': {
           "nepali": "नेपाली",
@@ -742,7 +749,7 @@ class Messages extends Translations {
           "test_phase_message":
               "तत्कालका लागि यी सुविधाहरू परीक्षण कालमा छन् र केही समय पश्चात् पूर्णरूपमा सञ्चालनमा आउनेछन्।",
           "update": "अद्यावधिक गर्नुहोस्",
-          "more_info":"थप जानकारी",
+          "more_info": "थप जानकारी",
           "in_process": "प्रक्रियामा रहेका",
           "completed": "सक्किएका कागजात",
           "ward_services_text": "वडा सेवाहरुको लागि यहाँ जानुहोला",
@@ -971,6 +978,9 @@ class Messages extends Translations {
           "processingdocumenttitle": "सुरुवाती प्रक्रियामा छ",
           "processingdocumentbody":
               "तपाईले पेश गर्नुभएको आवेदन सुरुवाती प्रक्रियामा छ। धन्यवाद!",
+          "paymentpendingbody":
+              "तपाईको शिफारिस सफल भएको छ वडा  कार्यालय गएर भुक्तानी गरि शिफारिस लिनुहोला।",
+          "paymentpendingtitle": "भुक्तानी गर्न बाकी",
           "documentstatus": "तपाईले पेश गर्नुभएको आवेदन रुजु हुँदैछ। धन्यवाद!",
           "documentstatustitlereject": " आवेदन अस्वीकार ",
           "documentstatusreject": "तपाइँको आवेदन रद्द गरिएको छ !",
@@ -988,8 +998,10 @@ class Messages extends Translations {
               'कृपया सबै आवश्यक कागजात अपलोड गर्नुहोस्',
           'OTP_does_not_match': 'OTP मिलेन',
           "change_password_successfully": "पासवर्ड सफलतापूर्वक परिवर्तन भयो",
-          'server_error': 'सर्वरसंग सम्पर्क हुन सकेन, कृपयाँ केहि समयपछी पुन:प्रयास गर्नुहोला।',
-          'server_connection_error': 'सर्वरसंग सम्पर्क हुन सकेन, कृपयाँ केहि समयपछी पुन:प्रयास गर्नुहोला।',
+          'server_error':
+              'सर्वरसंग सम्पर्क हुन सकेन, कृपयाँ केहि समयपछी पुन:प्रयास गर्नुहोला।',
+          'server_connection_error':
+              'सर्वरसंग सम्पर्क हुन सकेन, कृपयाँ केहि समयपछी पुन:प्रयास गर्नुहोला।',
           'no_internet_connection': 'इन्टरनेट छैन',
           'email_or_password_incorrect': 'ईमेल/नम्बर वा पासवर्ड गलत छ!',
           'Redirecting': 'पुनर्निर्देशन गर्दै...',
@@ -1003,7 +1015,8 @@ class Messages extends Translations {
           'mobile_num_not_found': 'मोबाइल नं फेला परेन !',
           "fingerPrint": "फिंगर प्रिन्ट सेटिङ्ग",
           "fingerprint_login": "फिंगर प्रिन्ट लग-ईन गर्न यहाँ थिच्नुहोस्",
-          "validation_field": "कृपया नेपाली किबोर्ड प्रयोग गरी यो विवरण भर्नुहोस् !",
+          "validation_field":
+              "कृपया नेपाली किबोर्ड प्रयोग गरी यो विवरण भर्नुहोस् !",
           "Tourism_site": "पर्यटकिय स्थल",
           "first_name": "सम्पति धनी को पहिलो नाम",
           "middle_name": "सम्पति धनी को बीचको नाम ",
@@ -1033,7 +1046,8 @@ class Messages extends Translations {
           "owner_house_number": "घर नम्बर",
           "no_data_found": "कुनै डाटा फेला परेन",
           "no_data_found_toilet": "३ कि.मि वरपर कुनैपनि शौचालय फेला परेन।",
-          "no_data_found_tourist": "३ कि.मि वरपर कुनैपनि पर्यटकीय क्षेत्र फेला परेन।",
+          "no_data_found_tourist":
+              "३ कि.मि वरपर कुनैपनि पर्यटकीय क्षेत्र फेला परेन।",
           "empty_data": "डाटा खाली छ",
           "PurbaKarmachari": "पूर्व कर्मचारी",
           "tax register message": "तपाईंको कर जानकारी दर्ता भएको छ",
@@ -1104,18 +1118,18 @@ class Messages extends Translations {
           'minLength6': "न्यूनतम संख्या ६ हुनुपर्छ",
           "pattern": "कृपया मान्य इनपुट गर्नुहोस्",
           "Submit": "पठाउनुहोस ",
-          "Ijalas":"इजलास",
-          "appointment":"अपोइन्टमेन्ट",
-          'toilet':"शौचालय",
-          'feedback_developer':"डेभलपरलाई सुझाव",
-          'status':"स्थिति",
-          'province':"प्रदेश",
-          'nearby_toilet':"नजिकैका शौचालय",
-          'nearby_area':"नजिकैका पर्यटकीय क्षेत्र",
-          'permission_request':"यो सेवा प्रयोग गर्न स्थान अनुमति दिनुहोस्।",
-          'near_landmark':"नजिकको ल्यान्डमार्क",
-          'nepalikeyboard':"कृपया मानहरू प्रविष्ट गर्नुहोस्।",
-          'phone_no':"कृपया यो विवरण भर्नुहोस् !"
+          "Ijalas": "इजलास",
+          "appointment": "अपोइन्टमेन्ट",
+          'toilet': "शौचालय",
+          'feedback_developer': "डेभलपरलाई सुझाव",
+          'status': "स्थिति",
+          'province': "प्रदेश",
+          'nearby_toilet': "नजिकैका शौचालय",
+          'nearby_area': "नजिकैका पर्यटकीय क्षेत्र",
+          'permission_request': "यो सेवा प्रयोग गर्न स्थान अनुमति दिनुहोस्।",
+          'near_landmark': "नजिकको ल्यान्डमार्क",
+          'nepalikeyboard': "कृपया मानहरू प्रविष्ट गर्नुहोस्।",
+          'phone_no': "कृपया यो विवरण भर्नुहोस् !"
         }
       };
 }

@@ -80,7 +80,7 @@ class _Mappage extends State<Mappage> {
       ),
       body: Container(
         height: MediaQuery.of(context).size.height * 1,
-        child: GoogleMap(
+        child: GoogleMap(  
           gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>[
             new Factory<OneSequenceGestureRecognizer>(
               () => new EagerGestureRecognizer(),

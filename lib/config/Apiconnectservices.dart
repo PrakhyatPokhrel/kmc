@@ -172,7 +172,7 @@ getToken() async {
 }
 
 Map<String, String> _setHeaders() => {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json', 
       'content-type': 'application/json',
       'accept': 'application/json',
       'Authorization': 'Bearer $token',
@@ -2833,5 +2833,22 @@ maintain(context) async {
             ),
           );
         });
+  }
+}
+
+
+
+Future<dynamic> offlinePayment(String id) async {
+  _dio.options.headers = _setHeaders();
+  try {
+    var response = await _dio.get("$offlinePaymentUrl/$id");
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      return response.data;
+    }
+    throw Exception();
+  } on DioError catch (e) {
+    print(e.toString());
+    throw Exception(e.toString());
   }
 }
