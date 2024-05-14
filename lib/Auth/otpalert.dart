@@ -17,7 +17,7 @@ class _OTPScreenState extends State<OTPScreen> {
   String _otpCode = "";
 
   @override
-  void initState() {
+  void initState() { 
     super.initState();
     _getSignatureCode();
   }

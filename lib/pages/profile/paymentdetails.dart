@@ -295,16 +295,16 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                   Checkbox(
                       value: selfPaymentCheckbox,
                       onChanged: (value) async {
-                      EasyLoading.show(status: 'Please wait...'.tr);
+                        EasyLoading.show(status: 'Please wait...'.tr);
                         try {
                           await offlinePayment(
                               widget.data['entry_id'].toString());
-                          EasyLoading.dismiss();
-                          Navigator.pop(context);
                           setState(() {
                             selfPaymentCheckbox = !selfPaymentCheckbox;
                           });
-                          paymentPendingAlert();
+                          EasyLoading.dismiss();
+                          Navigator.pop(context);
+                          paymentPendingAlert('paymentpendingbody'.tr);
                           // EasyLoading.;
                           // Get.off(BottomNavBar());
                         } catch (e) {
@@ -325,7 +325,7 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                         setState(() {
                           selfPaymentCheckbox = !selfPaymentCheckbox;
                         });
-                        paymentPendingAlert();
+                        paymentPendingAlert('paymentpendingbody'.tr);
 
                         // EasyLoading.showSuccess("प्रक्रिया सफल भएको छ");
                       } catch (e) {
@@ -429,7 +429,7 @@ class _PaymentdetailsState extends State<Paymentdetails> {
     );
   }
 
-  paymentPendingAlert() {
+  paymentPendingAlert(String paymentSuccess) {
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -439,7 +439,7 @@ class _PaymentdetailsState extends State<Paymentdetails> {
             ),
             title: Text("प्रक्रिया सफल भएको छ",
                 textAlign: TextAlign.center, style: TextStyle(color: primary)),
-            content: Text('paymentpendingbody'.tr,
+            content: Text(paymentSuccess,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 16, height: 1.5)),
             actions: [
@@ -502,8 +502,9 @@ class _PaymentdetailsState extends State<Paymentdetails> {
               {
                 EasyLoading.dismiss(),
                 Navigator.pop(context),
-                Get.off(BottomNavBar()),
-                EasyLoading.showSuccess("भुक्तानी सफल भएको छ"),
+                paymentPendingAlert('paymentpendingbody'.tr)
+                // Get.off(BottomNavBar()),
+                // EasyLoading.showSuccess("भुक्तानी सफल भएको छ"),
               }
             else
               {
@@ -860,10 +861,14 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                                     khaltiverfyApi(a).then((res) => {
                                           if (res['status'] == true)
                                             {
-                                              EasyLoading.showSuccess(
-                                                  "भुक्तानी सफल भएको छ"),
-                                              Navigator.pop(context),
-                                              Get.off(BottomNavBar())
+                                              // EasyLoading.dismiss();
+                                              // Navigator.pop(context),
+                                              paymentPendingAlert(
+                                                  "भुक्तानी सफल भएको छ")
+                                              // EasyLoading.showSuccess(
+                                              //     "भुक्तानी सफल भएको छ"),
+                                              // Navigator.pop(context),
+                                              // Get.off(BottomNavBar())
                                             }
                                           else
                                             {

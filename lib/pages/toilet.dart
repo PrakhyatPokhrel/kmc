@@ -84,7 +84,7 @@ class ToiletState extends State<Toilet> {
                             child: wardCard(index + 1),
                           );
                         })),
-                  ),
+                  ), 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
