@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class Eventsapi {
   List<Gallery>? image_gallery;
   int? event_id;
@@ -18,7 +16,7 @@ class Eventsapi {
   dynamic approved3;
   dynamic notif_status;
   dynamic image_url;
-  dynamic image_caption;
+  dynamic image_bodySmall;
   Eventsapi({
     this.image_gallery,
     this.event_id,
@@ -37,12 +35,12 @@ class Eventsapi {
     this.approved3,
     this.notif_status,
     this.image_url,
-    this.image_caption,
+    this.image_bodySmall,
   });
 
   factory Eventsapi.fromJson(Map<String, dynamic> map) {
     List<dynamic> datas = map['event']['eventimages'];
-var  lists =
+    var lists =
         datas == null ? null : datas.map((e) => Gallery.fromJson(e)).toList();
     return Eventsapi(
       image_gallery: lists,
@@ -63,9 +61,9 @@ var  lists =
       notif_status: map['event']['notif_status'],
       image_url:
           map['title_image'] == null ? null : map['title_image']['image_url'],
-      image_caption: map['title_image'] == null
+      image_bodySmall: map['title_image'] == null
           ? null
-          : map['title_image']['image_caption'],
+          : map['title_image']['image_bodySmall'],
     );
   }
 }
@@ -73,18 +71,18 @@ var  lists =
 class Gallery {
   dynamic eventimage_id;
   dynamic image_url;
-  dynamic image_caption;
+  dynamic image_bodySmall;
   Gallery({
     this.eventimage_id,
     this.image_url,
-    this.image_caption,
+    this.image_bodySmall,
   });
 
   factory Gallery.fromJson(Map<String, dynamic> map) {
     return Gallery(
       eventimage_id: map['eventimage_id'],
       image_url: map['image_url'],
-      image_caption: map['image_caption'],
+      image_bodySmall: map['image_bodySmall'],
     );
   }
 }

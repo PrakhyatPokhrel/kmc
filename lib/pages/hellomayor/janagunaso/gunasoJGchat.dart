@@ -154,7 +154,7 @@ class _GunasoJGchatState extends State<GunasoJGchat> {
                 children: <Widget>[
                   Text(
                     widget.data['data']['name'],
-                    style: Theme.of(context).textTheme.subtitle1,
+                    style: Theme.of(context).textTheme.titleMedium,
                     overflow: TextOverflow.clip,
                   ),
                   // Text(

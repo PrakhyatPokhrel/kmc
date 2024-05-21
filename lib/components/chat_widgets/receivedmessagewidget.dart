@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:kmc/components/chat_widgets/imageviewer.dart';
-import 'package:kmc/config/url.dart';
-// import 'package:kmc/pages/hellomayor/chatData.dart';
-import 'package:kmc/config/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kmc/components/chat_widgets/imageviewer.dart';
+// import 'package:kmc/pages/hellomayor/chatData.dart';
+import 'package:kmc/config/colors.dart';
+import 'package:kmc/config/url.dart';
 
 import 'mycircleavatar.dart';
 
@@ -30,7 +30,7 @@ class ReceivedMessagesWidget extends StatelessWidget {
             children: <Widget>[
               Text(
                 "${data['sender_name']}",
-                style: Theme.of(context).textTheme.caption,
+                style: Theme.of(context).textTheme.bodySmall,
               ),
               Container(
                 constraints: BoxConstraints(
@@ -97,7 +97,7 @@ class ReceivedMessagesWidget extends StatelessWidget {
                         "${data['message']}",
                         style: Theme.of(context)
                             .textTheme
-                            .bodyText1!
+                            .bodyLarge!
                             .apply(color: Colors.black87, fontSizeFactor: 1.1),
                       ),
               ),

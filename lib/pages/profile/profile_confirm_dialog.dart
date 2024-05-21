@@ -70,12 +70,12 @@ class _ProfileConfirmDialogState extends State<ProfileConfirmDialog> {
               Text(
                 'Are you sure you want to delete your account?'.tr,
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headline4,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
               const SizedBox(height: 22),
               Text(
                 "Please enter the following numbers to continue".tr,
-                style: Theme.of(context).textTheme.bodyText2,
+                style: Theme.of(context).textTheme.bodyMedium,
                 textAlign: TextAlign.center,
               ),
               if (widget.requireDigitFillUp)
@@ -83,7 +83,7 @@ class _ProfileConfirmDialogState extends State<ProfileConfirmDialog> {
                   padding: const EdgeInsets.only(top: 22),
                   child: Text(
                     randomNumber,
-                    style: Theme.of(context).textTheme.headline5,
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
                 ),
               const SizedBox(

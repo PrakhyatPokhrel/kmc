@@ -60,7 +60,7 @@ class _MayorList extends State<MayorList> {
           backgroundColor: Colors.white,
           // textTheme:
           //     Theme.of(context).textTheme.apply(bodyColor: Colors.black45
-              // ),
+          // ),
           iconTheme: IconThemeData(color: Colors.black45),
           title: Text('hellomayor'.tr),
           // actions: <Widget>[
@@ -150,7 +150,7 @@ class _MayorList extends State<MayorList> {
                           ),
                           title: Text(
                             "${snapshot.data.conversationlist[i].name}",
-                            style: Theme.of(context).textTheme.bodyText1,
+                            style: Theme.of(context).textTheme.bodyLarge,
                           ),
                           subtitle: Text(
                             "${snapshot.data.conversationlist[i].last_message}",
@@ -158,11 +158,11 @@ class _MayorList extends State<MayorList> {
                                     null
                                 ? Theme.of(context)
                                     .textTheme
-                                    .subtitle1!
+                                    .titleMedium!
                                     .apply(color: Colors.black87)
                                 : Theme.of(context)
                                     .textTheme
-                                    .subtitle1!
+                                    .titleMedium!
                                     .apply(color: Colors.black54),
                           ),
                           trailing: Container(

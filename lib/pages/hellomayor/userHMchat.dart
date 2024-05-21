@@ -159,7 +159,7 @@ class _UserHMChatState extends State<UserHMChat> {
                     mayordata['name'],
                     style: Theme.of(context)
                         .textTheme
-                        .subtitle1!
+                        .titleMedium!
                         .apply(color: primary, fontSizeFactor: 1.1),
                     overflow: TextOverflow.clip,
                   ),
@@ -238,12 +238,12 @@ class _UserHMChatState extends State<UserHMChat> {
                                       key: chatkey,
                                       child: TextFormField(
                                         controller: message,
-                                     validator: (value) {
-    if (value == null || value.isEmpty) {
-      return '';
-    }
-    return null;
-  },
+                                        validator: (value) {
+                                          if (value == null || value.isEmpty) {
+                                            return '';
+                                          }
+                                          return null;
+                                        },
                                         decoration: InputDecoration(
                                             hintText: "Type ...",
                                             border: InputBorder.none),
@@ -267,7 +267,7 @@ class _UserHMChatState extends State<UserHMChat> {
                               onTap: () => {
                                 setState(
                                   () {
-                                   // this._fbKey.currentState!.save();
+                                    // this._fbKey.currentState!.save();
                                     if (chatkey.currentState!.validate()) {
                                       storemessage(message.text);
                                     }
