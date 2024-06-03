@@ -6,7 +6,6 @@ import 'package:kmc/Auth/login.dart';
 
 import '../../config/Apiconnectservices.dart';
 import '../../config/colors.dart';
-import '../../config/url.dart';
 
 class ForgetPassword extends StatefulWidget {
   const ForgetPassword({Key? key}) : super(key: key);
@@ -61,7 +60,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(primary),
+                    backgroundColor: WidgetStateProperty.all(primary),
                   ),
                   child: Text('SEND'.tr,
                       style: TextStyle(color: textPrimaryLightColor)),
@@ -138,7 +137,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                               child: ElevatedButton(
                                 style: ButtonStyle(
                                   backgroundColor:
-                                      MaterialStateProperty.all(primary),
+                                      WidgetStateProperty.all(primary),
                                 ),
                                 child: Text('SEND'.tr,
                                     style: TextStyle(
@@ -186,7 +185,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                   child: ElevatedButton(
                                     style: ButtonStyle(
                                       backgroundColor:
-                                          MaterialStateProperty.all(primary),
+                                          WidgetStateProperty.all(primary),
                                     ),
                                     child: Text('SEND'.tr,
                                         style: TextStyle(
@@ -249,7 +248,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                       child: ElevatedButton(
                                         style: ButtonStyle(
                                           backgroundColor:
-                                              MaterialStateProperty.all(
+                                              WidgetStateProperty.all(
                                                   primary),
                                         ),
                                         child: Text('SEND'.tr,

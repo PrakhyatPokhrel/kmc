@@ -157,10 +157,10 @@ class _PropertyEditHomePageState extends State<PropertyEditHomePage> {
       padding: const EdgeInsets.all(8.0),
       child: ElevatedButton(
         style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(tertiary),
-            padding: MaterialStateProperty.all(
+            backgroundColor: WidgetStateProperty.all(tertiary),
+            padding: WidgetStateProperty.all(
                 EdgeInsets.symmetric(vertical: 16, horizontal: 100)),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0),
             ))),

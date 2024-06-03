@@ -227,7 +227,7 @@ class _SettingsState extends State<Settings> {
                             ? ElevatedButton(
                                 style: ButtonStyle(
                                   backgroundColor:
-                                      MaterialStateProperty.all(primary),
+                                      WidgetStateProperty.all(primary),
                                 ),
                                 child: Text('LOGOUT'.tr,
                                     style: TextStyle(
@@ -239,7 +239,7 @@ class _SettingsState extends State<Settings> {
                             : ElevatedButton(
                                 style: ButtonStyle(
                                   backgroundColor:
-                                      MaterialStateProperty.all(primary),
+                                      WidgetStateProperty.all(primary),
                                 ),
                                 child: Text('LOGIN'.tr,
                                     style: TextStyle(
@@ -320,7 +320,7 @@ changePasswordPopup(context, _formKey) {
                       padding: const EdgeInsets.all(8.0),
                       child: ElevatedButton(
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(primary),
+                          backgroundColor: WidgetStateProperty.all(primary),
                         ),
                         child: Text('SEND'.tr,
                             style: TextStyle(color: textPrimaryLightColor)),

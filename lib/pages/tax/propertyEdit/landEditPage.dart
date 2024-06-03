@@ -4,7 +4,6 @@ import 'package:kmc/config/colors.dart';
 import 'package:kmc/modal/taxPayerDetail.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 class LandEditPage extends StatefulWidget {
   @override
@@ -401,8 +400,8 @@ class _LandEditPageState extends State<LandEditPage> {
                               ElevatedButton(
                                 style: ButtonStyle(
                                     backgroundColor:
-                                        MaterialStateProperty.all(tertiary),
-                                    shape: MaterialStateProperty.all<
+                                        WidgetStateProperty.all(tertiary),
+                                    shape: WidgetStateProperty.all<
                                             RoundedRectangleBorder>(
                                         RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20.0),

@@ -180,6 +180,7 @@ class _ReceiptState extends State<Receipt> {
             ),
           );
         });
+    return null;
   }
 
   void getPermission(link) async {

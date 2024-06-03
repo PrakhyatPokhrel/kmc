@@ -434,10 +434,10 @@ class _EnrollPageState extends State<EnrollPage> {
         child: ElevatedButton(
           
           style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(tertiary),
-              padding: MaterialStateProperty.all(
+              backgroundColor: WidgetStateProperty.all(tertiary),
+              padding: WidgetStateProperty.all(
                   EdgeInsets.symmetric(vertical: 5, horizontal: 35)),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
               ))),

@@ -26,7 +26,6 @@ import 'package:pusher_client/pusher_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../components/custom_widget.dart';
-import '../testingPhase/testing_phase_screen.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -655,10 +654,10 @@ class _HomeState extends State<Home> {
                                                           child: ElevatedButton(
                                                             style: ButtonStyle(
                                                               backgroundColor:
-                                                                  MaterialStateProperty
+                                                                  WidgetStateProperty
                                                                       .all(
                                                                           tertiary),
-                                                              shape: MaterialStateProperty
+                                                              shape: WidgetStateProperty
                                                                   .all<
                                                                       RoundedRectangleBorder>(
                                                                 RoundedRectangleBorder(
@@ -740,10 +739,10 @@ class _HomeState extends State<Home> {
                                                               style:
                                                                   ButtonStyle(
                                                                 backgroundColor:
-                                                                    MaterialStateProperty
+                                                                    WidgetStateProperty
                                                                         .all(
                                                                             tertiary),
-                                                                shape: MaterialStateProperty
+                                                                shape: WidgetStateProperty
                                                                     .all<
                                                                         RoundedRectangleBorder>(
                                                                   RoundedRectangleBorder(
@@ -1009,8 +1008,8 @@ class _HomeState extends State<Home> {
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(tertiary),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      backgroundColor: WidgetStateProperty.all(tertiary),
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),
@@ -1047,8 +1046,8 @@ class _HomeState extends State<Home> {
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(tertiary),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      backgroundColor: WidgetStateProperty.all(tertiary),
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),

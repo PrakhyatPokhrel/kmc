@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 class Localapi {
   int? prod_id;

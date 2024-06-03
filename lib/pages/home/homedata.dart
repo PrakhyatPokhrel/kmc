@@ -1,5 +1,3 @@
-import 'package:kmc/modal/dummymodal.dart';
-import 'package:kmc/pages/business.dart';
 import 'package:kmc/pages/digitalprofile/dphome.dart';
 import 'package:kmc/pages/emergency/emergency.dart';
 import 'package:kmc/pages/hellomayor/hellomayorEntry.dart';
@@ -7,16 +5,13 @@ import 'package:kmc/pages/hellomayor/janagunaso/gunasoEntry.dart';
 import 'package:kmc/pages/hellomayor/nyayiksamiti/nyayikEntry.dart';
 import 'package:kmc/pages/parichaya.dart';
 import 'package:kmc/pages/paryatak_sthal.dart';
-import 'package:kmc/pages/pratinidhikarmachari/pratinidhikarmachari.dart';
 import 'package:kmc/pages/pratinidhiwordpress/screen/pratinidhiwordpress.dart';
 import 'package:kmc/pages/rajpatra.dart';
 import 'package:kmc/pages/sewa/sifarish/sifarish.dart';
 import 'package:kmc/pages/sewa/sifarish_new/screens/sifarish_dashboard_screen.dart';
 import 'package:kmc/pages/tax/taxInAppView.dart';
-import 'package:kmc/pages/tax/taxhome.dart';
 import 'package:kmc/pages/wodajankari.dart';
 import 'package:kmc/pages/wodapatra/citizencharter.dart';
-import 'package:kmc/pages/yojana/yojana.dart';
 
 import '../toilet.dart';
 

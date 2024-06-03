@@ -505,7 +505,7 @@ class _PraKarmachariState extends State<PraKarmachari> {
                     new ElevatedButton(
                       child: new Text('call'.tr),
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(primary),
+                        backgroundColor: WidgetStateProperty.all(primary),
                       ),
                       onPressed: () {
                         _callNumber(data.mobile);

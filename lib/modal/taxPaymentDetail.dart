@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 class TaxPaymentDetail {
   bool? status;
@@ -161,7 +160,7 @@ class Bill {
   int? isVerified;
   int? ownerId;
   int? payId;
-  dynamic? nhcPayId;
+  dynamic nhcPayId;
   String? createdAt;
   String? updatedAt;
 

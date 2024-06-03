@@ -2,7 +2,6 @@ import 'dart:isolate';
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:kmc/components/InappBrowser.dart';
 import 'package:kmc/components/bottomNavBar.dart';
@@ -345,6 +344,7 @@ class _FullNotificaionState extends State<FullNotificaion> {
             ),
           );
         });
+    return null;
   }
 
   static downloadingCallback(id, status, progress) {

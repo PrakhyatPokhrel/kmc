@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 class Usernotificationmodal {
   dynamic created_at;

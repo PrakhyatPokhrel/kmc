@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 class DigitalProfileModal {
   dynamic total_population;

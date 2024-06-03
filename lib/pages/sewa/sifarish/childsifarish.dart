@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -612,7 +611,7 @@ class _SifarishFormChildState extends State<SifarishFormChild> {
                                     icon: Icon(Icons.upload),
                                     label: Text('SEND'.tr),
                                     style: ButtonStyle(
-                                        shape: MaterialStateProperty.all<
+                                        shape: WidgetStateProperty.all<
                                                 RoundedRectangleBorder>(
                                             RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(30.0),
@@ -1597,8 +1596,8 @@ class _SifarishFormChildState extends State<SifarishFormChild> {
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(tertiary),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      backgroundColor: WidgetStateProperty.all(tertiary),
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),
@@ -1643,8 +1642,8 @@ class _SifarishFormChildState extends State<SifarishFormChild> {
             Center(
               child: ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(tertiary),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  backgroundColor: WidgetStateProperty.all(tertiary),
+                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),

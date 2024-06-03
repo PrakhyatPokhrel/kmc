@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kmc/config/colors.dart';
 
 class ProfileConfirmDialog extends StatefulWidget {
   const ProfileConfirmDialog({

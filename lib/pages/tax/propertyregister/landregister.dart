@@ -351,7 +351,7 @@ class _PropertyRegisterState extends State<PropertyRegister> {
                                         color: textPrimaryLightColor,
                                         fontSize: 15)),
                                 style: ButtonStyle(
-                                    shape: MaterialStateProperty.all<
+                                    shape: WidgetStateProperty.all<
                                             RoundedRectangleBorder>(
                                         RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30.0),
@@ -900,10 +900,10 @@ class _PropertyRegisterState extends State<PropertyRegister> {
       padding: const EdgeInsets.all(8.0),
       child: ElevatedButton(
         style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(tertiary),
-            padding: MaterialStateProperty.all(
+            backgroundColor: WidgetStateProperty.all(tertiary),
+            padding: WidgetStateProperty.all(
                 EdgeInsets.symmetric(vertical: 16, horizontal: 100)),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0),
             ))),

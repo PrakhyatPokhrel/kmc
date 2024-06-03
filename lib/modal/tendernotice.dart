@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 class TenderNotice {
   dynamic tender_id;

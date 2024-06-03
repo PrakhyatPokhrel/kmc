@@ -544,7 +544,7 @@ class _Login extends State<Login> {
                               child: ElevatedButton(
                                 style: ButtonStyle(
                                   backgroundColor:
-                                      MaterialStateProperty.all(primary),
+                                      WidgetStateProperty.all(primary),
                                 ),
                                 child: Text('SEND'.tr,
                                     style: TextStyle(
@@ -596,7 +596,7 @@ class _Login extends State<Login> {
                                   child: ElevatedButton(
                                     style: ButtonStyle(
                                       backgroundColor:
-                                          MaterialStateProperty.all(primary),
+                                          WidgetStateProperty.all(primary),
                                     ),
                                     child: Text('SEND'.tr,
                                         style: TextStyle(
@@ -664,7 +664,7 @@ class _Login extends State<Login> {
                                       child: ElevatedButton(
                                         style: ButtonStyle(
                                           backgroundColor:
-                                              MaterialStateProperty.all(
+                                              WidgetStateProperty.all(
                                                   primary),
                                         ),
                                         child: Text('SEND'.tr,

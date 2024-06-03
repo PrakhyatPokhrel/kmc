@@ -670,7 +670,7 @@ showImageViewerPager(context, multiImageProvider, onPageChanged: (page) {
                                       child: ElevatedButton(
                                         style: ButtonStyle(
                                           backgroundColor:
-                                              MaterialStateProperty.all(
+                                              WidgetStateProperty.all(
                                                   primary),
                                         ),
                                         child: Text('SEND'.tr,

@@ -327,7 +327,7 @@ class _SignUpOTPState extends State<SignUpOTP>
         label: Text('SEND'.tr,
             style: TextStyle(color: textPrimaryLightColor, fontSize: 15)),
         style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ))));

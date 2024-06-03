@@ -13,22 +13,22 @@ class Pratinidhikarmacharidata {
 }
 
 class Information {
-  dynamic? id;
-  dynamic? name;
-  dynamic? email;
-  dynamic? address;
-  dynamic? mobile;
-  dynamic? gender;
-  dynamic? icon;
-  dynamic? ward;
-  dynamic? nagar;
-  dynamic? kd_id;
-  dynamic? dismissed;
-  dynamic? pd_id;
-  dynamic? user_id;
-  dynamic? created_at;
-  dynamic? updated_at;
-  dynamic? designation;
+  dynamic id;
+  dynamic name;
+  dynamic email;
+  dynamic address;
+  dynamic mobile;
+  dynamic gender;
+  dynamic icon;
+  dynamic ward;
+  dynamic nagar;
+  dynamic kd_id;
+  dynamic dismissed;
+  dynamic pd_id;
+  dynamic user_id;
+  dynamic created_at;
+  dynamic updated_at;
+  dynamic designation;
 
   Information(
       {this.id,

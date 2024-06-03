@@ -13,7 +13,6 @@ import 'package:kmc/pages/aboutThisApp/about_this_app.dart';
 import 'package:kmc/pages/howToUse/how_to_use_screen.dart';
 import 'package:kmc/pages/notification.dart';
 import 'package:kmc/pages/settings.dart';
-import 'package:kmc/pages/suggestion.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toggle_switch/toggle_switch.dart';
@@ -295,8 +294,8 @@ class _NavDrawerState extends State<NavDrawer> {
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(tertiary),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      backgroundColor: WidgetStateProperty.all(tertiary),
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),
@@ -330,8 +329,8 @@ class _NavDrawerState extends State<NavDrawer> {
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(tertiary),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    backgroundColor: WidgetStateProperty.all(tertiary),
+                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),

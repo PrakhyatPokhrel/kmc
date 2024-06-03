@@ -1,6 +1,5 @@
 import 'package:kmc/config/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:photo_view/photo_view.dart';
 
 ThemeData theme = ThemeData(

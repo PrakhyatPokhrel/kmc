@@ -106,11 +106,11 @@ class _TaxPayHomeState extends State<TaxPayHome> {
                         child: ElevatedButton(
                           style: ButtonStyle(
                               backgroundColor:
-                                  MaterialStateProperty.all(tertiary),
-                              padding: MaterialStateProperty.all(
+                                  WidgetStateProperty.all(tertiary),
+                              padding: WidgetStateProperty.all(
                                   EdgeInsets.symmetric(
                                       vertical: 16, horizontal: 35)),
-                              shape: MaterialStateProperty.all<
+                              shape: WidgetStateProperty.all<
                                       RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.0),
@@ -207,7 +207,7 @@ class _TaxPayHomeState extends State<TaxPayHome> {
                         padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
                           style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(primary),
+                            backgroundColor: WidgetStateProperty.all(primary),
                           ),
                           child: Text('SEND'.tr,
                               style: TextStyle(color: textPrimaryLightColor)),

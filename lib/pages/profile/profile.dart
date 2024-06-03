@@ -12,8 +12,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:kmc/components/bottomNavBar.dart';
 import 'package:kmc/config/Apiconnectservices.dart';
 import 'package:kmc/config/colors.dart';
-import 'package:kmc/pages/hellomayor/appointmentList.dart';
-import 'package:kmc/pages/hellomayor/bookappointment.dart';
 import 'package:kmc/pages/profile/profile_confirm_dialog.dart';
 import 'package:kmc/pages/profile/receipt.dart';
 import 'package:kmc/pages/profile/secondprofile.dart';

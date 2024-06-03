@@ -1,6 +1,5 @@
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:galli_map/galli_map.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:kmc/all_toilet_map_page.dart';
 import 'package:kmc/components/custom_widget.dart';
 import 'package:kmc/config/url.dart';
@@ -10,7 +9,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kmc/config/colors.dart';
 import 'package:kmc/config/Apiconnectservices.dart';
 import 'package:get/get.dart';
-import 'package:kmc/modal/business.dart';
 import 'package:kmc/modal/nearby_places.dart';
 import 'package:kmc/modal/nearby_places_model.dart';
 import 'package:kmc/modal/toilet_branch_model.dart';

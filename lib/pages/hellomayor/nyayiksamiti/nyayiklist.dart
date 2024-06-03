@@ -5,12 +5,10 @@ import 'package:kmc/config/url.dart';
 import 'package:kmc/modal/chatlistmodal.dart';
 import 'package:kmc/pages/hellomayor/chatData.dart';
 import 'package:kmc/pages/hellomayor/nyayiksamiti/nyayikNSchat.dart';
-import 'package:kmc/config/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:pusher_client/pusher_client.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
 
 class NyayikList extends StatefulWidget {

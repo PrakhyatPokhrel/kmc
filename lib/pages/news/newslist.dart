@@ -3,7 +3,6 @@ import 'package:double_back_to_close/double_back_to_close.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kmc/components/custom_spinner.dart';
-import 'package:kmc/components/shimmer.dart';
 import 'package:kmc/config/Apiconnectservices.dart';
 import 'package:kmc/config/colors.dart';
 import 'package:kmc/modal/newsnoticemodal.dart';

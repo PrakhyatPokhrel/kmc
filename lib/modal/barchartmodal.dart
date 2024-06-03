@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 class BarchartModal {
   dynamic population_data;

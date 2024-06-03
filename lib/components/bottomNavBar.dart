@@ -2,15 +2,12 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:kmc/Auth/login.dart';
 import 'package:kmc/components/Drawer.dart';
-import 'package:kmc/components/botPage.dart';
 import 'package:kmc/config/Apiconnectservices.dart';
 import 'package:kmc/config/colors.dart';
-import 'package:kmc/main.dart';
 import 'package:kmc/pages/home/home.dart';
 import 'package:kmc/pages/homechat.dart';
 import 'package:kmc/pages/news/newslist.dart';
@@ -330,8 +327,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
             Center(
               child: ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(tertiary),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  backgroundColor: WidgetStateProperty.all(tertiary),
+                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
@@ -456,8 +453,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
               children: [
                 ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(tertiary),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    backgroundColor: WidgetStateProperty.all(tertiary),
+                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
@@ -474,8 +471,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
                 ),
                 ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(tertiary),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    backgroundColor: WidgetStateProperty.all(tertiary),
+                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
