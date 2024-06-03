@@ -14,7 +14,7 @@ class CustomReactiveTextField extends StatelessWidget {
     required this.field,
     required this.formControl,
     this.readOnly = false,
-    this.onTap,
+    this.onTap, 
   }) : super(key: key);
 
   final SifarishFieldModel field;

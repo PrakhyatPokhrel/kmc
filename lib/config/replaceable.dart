@@ -15,6 +15,15 @@ class Config {
       ? 'https://erp.kathmandu.gov.np'
       
       : 'https://erp.kathmandu.gov.np';
+
+
+
+      //for toilet testpurpose only 
+  static const base_url_for_toilet="https://publicshauchalaya.palika.site";
+  // static const base_url_for_toilet="http://192.168.137.1:1000";
+
+
+  
   static const base_url_api = '$base_url/apilink';
   //keys
   static const pusher_key =

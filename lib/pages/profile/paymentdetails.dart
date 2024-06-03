@@ -590,7 +590,7 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                             validator: (v) =>
                                 (v?.isEmpty ?? true) ? 'Required ' : null,
                             // ignore: deprecated_member_use
-                            style: Theme.of(context).textTheme.headline5,
+                            style: Theme.of(context).textTheme.headlineSmall,
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               label: Text(
@@ -598,7 +598,7 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                                 style: Theme.of(context)
                                     .textTheme
                                     // ignore: deprecated_member_use
-                                    .bodyText1!
+                                    .bodyLarge!
                                     .copyWith(
                                       color: Color(0xff5C2D91),
                                     ),
@@ -628,7 +628,7 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                               style: Theme.of(context)
                                   .textTheme
                                   // ignore: deprecated_member_use
-                                  .bodyText1!
+                                  .bodyLarge!
                                   .copyWith(
                                     color: Color(0xff5C2D91),
                                   ),
@@ -648,7 +648,7 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                           obscureText: true,
                           keyboardType: TextInputType.number,
                           // ignore: deprecated_member_use
-                          style: Theme.of(context).textTheme.headline5,
+                          style: Theme.of(context).textTheme.headlineSmall,
                           controller: _pinController,
                         ),
                         const SizedBox(height: 24),
@@ -751,7 +751,7 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                                         style: Theme.of(context)
                                             .textTheme
                                             // ignore: deprecated_member_use
-                                            .headline5,
+                                            .headlineSmall,
                                         decoration: const InputDecoration(
                                           label: Text('OTP Code'),
                                         ),

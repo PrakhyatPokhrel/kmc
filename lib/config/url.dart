@@ -2,6 +2,11 @@ import 'package:kmc/config/replaceable.dart';
 
 const BASE_URL = Config.base_url;
 const BASE_URL_API = Config.base_url_api;
+
+
+const BASE_URL_FOR_TOILET_TEST = Config.base_url_for_toilet;
+
+
 const digitalprofiledata =
     '$BASE_URL_API/profiledata'; //get badapatra completed
 const religiouschartdata = '$BASE_URL_API/piechart'; //get badapatra completed
@@ -410,3 +415,11 @@ const karmachari = "";
 
 //offline payment
 const offlinePaymentUrl = '$BASE_URL/paymentmodule/api/cash-payment';
+
+
+//toilet new api 
+const toiletGetOrganizationUrl='$BASE_URL_FOR_TOILET_TEST/api/public_shauchalaya/getOrganizations';
+const toiletGetBranchesUrl='$BASE_URL_FOR_TOILET_TEST/api/public_shauchalaya/getBranches';
+const toiletGetSingleBranchUrl='$BASE_URL_FOR_TOILET_TEST/api/public_shauchalaya/oneBranch';
+const getAllToiletRange='$BASE_URL_FOR_TOILET_TEST/api/geo_location/show_nearby_branch';
+const postToiletReviewUrl='$BASE_URL_FOR_TOILET_TEST/api/review/create_review';

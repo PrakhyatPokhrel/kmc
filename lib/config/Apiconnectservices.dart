@@ -4,7 +4,7 @@ import 'dart:io';
 
 import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
-import 'package:dio_http_cache/dio_http_cache.dart';
+import 'package:dio_http_cache_lts/dio_http_cache_lts.dart';
 import 'package:external_path/external_path.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +29,7 @@ import 'package:kmc/modal/emergencynum.dart';
 import 'package:kmc/modal/eventsmodal.dart';
 import 'package:kmc/modal/getmessage.dart';
 import 'package:kmc/modal/nagarkarmacharimodal.dart';
+import 'package:kmc/modal/nearby_places_model.dart';
 import 'package:kmc/modal/newsnoticemodal.dart';
 import 'package:kmc/modal/newsnoticemodalwordpress.dart';
 import 'package:kmc/modal/noticeModel.dart';
@@ -40,6 +41,9 @@ import 'package:kmc/modal/sifarishbasicfieldmodal.dart';
 import 'package:kmc/modal/sifarishlistmodal.dart';
 import 'package:kmc/modal/taxPayerDetail.dart';
 import 'package:kmc/modal/taxPaymentDetail.dart';
+import 'package:kmc/modal/toilet_branch_model.dart';
+import 'package:kmc/modal/toilet_model.dart';
+import 'package:kmc/modal/toilet_single_branch.dart';
 import 'package:kmc/modal/toiletgraph.dart';
 import 'package:kmc/modal/wodajanakari.dart';
 import 'package:kmc/modal/wodapratinidhi.dart';
@@ -1532,6 +1536,73 @@ Future<List<Publicplacess>> villagedatasearchApi(datas, wodaid) async {
   var publicplaces =
       wardfilterdata.map((e) => Publicplacess.fromJson(e)).toList();
   return publicplaces;
+}
+
+Future<ToiletBranchModel> getToiletBranches() async {
+  try{
+  // _dio.interceptors.add(_dioCacheManager.interceptor);
+  var data = await _dio.get(toiletGetBranchesUrl);
+  print(data);
+  ToiletBranchModel organizationModel=toiletBranchModelFromJson(data.data);
+  
+  return organizationModel;}
+  catch(e){
+      rethrow;
+  }
+  
+}
+Future<List<NearbyToiletsModel>> getToiletWithinRadius(double lat,double lng) async {
+  try{
+  // _dio.interceptors.add(_dioCacheManager.interceptor);
+  var data = await _dio.get("$getAllToiletRange/$lat/$lng");
+  print(data);
+  List<NearbyToiletsModel> organizationModel=nearbyToiletsModelFromJson(data.data);
+  
+  return organizationModel;}
+  catch(e){
+      rethrow;
+  }
+  
+}
+Future<ToiletSingleBranchModel> toiletGetSingleBranch(int branchId) async {
+  try{
+  // _dio.interceptors.add(_dioCacheManager.interceptor);
+  var data = await _dio.get("$toiletGetSingleBranchUrl/$branchId");
+  print(data);
+  ToiletSingleBranchModel organizationModel=toiletSingleBranchModelFromJson(data.data);
+  
+  return organizationModel;}
+  catch(e){
+      rethrow;
+  }
+  
+}
+
+Future<OrganizationModel> toiletGetOrganization() async {
+  try{
+  // _dio.interceptors.add(_dioCacheManager.interceptor);
+  var data = await _dio.get(toiletGetOrganizationUrl);
+  print(data);
+  OrganizationModel organizationModel=organizationModelFromJson(data.data);
+  
+  return organizationModel;}
+  catch(e){
+      rethrow;
+  }
+}
+
+Future<bool> postReview(Map<String,String> body) async {
+  try{
+  // _dio.interceptors.add(_dioCacheManager.interceptor);
+  var data = await _dio.post(postToiletReviewUrl,data: body);
+if(data.statusCode==200){
+    return true;}
+    else{
+      return false;
+    }}
+  catch(e){
+      rethrow;
+  }
 }
 
 Future<List<Yojanalist>?> yojanaAPis(value) async {

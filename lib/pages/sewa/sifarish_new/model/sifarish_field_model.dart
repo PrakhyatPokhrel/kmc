@@ -21,7 +21,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 // <option value="photo">Passport Size Photo</option>
 // <option value="finger_print">Finger Print</option>
 
-enum SifarishFieldTypeEnum {
+enum  SifarishFieldTypeEnum {
   text,
   radio,
   select,

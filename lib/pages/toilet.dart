@@ -1,5 +1,7 @@
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:galli_map/galli_map.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:kmc/all_toilet_map_page.dart';
 import 'package:kmc/components/custom_widget.dart';
 import 'package:kmc/config/url.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -8,13 +10,17 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kmc/config/colors.dart';
 import 'package:kmc/config/Apiconnectservices.dart';
 import 'package:get/get.dart';
-import 'package:kmc/map.dart';
 import 'package:kmc/modal/business.dart';
 import 'package:kmc/modal/nearby_places.dart';
+import 'package:kmc/modal/nearby_places_model.dart';
+import 'package:kmc/modal/toilet_branch_model.dart';
+import 'package:kmc/modal/toilet_model.dart';
+import 'package:kmc/modal/toilet_single_branch.dart';
+import 'package:kmc/pages/enroll_page.dart';
+import 'package:kmc/pages/full_toilet_page.dart';
 import 'package:map_launcher/map_launcher.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:permission_handler/permission_handler.dart';
-
-import '../config/replaceable.dart';
 
 class Toilet extends StatefulWidget {
   @override
@@ -22,15 +28,15 @@ class Toilet extends StatefulWidget {
 }
 
 class ToiletState extends State<Toilet> {
-  Future<List<Publicplacess>> tourism() async {
-    var data = {"data_type": "23"};
-    List<Publicplacess> public = await villagedatasearchApi(data, subIndex);
+  Future<ToiletBranchModel> tourism() async {
+    var public = await getToiletBranches();
     return public;
   }
 
   int indexvalue = 0;
   dynamic value;
-  dynamic subIndex = 1;
+  dynamic subIndex = 0;
+  
   bool ontapped = false;
   @override
   void initState() {
@@ -64,64 +70,116 @@ class ToiletState extends State<Toilet> {
             ),
           ),
         ),
-        body: SingleChildScrollView(
-          child: Container(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    height: Get.height * 0.12,
-                    child: GridView.count(
-                        scrollDirection: Axis.horizontal,
-                        primary: false,
-                        childAspectRatio: 1.02,
-                        crossAxisCount: 1,
-                        children: List.generate(Config.woda_count, (index) {
-                          return Padding(
-                            padding: const EdgeInsets.all(4.0),
-                            child: wardCard(index + 1),
-                          );
-                        })),
-                  ), 
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      titleText('Wardno'.tr +
-                          ' ' +
-                          '$subIndex'.tr +
-                          ' ' +
-                          'toilet'.tr),
-                      SizedBox(
-                        height: 30,
-                        child: ElevatedButton.icon(
-                            onPressed: () async {
-                             setState(() {
-                               ontapped = true;
-                             });       
-                            },
-                            style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  side: BorderSide(width: 2,color:primary ),
-                                    borderRadius: BorderRadius.circular(50)),
-                                    backgroundColor: Colors.transparent,elevation: 0
+        body:  SingleChildScrollView(
+              child: Container(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      FutureBuilder<OrganizationModel>(
+          future: toiletGetOrganization(),
+          builder: (context,snapshot) {
+            if(snapshot.hasData){
+            return
+                           Column(
+                             children: [
+                              Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          titleText('संस्था'),
+                          SizedBox(
+                            height: 30,
+                            child: ElevatedButton.icon(
+                                onPressed: () async {
+                                 Get.to(EnrollPage());
+                                },
+                                style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(width: 2,color:primary ),
+                                        borderRadius: BorderRadius.circular(50)),
+                                        backgroundColor: Colors.transparent,elevation: 0
+                                    ),
+                                icon: Icon(
+                                  Icons.newspaper ,
+                                  color: secondary,
                                 ),
-                            icon: Icon(
-                              Icons.location_on ,
-                              color: secondary,
-                            ),
-                            label: Text("nearby_toilet".tr,style: TextStyle(fontSize: 15,color: primary),)
-                            ),
-                      )
+                                label: Text("दर्ता गर्नुहोस्".tr,style: TextStyle(fontSize: 15,color: primary),)
+                                ),
+                          )
+                        ],
+                      ),
+                               Container(
+                                height: Get.height * 0.12,
+                                child: GridView.count(
+                                    scrollDirection: Axis.horizontal,
+                                    primary: false,
+                                    childAspectRatio: 1.02,
+                                    crossAxisCount: 1,
+                                    children: List.generate(snapshot.data!.data.length, (index) {
+                                      return Padding(
+                                        padding: const EdgeInsets.all(4.0),
+                                        child: wardCard(snapshot.data!.data[index],index),
+                                      );
+                                    })),
+                                                         ),
+                             ],
+                           );
+                        }else{return Container();
+                        }}
+                      ), 
+                      
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          titleText('शौचालय'),
+                          SizedBox(
+                            height: 30,
+                            child: ElevatedButton.icon(
+                                onPressed: () async {
+                                 var status = await Permission.location.request();
+  if (status == PermissionStatus.granted) {
+    Position position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+      timeLimit: Duration(seconds: 10),
+    );
+    EasyLoading.show();
+    try{
+      List<NearbyToiletsModel> allToiletModel=await getToiletWithinRadius(position.latitude,position.longitude);
+      EasyLoading.dismiss();
+
+      Get.to(AllToiletMapPage(latLng: LatLng(position.latitude, position.longitude),getToilet: allToiletModel,));
+    }catch(e){
+      EasyLoading.dismiss();
+    }
+    
+      } else{
+
+    }    
+                                },
+                                style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(width: 2,color:primary ),
+                                        borderRadius: BorderRadius.circular(50)),
+                                        backgroundColor: Colors.transparent,elevation: 0
+                                    ),
+                                icon: Icon(
+                                  Icons.location_on ,
+                                  color: secondary,
+                                ),
+                                label: Text("nearby_toilet".tr,style: TextStyle(fontSize: 15,color: primary),)
+                                ),
+                          )
+                        ],
+                      ),
+                      (publicPlaceswidget()),
+                      
                     ],
                   ),
-                  (ontapped? nearbyPlaceswidget():publicPlaceswidget()),
-                ],
+                ),
               ),
-            ),
-          ),
-        ),
+            )
+          
       ),
     );
   }
@@ -139,12 +197,12 @@ class ToiletState extends State<Toilet> {
     );
   }
 
-  wardCard(index) {
+  wardCard(OrganizationModelData data,int index) {
     return InkWell(
         onTap: () {
           setState(() {
-            this.subIndex = index;
-            indexvalue = index - 1;
+            this.subIndex = data.id;
+            // indexvalue = index;
             ontapped = false;
           });
         },
@@ -153,25 +211,37 @@ class ToiletState extends State<Toilet> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0),
               side: BorderSide(
-                color: subIndex == index ? primary : shadowColor,
+                color: subIndex == data.id ? primary : shadowColor,
                 width: 2.0,
               ),
             ),
             child: Padding(
               padding: const EdgeInsets.all(10.0),
-              child: Column(
-                children: [
-                  Text('Wardno'.tr,
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: subIndex == index ? primary : text)),
-                  Text('$index'.tr,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: subIndex == index ? primary : text)),
-                ],
-              ),
+              child: CachedNetworkImage(
+                                                    imageUrl:
+                                                        data.organizationLogo,
+                                                    height: 100,
+                                                    width: 100,
+                                                    fit: BoxFit.cover,
+                                                    errorWidget:
+                                                        (context, url, error) =>
+                                                            ClipRRect(
+                                                                child: Image.asset(
+                                                              'assets/images/Grey_Placeholder.png',
+                                                              fit: BoxFit.fill,
+                                                            )),
+                                                    placeholder: (context, url) =>
+                                                        Container(
+                                                          width: 19,
+                                                          height: 19,
+                                                          child:
+                                                              CircularProgressIndicator(
+                                                            valueColor:
+                                                                AlwaysStoppedAnimation<
+                                                                        Color>(
+                                                                    Colors.white),
+                                                          ),
+                                                        )),
             )));
   }
 
@@ -179,14 +249,15 @@ class ToiletState extends State<Toilet> {
     return Container(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 0.0),
-        child: FutureBuilder(
+        child: FutureBuilder<ToiletBranchModel>(
           future: tourism(),
-          builder: (BuildContext context, AsyncSnapshot snapshot) {
+          builder: (BuildContext context,  snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return buildMovieShimmer();
             } else if (snapshot.hasError) {
               return Container();
-            } else if (snapshot.data.isEmpty) {
+            } else if (snapshot.data!.data.isEmpty) {
+
               return Container(
                 child: Center(
                     heightFactor: 5,
@@ -206,6 +277,7 @@ class ToiletState extends State<Toilet> {
                     )),
               );
             } else {
+              List<ToiletBranchModelData> filteredData=snapshot.data!.data.where((element)=>element.organization.id==subIndex).toList();
               return Column(
                 children: <Widget>[
                   SingleChildScrollView(
@@ -215,11 +287,21 @@ class ToiletState extends State<Toilet> {
                       child: ListView.builder(
                           physics: NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
-                          itemCount: snapshot.data.length,
+                          itemCount: filteredData.length,
                           itemBuilder: (BuildContext context, int index) {
+
                             return GestureDetector(
-                              onTap: () {
-                                popUp(context, snapshot.data[index]);
+                              onTap: () async{
+                                EasyLoading.show();
+                                try{
+                                  ToiletSingleBranchModel data= await toiletGetSingleBranch(filteredData[index].id);
+                                  EasyLoading.dismiss();
+                                Get.to(FullToiletPage(data: data));
+                                }catch(e){
+                                  EasyLoading.showError("Something went wrong");
+                                }
+                                
+                                // popUp(context, snapshot.data[index]);
                               },
                               child: Card(
                                 shape: RoundedRectangleBorder(
@@ -232,35 +314,43 @@ class ToiletState extends State<Toilet> {
                                     child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceEvenly,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(15.0),
-                                            child: CachedNetworkImage(
-                                                imageUrl:
-                                                    '$BASE_URL${snapshot.data[index].sp_pp_img1}',
-                                                height: 100,
-                                                width: 100,
-                                                fit: BoxFit.cover,
-                                                errorWidget:
-                                                    (context, url, error) =>
-                                                        ClipRRect(
-                                                            child: Image.asset(
-                                                          'assets/images/Grey_Placeholder.png',
-                                                          fit: BoxFit.fill,
+                                          Column(
+                                            children: [
+
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(15.0),
+                                                child: CachedNetworkImage(
+                                                    imageUrl:
+                                                        '${filteredData[index].organization.organizationLogo}',
+                                                    height: 100,
+                                                    width: 100,
+                                                    fit: BoxFit.cover,
+                                                    errorWidget:
+                                                        (context, url, error) =>
+                                                            ClipRRect(
+                                                                child: Image.asset(
+                                                              'assets/images/Grey_Placeholder.png',
+                                                              fit: BoxFit.fill,
+                                                            )),
+                                                    placeholder: (context, url) =>
+                                                        Container(
+                                                          width: 19,
+                                                          height: 19,
+                                                          child:
+                                                              CircularProgressIndicator(
+                                                            valueColor:
+                                                                AlwaysStoppedAnimation<
+                                                                        Color>(
+                                                                    Colors.white),
+                                                          ),
                                                         )),
-                                                placeholder: (context, url) =>
-                                                    Container(
-                                                      width: 19,
-                                                      height: 19,
-                                                      child:
-                                                          CircularProgressIndicator(
-                                                        valueColor:
-                                                            AlwaysStoppedAnimation<
-                                                                    Color>(
-                                                                Colors.white),
-                                                      ),
-                                                    )),
+                                              ),
+                                              SizedBox(height: 10,),
+                                              rating(context)
+                                            ],
                                           ),
                                           SizedBox(width: 10),
                                           Container(
@@ -273,7 +363,7 @@ class ToiletState extends State<Toilet> {
                                                 SizedBox(
                                                   width: 170.0,
                                                   child: Text(
-                                                      '${snapshot.data[index].sp_pp_name}'
+                                                      '${filteredData[index].organization.organizationName},${filteredData[index].location}'
                                                           .tr,
                                                       overflow:
                                                           TextOverflow.ellipsis,
@@ -286,12 +376,47 @@ class ToiletState extends State<Toilet> {
                                                 ),
                                                 SizedBox(
                                                   width: 170.0,
+                                                  child: Text('${filteredData[index].location}',
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      softWrap: false,
+                                                      style: TextStyle(
+                                                          height: 1.3,
+                                                          color:
+                                                              textPrimaryColor,
+                                                          fontSize: 16)),
+                                                ),
+                                                SizedBox(
+                                                  width: 170.0,
                                                   child: Text(
-                                                      'palika-name'.tr +
-                                                          ', ' +
-                                                          'ward'.tr +
-                                                          ' ' +
-                                                          '${snapshot.data[index].sp_pp_ward}',
+                                                      "Price: ${filteredData[index].serviceType}",
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      softWrap: false,
+                                                      style: TextStyle(
+                                                          height: 1.3,
+                                                          color:
+                                                              textPrimaryColor,
+                                                          fontSize: 16)),
+                                                ),
+                                                SizedBox(height: 10,),
+                                                LimitedBox(
+                                                  maxWidth: 170.0,
+                                                  child: Text(
+                                                      "Maintained By:",
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      softWrap: false,
+                                                      style: TextStyle(
+                                                          height: 1.3,
+                                                          color:
+                                                              textPrimaryColor,
+                                                          fontSize: 16)),
+                                                ),
+                                                LimitedBox(
+                                                  maxWidth: 170.0,
+                                                  child: Text(
+                                                      filteredData[index].organization.organizationName,
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       softWrap: false,
@@ -307,18 +432,25 @@ class ToiletState extends State<Toilet> {
                                           Column(children: [
                                             GestureDetector(
                                               onTap: () async{
-                                                double lat = double.parse(snapshot
-                                                    .data[index]
-                                                    .sp_pp_location_latitude);
-                                                double long = double.parse(snapshot
-                                                    .data[index]
-                                                    .sp_pp_location_longitude);
-                                                Position currentPosition = await Geolocator.getCurrentPosition();
+                                                
+                                                double lat = double.parse(filteredData[index].geoLocation.latitude);
+                                                double long = double.parse(filteredData[index].geoLocation.longitude);
+                                                var status = await Permission.location.request();
+  if (status == PermissionStatus.granted) {
+    try {
+    Position currentPosition = await Geolocator.getCurrentPosition();
                                                 MapLauncher.showDirections(
                                                   origin: Coords(currentPosition.latitude, currentPosition.longitude),
                                                     mapType: MapType.google,
                                                     destination:
                                                         Coords(lat, long));
+    } catch (e) {
+      throw EasyLoading.showError("server_error".tr);
+    }
+  } else {
+    throw EasyLoading.showError("permission_request".tr);
+  }
+                                                
                                                 // Get.to(
                                                 //   Mappage(
                                                 //         data: snapshot
@@ -393,6 +525,26 @@ class ToiletState extends State<Toilet> {
               backgroundColor: Colors.transparent,
               child: contentBox(context, data));
         });
+  }
+
+  rating(context){
+    return RatingBar.builder(
+      itemSize: 15,
+   initialRating: 3,
+   
+   minRating: 1,
+   direction: Axis.horizontal,
+   allowHalfRating: false,
+   itemCount: 5,
+   itemPadding: EdgeInsets.symmetric(horizontal: 1.0),
+   itemBuilder: (context, _) => Icon(
+     Icons.star,
+     color: Colors.amber,
+   ),
+   onRatingUpdate: (rating) {
+     print(rating);
+   },
+);
   }
 
   contentBox(context, data) {
@@ -635,6 +787,7 @@ class ToiletState extends State<Toilet> {
                             return GestureDetector(
                               onTap: () {
                                 popUp(context, snapshot.data!.data[index]);
+                                // Get.to(FullToiletPage(data: snapshot.data!.data[index]));
                               },
                               child: Card(
                                 shape: RoundedRectangleBorder(

@@ -159,7 +159,7 @@ class _UserHMChatState extends State<UserHMChat> {
                     mayordata['name'],
                     style: Theme.of(context)
                         .textTheme
-                        .subtitle1!
+                        .titleMedium!
                         .apply(color: primary, fontSizeFactor: 1.1),
                     overflow: TextOverflow.clip,
                   ),

@@ -33,6 +33,7 @@
 .packages
 .pub-cache/
 .pub/
+prac.dart
 /build/
 
 # Web related

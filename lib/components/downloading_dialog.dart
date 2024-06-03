@@ -114,7 +114,7 @@ class _DownloadingDialogState extends State<DownloadingDialog> {
 
                 style: Theme.of(context)
                     .textTheme
-                    .bodyText1!
+                    .bodyLarge!
                     .copyWith(fontSize: 22),
               )
             ],
@@ -132,7 +132,7 @@ class _DownloadingDialogState extends State<DownloadingDialog> {
                 },
                 child: Text(
                   'रद्द गर्नुहोस्',
-                  style: Theme.of(context).textTheme.headline1!.copyWith(
+                  style: Theme.of(context).textTheme.displayLarge!.copyWith(
                         fontSize: 22,
                         color: Colors.red,
                       ),

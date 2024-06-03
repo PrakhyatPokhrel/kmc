@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
-import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';

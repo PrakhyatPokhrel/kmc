@@ -159,7 +159,7 @@ class _UserNSChatState extends State<UserNSChat> {
                 children: <Widget>[
                   Text(
                     vicemayor['name'],
-                    style: Theme.of(context).textTheme.subtitle1,
+                    style: Theme.of(context).textTheme.titleMedium,
                     overflow: TextOverflow.clip,
                   ),
                   // Text(

@@ -380,14 +380,14 @@ class _PaymentState extends State<Payment> {
                             cursorColor: Color(0xff5C2D91),
                             validator: (v) =>
                                 (v?.isEmpty ?? true) ? 'Required ' : null,
-                            style: Theme.of(context).textTheme.headline5,
+                            style: Theme.of(context).textTheme.headlineSmall,
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               label: Text(
                                 'Mobile Number',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyLarge!
                                     .copyWith(
                                       color: Color(0xff5C2D91),
                                     ),
@@ -416,7 +416,7 @@ class _PaymentState extends State<Payment> {
                               'Khalti MPIN',
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText1!
+                                  .bodyLarge!
                                   .copyWith(
                                     color: Color(0xff5C2D91),
                                   ),
@@ -435,7 +435,7 @@ class _PaymentState extends State<Payment> {
                           ),
                           obscureText: true,
                           keyboardType: TextInputType.number,
-                          style: Theme.of(context).textTheme.headline5,
+                          style: Theme.of(context).textTheme.headlineSmall,
                           controller: _pinController,
                         ),
                         const SizedBox(height: 24),
@@ -537,7 +537,7 @@ class _PaymentState extends State<Payment> {
                                       content: TextField(
                                         style: Theme.of(context)
                                             .textTheme
-                                            .headline5,
+                                            .headlineSmall,
                                         decoration: const InputDecoration(
                                           label: Text('OTP Code'),
                                         ),

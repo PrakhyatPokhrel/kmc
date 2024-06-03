@@ -111,6 +111,7 @@ class Messages extends Translations {
           "MIGRATION": "Migration",
           "MARRIAGE": "Marriage",
           "NAME": "Name",
+          
           "NEWS": "News",
           "NOTIFICATION": "Notification",
           "NOTIFICATIONs": "Notices",
@@ -120,6 +121,7 @@ class Messages extends Translations {
           "news-notice": "Notice Board",
           "NEW": "New",
           "new_agenda": "Start New Agenda",
+          "Organization-name":"Organization Name",
           "others": "Others",
           "Others": "Others",
           "doc-verified": "Payment Due",
@@ -783,6 +785,7 @@ class Messages extends Translations {
           "Surakxit": "तपाईंको डाटा हामी सँग सुरक्षित छ।",
           // "Smartpalika": "स्मार्टपालिका",
           "Loginintro": "लग-ईन",
+          "Organization-name":"संस्थाको नाम",
           "forgot_password": "पासवर्ड बिर्सनुभयो?",
           "forgot_ghardhuri":
               "यदी घरधुरी  टोकन नं. नभएको वा बिर्सिनु भएको खण्डमा यहाँबाट प्राप्त गर्न सक्नुहुनेछ",

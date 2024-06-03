@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
-import 'package:dio_http_cache/dio_http_cache.dart';
+import 'package:dio_http_cache_lts/dio_http_cache_lts.dart';
 import 'package:equatable/equatable.dart';
 import 'package:kmc/pages/pratinidhiwordpress/model.dart';
 

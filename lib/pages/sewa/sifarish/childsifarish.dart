@@ -31,9 +31,9 @@ class SifarishFormChild extends StatefulWidget {
 
 class _SifarishFormChildState extends State<SifarishFormChild> {
   final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
-  late Map<String, AbstractControl<dynamic>> formMap = {
-    "count": FormControl<int>(validators: []),
-  };
+    late Map<String, AbstractControl<dynamic>> formMap = {
+      "count": FormControl<int>(validators: []),
+    };
   late final FormGroup form;
   ScrollController? _scrollController;
   List documentfields = [];
