@@ -67,7 +67,6 @@ class _PaymentdetailsState extends State<Paymentdetails> {
 
   TextEditingController _mobileController = TextEditingController();
 
-  @override
   var options = InAppBrowserClassOptions(
     crossPlatform: InAppBrowserOptions(hideToolbarTop: true, hideUrlBar: true),
     inAppWebViewGroupOptions: InAppWebViewGroupOptions(
@@ -188,7 +187,6 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                     GestureDetector(
                       onTap: () {
                         // notavailableAlert(context);
-                        //TODO: UNCOMMENT BELOW FOR ESEWA
                         _payEsewa();
                         // not_available_Alert(context);
                         // _payViaKhalti();
@@ -877,11 +875,6 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                                               Navigator.pop(context),
                                             }
                                         });
-                                    Map<String, dynamic> pdata = {};
-
-                                    // jsonEncode(selectedmag);
-
-                                    debugPrint(model.toString());
                                   } catch (e) {
                                     SnackBar(content: Text("$e"));
 

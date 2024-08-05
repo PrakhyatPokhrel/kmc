@@ -14,6 +14,7 @@ import 'package:kmc/utils/image_picker/image_picker_dialog.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:reactive_forms/reactive_forms.dart' as reactiveForm;
 import '../pages/sewa/sifarish_new/static_data/custom_regex_pattern.dart';
+import 'package:dio/dio.dart' as dio;
 
 class EnrollPage extends StatefulWidget {
   @override
@@ -24,26 +25,29 @@ class _EnrollPageState extends State<EnrollPage> {
   final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
 
   var _currentGender;
-  var _currentWard;
+  var _currentType;
   bool? checkboxValue = false;
   // List<ImageInputAdapter> _images;
   XFile? imagefile;
+  XFile? applicationFile;
   String? imageUploadURL;
   var type = [
-    {"name": "निजी", "value": "1"},
-    {"name": "सार्वजनिक", "value": "2"},
+    {"name": "निजी", "value": "private"},
+    {"name": "सार्वजनिक", "value": "public"},
     
   ];
   reactiveForm.FormGroup formgroup=reactiveForm.FormGroup({});
 
   var name = TextEditingController();
+  var focalPerson = TextEditingController();
   var set_password = TextEditingController();
   var email = TextEditingController();
   var mobile = TextEditingController();
   var address = TextEditingController();
   var re_password = TextEditingController();
   var description= TextEditingController();
-  String? imagePath=null;
+  var websiteUrl= TextEditingController();
+  // String? imagePath=null;
   @override
   void dispose() {
     // Never called
@@ -97,6 +101,21 @@ class _EnrollPageState extends State<EnrollPage> {
                             errorText: 'required_field'.tr),
                         decoration: new InputDecoration(
                           hintText: 'Organization-name'.tr,
+                        ),
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(
+                              CustomRegexPattern.englishInput),
+                        ],
+                      ),
+                    ),
+                    new ListTile(
+                      leading: Icon(Icons.person, color: primary),
+                      title: new TextFormField(
+                        controller: focalPerson,
+                        validator: FormBuilderValidators.required(context,
+                            errorText: 'required_field'.tr),
+                        decoration: new InputDecoration(
+                          hintText: 'Focal Person'.tr,
                         ),
                         inputFormatters: [
                           FilteringTextInputFormatter.allow(
@@ -166,22 +185,49 @@ class _EnrollPageState extends State<EnrollPage> {
                       title: new TextFormField(
                         controller: description,
                         validator: FormBuilderValidators.compose([
-                          FormBuilderValidators.required(context,
-                              errorText: 'required_field'.tr),
-                          FormBuilderValidators.minLength(
-                            context,
-                            10,
-                            errorText: 'minLength'.tr,
-                          ),
-                          FormBuilderValidators.maxLength(
-                            context,
-                            10,
-                            errorText: 'maxLength'.tr,
-                          ),
+                          // FormBuilderValidators.required(context,
+                          //     errorText: 'required_field'.tr),
+                          // FormBuilderValidators.minLength(
+                          //   context,
+                          //   10,
+                          //   errorText: 'minLength'.tr,
+                          // ),
+                          // FormBuilderValidators.maxLength(
+                          //   context,
+                          //   10,
+                          //   errorText: 'maxLength'.tr,
+                          // ),
                         ]),
                         maxLines: 3,
                         decoration: new InputDecoration(
                           hintText: 'विवरण'.tr,
+                        ),
+                        keyboardType: TextInputType.phone,
+                      ),
+                    ),
+                     ListTile(
+                      leading: Transform.translate(
+                        offset: Offset(0, -22),
+                        child: Icon(Icons.language, color: primary)),
+                      title: new TextFormField(
+                        controller: websiteUrl,
+                        validator: FormBuilderValidators.compose([
+                          // FormBuilderValidators.required(context,
+                          //     errorText: 'required_field'.tr),
+                          // FormBuilderValidators.minLength(
+                          //   context,
+                          //   10,
+                          //   errorText: 'minLength'.tr,
+                          // ),
+                          // FormBuilderValidators.maxLength(
+                          //   context,
+                          //   10,
+                          //   errorText: 'maxLength'.tr,
+                          // ),
+                        ]),
+                        maxLines: 3,
+                        decoration: new InputDecoration(
+                          hintText: 'Website Url'.tr,
                         ),
                         keyboardType: TextInputType.phone,
                       ),
@@ -205,10 +251,10 @@ class _EnrollPageState extends State<EnrollPage> {
                                             ));
                                       },
                                     ).toList(),
-                                    value: _currentWard,
+                                    value: _currentType,
                                     onChanged: (value) {
                                       setState(() {
-                                        _currentWard = value;
+                                        _currentType = value;
                                       });
                                     },
                                   ),
@@ -234,7 +280,7 @@ class _EnrollPageState extends State<EnrollPage> {
                     ImageHandler(
                         isCropperRequired: false,
                         onFilePickSuccess: (file){
-                            imagePath = file.path;
+                            imagefile = file;
                             // widget.field.file = file;
                             setState(() {});
                         }).getImage(context);
@@ -254,13 +300,13 @@ class _EnrollPageState extends State<EnrollPage> {
                               height: 140.0,
                               decoration: new BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                image:imagePath==null? new DecorationImage(
+                                image:imagefile==null? new DecorationImage(
                                   image:
                                       new ExactAssetImage('assets/image.png'),
                                   fit: BoxFit.cover,
                                 ):new DecorationImage(
                                   image:
-                                       FileImage(File(imagePath!)),
+                                       FileImage(File(imagefile!.path)),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -276,7 +322,7 @@ class _EnrollPageState extends State<EnrollPage> {
                     ImageHandler(
                         isCropperRequired: false,
                         onFilePickSuccess: (file) async {
-                            // imagePath = file.path;
+                            applicationFile = file;
                             setState(() {});
                         }).getImage(context);
                   },
@@ -288,8 +334,10 @@ class _EnrollPageState extends State<EnrollPage> {
                 ),
                   IconButton(
                     onPressed: () async {
-                      await Permission.storage.request();
-                      if(await Permission.location.isGranted){
+                      PermissionStatus storage= await Permission.manageExternalStorage.request();
+                      print(storage.isGranted);
+
+                      // if(storage.isGranted){
                       FilePickerResult? filePickerResult =
                           await FilePicker.platform.pickFiles(
                         type: FileType.custom,
@@ -299,11 +347,11 @@ class _EnrollPageState extends State<EnrollPage> {
                       if (filePickerResult != null) {
                         XFile? file =
                             XFile(filePickerResult.files.single.path!);
-                          // widget.file = file;
+                          applicationFile = file;
                           setState(() {});
                         }
                         // widget.onFilePickSuccess(file);
-                      }
+                      // }
                     },
                     icon: Icon(
                       Icons.attach_file,
@@ -319,9 +367,13 @@ class _EnrollPageState extends State<EnrollPage> {
                               height: 140.0,
                               decoration: new BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                image: new DecorationImage(
+                                image:  applicationFile==null?new DecorationImage(
                                   image:
-                                      new ExactAssetImage('assets/image.png'),
+                                     new ExactAssetImage('assets/image.png'),
+                                  fit: BoxFit.cover,
+                                ):new DecorationImage(
+                                  image:
+                                     new FileImage(File(applicationFile!.path)),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -414,7 +466,7 @@ class _EnrollPageState extends State<EnrollPage> {
                 ),
               ),
               SizedBox(height: 40,),
-                      signupButton(),
+                      enrollButton(),
               SizedBox(height: 40,),
 
           
@@ -425,7 +477,7 @@ class _EnrollPageState extends State<EnrollPage> {
     );
   }
 
-  signupButton() {
+  enrollButton() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       
@@ -444,7 +496,7 @@ class _EnrollPageState extends State<EnrollPage> {
           child: Text('SEND'.tr,
               style: TextStyle(color: textPrimaryLightColor, fontSize: 20)),
           onPressed: () {
-            // submit();
+            submit();
             // Navigator.push(
             //     context, MaterialPageRoute(builder: (context) => Otp()));
           },
@@ -482,38 +534,35 @@ class _EnrollPageState extends State<EnrollPage> {
     // ));
   }
 
-  void submit() {
+  void submit() async{
     if (_fbKey.currentState!.validate() == true) {
       EasyLoading.show(status: 'Please wait...'.tr);
 
       _fbKey.currentState?.save();
+      var logo=await dio.MultipartFile.fromFile(imagefile!.path, filename: imagefile!.path);
+      var application=await dio.MultipartFile.fromFile(applicationFile!.path, filename: applicationFile!.name);
       var data = {
-        "name": name.text,
-        "address": address.text,
-        "mobile": mobile.text,
-        "password": set_password.text,
-        "gender": _currentGender,
-        "woda": _currentWard,
-        "user_img": imageUploadURL != null ? imageUploadURL : 'noImg.jpg',
+        "organization_name": name.text,
+        "organization_description": address.text,
+        "organization_type":_currentType,
+        "focal_person": focalPerson.text,
+        "organization_address": address.text,
+        "organization_contact": mobile.text,
+        "organization_website_url": websiteUrl.text,
+        "organization_email": email.text,
+        "organization_logo": logo,
+        "organization_pdf": application,
       };
-      if (email.text != "") {
-        data["email"] = email.text;
-      }
+      // if (email.text != "") {
+      //   data["email"] = email.text;
+      // }
       try {
-        signUp(data).then((value) => {
-              userID = value['data']['id'],
+        enrollOrganization(data).then((value) => {
               EasyLoading.dismiss(),
-              if (value['status'] == true)
+              if (value == true)
                 {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => SignUpOTP(
-                                user_id: userID,
-                                email: email.text,
-                                password: re_password.text,
-                                mobile: mobile.text
-                              ))),
+                  Get.back(),
+                  EasyLoading.showSuccess("Application sent for review")
                 }
               else
                 {

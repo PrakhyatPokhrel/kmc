@@ -12,7 +12,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' as getPackage;
 import 'package:http/http.dart' as http;
 import 'package:kmc/components/custom_exception.dart';
 import 'package:kmc/config/url.dart';
@@ -306,7 +306,7 @@ finalIMEPayment(amount, msisdn, refId, responseCode, String responseDescription,
       print(response.data['message']);
       EasyLoading.showSuccess("भुक्तानी सफल भएको छ");
       Navigator.pop(context);
-      Get.off(BottomNavBar());
+      getPackage.Get.off(BottomNavBar());
     } else {
       EasyLoading.showError('server_connection_error'.tr);
     }
@@ -750,7 +750,7 @@ loginApi(data) async {
         EasyLoading.dismiss();
 
         print(data['phone']);
-        Get.to(SignUpOTP(
+        getPackage.Get.to(SignUpOTP(
           mobile: data['phone'],
           password: data['password'],
         ));
@@ -1592,6 +1592,25 @@ Future<bool> postReview(Map<String,String> body) async {
   try{
   // _dio.interceptors.add(_dioCacheManager.interceptor);
   var data = await _dio.post(postToiletReviewUrl,data: body);
+if(data.statusCode==200){
+    return true;}
+    else{
+      return false;
+    }}
+  catch(e){
+    if(e is DioError){
+      
+      print(e.response!.data);
+    }   
+      rethrow;
+  }
+}
+Future<bool> enrollOrganization(Map<String,dynamic> body) async {
+  try{
+    FormData formData=FormData.fromMap(body);
+  // _dio.interceptors.add(_dioCacheManager.interceptor);
+
+  var data = await _dio.post(postOrganizationFormUrl,data: formData);
 if(data.statusCode==200){
     return true;}
     else{

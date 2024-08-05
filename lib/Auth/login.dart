@@ -533,7 +533,7 @@ class _Login extends State<Login> {
                                 validator: FormBuilderValidators.required(
                                     context,
                                     errorText: 'required_field'.tr),
-                                decoration: new InputDecoration(
+                                decoration: new InputDecoration(     
                                   hintText: 'mobilenumber'.tr,
                                 ),
                                 keyboardType: TextInputType.phone,

@@ -68,7 +68,6 @@ class _FullNotificaionState extends State<FullNotificaion> {
   // }
   final MyInAppBrowser browser = new MyInAppBrowser();
 
-  @override
   var options = InAppBrowserClassOptions(
       crossPlatform: InAppBrowserOptions(hideUrlBar: false),
       inAppWebViewGroupOptions: InAppWebViewGroupOptions(
@@ -299,7 +298,6 @@ class _FullNotificaionState extends State<FullNotificaion> {
                 children: <Widget>[
                   GestureDetector(
                     onTap: () {
-                      var link = a;
 
                       // download(link);
                       getPermission(a);

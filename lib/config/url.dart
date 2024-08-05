@@ -423,3 +423,4 @@ const toiletGetBranchesUrl='$BASE_URL_FOR_TOILET_TEST/api/public_shauchalaya/get
 const toiletGetSingleBranchUrl='$BASE_URL_FOR_TOILET_TEST/api/public_shauchalaya/oneBranch';
 const getAllToiletRange='$BASE_URL_FOR_TOILET_TEST/api/geo_location/show_nearby_branch';
 const postToiletReviewUrl='$BASE_URL_FOR_TOILET_TEST/api/review/create_review';
+const postOrganizationFormUrl='$BASE_URL_FOR_TOILET_TEST/api/public_shauchalaya/org_verification_request';

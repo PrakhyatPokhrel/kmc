@@ -9,7 +9,8 @@ class AllToiletMapPage extends StatelessWidget {
   final List<NearbyToiletsModel> getToilet;
 
   @override
-  Widget build(BuildContext context) {final GalliController controller = GalliController(zoom: 15.8,authKey: 'c9c7a4c0-2834-4282-94f7-f4c79c40ab0a',initialPosition: latLng);
+  Widget build(BuildContext context) {
+    final GalliController controller = GalliController(zoom: 15.8,authKey: 'c9c7a4c0-2834-4282-94f7-f4c79c40ab0a',initialPosition: latLng);
     return  SafeArea(
       child: Stack(
         children: [

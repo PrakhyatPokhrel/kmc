@@ -3,7 +3,7 @@ description: A new Smartpalika project.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -15,10 +15,10 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.5.4+54
+version: 1.5.6+56
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.13.0 <3.0.0"
 
 dependencies:
   cached_network_image: ^3.3.1
@@ -65,8 +65,8 @@ dependencies:
   page_transition: ^2.0.5
   percent_indicator: ^4.2.2
   permission_handler: ^10.2.0
-  pusher_client: 
-    git: 
+  pusher_client:
+    git:
       url: https://github.com/thijskuilman/pusher_client.git
       ref: master
   reactive_forms: ^10.0.0
@@ -75,7 +75,7 @@ dependencies:
   shimmer: ^2.0.0
   simple_animations: null
   syncfusion_flutter_charts: ^20.4.51
-  syncfusion_flutter_pdfviewer: 
+  syncfusion_flutter_pdfviewer:
   toggle_switch: ^2.3.0
   # webview_flutter: null
   photo_view: ^0.14.0
@@ -88,7 +88,7 @@ dependencies:
   smooth_page_indicator: ^1.0.0+2
   youtube_player_flutter: ^8.1.1
   equatable: ^2.0.5
-  in_app_update: ^4.0.1
+  in_app_update: ^4.2.3
   image_cropper: ^3.0.1
   ime_pay:
   map_launcher: ^2.5.0
@@ -99,10 +99,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   easy_image_viewer: ^1.5.0
   galli_map: ^1.2.6
-
-
-
-
+  bootstrap_icons: ^1.11.3
 
 dependency_overrides:
   intl: ^0.17.0
@@ -115,7 +112,6 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter.''
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -127,7 +123,6 @@ flutter:
     - assets/images/
     - assets/images/provinces/
     - assets/images/Banner.png
-    - assets/images/header.png
     - assets/images/icons/
     - assets/images/onboarding/
     - assets/images/icons/newIcons/
