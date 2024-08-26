@@ -561,28 +561,6 @@ class _HomeState extends State<Home> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        //Department/ Bibhag
-                        titleText('departmnt'.tr, white, BibaghList()),
-                        SizedBox(height: 6),
-                        Container(
-                          height:
-                              MediaQuery.of(context).size.width * 0.3 * 2.15,
-                          child: GridView.count(
-                            scrollDirection: Axis.horizontal,
-                            shrinkWrap: true,
-                            primary: false,
-                            childAspectRatio: 0.9,
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 12,
-                            mainAxisSpacing: 12,
-                            children: List.generate(
-                              homeData.length,
-                              (index) {
-                                return BibhagCard(data: homeData[index]);
-                              },
-                            ),
-                          ),
-                        ),
                         SizedBox(height: 12),
                         //Sewa section [includes: Sanchar, Jankari aka PraKarmachari, Sifarish]
                         Container(
@@ -600,8 +578,10 @@ class _HomeState extends State<Home> {
                                 // width: MediaQuery.of(context).size.width * 0.3,
                                 child: Column(
                                   children: [
-                                    titleText('${sewa[index].title}'.tr,
-                                        primary, sewa[index].link
+                                    titleText(
+                                        '${sewa[index].title}'.tr,
+                                        index == 0 ? white : primary,
+                                        sewa[index].link
                                         // != null
                                         //     ? sewa[index].link
                                         //     : null
@@ -867,6 +847,31 @@ class _HomeState extends State<Home> {
                                         );
                                       }
                                     },
+                                  ),
+                                ),
+                                //Department/ Bibhag
+                                titleText(
+                                    'departmnt'.tr, primary, BibaghList()),
+                                SizedBox(height: 6),
+                                Container(
+                                  height: MediaQuery.of(context).size.width *
+                                      0.3 *
+                                      2.15,
+                                  child: GridView.count(
+                                    scrollDirection: Axis.horizontal,
+                                    shrinkWrap: true,
+                                    primary: false,
+                                    childAspectRatio: 0.9,
+                                    crossAxisCount: 2,
+                                    crossAxisSpacing: 12,
+                                    mainAxisSpacing: 12,
+                                    children: List.generate(
+                                      homeData.length,
+                                      (index) {
+                                        return BibhagCard(
+                                            data: homeData[index]);
+                                      },
+                                    ),
                                   ),
                                 ),
 

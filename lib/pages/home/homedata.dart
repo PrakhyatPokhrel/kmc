@@ -10,10 +10,9 @@ import 'package:kmc/pages/rajpatra.dart';
 import 'package:kmc/pages/sewa/sifarish/sifarish.dart';
 import 'package:kmc/pages/sewa/sifarish_new/screens/sifarish_dashboard_screen.dart';
 import 'package:kmc/pages/tax/taxInAppView.dart';
+import 'package:kmc/pages/toilet/toilet.dart';
 import 'package:kmc/pages/wodajankari.dart';
 import 'package:kmc/pages/wodapatra/citizencharter.dart';
-
-import '../toilet.dart';
 
 class HomeData {
   final String icon;
@@ -109,7 +108,7 @@ final List<GridData> gridData = [
   GridData('emergency-services', link + 'Emergency.svg', Emergency()),
   GridData('Tourism_site', link + 'location.svg', Paryatak_Sthal()),
   GridData('rajpatra', link + 'wadapatra_TaxLaw.svg', Rajpatra()),
-  GridData('toilet', link + 'toilet_new.svg', Toilet()),
+  GridData('toilet', link + 'toilet_new.svg', ToiletPage()),
   // GridData('dev_partners', link + 'Bikash_Full.svg', DevPartners()),
 ];
 

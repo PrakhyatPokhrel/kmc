@@ -18,8 +18,6 @@ import 'package:kmc/pages/profile/secondprofile.dart';
 import 'package:kmc/utils/image_picker/image_picker_dialog.dart';
 import 'package:nepali_utils/nepali_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../Auth/ghardhuri.dart';
 import '../../constants/constants.dart';
 import '../sewa/sifarish_new/static_data/custom_regex_pattern.dart';
 
@@ -900,7 +898,7 @@ class _ProfileState extends State<Profile> {
                                                     if (data == true) {
                                                       //
                                                       EasyLoading.dismiss();
-                                                      storage.clear();
+                                                      // storage.clear();
                                                       sharedprefdelete('a');
                                                       setState(() {});
 

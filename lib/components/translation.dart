@@ -6,6 +6,33 @@ class Messages extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'en_US': {
+          //toilet
+          "already_rated": "You have already rated this toilet.",
+          'find_toilet': "Find Restroom Near You",
+          'Exit': "Exit",
+          "enroll_now": "Enroll Now",
+          'website_url': 'Website',
+          'focal_person': 'Focal Person',
+          'toilet_type': 'Toilet Type',
+          'private': 'Private',
+          'public': 'Public',
+          'description': 'Description',
+          'logo': 'logo',
+          'application_document': 'Application Document',
+          "organization": "Organization's",
+          'Maintained By': 'Maintained By',
+          "view_all": "View All",
+          "all_organizations": "Organizations",
+          "all_toilet": "Toilets",
+          "rated_success": "Toilet Rated Successfully",
+          'all_toilets': "Toilets",
+          'rate_toilet': 'Rate this toilet',
+          'tell_others': 'tell others what you think',
+          'suggestion': 'File complaint/Suggestion',
+          "enroll_desc":
+              "Fill the form below to join the KMC and support the public toilet program.",
+          "organization_toilet": "Organization's toilets",
+
           "ABOUT": "About",
           "palika_name":
               "${Config.palikaNameEnglish}\n${Config.palikaTypeEnglish}",
@@ -111,7 +138,7 @@ class Messages extends Translations {
           "MIGRATION": "Migration",
           "MARRIAGE": "Marriage",
           "NAME": "Name",
-          
+
           "NEWS": "News",
           "NOTIFICATION": "Notification",
           "NOTIFICATIONs": "Notices",
@@ -121,7 +148,7 @@ class Messages extends Translations {
           "news-notice": "Notice Board",
           "NEW": "New",
           "new_agenda": "Start New Agenda",
-          "Organization-name":"Organization Name",
+          "Organization-name": "Organization Name",
           "others": "Others",
           "Others": "Others",
           "doc-verified": "Payment Due",
@@ -552,6 +579,32 @@ class Messages extends Translations {
           'nepalikeyboard': "This field must not be empty"
         },
         'hi_IN': {
+          //toilet
+          "already_rated": "तपाईंले पहिले नै मूल्याङ्कन गर्नुभएको छ",
+          'find_toilet': "तपाईंको नजिकै शौचालय फेला पार्नुहोस्",
+          'Exit': "बन्द गर्नुहोस्",
+          "enroll_now": "सहयोगी संस्था बन्नुहोस",
+          'website_url': 'वेबसाइट',
+          'focal_person': 'आधिकारिक  व्यक्ति',
+          'toilet_type': 'शौचालयको प्रकार',
+          'private': 'निजी',
+          'public': 'सार्वजनिक',
+          'description': 'विवरण',
+          "organization": "संस्थाको",
+          'logo': 'लोगो',
+          'application_document': 'निवेदन',
+          'Maintained By': 'संचालक',
+          'view_all': "सबै हेर्नुहोस्",
+          'all_toilets': "शौचालय",
+          "all_organizations": "सहयोगी संग/संस्थाहरू",
+          "rated_success": "सफलतापूर्वक शौचालय मूल्याङ्कन गरियो",
+          "rate_toilet": "यो शौचालयलाई मूल्याङ्कन गर्नुहोस्",
+          'tell_others': 'तपाई के सोच्नुहुन्छ अरूलाई भन्नुहोस्',
+          'suggestion': 'गुनासो/सुझाव दिनुहोस',
+          "enroll_desc":
+              'का.म.पा संग आबद्ध भइ सार्वजनिक शौचालय कार्यक्रममा सहयोग गर्न चाहनुहुने संग / संथाले एस फारम मार्फत आवेदन दिनुहोला । आवेदन स्वीकृत भएको खण्डमा तपाईसंग सम्पर्कमा आउनेछौ ।',
+          "organization_toilet": "संस्थाका शौचालय",
+
           "nepali": "नेपाली",
           "permission_error": "अनुमति त्रुटि",
           'please_try_again_later': 'समस्या! कृपया पछि पुन: प्रयास गर्नुहोस्',
@@ -785,7 +838,7 @@ class Messages extends Translations {
           "Surakxit": "तपाईंको डाटा हामी सँग सुरक्षित छ।",
           // "Smartpalika": "स्मार्टपालिका",
           "Loginintro": "लग-ईन",
-          "Organization-name":"संस्थाको नाम",
+          "Organization-name": "संस्थाको नाम",
           "forgot_password": "पासवर्ड बिर्सनुभयो?",
           "forgot_ghardhuri":
               "यदी घरधुरी  टोकन नं. नभएको वा बिर्सिनु भएको खण्डमा यहाँबाट प्राप्त गर्न सक्नुहुनेछ",

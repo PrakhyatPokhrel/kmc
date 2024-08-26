@@ -1574,17 +1574,16 @@ Future<ToiletSingleBranchModel> toiletGetSingleBranch(int branchId) async {
   }
   
 }
+Future<OrganizationModel> toiletGetOrganization({String? url}) async {
+  try {
+    // _dio.interceptors.add(_dioCacheManager.interceptor);
+    var data = await _dio.get(url ?? toiletGetOrganizationUrl);
+    if (data.statusCode == 200) {}
+    OrganizationModel organizationModel = organizationModelFromJson(data.data);
 
-Future<OrganizationModel> toiletGetOrganization() async {
-  try{
-  // _dio.interceptors.add(_dioCacheManager.interceptor);
-  var data = await _dio.get(toiletGetOrganizationUrl);
-  print(data);
-  OrganizationModel organizationModel=organizationModelFromJson(data.data);
-  
-  return organizationModel;}
-  catch(e){
-      rethrow;
+    return organizationModel;
+  } catch (e) {
+    rethrow;
   }
 }
 
