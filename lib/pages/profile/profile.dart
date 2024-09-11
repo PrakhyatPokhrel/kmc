@@ -9,20 +9,18 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:kmc/components/bottomNavBar.dart';
-import 'package:kmc/config/Apiconnectservices.dart';
-import 'package:kmc/config/colors.dart';
-import 'package:kmc/pages/hellomayor/appointmentList.dart';
-import 'package:kmc/pages/hellomayor/bookappointment.dart';
 import 'package:kmc/pages/profile/profile_confirm_dialog.dart';
 import 'package:kmc/pages/profile/receipt.dart';
 import 'package:kmc/pages/profile/secondprofile.dart';
-import 'package:kmc/utils/image_picker/image_picker_dialog.dart';
 import 'package:nepali_utils/nepali_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../Auth/ghardhuri.dart';
+import '../../components/bottomNavBar.dart';
+import '../../config/Apiconnectservices.dart';
+import '../../config/colors.dart';
 import '../../constants/constants.dart';
+import '../../utils/image_picker/image_picker_dialog.dart';
 import '../sewa/sifarish_new/static_data/custom_regex_pattern.dart';
 
 class Profile extends StatefulWidget {
@@ -45,10 +43,14 @@ class _ProfileState extends State<Profile> {
   int? _currentWard;
 
   var _currentGender;
+
+  bool isUpdate = false;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+
     setState(() {
       getsoredata();
     });
@@ -60,12 +62,15 @@ class _ProfileState extends State<Profile> {
     email.dispose();
     mobile.dispose();
     name.dispose();
+    name_np.dispose();
     super.dispose();
   }
 
+  dynamic s;
+
   getsoredata() async {
     SharedPreferences? pref = await SharedPreferences.getInstance();
-    dynamic s = jsonDecode(pref.getString('user')!);
+    s = jsonDecode(pref.getString('user')!);
     setState(() {
       userdata = s;
       name.text = '${s['name']}';
@@ -101,13 +106,10 @@ class _ProfileState extends State<Profile> {
     {"name": "७", "value": "7"},
     {"name": "८", "value": "8"},
     {"name": "९", "value": "9"},
-
-    //
     {"name": "१०", "value": "10"},
     {"name": "११", "value": "11"},
     {"name": "१२", "value": "12"},
     {"name": "१३", "value": "13"},
-
     {"name": "१४", "value": "14"},
     {"name": "१५", "value": "15"},
     {"name": "१६", "value": "16"},
@@ -150,13 +152,22 @@ class _ProfileState extends State<Profile> {
                   leading: Icon(Icons.person, color: primary),
                   title: new TextFormField(
                     controller: name,
-                    validator: FormBuilderValidators.required(context,
-                        errorText: 'required_field'.tr),
+                    onChanged: (value) {
+                      if (s['name'] != value) {
+                        setState(() {
+                          isUpdate = true;
+                        });
+                      } else {
+                        setState(() {
+                          isUpdate = false;
+                        });
+                      }
+                    },
+                    validator: FormBuilderValidators.required(context, errorText: 'required_field'.tr),
                     // initialValue: '${userdata['name']}',
                     decoration: _decoration('NAME (English)'),
                     inputFormatters: [
-                      FilteringTextInputFormatter.allow(
-                          CustomRegexPattern.englishInput),
+                      FilteringTextInputFormatter.allow(CustomRegexPattern.englishInput),
                     ],
                   ),
                 ),
@@ -164,12 +175,21 @@ class _ProfileState extends State<Profile> {
                   leading: Icon(Icons.person, color: primary),
                   title: new TextFormField(
                     inputFormatters: [
-                      FilteringTextInputFormatter.allow(
-                          RegExp("[\u0900-\u097F-/ ]+")),
+                      FilteringTextInputFormatter.allow(RegExp("[\u0900-\u097F-/ ]+")),
                     ],
                     controller: name_np,
-                    validator: FormBuilderValidators.required(context,
-                        errorText: 'required_field'.tr),
+                    onChanged: (value) {
+                      if (s['name_np'] != value) {
+                        setState(() {
+                          isUpdate = true;
+                        });
+                      } else {
+                        setState(() {
+                          isUpdate = false;
+                        });
+                      }
+                    },
+                    validator: FormBuilderValidators.required(context, errorText: 'required_field'.tr),
                     // initialValue: '${userdata['name']}',
 
                     decoration: _decoration('नाम (नेपालीमा)'),
@@ -180,8 +200,18 @@ class _ProfileState extends State<Profile> {
                   title: new TextFormField(
                       controller: address,
                       // initialValue: ' ${userdata['address']}',
-                      validator: FormBuilderValidators.required(context,
-                          errorText: 'required_field'.tr),
+                      onChanged: (value) {
+                        if (s['address'] != value) {
+                          setState(() {
+                            isUpdate = true;
+                          });
+                        } else {
+                          setState(() {
+                            isUpdate = false;
+                          });
+                        }
+                      },
+                      validator: FormBuilderValidators.required(context, errorText: 'required_field'.tr),
                       decoration: _decoration('addressNAME'.tr)),
                 ),
                 new ListTile(
@@ -191,12 +221,21 @@ class _ProfileState extends State<Profile> {
                   ),
                   title: new TextFormField(
                     validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(context,
-                          errorText: 'required_field'.tr),
-                      FormBuilderValidators.email(context,
-                          errorText: 'email_validate'.tr),
+                      FormBuilderValidators.required(context, errorText: 'required_field'.tr),
+                      FormBuilderValidators.email(context, errorText: 'email_validate'.tr),
                     ]),
                     controller: email,
+                    onChanged: (value) {
+                      if (s['email'] != value) {
+                        setState(() {
+                          isUpdate = true;
+                        });
+                      } else {
+                        setState(() {
+                          isUpdate = false;
+                        });
+                      }
+                    },
 
                     // initialValue: '${userdata['email']}',
                     decoration: _decoration('EMAIL'.tr),
@@ -208,9 +247,19 @@ class _ProfileState extends State<Profile> {
                   title: new TextFormField(
                     controller: mobile,
                     // initialValue: ' ${userdata['mobile']}',
+                    onChanged: (value) {
+                      if (s['mobile'] != value) {
+                        setState(() {
+                          isUpdate = true;
+                        });
+                      } else {
+                        setState(() {
+                          isUpdate = false;
+                        });
+                      }
+                    },
                     validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(context,
-                          errorText: 'required_field'.tr),
+                      FormBuilderValidators.required(context, errorText: 'required_field'.tr),
                       FormBuilderValidators.minLength(
                         context,
                         10,
@@ -229,14 +278,14 @@ class _ProfileState extends State<Profile> {
                 Stack(
                   children: <Widget>[
                     Container(
-                      padding: EdgeInsets.only(left: 44.0),
-                      margin:
-                          EdgeInsets.only(top: 5.0, left: 28.0, right: 16.0),
+                      padding: EdgeInsets.only(left: 30.0),
+                      margin: EdgeInsets.only(top: 6.0, left: 28.0, right: 16.0),
                       child: DropdownButtonFormField(
                         decoration: _currentGender != null
                             ? _decoration('$_currentGender'.tr)
                             : _decoration('GENDER'.tr),
                         isExpanded: true,
+
                         items: Constants.gender.map(
                           (val) {
                             return DropdownMenuItem(
@@ -247,6 +296,15 @@ class _ProfileState extends State<Profile> {
                         ).toList(),
                         // value: "${userdata["gender"]}".tr,
                         onChanged: (value) {
+                          if (s['gender'] != value) {
+                            setState(() {
+                              isUpdate = true;
+                            });
+                          } else {
+                            setState(() {
+                              isUpdate = false;
+                            });
+                          }
                           setState(() {
                             _currentGender = value;
                           });
@@ -254,8 +312,7 @@ class _ProfileState extends State<Profile> {
                       ),
                     ),
                     Container(
-                      margin:
-                          EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
+                      margin: EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
                       child: Icon(
                         Icons.attribution_outlined,
                         color: primary,
@@ -286,14 +343,12 @@ class _ProfileState extends State<Profile> {
                     ? Stack(
                         children: <Widget>[
                           Container(
-                            padding: EdgeInsets.only(left: 44.0),
-                            margin: EdgeInsets.only(
-                                top: 5.0, left: 28.0, right: 16.0),
+                            padding: EdgeInsets.only(left: 30.0),
+                            margin: EdgeInsets.only(top: 14.0, left: 28.0, right: 16.0),
                             child: DropdownButtonFormField<int>(
                               menuMaxHeight: 400,
                               decoration: _currentWard != null
-                                  ? _decoration(NepaliUnicode.convert(
-                                      _currentWard.toString()))
+                                  ? _decoration(NepaliUnicode.convert(_currentWard.toString()))
                                   : _decoration('Wardno'.tr),
                               // userdata['ward_id'] != null
                               //     ? _decoration('${userdata['ward_id']}'.tr)
@@ -332,13 +387,21 @@ class _ProfileState extends State<Profile> {
                               onChanged: (value) {
                                 setState(() {
                                   _currentWard = value;
+                                  if (userdata?['woda_id'] != value) {
+                                    setState(() {
+                                      isUpdate = true;
+                                    });
+                                  } else {
+                                    setState(() {
+                                      isUpdate = false;
+                                    });
+                                  }
                                 });
                               },
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.only(
-                                top: 16.0, left: 16.0, right: 16.0),
+                            margin: EdgeInsets.only(top: 24.0, left: 16.0, right: 16.0),
                             child: Icon(
                               Icons.location_city,
                               color: primary,
@@ -394,8 +457,7 @@ class _ProfileState extends State<Profile> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('profile'.tr,
-                                  style: TextStyle(color: white, fontSize: 22)),
+                              Text('profile'.tr, style: TextStyle(color: white, fontSize: 22)),
                               // InkWell(
                               //     onTap: () {
                               //       Get.to(Receipt());
@@ -416,8 +478,7 @@ class _ProfileState extends State<Profile> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 30.0, vertical: 8.0),
+                          padding: const EdgeInsets.only(left: 16.0, top: 8.0, bottom: 8.0),
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -431,32 +492,30 @@ class _ProfileState extends State<Profile> {
                                             height: 90.0,
                                             child: userdata != null
                                                 ? CachedNetworkImage(
-                                                    imageUrl:
-                                                        '${userdata['user_img']}',
-                                                    errorWidget:
-                                                        (context, url, error) =>
-                                                            ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              50.0),
-                                                      child: Image.asset(
-                                                          'assets/images/dummyuser.png',
+                                                    imageUrl: '${userdata['user_img']}',
+                                                    errorWidget: (context, url, error) => ClipRRect(
+                                                      borderRadius: BorderRadius.circular(50.0),
+                                                      child: Image.asset('assets/images/dummyuser.png',
                                                           fit: BoxFit.contain),
                                                     ),
-                                                    imageBuilder: (context,
-                                                            imageProvider) =>
-                                                        CircleAvatar(
-                                                      radius: 35,
-                                                      backgroundImage:
-                                                          imageProvider,
+                                                    imageBuilder: (context, imageProvider) => Container(
+                                                      width: 70,
+                                                      height: 70,
+                                                      decoration: BoxDecoration(
+                                                        shape: BoxShape.circle,
+                                                        border: Border.all(
+                                                          color: Colors.white,
+                                                          width: 3.0,
+                                                        ),
+                                                        image: DecorationImage(
+                                                          image: imageProvider,
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      ),
                                                     ),
-                                                    placeholder:
-                                                        (context, url) =>
-                                                            Center(
-                                                      child:
-                                                          CircularProgressIndicator(
-                                                        backgroundColor:
-                                                            tertiary,
+                                                    placeholder: (context, url) => Center(
+                                                      child: CircularProgressIndicator(
+                                                        backgroundColor: tertiary,
                                                       ),
                                                     ),
                                                   )
@@ -466,8 +525,7 @@ class _ProfileState extends State<Profile> {
                                             width: 90.0,
                                             height: 90.0,
                                             child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(50.0),
+                                              borderRadius: BorderRadius.circular(50.0),
                                               child: Image.file(
                                                 File(imagefile!.path),
                                                 fit: BoxFit.cover,
@@ -479,10 +537,8 @@ class _ProfileState extends State<Profile> {
                                       right: 0,
                                       child: GestureDetector(
                                         onTap: () {
-                                          ImageHandler(
-                                              onFilePickSuccess: (file) async {
-                                            bool isSuccess =
-                                                await profileupdateimage(file);
+                                          ImageHandler(onFilePickSuccess: (file) async {
+                                            bool isSuccess = await profileupdateimage(file);
                                             if (isSuccess) {
                                               setState(() {
                                                 imagefile = file;
@@ -505,100 +561,108 @@ class _ProfileState extends State<Profile> {
                                 ),
                                 SizedBox(width: 20),
                                 Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      userdata != null
-                                          ? Text(
-                                              // 'NAME'.tr +
-                                              //     ' : ' +
-                                              '${userdata['name']}',
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20,
-                                                height: 1.5,
-                                                // fontWeight: FontWeight.bold
-                                              ),
-                                            )
-                                          : Container(),
-                                      userdata != null
-                                          ? Text(
-                                              // 'MOBILE-NUM'.tr +
-                                              //     ' : ' +
-                                              '${userdata['mobile']}',
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 16,
-                                                height: 1.5,
-                                              ),
-                                            )
-                                          : Container(),
-                                      userdata?['woda_id'] != null
-                                          ? Text(
-                                              'ward'.tr +
-                                                  ' : ' +
-                                                  ' ${NepaliUnicode.convert(userdata['woda_id'].toString())}',
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 16,
-                                                height: 1.5,
-                                              ),
-                                            )
-                                          : userdata?['ward_id'] != null
-                                              ? Text(
-                                                  'ward'.tr +
-                                                      ' : ' +
-                                                      ' ${NepaliUnicode.convert(userdata['ward_id'].toString())}',
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 16,
-                                                    height: 1.5,
-                                                  ),
-                                                )
-                                              : Container(),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              backgroundColor: tertiary,
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20)),
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    userdata != null
+                                        ? Text(
+                                            // 'NAME'.tr +
+                                            //     ' : ' +
+                                            '${userdata['name']}',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20,
+                                              height: 1.5,
+                                              // fontWeight: FontWeight.bold
                                             ),
-                                            child: Text('my_application'.tr,
+                                          )
+                                        : Container(),
+                                    userdata != null
+                                        ? Text(
+                                            // 'MOBILE-NUM'.tr +
+                                            //     ' : ' +
+                                            '${userdata['mobile']}',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                              height: 1.5,
+                                            ),
+                                          )
+                                        : Container(),
+                                    userdata?['woda_id'] != null
+                                        ? Text(
+                                            'ward'.tr +
+                                                ' : ' +
+                                                ' ${NepaliUnicode.convert(userdata['woda_id'].toString())}',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                              height: 1.5,
+                                            ),
+                                          )
+                                        : userdata?['ward_id'] != null
+                                            ? Text(
+                                                'ward'.tr +
+                                                    ' : ' +
+                                                    ' ${NepaliUnicode.convert(userdata['ward_id'].toString())}',
                                                 style: TextStyle(
-                                                    color:
-                                                        textPrimaryLightColor)),
-                                            onPressed: () {
-                                              Get.to(SecondProfile());
-                                            },
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  height: 1.5,
+                                                ),
+                                              )
+                                            : Container(),
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width * 0.66,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Expanded(
+                                            flex: 3,
+                                            child: ElevatedButton(
+                                              style: ElevatedButton.styleFrom(
+                                                backgroundColor: tertiary,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(20),
+                                                ),
+                                              ),
+                                              child: Text('my_application'.tr,
+                                                  style: TextStyle(
+                                                    color: textPrimaryLightColor,
+                                                    overflow: TextOverflow.ellipsis,
+                                                  )),
+                                              onPressed: () {
+                                                Get.to(SecondProfile());
+                                              },
+                                            ),
                                           ),
                                           SizedBox(width: 10),
-                                          ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              backgroundColor: tertiary,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
+                                          Expanded(
+                                            flex: 2,
+                                            child: ElevatedButton(
+                                              style: ElevatedButton.styleFrom(
+                                                backgroundColor: tertiary,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(20),
+                                                ),
                                               ),
+                                              // shape: RoundedRectangleBorder(
+                                              //     borderRadius:
+                                              //         BorderRadius.circular(20)),
+                                              child: Text('receipt'.tr,
+                                                  style: TextStyle(
+                                                    color: textPrimaryLightColor,
+                                                    overflow: TextOverflow.ellipsis,
+                                                  )),
+                                              onPressed: () {
+                                                Get.to(Get.to(Receipt()));
+                                              },
                                             ),
-                                            // shape: RoundedRectangleBorder(
-                                            //     borderRadius:
-                                            //         BorderRadius.circular(20)),
-                                            child: Text('receipt'.tr,
-                                                style: TextStyle(
-                                                    color:
-                                                        textPrimaryLightColor)),
-                                            onPressed: () {
-                                              Get.to(Get.to(Receipt()));
-                                            },
                                           ),
                                         ],
                                       ),
-                                    ]),
+                                    ),
+                                  ],
+                                ),
                               ]),
                         ),
 
@@ -801,9 +865,8 @@ class _ProfileState extends State<Profile> {
                       //height: MediaQuery.of(context).size.height,
                       padding: EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(30),
-                            topLeft: Radius.circular(30)),
+                        borderRadius:
+                            BorderRadius.only(topRight: Radius.circular(30), topLeft: Radius.circular(30)),
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
@@ -831,110 +894,128 @@ class _ProfileState extends State<Profile> {
                                 padding: const EdgeInsets.all(10.0),
                                 child: Text('info_safe'.tr,
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: primary, fontSize: 16)),
+                                    style: TextStyle(color: primary, fontSize: 16)),
                               )),
                           SizedBox(height: 10),
                           formPart(),
                           SizedBox(
                             height: 12,
                           ),
-                          new ElevatedButton(
-                            child: new Text('update'.tr,
-                                style: TextStyle(color: Colors.white)),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: tertiary,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20)),
-                            ),
-                            // shape: RoundedRectangleBorder(
-                            //     borderRadius: BorderRadius.circular(20)),
-                            // disabledTextColor: Colors.white,
-                            onPressed: () {
-                              updateuserdata();
-                            },
-                          ),
+                          // new ElevatedButton(
+                          //   child: new Text('update'.tr, style: TextStyle(color: Colors.white)),
+                          //   style: ElevatedButton.styleFrom(
+                          //     backgroundColor: tertiary,
+                          //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                          //   ),
+                          //   // shape: RoundedRectangleBorder(
+                          //   //     borderRadius: BorderRadius.circular(20)),
+                          //   // disabledTextColor: Colors.white,
+                          //   onPressed: () {
+                          //     updateuserdata();
+                          //   },
+                          // ),
 
-                          //!DELETE PROFILE
-                          if (Platform.isIOS)
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                TextButton(
-                                  child: Text(
-                                    'Delete Profile'.tr,
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 12,
-                                      decoration: TextDecoration.underline,
-                                    ),
+                          Platform.isIOS
+                              ? Container(
+                                  margin: EdgeInsets.only(bottom: 26.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      ElevatedButton(
+                                        child: new Text('update'.tr, style: TextStyle(color: Colors.white)),
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: isUpdate ? tertiary : shadowColor,
+                                          shape:
+                                              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                                        ),
+                                        // shape: RoundedRectangleBorder(
+                                        //     borderRadius: BorderRadius.circular(20)),
+                                        // disabledTextColor: Colors.white,
+                                        onPressed: () {
+                                          if (isUpdate) updateuserdata();
+                                        },
+                                      ),
+                                      SizedBox(width: 20.0),
+                                      TextButton(
+                                        child: Text(
+                                          'Delete Profile'.tr,
+                                          style: TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 12,
+                                            decoration: TextDecoration.underline,
+                                          ),
+                                        ),
+                                        onPressed: () {
+                                          showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return StatefulBuilder(
+                                                builder: (context, setState) {
+                                                  return ProfileConfirmDialog(
+                                                    title: "Confirm".tr,
+                                                    description: 'Please type the following numbers'.tr,
+                                                    requireDigitFillUp: true,
+                                                    color: Theme.of(context).colorScheme.primary,
+                                                    onConfirm: () async {
+                                                      //
+                                                      EasyLoading.show(status: 'Please wait...'.tr);
+                                                      SharedPreferences pref =
+                                                          await SharedPreferences.getInstance();
+                                                      String devicetoken = pref.getString('devicetoken')!;
+                                                      var data = {'gcm_token': '${devicetoken}'};
+                                                      logoutApi(data).then(
+                                                        (data) {
+                                                          if (data == true) {
+                                                            //
+                                                            EasyLoading.dismiss();
+                                                            storage.clear();
+                                                            sharedprefdelete('a');
+                                                            setState(() {});
+
+                                                            Navigator.pop(context);
+                                                            Get.off(
+                                                              BottomNavBar(),
+                                                              preventDuplicates: false,
+                                                            );
+                                                          } else {
+                                                            //
+                                                            EasyLoading.dismiss();
+                                                            EasyLoading.showError(
+                                                              'server_connection_error'.tr,
+                                                            );
+                                                          }
+                                                          EasyLoading.showSuccess(
+                                                            'Your account has been deleted',
+                                                          );
+                                                        },
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                              );
+                                            },
+                                          );
+                                        },
+                                      ),
+                                    ],
                                   ),
-                                  onPressed: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return StatefulBuilder(
-                                          builder: (context, setState) {
-                                            return ProfileConfirmDialog(
-                                              title: "Confirm".tr,
-                                              description:
-                                                  'Please type the following numbers'
-                                                      .tr,
-                                              requireDigitFillUp: true,
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .primary,
-                                              onConfirm: () async {
-                                                //
-                                                EasyLoading.show(
-                                                    status:
-                                                        'Please wait...'.tr);
-                                                SharedPreferences pref =
-                                                    await SharedPreferences
-                                                        .getInstance();
-                                                String devicetoken = pref
-                                                    .getString('devicetoken')!;
-                                                var data = {
-                                                  'gcm_token': '${devicetoken}'
-                                                };
-                                                logoutApi(data).then(
-                                                  (data) {
-                                                    if (data == true) {
-                                                      //
-                                                      EasyLoading.dismiss();
-                                                      storage.clear();
-                                                      sharedprefdelete('a');
-                                                      setState(() {});
-
-                                                      Navigator.pop(context);
-                                                      Get.off(
-                                                        BottomNavBar(),
-                                                        preventDuplicates:
-                                                            false,
-                                                      );
-                                                    } else {
-                                                      //
-                                                      EasyLoading.dismiss();
-                                                      EasyLoading.showError(
-                                                        'server_connection_error'
-                                                            .tr,
-                                                      );
-                                                    }
-                                                    EasyLoading.showSuccess(
-                                                      'Your account has been deleted',
-                                                    );
-                                                  },
-                                                );
-                                              },
-                                            );
-                                          },
-                                        );
-                                      },
-                                    );
-                                  },
+                                )
+                              : Container(
+                                  margin: EdgeInsets.only(bottom: 26.0),
+                                  child: ElevatedButton(
+                                    child: new Text('update'.tr, style: TextStyle(color: Colors.white)),
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: isUpdate ? tertiary : shadowColor,
+                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                                    ),
+                                    // shape: RoundedRectangleBorder(
+                                    //     borderRadius: BorderRadius.circular(20)),
+                                    // disabledTextColor: Colors.white,
+                                    onPressed: () {
+                                      if (isUpdate) updateuserdata();
+                                    },
+                                  ),
                                 ),
-                              ],
-                            ),
                         ]),
                       ))
                 ],
@@ -949,16 +1030,15 @@ class _ProfileState extends State<Profile> {
   _decoration(data) {
     return InputDecoration(
       // labelStyle: TextStyle(color: primary, fontFamily: 'Mukta'),
-      contentPadding:
-          new EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
+      contentPadding: new EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
       fillColor: background, filled: true,
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(color: Colors.transparent, width: 2.0),
-        borderRadius: BorderRadius.all(Radius.circular(50.0)),
+        borderRadius: BorderRadius.all(Radius.circular(30.0)),
       ),
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(color: Colors.transparent, width: 2.0),
-        borderRadius: BorderRadius.all(Radius.circular(50.0)),
+        borderRadius: BorderRadius.all(Radius.circular(30.0)),
       ),
       errorBorder: UnderlineInputBorder(
         borderSide: BorderSide(color: Colors.redAccent),
@@ -1028,5 +1108,5 @@ class BlogImage {
 
   create() {}
 
-  // static Future<BlogImage>? fromUrl(String url) async {}
+// static Future<BlogImage>? fromUrl(String url) async {}
 }
