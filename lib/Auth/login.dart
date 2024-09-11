@@ -366,16 +366,18 @@ class _Login extends State<Login> {
                         return AlertDialog(
                           title: Align(
                             alignment: Alignment.center,
-                            child: Text("Information"),
+                            child: Text('HowToUse'.tr),
                           ),
                           contentPadding: const EdgeInsets.only(
-                            left: 24.0,
+                            left: 20.0,
                             top: 16.0,
-                            right: 24.0,
+                            right: 20.0,
                             bottom: 8.0,
                           ),
                           content: Text(
-                              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra."),
+                              '१. सर्वप्रथम एप्सको  मेन्युमा गइ लग-इन बटन थिच्नुहोस । \n\n२. नयाँ प्रयोग '
+                              'कर्ताको हकमा दर्ता फारम भरी, आफ्नो मोबाइलमा आएको OTP कोड प्रविष्ट '
+                              'गर्नुपर्ने हुन्छ ।\n\n३. दर्ता गरी सक्नु भएका प्रयोग कर्ताहरुले आफ्नो इमेल वा मोवाइल नं. तथा पासवर्ड राखी लग-इन गर्नुपर्ने हुन्छ । लग-इन गरिसकेपछी एप्सका अधिकांश सेवा प्रयोगका लागी उपलब्ध हुनेछन । \n\nनोट: परिक्षण काल पश्चात एप्समा लग-इन गर्ने संयन्त्र परिवर्तन भइ घरधुरी टोकन लग-इन व्यवस्ता लागु हुनेछ।'),
                           actionsPadding: const EdgeInsets.only(
                             bottom: 12.0,
                             right: 12.0,
