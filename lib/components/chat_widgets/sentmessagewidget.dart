@@ -96,7 +96,7 @@ class SentMessageWidget extends StatelessWidget {
                     "${data['message']}",
                     style: Theme.of(context)
                         .textTheme
-                        .bodyText1!
+                        .bodyLarge!
                         .apply(color: Colors.white, fontSizeFactor: 1.1),
                   ),
           ),

@@ -5,12 +5,10 @@ import 'package:kmc/config/url.dart';
 import 'package:kmc/modal/chatlistmodal.dart';
 import 'package:kmc/pages/hellomayor/chatData.dart';
 import 'package:kmc/pages/hellomayor/nyayiksamiti/nyayikNSchat.dart';
-import 'package:kmc/config/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:pusher_client/pusher_client.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
 
 class NyayikList extends StatefulWidget {
@@ -60,11 +58,11 @@ class _NyayikList extends State<NyayikList> {
           toolbarTextStyle: Theme.of(context)
               .textTheme
               .apply(bodyColor: Colors.black45)
-              .bodyText2,
+              .bodyMedium,
           titleTextStyle: Theme.of(context)
               .textTheme
               .apply(bodyColor: Colors.black45)
-              .headline6,
+              .titleLarge,
           // actions: <Widget>[
           //   IconButton(
           //     icon: Icon(Icons.search),
@@ -152,7 +150,7 @@ class _NyayikList extends State<NyayikList> {
                           ),
                           title: Text(
                             "${snapshot.data.conversationlist[i].name}",
-                            style: Theme.of(context).textTheme.bodyText1,
+                            style: Theme.of(context).textTheme.bodyLarge,
                           ),
                           subtitle: Text(
                             "${snapshot.data.conversationlist[i].last_message}",
@@ -160,11 +158,11 @@ class _NyayikList extends State<NyayikList> {
                                     null
                                 ? Theme.of(context)
                                     .textTheme
-                                    .subtitle1!
+                                    .titleMedium!
                                     .apply(color: Colors.black87)
                                 : Theme.of(context)
                                     .textTheme
-                                    .subtitle1!
+                                    .titleMedium!
                                     .apply(color: Colors.black54),
                           ),
                           trailing: Container(

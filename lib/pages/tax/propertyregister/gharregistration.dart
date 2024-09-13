@@ -366,7 +366,7 @@ class _GharRegisterState extends State<GharRegister> {
                                         color: textPrimaryLightColor,
                                         fontSize: 15)),
                                 style: ButtonStyle(
-                                    shape: MaterialStateProperty.all<
+                                    shape: WidgetStateProperty.all<
                                             RoundedRectangleBorder>(
                                         RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30.0),
@@ -868,10 +868,10 @@ class _GharRegisterState extends State<GharRegister> {
       padding: const EdgeInsets.all(8.0),
       child: ElevatedButton.icon(
         style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(primary),
-            padding: MaterialStateProperty.all(
+            backgroundColor: WidgetStateProperty.all(primary),
+            padding: WidgetStateProperty.all(
                 EdgeInsets.symmetric(vertical: 10, horizontal: 15)),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0),
             ))),
@@ -1012,10 +1012,10 @@ class _GharRegisterState extends State<GharRegister> {
       padding: const EdgeInsets.all(8.0),
       child: ElevatedButton(
         style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(tertiary),
-            padding: MaterialStateProperty.all(
+            backgroundColor: WidgetStateProperty.all(tertiary),
+            padding: WidgetStateProperty.all(
                 EdgeInsets.symmetric(vertical: 16, horizontal: 100)),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0),
             ))),

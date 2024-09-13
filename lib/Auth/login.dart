@@ -604,7 +604,7 @@ class _Login extends State<Login> {
                               children: [
                                 ElevatedButton(
                                   style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all(primary),
+                                    backgroundColor: WidgetStateProperty.all(primary),
                                   ),
                                   child: Text('SEND'.tr, style: TextStyle(color: textPrimaryLightColor)),
                                   onPressed: () {
@@ -622,7 +622,7 @@ class _Login extends State<Login> {
                                 SizedBox(width: 6),
                                 ElevatedButton(
                                   style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all(Colors.redAccent),
+                                    backgroundColor: WidgetStateProperty.all(Colors.redAccent),
                                   ),
                                   child: Text('cancel'.tr, style: TextStyle(color: textPrimaryLightColor)),
                                   onPressed: () {
@@ -664,7 +664,7 @@ class _Login extends State<Login> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: ElevatedButton(
                                     style: ButtonStyle(
-                                      backgroundColor: MaterialStateProperty.all(primary),
+                                      backgroundColor: WidgetStateProperty.all(primary),
                                     ),
                                     child: Text('SEND'.tr, style: TextStyle(color: textPrimaryLightColor)),
                                     onPressed: () {
@@ -722,7 +722,7 @@ class _Login extends State<Login> {
                                       padding: const EdgeInsets.all(8.0),
                                       child: ElevatedButton(
                                         style: ButtonStyle(
-                                          backgroundColor: MaterialStateProperty.all(primary),
+                                          backgroundColor: WidgetStateProperty.all(primary),
                                         ),
                                         child:
                                             Text('SEND'.tr, style: TextStyle(color: textPrimaryLightColor)),

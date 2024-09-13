@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:equatable/equatable.dart';
 import 'package:get/get.dart';
-import 'package:kmc/pages/hellomayor/chatData.dart';
 import 'package:kmc/pages/pratinidhiwordpress/model.dart';
 
 part 'pratinidhinew_state.dart';

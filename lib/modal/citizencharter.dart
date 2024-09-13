@@ -1,7 +1,5 @@
-import 'dart:convert';
 
 // import 'package:kmc/components/my_flutter_app_icons.dart';
-import 'package:flutter/cupertino.dart';
 
 class WodaPatraData {
   String? title;

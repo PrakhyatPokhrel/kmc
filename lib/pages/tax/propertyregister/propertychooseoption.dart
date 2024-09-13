@@ -112,10 +112,10 @@ class _PropertyChooseHomePageState extends State<PropertyChooseHomePage> {
       padding: const EdgeInsets.all(8.0),
       child: ElevatedButton(
         style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(tertiary),
-            padding: MaterialStateProperty.all(
+            backgroundColor: WidgetStateProperty.all(tertiary),
+            padding: WidgetStateProperty.all(
                 EdgeInsets.symmetric(vertical: 16, horizontal: 100)),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0),
             ))),
@@ -235,7 +235,7 @@ class _PropertyChooseHomePageState extends State<PropertyChooseHomePage> {
             actions: <Widget>[
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.red),
+                  backgroundColor: WidgetStateProperty.all(Colors.red),
                 ),
                 child: Text(
                   'CANCEL',
@@ -249,7 +249,7 @@ class _PropertyChooseHomePageState extends State<PropertyChooseHomePage> {
               ),
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.green),
+                  backgroundColor: WidgetStateProperty.all(Colors.green),
                 ),
                 child: Text(
                   'OK',
@@ -311,7 +311,7 @@ class _PropertyChooseHomePageState extends State<PropertyChooseHomePage> {
             actions: <Widget>[
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.red),
+                  backgroundColor: WidgetStateProperty.all(Colors.red),
                 ),
                 child: Text(
                   'CANCEL',
@@ -325,7 +325,7 @@ class _PropertyChooseHomePageState extends State<PropertyChooseHomePage> {
               ),
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.green),
+                  backgroundColor: WidgetStateProperty.all(Colors.green),
                 ),
                 child: Text(
                   'OK',
@@ -392,7 +392,7 @@ class _PropertyChooseHomePageState extends State<PropertyChooseHomePage> {
             actions: <Widget>[
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.red),
+                  backgroundColor: WidgetStateProperty.all(Colors.red),
                 ),
                 child: Text(
                   'CANCEL',
@@ -406,7 +406,7 @@ class _PropertyChooseHomePageState extends State<PropertyChooseHomePage> {
               ),
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.green),
+                  backgroundColor: WidgetStateProperty.all(Colors.green),
                 ),
                 child: Text(
                   'OK',

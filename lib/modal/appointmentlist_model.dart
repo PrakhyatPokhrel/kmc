@@ -19,10 +19,8 @@ class AppointmentList {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['status'] = this.status;
-    if (this.data != null) {
-      data['data'] = this.data.map((v) => v.toJson()).toList();
-    }
-    data['message'] = this.message;
+    data['data'] = this.data.map((v) => v.toJson()).toList();
+      data['message'] = this.message;
     return data;
   }
 }

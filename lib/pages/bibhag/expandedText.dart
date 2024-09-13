@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:kmc/config/colors.dart';
 
@@ -9,8 +8,7 @@ class ExpandableText extends StatefulWidget {
     this.text, {
     Key? key,
     this.trimLines = 2,
-  })  : assert(text != null),
-        super(key: key);
+  })  : super(key: key);
 
   final String text;
   final int trimLines;

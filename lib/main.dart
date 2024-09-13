@@ -13,7 +13,6 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/instance_manager.dart';
 import 'package:in_app_update/in_app_update.dart';
-import 'package:khalti/khalti.dart';
 import 'package:kmc/components/bottomNavBar.dart';
 import 'package:kmc/components/translation.dart';
 import 'package:kmc/config/colors.dart';
@@ -42,7 +41,6 @@ import 'package:kmc/pages/wodapatra/citizencharter.dart';
 import 'package:kmc/pages/yojana/woda_janakari_cubit/cubit/woda_jankari_cubit.dart';
 import 'package:nepali_utils/nepali_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'config/replaceable.dart';
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(

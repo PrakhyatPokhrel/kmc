@@ -1,4 +1,3 @@
-import 'package:flutter_html/flutter_html.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:kmc/components/custom_widget.dart';
 import 'package:kmc/config/url.dart';
@@ -8,7 +7,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kmc/config/colors.dart';
 import 'package:kmc/config/Apiconnectservices.dart';
 import 'package:get/get.dart';
-import 'package:kmc/map.dart';
 import 'package:kmc/modal/business.dart';
 import 'package:map_launcher/map_launcher.dart';
 

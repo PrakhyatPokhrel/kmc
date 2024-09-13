@@ -27,7 +27,7 @@ class _UserJGChatState extends State<UserJGChat> {
   final LocalStorage storage = new LocalStorage('changu');
   List<Conversationlistmessage> data1 = [];
   PusherClient? pusher;
-final chatkey = GlobalKey<FormState>();
+  final chatkey = GlobalKey<FormState>();
   Channel? channel;
   bool _showBottom = false;
   final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
@@ -161,7 +161,7 @@ final chatkey = GlobalKey<FormState>();
                 children: <Widget>[
                   Text(
                     suchanaAdhikari['name'],
-                    style: Theme.of(context).textTheme.subtitle1,
+                    style: Theme.of(context).textTheme.titleMedium,
                     overflow: TextOverflow.clip,
                   ),
                   // Text(
@@ -302,7 +302,6 @@ final chatkey = GlobalKey<FormState>();
                               onTap: () => {
                                 setState(
                                   () {
-                                
                                     if (chatkey.currentState!.validate()) {
                                       storemessage(message.text);
                                     }

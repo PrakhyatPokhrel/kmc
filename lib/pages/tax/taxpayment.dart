@@ -505,14 +505,14 @@ class _TaxPaymentState extends State<TaxPayment> {
                             cursorColor: Color(0xff5C2D91),
                             validator: (v) =>
                                 (v?.isEmpty ?? true) ? 'Required ' : null,
-                            style: Theme.of(context).textTheme.headline5,
+                            style: Theme.of(context).textTheme.headlineSmall,
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               label: Text(
                                 'Mobile Number',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyLarge!
                                     .copyWith(
                                       color: Color(0xff5C2D91),
                                     ),
@@ -541,7 +541,7 @@ class _TaxPaymentState extends State<TaxPayment> {
                               'Khalti MPIN',
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText1!
+                                  .bodyLarge!
                                   .copyWith(
                                     color: Color(0xff5C2D91),
                                   ),
@@ -560,7 +560,7 @@ class _TaxPaymentState extends State<TaxPayment> {
                           ),
                           obscureText: true,
                           keyboardType: TextInputType.number,
-                          style: Theme.of(context).textTheme.headline5,
+                          style: Theme.of(context).textTheme.headlineSmall,
                           controller: _pinController,
                         ),
                         const SizedBox(height: 24),
@@ -663,7 +663,7 @@ class _TaxPaymentState extends State<TaxPayment> {
                                       content: TextField(
                                         style: Theme.of(context)
                                             .textTheme
-                                            .headline5,
+                                            .headlineSmall,
                                         decoration: const InputDecoration(
                                           label: Text('OTP Code'),
                                         ),
@@ -838,8 +838,8 @@ class _TaxPaymentState extends State<TaxPayment> {
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(tertiary),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      backgroundColor: WidgetStateProperty.all(tertiary),
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),

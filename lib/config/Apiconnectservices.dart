@@ -15,7 +15,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:kmc/components/custom_exception.dart';
-import 'package:kmc/config/colors.dart';
 import 'package:kmc/config/url.dart';
 import 'package:kmc/modal/appointmentlist_model.dart';
 import 'package:kmc/modal/barchartmodal.dart';
@@ -44,7 +43,6 @@ import 'package:kmc/modal/toiletgraph.dart';
 import 'package:kmc/modal/wodajanakari.dart';
 import 'package:kmc/modal/wodapratinidhi.dart';
 import 'package:kmc/modal/yojanamodal.dart';
-import 'package:kmc/pages/forgetpassword/forgetpassword.dart';
 import 'package:kmc/pages/sewa/sifarish_new/model/sifarish_model.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:path/path.dart';
@@ -57,7 +55,6 @@ import '../modal/addressmodal.dart';
 import '../modal/appointmentmodal.dart';
 import '../modal/nearby_places.dart';
 import '../pages/home/signUpOTP.dart';
-import '../server_maintan.dart';
 
 DioCacheManager _dioCacheManager = DioCacheManager(CacheConfig());
 Options _cacheOptions =

@@ -58,11 +58,11 @@ class _GunasoList extends State<GunasoList> {
           toolbarTextStyle: Theme.of(context)
               .textTheme
               .apply(bodyColor: Colors.black45)
-              .bodyText2,
+              .bodyMedium,
           titleTextStyle: Theme.of(context)
               .textTheme
               .apply(bodyColor: Colors.black45)
-              .headline6,
+              .titleLarge,
           // actions: <Widget>[
           //   IconButton(
           //     icon: Icon(Icons.search),
@@ -143,7 +143,7 @@ class _GunasoList extends State<GunasoList> {
                           ),
                           title: Text(
                             "${snapshot.data.conversationlist[i].name}",
-                            style: Theme.of(context).textTheme.bodyText1,
+                            style: Theme.of(context).textTheme.bodyLarge,
                           ),
                           subtitle: Text(
                             "${snapshot.data.conversationlist[i].last_message}",
@@ -151,11 +151,11 @@ class _GunasoList extends State<GunasoList> {
                                     null
                                 ? Theme.of(context)
                                     .textTheme
-                                    .subtitle1!
+                                    .titleMedium!
                                     .apply(color: Colors.black87)
                                 : Theme.of(context)
                                     .textTheme
-                                    .subtitle1!
+                                    .titleMedium!
                                     .apply(color: Colors.black54),
                           ),
                           trailing: Container(

@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 class NotificationModal {
   dynamic notif_id;

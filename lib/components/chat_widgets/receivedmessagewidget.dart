@@ -30,7 +30,7 @@ class ReceivedMessagesWidget extends StatelessWidget {
             children: <Widget>[
               Text(
                 "${data['sender_name']}",
-                style: Theme.of(context).textTheme.caption,
+                style: Theme.of(context).textTheme.bodySmall,
               ),
               Container(
                 constraints: BoxConstraints(
@@ -97,7 +97,7 @@ class ReceivedMessagesWidget extends StatelessWidget {
                         "${data['message']}",
                         style: Theme.of(context)
                             .textTheme
-                            .bodyText1!
+                            .bodyLarge!
                             .apply(color: Colors.black87, fontSizeFactor: 1.1),
                       ),
               ),

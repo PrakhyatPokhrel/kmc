@@ -1,13 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:kmc/components/constantdatasforchartpage.dart';
 import 'package:kmc/config/colors.dart';
-import 'package:kmc/config/Apiconnectservices.dart';
 import 'package:get/get.dart';
-import 'package:kmc/modal/barchartmodal.dart';
 
 class PopulationChartPage extends StatefulWidget {
   @override

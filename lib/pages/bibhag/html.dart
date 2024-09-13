@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:kmc/config/colors.dart';
-import 'package:kmc/config/Apiconnectservices.dart';
-import 'package:get/get.dart';
 
 class HTML extends StatefulWidget {
   final data;

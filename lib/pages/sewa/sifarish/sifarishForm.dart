@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -653,7 +652,7 @@ class _SifarishFormState extends State<SifarishForm> {
                                     icon: Icon(Icons.upload),
                                     label: Text('SEND'.tr),
                                     style: ButtonStyle(
-                                      shape: MaterialStateProperty.all<
+                                      shape: WidgetStateProperty.all<
                                           RoundedRectangleBorder>(
                                         RoundedRectangleBorder(
                                           borderRadius:
@@ -1793,8 +1792,8 @@ class _SifarishFormState extends State<SifarishForm> {
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(tertiary),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      backgroundColor: WidgetStateProperty.all(tertiary),
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),
@@ -1836,8 +1835,8 @@ class _SifarishFormState extends State<SifarishForm> {
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(tertiary),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    backgroundColor: WidgetStateProperty.all(tertiary),
+                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
@@ -1881,8 +1880,8 @@ class _SifarishFormState extends State<SifarishForm> {
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(tertiary),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      backgroundColor: WidgetStateProperty.all(tertiary),
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),

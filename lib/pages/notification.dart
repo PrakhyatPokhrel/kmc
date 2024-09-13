@@ -1,28 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kmc/components/bottomNavBar.dart';
 import 'package:kmc/components/custom_empty_card.dart';
 import 'package:kmc/components/custom_error_card.dart';
 import 'package:kmc/components/custom_spinner.dart';
 import 'package:kmc/config/Apiconnectservices.dart';
 import 'package:kmc/config/colors.dart';
-import 'package:kmc/pages/emergency/emergency.dart';
 import 'package:kmc/pages/full_notification.dart';
-import 'package:kmc/pages/hellomayor/appointmentList.dart';
-import 'package:kmc/pages/hellomayor/hellomayorEntry.dart';
-import 'package:kmc/pages/hellomayor/janagunaso/gunasoEntry.dart';
-import 'package:kmc/pages/hellomayor/nyayiksamiti/nyayiklist.dart';
-import 'package:kmc/pages/news/newslist.dart';
-import 'package:kmc/pages/parichaya.dart';
-import 'package:kmc/pages/paryatak_sthal.dart';
-import 'package:kmc/pages/pratinidhiwordpress/screen/pratinidhiwordpress.dart';
-import 'package:kmc/pages/profile/profile.dart';
 import 'package:kmc/pages/profile/secondprofile.dart';
-import 'package:kmc/pages/rajpatra.dart';
-import 'package:kmc/pages/settings.dart';
-import 'package:kmc/pages/wodajankari.dart';
-import 'package:kmc/pages/wodapatra/citizencharter.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class Notifications extends StatefulWidget {
   final bool isBackRequired;

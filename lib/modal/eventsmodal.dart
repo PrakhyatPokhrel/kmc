@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 class Eventsapi {
   List<Gallery>? image_gallery;

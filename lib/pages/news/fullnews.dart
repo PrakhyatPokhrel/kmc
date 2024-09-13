@@ -445,6 +445,7 @@ class _FullNewsState extends State<FullNews> {
             ),
           );
         });
+    return null;
   }
 
   static downloadingCallback(id, status, progress) {

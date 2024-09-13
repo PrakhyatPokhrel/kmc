@@ -380,14 +380,14 @@ class _PaymentState extends State<Payment> {
                             cursorColor: Color(0xff5C2D91),
                             validator: (v) =>
                                 (v?.isEmpty ?? true) ? 'Required ' : null,
-                            style: Theme.of(context).textTheme.headline5,
+                            style: Theme.of(context).textTheme.headlineSmall,
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               label: Text(
                                 'Mobile Number',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyLarge!
                                     .copyWith(
                                       color: Color(0xff5C2D91),
                                     ),
@@ -416,7 +416,7 @@ class _PaymentState extends State<Payment> {
                               'Khalti MPIN',
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText1!
+                                  .bodyLarge!
                                   .copyWith(
                                     color: Color(0xff5C2D91),
                                   ),
@@ -435,7 +435,7 @@ class _PaymentState extends State<Payment> {
                           ),
                           obscureText: true,
                           keyboardType: TextInputType.number,
-                          style: Theme.of(context).textTheme.headline5,
+                          style: Theme.of(context).textTheme.headlineSmall,
                           controller: _pinController,
                         ),
                         const SizedBox(height: 24),
@@ -537,7 +537,7 @@ class _PaymentState extends State<Payment> {
                                       content: TextField(
                                         style: Theme.of(context)
                                             .textTheme
-                                            .headline5,
+                                            .headlineSmall,
                                         decoration: const InputDecoration(
                                           label: Text('OTP Code'),
                                         ),
@@ -640,7 +640,7 @@ class _PaymentState extends State<Payment> {
                                           '${widget.data['sp_pay_code']}',
                                       'token': model.token,
                                       'amount': model.amount,
-                                      'ward':widget.ward
+                                      'ward': widget.ward
                                     };
 
                                     khaltiverfyApi(a).then((res) => {
@@ -661,7 +661,6 @@ class _PaymentState extends State<Payment> {
                                     Map<String, dynamic> pdata = {};
 
                                     // jsonEncode(selectedmag);
-
                                   } catch (e) {
                                     SnackBar(content: Text("$e"));
 
@@ -744,8 +743,8 @@ class _PaymentState extends State<Payment> {
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(tertiary),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      backgroundColor: WidgetStateProperty.all(tertiary),
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),

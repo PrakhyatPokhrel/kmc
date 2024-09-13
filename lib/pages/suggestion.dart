@@ -163,11 +163,11 @@ class _SuggestionState extends State<Suggestion> {
           child: new ElevatedButton(
             style: ButtonStyle(
                 minimumSize:
-                    MaterialStateProperty.all(Size(Get.width - 54, 50)),
-                backgroundColor: MaterialStateProperty.all(tertiary),
-                padding: MaterialStateProperty.all(
+                    WidgetStateProperty.all(Size(Get.width - 54, 50)),
+                backgroundColor: WidgetStateProperty.all(tertiary),
+                padding: WidgetStateProperty.all(
                     EdgeInsets.symmetric(vertical: 16, horizontal: 35)),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
                 ))),
