@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:badges/badges.dart' as badge;
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:double_back_to_close/double_back_to_close.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,9 +25,10 @@ import 'package:kmc/pages/profile/secondprofile.dart';
 import 'package:nepali_utils/nepali_utils.dart';
 import 'package:pusher_client/pusher_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../components/custom_widget.dart';
-import '../testingPhase/testing_phase_screen.dart';
+import '../news/news_detail.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -49,6 +51,7 @@ class _HomeState extends State<Home> {
   dynamic role_desig;
   dynamic thisweekdata;
   String? taxPayerId;
+  List<NewsNoticeModelWordpress>? newsList;
 
   dynamic getsharedpreference() async {
     SharedPreferences? pref = await SharedPreferences.getInstance();
@@ -81,18 +84,15 @@ class _HomeState extends State<Home> {
       if (a != null) {
         setState(() {
           if (a == 'hi') {
-            var locale = Locale(
-                'hi', 'IN'); // translations will be displayed in that local
+            var locale = Locale('hi', 'IN'); // translations will be displayed in that local
             Get.updateLocale(locale);
           } else {
-            var locale = Locale(
-                'en', 'US'); // translations will be displayed in that local
+            var locale = Locale('en', 'US'); // translations will be displayed in that local
             Get.updateLocale(locale);
           }
         });
       } else {
-        var locale =
-            Locale('hi', 'IN'); // translations will be displayed in that local
+        var locale = Locale('hi', 'IN'); // translations will be displayed in that local
         Get.updateLocale(locale);
       }
     });
@@ -116,6 +116,10 @@ class _HomeState extends State<Home> {
     return detail;
   }
 
+  Future<void> assignNews() async {
+    newsList = await wordpressApi();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -123,6 +127,7 @@ class _HomeState extends State<Home> {
     getsharedpreference();
     _register();
     getBibagh();
+    assignNews();
     navdrawer = NavDrawer(this.callback, indexvalue);
 
     // getTaxPayer().then((value) async {
@@ -147,12 +152,10 @@ class _HomeState extends State<Home> {
     SharedPreferences pref = await SharedPreferences.getInstance();
     // AppLocalizations.of(context).load(Locale(language));
     if (language == 'hi') {
-      var locale =
-          Locale('hi', 'IN'); // translations will be displayed in that local
+      var locale = Locale('hi', 'IN'); // translations will be displayed in that local
       Get.updateLocale(locale);
     } else {
-      var locale =
-          Locale('en', 'US'); // translations will be displayed in that local
+      var locale = Locale('en', 'US'); // translations will be displayed in that local
       Get.updateLocale(locale);
     }
 
@@ -187,7 +190,8 @@ class _HomeState extends State<Home> {
                   AnimatedContainer(
                     duration: Duration(milliseconds: 500),
                     curve: Curves.ease,
-                    height: MediaQuery.of(context).size.height * 0.3,
+                    //height: MediaQuery.of(context).size.height * 0.3,
+                    height: MediaQuery.of(context).size.height * 0.4,
                     child: CustomPaint(
                       painter: CurvePainter(true),
                       child: Padding(
@@ -208,8 +212,7 @@ class _HomeState extends State<Home> {
                                   children: [
                                     Container(
                                       child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(50.0),
+                                        borderRadius: BorderRadius.circular(50.0),
                                         child: Image.asset(
                                           'assets/images/kmcappicon.png',
                                           height: 55,
@@ -313,31 +316,23 @@ class _HomeState extends State<Home> {
                                                   return Container();
                                                 } else if (snapshot.hasData) {
                                                   return Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(4),
+                                                    padding: const EdgeInsets.all(4),
                                                     child: snapshot.data != 0
                                                         ? Text(
-                                                            'application'.tr ==
-                                                                    'Applications'
-                                                                ? snapshot.data
-                                                                    .toString()
-                                                                : NepaliUnicode
-                                                                    .convert(
-                                                                    snapshot
-                                                                        .data
-                                                                        .toString(),
+                                                            'application'.tr == 'Applications'
+                                                                ? snapshot.data.toString()
+                                                                : NepaliUnicode.convert(
+                                                                    snapshot.data.toString(),
                                                                   ),
                                                             style: TextStyle(
-                                                              color:
-                                                                  Colors.white,
+                                                              color: Colors.white,
                                                               fontSize: 12,
                                                             ),
                                                           )
                                                         : Text(
                                                             "0",
                                                             style: TextStyle(
-                                                              color:
-                                                                  Colors.white,
+                                                              color: Colors.white,
                                                               fontSize: 12,
                                                             ),
                                                           ),
@@ -347,8 +342,7 @@ class _HomeState extends State<Home> {
                                                 }
                                               },
                                             ),
-                                            position:
-                                                badge.BadgePosition.topEnd(
+                                            position: badge.BadgePosition.topEnd(
                                               top: -3,
                                               end: -3,
                                             ),
@@ -399,65 +393,98 @@ class _HomeState extends State<Home> {
 
                             //YO Hapta/ This week!! News Section
                             Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
+                              padding: const EdgeInsets.only(left: 0.0),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Expanded(
                                     flex: 9,
                                     child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          "in_palika_today".tr,
-                                          // "palika_name".tr,
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 20,
-                                          ),
-                                        ),
+                                        titleText('in_palika_today'.tr, white, NewsList()),
+                                        // Row(
+                                        //   children: [
+                                        //     Text(
+                                        //       "in_palika_today".tr,
+                                        //       // "palika_name".tr,
+                                        //       style: TextStyle(
+                                        //         color: Colors.white,
+                                        //         fontSize: 20,
+                                        //       ),
+                                        //     ),
+                                        //   ],
+                                        // ),
                                         SizedBox(
                                           height: 8,
                                         ),
-                                        FutureBuilder<
-                                                List<NewsNoticeModelWordpress>>(
-                                            future: wordpressApi(),
-                                            builder: ((context, snapshot) {
-                                              if (snapshot.hasData) {
-                                                var news = snapshot.data!;
-                                                if (news.isNotEmpty) {
-                                                  return Row(
-                                                    children: [
-                                                      Expanded(
-                                                        child: Text(
-                                                          news.first.title,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          maxLines: 2,
-                                                          style:
-                                                              Theme.of(context)
-                                                                  .textTheme
-                                                                  .bodyLarge!
-                                                                  .copyWith(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .normal,
-                                                                    fontSize:
-                                                                        16,
-                                                                  ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  );
-                                                }
+
+                                        FutureBuilder<List<NewsNoticeModelWordpress>>(
+                                          future: wordpressApi(),
+                                          builder: ((context, snapshot) {
+                                            if (snapshot.hasData) {
+                                              var news = snapshot.data!;
+                                              if (news.isNotEmpty) {
+                                                // return Row(
+                                                //   children: [
+                                                //     Expanded(
+                                                //       child: Text(
+                                                //         news.first.title,
+                                                //         overflow: TextOverflow
+                                                //             .ellipsis,
+                                                //         maxLines: 2,
+                                                //         style:
+                                                //             Theme.of(context)
+                                                //                 .textTheme
+                                                //                 .bodyLarge!
+                                                //                 .copyWith(
+                                                //                   color: Colors
+                                                //                       .white,
+                                                //                   fontWeight:
+                                                //                       FontWeight
+                                                //                           .normal,
+                                                //                   fontSize:
+                                                //                       16,
+                                                //                 ),
+                                                //       ),
+                                                //     ),
+                                                //   ],
+                                                // );
+                                                return CarouselSlider.builder(
+                                                  itemCount: news.length,
+                                                  itemBuilder: (context, index, realIndex) {
+                                                    return GestureDetector(
+                                                      onTap: () {
+                                                        Get.to(NewsDetailScreen(
+                                                          news: news[index],
+                                                        ));
+                                                      },
+                                                      child: buildSliderNews(index, news[index].title),
+                                                    );
+                                                  },
+                                                  options: CarouselOptions(
+                                                      height: 160,
+                                                      autoPlay: true,
+                                                      enlargeCenterPage: true,
+                                                      enlargeStrategy: CenterPageEnlargeStrategy.height,
+                                                      onPageChanged: (index, reason) {}),
+                                                );
                                               }
-                                              return SizedBox();
-                                            })),
+                                            }
+                                            return CarouselSlider.builder(
+                                              itemCount: 3,
+                                              itemBuilder: (context, index, realIndex) =>
+                                                  buildCarouselShimmer(),
+                                              options: CarouselOptions(
+                                                height: 160,
+                                                autoPlay: true,
+                                                enlargeCenterPage: true,
+                                                enlargeStrategy: CenterPageEnlargeStrategy.height,
+                                              ),
+                                            );
+                                          }),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -484,61 +511,61 @@ class _HomeState extends State<Home> {
                                   //         ],
                                   //       ),
                                   //     )),
-                                  Expanded(
-                                    flex: 4,
-                                    child: Column(
-                                      children: [
-                                        ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            padding: EdgeInsets.zero,
-                                            backgroundColor: white,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(16),
-                                            ),
-                                          ),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: <Widget>[
-                                              Text(
-                                                'view'.tr,
-                                                maxLines: 1,
-                                                style: TextStyle(
-                                                  color: secondary,
-                                                  fontSize: 16,
-                                                ),
-                                              ),
-                                              Icon(
-                                                Icons.info_outlined,
-                                                size: 20.0,
-                                                color: secondary,
-                                              ),
-                                            ],
-                                          ),
-                                          onPressed: () {
-                                            // var a = {
-                                            //   'name': 'NEWS'.tr,
-                                            //   'title': thisweekdata.title,
-                                            //   'news_date': thisweekdata.news_date,
-                                            //   'feature_img':
-                                            //       thisweekdata.feature_img,
-                                            //   'link': thisweekdata.link,
-                                            //   'detail': thisweekdata.detail,
-                                            //   'news_file': thisweekdata.news_file,
-                                            // };
-                                            //G
-                                            Get.to(NewsList(
-                                              isBackRequired: true,
-                                            ));
-                                            // Get.to(Emeeting());
-                                          },
-                                        ),
-                                        // SizedBox(height: 20),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(width: 12),
+
+                                  ///[VIEW]///
+                                  // Expanded(
+                                  //   flex: 4,
+                                  //   child: Column(
+                                  //     children: [
+                                  //       ElevatedButton(
+                                  //         style: ElevatedButton.styleFrom(
+                                  //           padding: EdgeInsets.zero,
+                                  //           backgroundColor: white,
+                                  //           shape: RoundedRectangleBorder(
+                                  //             borderRadius: BorderRadius.circular(16),
+                                  //           ),
+                                  //         ),
+                                  //         child: Row(
+                                  //           mainAxisAlignment: MainAxisAlignment.center,
+                                  //           children: <Widget>[
+                                  //             Text(
+                                  //               'view'.tr,
+                                  //               maxLines: 1,
+                                  //               style: TextStyle(
+                                  //                 color: secondary,
+                                  //                 fontSize: 16,
+                                  //               ),
+                                  //             ),
+                                  //             Icon(
+                                  //               Icons.info_outlined,
+                                  //               size: 20.0,
+                                  //               color: secondary,
+                                  //             ),
+                                  //           ],
+                                  //         ),
+                                  //         onPressed: () {
+                                  //           // var a = {
+                                  //           //   'name': 'NEWS'.tr,
+                                  //           //   'title': thisweekdata.title,
+                                  //           //   'news_date': thisweekdata.news_date,
+                                  //           //   'feature_img':
+                                  //           //       thisweekdata.feature_img,
+                                  //           //   'link': thisweekdata.link,
+                                  //           //   'detail': thisweekdata.detail,
+                                  //           //   'news_file': thisweekdata.news_file,
+                                  //           // };
+                                  //           //G
+                                  //           Get.to(NewsList(
+                                  //             isBackRequired: true,
+                                  //           ));
+                                  //           // Get.to(Emeeting());
+                                  //         },
+                                  //       ),
+                                  //       // SizedBox(height: 20),
+                                  //     ],
+                                  //   ),
+                                  // ),
+                                  // SizedBox(width: 12),
                                 ],
                               ),
                             ),
@@ -551,7 +578,8 @@ class _HomeState extends State<Home> {
               ),
               //Bibhag paxiko
               Container(
-                  margin: EdgeInsets.only(top: 155),
+                  // margin: EdgeInsets.only(top: 155),
+                  margin: EdgeInsets.only(top: 290),
                   child: Padding(
                     padding: const EdgeInsets.only(
                       top: 12,
@@ -566,8 +594,7 @@ class _HomeState extends State<Home> {
                         titleText('departmnt'.tr, white, BibaghList()),
                         SizedBox(height: 6),
                         Container(
-                          height:
-                              MediaQuery.of(context).size.width * 0.3 * 2.15,
+                          height: MediaQuery.of(context).size.width * 0.3 * 2.15,
                           child: GridView.count(
                             scrollDirection: Axis.horizontal,
                             shrinkWrap: true,
@@ -601,17 +628,14 @@ class _HomeState extends State<Home> {
                                 // width: MediaQuery.of(context).size.width * 0.3,
                                 child: Column(
                                   children: [
-                                    titleText('${sewa[index].title}'.tr,
-                                        primary, sewa[index].link
+                                    titleText('${sewa[index].title}'.tr, primary, sewa[index].link
                                         // != null
                                         //     ? sewa[index].link
                                         //     : null
                                         ),
                                     SizedBox(height: 6),
                                     Container(
-                                      height:
-                                          MediaQuery.of(context).size.width *
-                                              0.32,
+                                      height: MediaQuery.of(context).size.width * 0.32,
                                       child: ListView.separated(
                                         shrinkWrap: true,
                                         separatorBuilder: (context, index) {
@@ -625,28 +649,17 @@ class _HomeState extends State<Home> {
                                         itemBuilder: (context, i) {
                                           return InkWell(
                                             onTap: () {
-                                              if (sewa[index]
-                                                      .sewadata[i]
-                                                      .details ==
-                                                  '') {
+                                              if (sewa[index].sewadata[i].details == '') {
                                                 showDialog(
                                                   context: context,
-                                                  builder:
-                                                      (BuildContext context) {
+                                                  builder: (BuildContext context) {
                                                     return AlertDialog(
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(30),
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(30),
                                                       ),
-                                                      title: Text(
-                                                          'service_not_available'
-                                                              .tr,
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: TextStyle(
-                                                              color: primary)),
+                                                      title: Text('service_not_available'.tr,
+                                                          textAlign: TextAlign.center,
+                                                          style: TextStyle(color: primary)),
                                                       // content: Text('login_alert'.tr,
                                                       //     textAlign: TextAlign.center,
                                                       //     style: TextStyle(fontSize: 16, height: 1.5)),
@@ -655,34 +668,23 @@ class _HomeState extends State<Home> {
                                                           child: ElevatedButton(
                                                             style: ButtonStyle(
                                                               backgroundColor:
-                                                                  MaterialStateProperty
-                                                                      .all(
-                                                                          tertiary),
-                                                              shape: MaterialStateProperty
-                                                                  .all<
-                                                                      RoundedRectangleBorder>(
+                                                                  MaterialStateProperty.all(tertiary),
+                                                              shape: MaterialStateProperty.all<
+                                                                  RoundedRectangleBorder>(
                                                                 RoundedRectangleBorder(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              20.0),
+                                                                  borderRadius: BorderRadius.circular(20.0),
                                                                 ),
                                                               ),
                                                             ),
                                                             child: Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .symmetric(
-                                                                horizontal:
-                                                                    16.0,
+                                                              padding: const EdgeInsets.symmetric(
+                                                                horizontal: 16.0,
                                                                 vertical: 10,
                                                               ),
-                                                              child: Text(
-                                                                  'cancel'.tr),
+                                                              child: Text('cancel'.tr),
                                                             ),
                                                             onPressed: () {
-                                                              Navigator.pop(
-                                                                  context);
+                                                              Navigator.pop(context);
                                                               Get.back();
                                                             },
                                                           ),
@@ -692,82 +694,47 @@ class _HomeState extends State<Home> {
                                                   },
                                                 );
                                               } else {
-                                                if (sewa[index]
-                                                            .sewadata[i]
-                                                            .title !=
-                                                        "" &&
-                                                    sewa[index]
-                                                            .sewadata[i]
-                                                            .title !=
-                                                        "" &&
-                                                    sewa[index]
-                                                            .sewadata[i]
-                                                            .title !=
-                                                        "" &&
-                                                    sewa[index]
-                                                            .sewadata[i]
-                                                            .title !=
-                                                        "digital_profile") {
-                                                  navigation(context, i,
-                                                      sewa[index].sewadata[i]);
+                                                if (sewa[index].sewadata[i].title != "" &&
+                                                    sewa[index].sewadata[i].title != "" &&
+                                                    sewa[index].sewadata[i].title != "" &&
+                                                    sewa[index].sewadata[i].title != "digital_profile") {
+                                                  navigation(context, i, sewa[index].sewadata[i]);
                                                 } else {
                                                   showDialog(
                                                     context: context,
-                                                    builder:
-                                                        (BuildContext context) {
+                                                    builder: (BuildContext context) {
                                                       return AlertDialog(
-                                                        shape:
-                                                            RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(30),
+                                                        shape: RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius.circular(30),
                                                         ),
-                                                        title: Text(
-                                                            'service_not_available'
-                                                                .tr,
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                            style: TextStyle(
-                                                                color:
-                                                                    primary)),
+                                                        title: Text('service_not_available'.tr,
+                                                            textAlign: TextAlign.center,
+                                                            style: TextStyle(color: primary)),
                                                         // content: Text('login_alert'.tr,
                                                         //     textAlign: TextAlign.center,
                                                         //     style: TextStyle(fontSize: 16, height: 1.5)),
                                                         actions: [
                                                           Center(
-                                                            child:
-                                                                ElevatedButton(
-                                                              style:
-                                                                  ButtonStyle(
+                                                            child: ElevatedButton(
+                                                              style: ButtonStyle(
                                                                 backgroundColor:
-                                                                    MaterialStateProperty
-                                                                        .all(
-                                                                            tertiary),
-                                                                shape: MaterialStateProperty
-                                                                    .all<
-                                                                        RoundedRectangleBorder>(
+                                                                    MaterialStateProperty.all(tertiary),
+                                                                shape: MaterialStateProperty.all<
+                                                                    RoundedRectangleBorder>(
                                                                   RoundedRectangleBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            20.0),
+                                                                    borderRadius: BorderRadius.circular(20.0),
                                                                   ),
                                                                 ),
                                                               ),
                                                               child: Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                        .symmetric(
-                                                                  horizontal:
-                                                                      16.0,
+                                                                padding: const EdgeInsets.symmetric(
+                                                                  horizontal: 16.0,
                                                                   vertical: 10,
                                                                 ),
-                                                                child: Text(
-                                                                    'cancel'
-                                                                        .tr),
+                                                                child: Text('cancel'.tr),
                                                               ),
                                                               onPressed: () {
-                                                                Navigator.pop(
-                                                                    context);
+                                                                Navigator.pop(context);
                                                               },
                                                             ),
                                                           ),
@@ -819,28 +786,22 @@ class _HomeState extends State<Home> {
                                 SizedBox(height: 6),
 
                                 Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 6, right: 6),
+                                  padding: const EdgeInsets.only(left: 6, right: 6),
                                   child: LayoutBuilder(
-                                    builder: (BuildContext context,
-                                        BoxConstraints constraints) {
+                                    builder: (BuildContext context, BoxConstraints constraints) {
                                       if (constraints.maxWidth >= 500.0) {
                                         return Container(
                                           height: Get.height * 0.50,
                                           child: GridView.count(
                                               // scrollDirection: Axis.vertical,
-                                              physics:
-                                                  NeverScrollableScrollPhysics(),
+                                              physics: NeverScrollableScrollPhysics(),
                                               primary: false,
                                               childAspectRatio: 1,
                                               crossAxisCount: 3,
-                                              children: List.generate(
-                                                  gridData.length, (index) {
+                                              children: List.generate(gridData.length, (index) {
                                                 return Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
-                                                  child: SpGrid(
-                                                      data: gridData[index]),
+                                                  padding: const EdgeInsets.all(8.0),
+                                                  child: SpGrid(data: gridData[index]),
                                                 );
                                               })),
                                         );
@@ -849,8 +810,7 @@ class _HomeState extends State<Home> {
                                           height: Get.height * 0.3,
                                           child: GridView.count(
                                             // scrollDirection: Axis.vertical,
-                                            physics:
-                                                NeverScrollableScrollPhysics(),
+                                            physics: NeverScrollableScrollPhysics(),
                                             primary: false,
                                             childAspectRatio: 1,
                                             crossAxisCount: 3,
@@ -930,8 +890,7 @@ class _HomeState extends State<Home> {
           padding: const EdgeInsets.only(top: 4.0),
           child: Text(title,
               textAlign: TextAlign.start,
-              style: TextStyle(
-                  color: _color, fontSize: 18, fontWeight: FontWeight.bold)),
+              style: TextStyle(color: _color, fontSize: 18, fontWeight: FontWeight.bold)),
         ),
         Icon(Icons.chevron_left, color: _color),
         Icon(Icons.chevron_right, color: _color),
@@ -992,6 +951,46 @@ class _HomeState extends State<Home> {
     }
   }
 
+  Widget buildCarouselShimmer() {
+    return Shimmer.fromColors(
+      baseColor: Colors.white,
+      highlightColor: Colors.grey[200]!,
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 8.0),
+        height: 160,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+      ),
+    );
+  }
+
+  buildSliderNews(int index, String newsTitle) {
+    return Container(
+      height: 160,
+      width: double.infinity,
+      padding: EdgeInsets.only(left: 16),
+      margin: EdgeInsets.symmetric(horizontal: 14),
+      decoration: BoxDecoration(
+        color: Colors.grey[100],
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Center(
+        child: Text(
+          newsTitle,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 5,
+          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                color: textsecondaryDarkColor,
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
+              ),
+        ),
+      ),
+    );
+  }
+
   checklogin() {
     showDialog(
         context: context,
@@ -1000,23 +999,19 @@ class _HomeState extends State<Home> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
-            title: Text('LOGIN'.tr,
-                textAlign: TextAlign.center, style: TextStyle(color: primary)),
+            title: Text('LOGIN'.tr, textAlign: TextAlign.center, style: TextStyle(color: primary)),
             content: Text('login_alert'.tr,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, height: 1.5)),
+                textAlign: TextAlign.center, style: TextStyle(fontSize: 16, height: 1.5)),
             actions: [
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(tertiary),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
                     child: Text('LOGIN'.tr),
                   ),
                   onPressed: () {
@@ -1038,23 +1033,19 @@ class _HomeState extends State<Home> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
-            title: Text('not_available'.tr,
-                textAlign: TextAlign.center, style: TextStyle(color: primary)),
+            title: Text('not_available'.tr, textAlign: TextAlign.center, style: TextStyle(color: primary)),
             content: Text('role_check'.tr,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, height: 1.5)),
+                textAlign: TextAlign.center, style: TextStyle(fontSize: 16, height: 1.5)),
             actions: [
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(tertiary),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
                     child: Text('cancel'.tr),
                   ),
                   onPressed: () {
@@ -1092,10 +1083,7 @@ class CurvePainter extends CustomPainter {
     path.moveTo(0, 0);
     path.lineTo(0, size.height);
     path.quadraticBezierTo(
-        size.width * 0.5,
-        outterCurve ? size.height + 110 : size.height - 110,
-        size.width,
-        size.height);
+        size.width * 0.5, outterCurve ? size.height + 110 : size.height - 110, size.width, size.height);
     path.lineTo(size.width, 0);
     path.close();
 

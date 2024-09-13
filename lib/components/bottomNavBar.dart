@@ -2,15 +2,12 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:kmc/Auth/login.dart';
 import 'package:kmc/components/Drawer.dart';
-import 'package:kmc/components/botPage.dart';
 import 'package:kmc/config/Apiconnectservices.dart';
 import 'package:kmc/config/colors.dart';
-import 'package:kmc/main.dart';
 import 'package:kmc/pages/home/home.dart';
 import 'package:kmc/pages/homechat.dart';
 import 'package:kmc/pages/news/newslist.dart';
@@ -39,7 +36,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
   Widget currentScreen = Home(); // Our first view in viewport
   bool navigated = false;
 
-
   // final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   // _register() async {
   //   SharedPreferences pref = await SharedPreferences.getInstance();
@@ -62,8 +58,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     try {
       NewVersion(
         // iOSId: 'co.cellapp.kirana',//dummy IOS bundle ID
-        androidId:
-            'co.cellapp.smartpalika.kathmandumetropolitancity', //dummy android ID
+        androidId: 'co.cellapp.smartpalika.kathmandumetropolitancity', //dummy android ID
       ).showAlertIfNecessary(context: context);
     } catch (e) {
       debugPrint("error=====>${e.toString()}");
@@ -112,7 +107,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       Get.to(Notifications());
       // navigateToPageFromNotification(initailMessage);
       setState(() {
-        navigated = true;   
+        navigated = true;
       });
     }
   }
@@ -130,7 +125,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         child: Visibility(
           visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
           child: FloatingActionButton(
-            shape:CircleBorder(),
+            shape: CircleBorder(),
             backgroundColor: secondary,
             child: Container(
               child: ClipRRect(
@@ -163,8 +158,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                         height: 610,
                         width: MediaQuery.of(context).size.width,
                         child: InAppWebView(
-                          initialUrlRequest: URLRequest(
-                              url: Uri.parse("https://kmc.palmchatbot.com")),
+                          initialUrlRequest: URLRequest(url: Uri.parse("https://kmc.palmchatbot.com")),
                           //           initialData: InAppWebViewInitialData(data: r"""<!DOCTYPE html>
 
                           // <html lang="en">
@@ -194,8 +188,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                               javaScriptEnabled: true,
                             ),
                           ),
-                          onWebViewCreated:
-                              (InAppWebViewController controller) {
+                          onWebViewCreated: (InAppWebViewController controller) {
                             _webViewController = controller;
                           },
                         ),
@@ -233,8 +226,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                       minWidth: 40,
                       onPressed: () {
                         setState(() {
-                          currentScreen =
-                              Home(); // if user taps on this Home tab will be active
+                          currentScreen = Home(); // if user taps on this Home tab will be active
                           currentTab = 1;
                         });
                       },
@@ -244,16 +236,13 @@ class _BottomNavBarState extends State<BottomNavBar> {
                       minWidth: 40,
                       onPressed: () {
                         setState(() {
-                          currentScreen =
-                              NewsList(); // if user taps on this dashboard tab will be active
+                          currentScreen = NewsList(); // if user taps on this dashboard tab will be active
                           currentTab = 3;
                         });
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          tabsColumn('News_White_Nav.svg', 'News', 3)
-                        ],
+                        children: <Widget>[tabsColumn('News_White_Nav.svg', 'News', 3)],
                       ),
                     ),
                   ],
@@ -276,8 +265,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                           });
                         },
                         // child: tabsColumn('Chat_White_Nav.svg', 'Chat', 2)),
-                        child:
-                            tabsColumn('notification.svg', 'Notification', 2)),
+                        child: tabsColumn('notification.svg', 'Notification', 2)),
                     MaterialButton(
                       minWidth: 40,
                       onPressed: () {
@@ -285,17 +273,14 @@ class _BottomNavBarState extends State<BottomNavBar> {
                           if (loginstatus == false) {
                             checklogin();
                           } else {
-                            currentScreen =
-                                Profile(); // if user taps on this dashboard tab will be active
+                            currentScreen = Profile(); // if user taps on this dashboard tab will be active
                             currentTab = 4;
                           }
                         });
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          tabsColumn('Profile_White_Nav.svg', 'Profile', 4)
-                        ],
+                        children: <Widget>[tabsColumn('Profile_White_Nav.svg', 'Profile', 4)],
                       ),
                     )
                   ],
@@ -316,8 +301,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
           ),
-          title: Text('LOGIN'.tr,
-              textAlign: TextAlign.center, style: TextStyle(color: primary)),
+          title: Text('LOGIN'.tr, textAlign: TextAlign.center, style: TextStyle(color: primary)),
           content: Text(
             'login_alert'.tr,
             textAlign: TextAlign.center,
@@ -338,8 +322,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 16.0, vertical: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
                   child: Text('LOGIN'.tr),
                 ),
                 onPressed: () {
@@ -371,6 +354,29 @@ class _BottomNavBarState extends State<BottomNavBar> {
             fit: BoxFit.cover,
             height: currentTab == index ? 24 : 22,
           ),
+          if (currentTab == index)
+            Column(
+              children: [
+                SizedBox(height: 3.5),
+                Container(
+                  width: 30.0,
+                  height: 3.5,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12.0),
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            )
+
+          // currentTab == index
+          //     ? Text(
+          //         name,
+          //         style: TextStyle(
+          //           color: white,
+          //         ),
+          //       )
+          //     : SizedBox.shrink(),
           // Text(
           //   'Dashboard',
           //   style: TextStyle(
@@ -394,19 +400,16 @@ class _BottomNavBarState extends State<BottomNavBar> {
       if (a != null) {
         setState(() {
           if (a == 'hi') {
-            var locale = Locale(
-                'hi', 'IN'); // translations will be displayed in that local
+            var locale = Locale('hi', 'IN'); // translations will be displayed in that local
             Get.updateLocale(locale);
           } else {
-            var locale = Locale(
-                'en', 'US'); // translations will be displayed in that local
+            var locale = Locale('en', 'US'); // translations will be displayed in that local
             Get.updateLocale(locale);
           }
         });
       } else {
         setState(() {
-          var locale = Locale(
-              'hi', 'IN'); // translations will be displayed in that locale
+          var locale = Locale('hi', 'IN'); // translations will be displayed in that locale
           Get.updateLocale(locale);
         });
       }
@@ -464,8 +467,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                     ),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
                     child: Text('बन्द गर्नुहोस्'),
                   ),
                   onPressed: () {
