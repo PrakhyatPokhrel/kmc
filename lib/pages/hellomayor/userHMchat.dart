@@ -1,14 +1,15 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io' as Io;
-import 'package:kmc/components/chat_widgets/chatwidgets.dart';
-import 'package:kmc/config/url.dart';
-import 'package:kmc/modal/getmessage.dart';
-import 'package:kmc/config/colors.dart';
+
 import 'package:flutter/material.dart';
-import 'package:kmc/config/Apiconnectservices.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:kmc/components/chat_widgets/chatwidgets.dart';
+import 'package:kmc/config/Apiconnectservices.dart';
+import 'package:kmc/config/colors.dart';
+import 'package:kmc/config/url.dart';
+import 'package:kmc/modal/getmessage.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:pusher_client/pusher_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -80,10 +81,8 @@ class _UserHMChatState extends State<UserHMChat> {
     PusherClient pusher = PusherClient(
         "${Config.pusher_key}",
         PusherOptions(
-          auth: PusherAuth(pusher_authorize, headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + token!
-          }),
+          auth: PusherAuth(pusher_authorize,
+              headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token!}),
           cluster: "ap2",
           encrypted: true,
         ),
@@ -91,8 +90,7 @@ class _UserHMChatState extends State<UserHMChat> {
     pusher.connect();
 
     pusher.onConnectionStateChange((state) {});
-    channel = pusher
-        .subscribe('private-message-' + '${widget.data['data']['conv_id']}');
+    channel = pusher.subscribe('private-message-' + '${widget.data['data']['conv_id']}');
 
     channel?.bind('newmessage', (onEvent) {
       dynamic ab = onEvent?.data;
@@ -157,10 +155,8 @@ class _UserHMChatState extends State<UserHMChat> {
                 children: <Widget>[
                   Text(
                     mayordata['name'],
-                    style: Theme.of(context)
-                        .textTheme
-                        .subtitle1!
-                        .apply(color: primary, fontSizeFactor: 1.1),
+                    style:
+                        Theme.of(context).textTheme.titleMedium!.apply(color: primary, fontSizeFactor: 1.1),
                     overflow: TextOverflow.clip,
                   ),
                 ],
@@ -179,14 +175,14 @@ class _UserHMChatState extends State<UserHMChat> {
                     padding: const EdgeInsets.all(15),
                     itemCount: data1.length,
                     itemBuilder: (ctx, i) {
-                      if ('${data1[i].sender_id}' != '${loginuserdata['id']}') {
+                      if ('${data1[i].sender_id}' != '${loginuserdata?['id']}') {
                         var v = {
                           'sender_name': data1[i].sender_name,
                           'message': data1[i].message,
                           'file': data1[i].file,
                           'image': data1[i].image,
                           'nepali_timestamp': data1[i].nepali_timestamp,
-                          'userimage': mayordata['user_img'],
+                          'userimage': mayordata['image_url'],
                         };
                         return ReceivedMessagesWidget(data: v);
                       } else {
@@ -205,90 +201,84 @@ class _UserHMChatState extends State<UserHMChat> {
                       // }
                       // }),
                       ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      margin: EdgeInsets.all(15.0),
-                      height: 61,
-                      child: Row(
-                        children: <Widget>[
-                          Expanded(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(35.0),
-                                boxShadow: [
-                                  BoxShadow(
-                                      offset: Offset(0, 3),
-                                      blurRadius: 5,
-                                      color: Colors.grey)
-                                ],
-                              ),
-                              child: Row(
-                                children: <Widget>[
-                                  IconButton(
-                                    icon: Icon(Icons.photo_camera,
-                                        color: primary),
+                  Container(
+                    margin: EdgeInsets.only(
+                      left: 14.0,
+                      right: 10.0,
+                      bottom: 8.0,
+                      top: 4.0,
+                    ),
+                    color: Colors.transparent,
+                    //height: 61,
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(35.0),
+                              boxShadow: [BoxShadow(offset: Offset(0, 3), blurRadius: 5, color: Colors.grey)],
+                            ),
+                            child: Row(
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 4.0),
+                                  child: IconButton(
+                                    icon: Icon(
+                                      Icons.photo_camera,
+                                      color: primary,
+                                      size: 30,
+                                    ),
                                     onPressed: () {
                                       getImageFromGallery();
                                     },
                                   ),
-                                  Expanded(
-                                    child: Form(
-                                      key: chatkey,
-                                      child: TextFormField(
-                                        controller: message,
-                                     validator: (value) {
-    if (value == null || value.isEmpty) {
-      return '';
-    }
-    return null;
-  },
-                                        decoration: InputDecoration(
-                                            hintText: "Type ...",
-                                            border: InputBorder.none),
-                                      ),
+                                ),
+                                Expanded(
+                                  child: FormBuilder(
+                                    key: _fbKey,
+                                    child: TextField(
+                                      controller: message,
+                                      decoration:
+                                          InputDecoration(hintText: "Type ...", border: InputBorder.none),
                                     ),
                                   ),
-                                  // IconButton(
-                                  //   icon: Icon(Icons.attach_file),
-                                  //   onPressed: () {
-                                  //     print('file');
-                                  //   },
-                                  // )
-                                ],
-                              ),
+                                ),
+                                // IconButton(
+                                //   icon: Icon(Icons.attach_file),
+                                //   onPressed: () {
+                                //     print('file');
+                                //   },
+                                // )
+                              ],
                             ),
                           ),
-                          SizedBox(width: 15),
-                          GestureDetector(
-                            onTap: () => {},
-                            child: InkWell(
-                              onTap: () => {
-                                setState(
-                                  () {
-                                   // this._fbKey.currentState!.save();
-                                    if (chatkey.currentState!.validate()) {
-                                      storemessage(message.text);
-                                    }
+                        ),
+                        SizedBox(width: 8),
+                        InkWell(
+                          onTap: () => {
+                            setState(
+                              () {
+                                this._fbKey.currentState!.save();
+                                if (message.text.isNotEmpty) {
+                                  storemessage(message.text);
+                                }
 
-                                    _showBottom = false;
-                                  },
-                                )
+                                _showBottom = false;
                               },
-                              child: Container(
-                                padding: const EdgeInsets.all(15.0),
-                                decoration: BoxDecoration(
-                                    color: white, shape: BoxShape.circle),
-                                child: Icon(
-                                  Icons.send,
-                                  color: primary,
-                                ),
-                              ),
+                            )
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(6.0),
+                            decoration: BoxDecoration(color: white, shape: BoxShape.circle),
+                            child: Icon(
+                              Icons.send,
+                              color: primary,
+                              size: 30.0,
                             ),
-                          )
-                        ],
-                      ),
+                          ),
+                        )
+                      ],
                     ),
                   )
                 ],
@@ -371,10 +361,4 @@ class _UserHMChatState extends State<UserHMChat> {
   }
 }
 
-List<IconData> icons = [
-  Icons.image,
-  Icons.camera,
-  Icons.file_upload,
-  Icons.folder,
-  Icons.gif
-];
+List<IconData> icons = [Icons.image, Icons.camera, Icons.file_upload, Icons.folder, Icons.gif];

@@ -75,21 +75,21 @@ class _SignupState extends State<Signup> {
     {"name": "१८", "value": "18"},
     {"name": "१९", "value": "19"},
 
-    {"name": "२०", "value": "20"},
-    {"name": "२१", "value": "21"},
+    // {"name": "२०", "value": "20"},
+    // {"name": "२१", "value": "21"},
 
-    {"name": "२२", "value": "22"},
-    {"name": "२३", "value": "23"},
-    {"name": "२४", "value": "24"},
-    {"name": "२५", "value": "25"},
-    {"name": "२६", "value": "26"},
-    {"name": "२७", "value": "27"},
-    {"name": "२८", "value": "28"},
-    {"name": "२९", "value": "29"},
+    // {"name": "२२", "value": "22"},
+    // {"name": "२३", "value": "23"},
+    // {"name": "२४", "value": "24"},
+    // {"name": "२५", "value": "25"},
+    // {"name": "२६", "value": "26"},
+    // {"name": "२७", "value": "27"},
+    // {"name": "२८", "value": "28"},
+    // {"name": "२९", "value": "29"},
 
-    {"name": "३०", "value": "30"},
-    {"name": "३१", "value": "31"},
-    {"name": "३२", "value": "32"},
+    // {"name": "३०", "value": "30"},
+    // {"name": "३१", "value": "31"},
+    // {"name": "३२", "value": "32"},
     // {"name": "९", "value": "9"},
     // {"name": "९", "value": "9"},
     // {"name": "९", "value": "9"},
@@ -116,8 +116,7 @@ class _SignupState extends State<Signup> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('SIGNUP'.tr,
-                    style: TextStyle(color: primary, fontSize: 22)),
+                Text('SIGNUP'.tr, style: TextStyle(color: primary, fontSize: 22)),
                 InkWell(
                     onTap: () {
                       Navigator.pop(context);
@@ -129,6 +128,7 @@ class _SignupState extends State<Signup> {
         ),
         body: SingleChildScrollView(
           child: Container(
+            padding: const EdgeInsets.only(bottom: 10.0),
             child: Column(
               children: [
                 FormBuilder(
@@ -140,14 +140,12 @@ class _SignupState extends State<Signup> {
                         leading: Icon(Icons.person, color: primary),
                         title: new TextFormField(
                           controller: name,
-                          validator: FormBuilderValidators.required(context,
-                              errorText: 'required_field'.tr),
+                          validator: FormBuilderValidators.required(context, errorText: 'required_field'.tr),
                           decoration: new InputDecoration(
                             hintText: 'NAME (English)'.tr,
                           ),
                           inputFormatters: [
-                            FilteringTextInputFormatter.allow(
-                                CustomRegexPattern.englishInput),
+                            FilteringTextInputFormatter.allow(CustomRegexPattern.englishInput),
                           ],
                         ),
                       ),
@@ -156,8 +154,7 @@ class _SignupState extends State<Signup> {
                         leading: Icon(Icons.home, color: primary),
                         title: new TextFormField(
                           controller: address,
-                          validator: FormBuilderValidators.required(context,
-                              errorText: 'required_field'.tr),
+                          validator: FormBuilderValidators.required(context, errorText: 'required_field'.tr),
                           decoration: new InputDecoration(
                             hintText: 'address'.tr,
                           ),
@@ -170,10 +167,8 @@ class _SignupState extends State<Signup> {
                         ),
                         title: new TextFormField(
                           validator: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(context,
-                                errorText: 'required_field'.tr),
-                            FormBuilderValidators.email(context,
-                                errorText: 'email_validate'.tr),
+                            FormBuilderValidators.required(context, errorText: 'required_field'.tr),
+                            FormBuilderValidators.email(context, errorText: 'email_validate'.tr),
                           ]),
                           controller: email,
                           decoration: new InputDecoration(
@@ -187,8 +182,7 @@ class _SignupState extends State<Signup> {
                         title: new TextFormField(
                           controller: mobile,
                           validator: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(context,
-                                errorText: 'required_field'.tr),
+                            FormBuilderValidators.required(context, errorText: 'required_field'.tr),
                             FormBuilderValidators.minLength(
                               context,
                               10,
@@ -206,18 +200,21 @@ class _SignupState extends State<Signup> {
                           keyboardType: TextInputType.phone,
                         ),
                       ),
-                      const Divider(
-                        height: 1.0,
-                      ),
+                      // const Divider(
+                      //   height: 1.0,
+                      // ),
                       Stack(
                         children: <Widget>[
                           Container(
-                            padding: EdgeInsets.only(left: 44.0),
-                            margin: EdgeInsets.only(
-                                top: 5.0, left: 28.0, right: 16.0),
-                            child: DropdownButton(                        
+                            //padding: EdgeInsets.only(left: 44.0),
+                            padding: EdgeInsets.only(left: 30.0),
+                            margin: EdgeInsets.only(top: 5.0, left: 28.0, right: 16.0),
+
+                            child: DropdownButton(
                               hint: Text('GENDER'.tr),
                               isExpanded: true,
+                              iconSize: 30,
+                              underline: Container(),
                               items: Constants.gender.map(
                                 (val) {
                                   return DropdownMenuItem(
@@ -226,9 +223,7 @@ class _SignupState extends State<Signup> {
                                   );
                                 },
                               ).toList(),
-                              value: _currentGender != null
-                                  ? _currentGender
-                                  : null,
+                              value: _currentGender != null ? _currentGender : null,
                               onChanged: (value) {
                                 setState(() {
                                   _currentGender = value;
@@ -237,8 +232,13 @@ class _SignupState extends State<Signup> {
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.only(
-                                top: 16.0, left: 16.0, right: 16.0),
+                            margin: EdgeInsets.only(top: 42.0, left: 54.0, right: 20.0),
+                            child: Divider(
+                              color: Colors.black54,
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
                             child: Icon(
                               Icons.attribution_outlined,
                               color: primary,
@@ -254,8 +254,7 @@ class _SignupState extends State<Signup> {
                         title: new TextFormField(
                             controller: set_password,
                             validator: FormBuilderValidators.compose([
-                              FormBuilderValidators.required(context,
-                                  errorText: 'required_field'.tr),
+                              FormBuilderValidators.required(context, errorText: 'required_field'.tr),
                               FormBuilderValidators.minLength(
                                 context,
                                 6,
@@ -276,8 +275,7 @@ class _SignupState extends State<Signup> {
                             controller: re_password,
                             validator: (val) {
                               if (val!.isEmpty) return 'required_field'.tr;
-                              if (val != set_password.text)
-                                return 'password_match'.tr;
+                              if (val != set_password.text) return 'password_match'.tr;
                               return null;
                             },
                             decoration: new InputDecoration(
@@ -310,13 +308,21 @@ class _SignupState extends State<Signup> {
                           ? Stack(
                               children: <Widget>[
                                 Container(
-                                  padding: EdgeInsets.only(left: 44.0),
-                                  margin: EdgeInsets.only(
-                                      top: 5.0, left: 28.0, right: 16.0),
+                                  padding: EdgeInsets.only(left: 30.0),
+                                  margin: EdgeInsets.only(top: 5.0, left: 28.0, right: 16.0),
+                                  // decoration: BoxDecoration(
+                                  //   border: Border.all(
+                                  //     color: Colors.black54,
+                                  //     width: 1.0,
+                                  //   ),
+                                  //   borderRadius: BorderRadius.circular(8.0),
+                                  // ),
                                   child: DropdownButton(
                                     menuMaxHeight: 400,
                                     hint: Text('Wardno'.tr),
                                     isExpanded: true,
+                                    underline: Container(),
+                                    iconSize: 30,
                                     items: _wards.map(
                                       (val) {
                                         return DropdownMenuItem(
@@ -336,7 +342,17 @@ class _SignupState extends State<Signup> {
                                 ),
                                 Container(
                                   margin: EdgeInsets.only(
-                                      top: 16.0, left: 16.0, right: 16.0),
+                                    top: 42.0,
+                                    left: 54.0,
+                                    right: 20.0,
+                                    bottom: 12,
+                                  ),
+                                  child: Divider(
+                                    color: Colors.black54,
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
                                   child: Icon(
                                     Icons.location_city,
                                     color: primary,
@@ -348,8 +364,7 @@ class _SignupState extends State<Signup> {
                       GestureDetector(
                         onTap: () {
                           ImageHandler(onFilePickSuccess: (file) async {
-                            String imageName =
-                                await registerProfileImageUpload(file);
+                            String imageName = await registerProfileImageUpload(file);
                             if (imageName != "") {
                               setState(() {
                                 imagefile = file;
@@ -376,8 +391,7 @@ class _SignupState extends State<Signup> {
                                 decoration: new BoxDecoration(
                                   shape: BoxShape.circle,
                                   image: new DecorationImage(
-                                    image:
-                                        new ExactAssetImage('assets/image.png'),
+                                    image: new ExactAssetImage('assets/image.png'),
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -403,6 +417,8 @@ class _SignupState extends State<Signup> {
                       //   previewImageBuilder: (_, image) => image.widgetize(),
                       // ),
 
+                      SizedBox(height: 10),
+
                       signupButton()
                     ],
                   ),
@@ -421,14 +437,11 @@ class _SignupState extends State<Signup> {
       child: ElevatedButton(
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(tertiary),
-            padding: MaterialStateProperty.all(
-                EdgeInsets.symmetric(vertical: 16, horizontal: 35)),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
+            padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 16, horizontal: 35)),
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0),
             ))),
-        child: Text('SEND'.tr,
-            style: TextStyle(color: textPrimaryLightColor, fontSize: 20)),
+        child: Text('SEND'.tr, style: TextStyle(color: textPrimaryLightColor, fontSize: 20)),
         onPressed: () {
           submit();
           // Navigator.push(
@@ -497,14 +510,13 @@ class _SignupState extends State<Signup> {
                                 user_id: userID,
                                 email: email.text,
                                 password: re_password.text,
-                                mobile: mobile.text
+                                mobile: mobile.text,
                               ))),
                 }
               else
                 {
                   EasyLoading.dismiss(),
-                  EasyLoading.showError(
-                      'Please check all fields !! or try again later')
+                  EasyLoading.showError('Please check all fields !! or try again later')
                 }
             });
       } catch (e) {
@@ -532,5 +544,5 @@ class BlogImage {
 
   create() {}
 
-  // static Future<BlogImage> fromUrl(String url) async {}
+// static Future<BlogImage> fromUrl(String url) async {}
 }

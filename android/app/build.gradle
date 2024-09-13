@@ -84,7 +84,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.google.firebase:firebase-messaging:20.1.0'
     implementation 'com.google.firebase:firebase-messaging:20.1.0'
-    implementation 'com.swifttechnology.imepaysdk:payment-service:4.0.1'
     implementation 'com.google.firebase:firebase-analytics' 
 
 }
