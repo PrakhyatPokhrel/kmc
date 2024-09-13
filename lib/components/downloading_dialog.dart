@@ -35,8 +35,7 @@ class _DownloadingDialogState extends State<DownloadingDialog> {
     ].request();
 
     String downloadsDirectoryPath = Platform.isAndroid
-        ? await ExternalPath.getExternalStoragePublicDirectory(
-            ExternalPath.DIRECTORY_DOWNLOADS) //FOR ANDROID
+        ? await ExternalPath.getExternalStoragePublicDirectory(ExternalPath.DIRECTORY_DOWNLOADS) //FOR ANDROID
         : await getApplicationDocumentsDirectory().then((value) => value.path);
 
     String url = widget.url;
@@ -112,10 +111,7 @@ class _DownloadingDialogState extends State<DownloadingDialog> {
                 'डाउनलोड हुदैछ',
                 // 'डाउनलोड गर्दै: ${NepaliUnicode.convert(progress)} %',
 
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText1!
-                    .copyWith(fontSize: 22),
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 22),
               )
             ],
           ),
@@ -132,7 +128,7 @@ class _DownloadingDialogState extends State<DownloadingDialog> {
                 },
                 child: Text(
                   'रद्द गर्नुहोस्',
-                  style: Theme.of(context).textTheme.headline1!.copyWith(
+                  style: Theme.of(context).textTheme.displayLarge!.copyWith(
                         fontSize: 22,
                         color: Colors.red,
                       ),

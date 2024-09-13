@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:kmc/components/chat_widgets/imageviewer.dart';
-import 'package:kmc/config/url.dart';
-// import 'package:kmc/pages/hellomayor/chatData.dart';
-import 'package:kmc/config/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kmc/components/chat_widgets/imageviewer.dart';
+// import 'package:kmc/pages/hellomayor/chatData.dart';
+import 'package:kmc/config/colors.dart';
+import 'package:kmc/config/url.dart';
 import 'package:photo_view/photo_view.dart';
 
 class SentMessageWidget extends StatelessWidget {
@@ -23,11 +23,8 @@ class SentMessageWidget extends StatelessWidget {
           // ),
           SizedBox(width: 15),
           Container(
-            constraints: BoxConstraints(
-                maxWidth: MediaQuery.of(context).size.width * .6),
-            padding: data['image'] != null
-                ? const EdgeInsets.all(0)
-                : const EdgeInsets.all(15.0),
+            constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * .6),
+            padding: data['image'] != null ? const EdgeInsets.all(0) : const EdgeInsets.all(15.0),
             decoration: BoxDecoration(
               color: primary,
               borderRadius: BorderRadius.all(
@@ -96,7 +93,7 @@ class SentMessageWidget extends StatelessWidget {
                     "${data['message']}",
                     style: Theme.of(context)
                         .textTheme
-                        .bodyText1!
+                        .bodyLarge!
                         .apply(color: Colors.white, fontSizeFactor: 1.1),
                   ),
           ),

@@ -1,18 +1,15 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:get/get.dart';
 import 'package:kmc/config/Apiconnectservices.dart';
 import 'package:kmc/config/url.dart';
 import 'package:kmc/modal/chatlistmodal.dart';
 import 'package:kmc/pages/hellomayor/chatData.dart';
 import 'package:kmc/pages/hellomayor/mayorHMchat.dart';
-import 'package:kmc/pages/hellomayor/userHMchat.dart';
-import 'package:kmc/config/colors.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:pusher_client/pusher_client.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:get/get.dart';
 
 class MayorList extends StatefulWidget {
   @override
@@ -30,8 +27,7 @@ class _MayorList extends State<MayorList> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    mayorchatlistAPI()
-        .then((value) => print(value?.conversationlist?[1].email));
+    mayorchatlistAPI().then((value) => print(value?.conversationlist?[1].email));
     dynamic s = storage.getItem('user');
     if (s != null) {
       userdata = jsonDecode(s);
@@ -60,7 +56,7 @@ class _MayorList extends State<MayorList> {
           backgroundColor: Colors.white,
           // textTheme:
           //     Theme.of(context).textTheme.apply(bodyColor: Colors.black45
-              // ),
+          // ),
           iconTheme: IconThemeData(color: Colors.black45),
           title: Text('hellomayor'.tr),
           // actions: <Widget>[
@@ -84,8 +80,7 @@ class _MayorList extends State<MayorList> {
         body: FutureBuilder(
             future: messageApi(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting ||
-                  snapshot.data == null) {
+              if (snapshot.connectionState == ConnectionState.waiting || snapshot.data == null) {
                 return Container();
               } else if (snapshot.hasError) {
                 return Container(
@@ -101,9 +96,7 @@ class _MayorList extends State<MayorList> {
                         ListTile(
                           isThreeLine: true,
                           onLongPress: () {},
-                          onTap: () => {
-                            mayorHmchatpage(snapshot.data.conversationlist[i])
-                          },
+                          onTap: () => {mayorHmchatpage(snapshot.data.conversationlist[i])},
                           leading: Container(
                             width: 50,
                             height: 50,
@@ -115,9 +108,7 @@ class _MayorList extends State<MayorList> {
                               ),
                               boxShadow: [
                                 BoxShadow(
-                                    color: Colors.grey.withOpacity(.3),
-                                    offset: Offset(0, 5),
-                                    blurRadius: 25)
+                                    color: Colors.grey.withOpacity(.3), offset: Offset(0, 5), blurRadius: 25)
                               ],
                             ),
                             child: Stack(
@@ -150,20 +141,13 @@ class _MayorList extends State<MayorList> {
                           ),
                           title: Text(
                             "${snapshot.data.conversationlist[i].name}",
-                            style: Theme.of(context).textTheme.bodyText1,
+                            style: Theme.of(context).textTheme.bodyLarge,
                           ),
                           subtitle: Text(
                             "${snapshot.data.conversationlist[i].last_message}",
-                            style: snapshot.data.conversationlist[i].seen_at !=
-                                    null
-                                ? Theme.of(context)
-                                    .textTheme
-                                    .subtitle1!
-                                    .apply(color: Colors.black87)
-                                : Theme.of(context)
-                                    .textTheme
-                                    .subtitle1!
-                                    .apply(color: Colors.black54),
+                            style: snapshot.data.conversationlist[i].seen_at != null
+                                ? Theme.of(context).textTheme.titleMedium!.apply(color: Colors.black87)
+                                : Theme.of(context).textTheme.titleMedium!.apply(color: Colors.black54),
                           ),
                           trailing: Container(
                             width: 70,
@@ -173,16 +157,13 @@ class _MayorList extends State<MayorList> {
                                 Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: <Widget>[
-                                    snapshot.data.conversationlist[i].seen_at !=
-                                            null
+                                    snapshot.data.conversationlist[i].seen_at != null
                                         ? Icon(
                                             Icons.check,
                                             size: 15,
                                           )
                                         : Container(height: 15, width: 15),
-                                    Text(snapshot.data.conversationlist[i]
-                                                .updated_at !=
-                                            ''
+                                    Text(snapshot.data.conversationlist[i].updated_at != ''
                                         ? "${snapshot.data.conversationlist[i].updated_at.substring(0, 7)}"
                                         : '')
                                   ],
@@ -239,8 +220,7 @@ class _MayorList extends State<MayorList> {
           EasyLoading.dismiss(),
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(
-                builder: (context) => MayorHMchat({'data': alldata})),
+            MaterialPageRoute(builder: (context) => MayorHMchat({'data': alldata})),
           )
         });
   }

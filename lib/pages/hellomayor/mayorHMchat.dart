@@ -1,15 +1,16 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io' as Io;
+
+import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:kmc/components/chat_widgets/chatwidgets.dart';
+import 'package:kmc/config/Apiconnectservices.dart';
+import 'package:kmc/config/colors.dart';
 import 'package:kmc/config/url.dart';
 import 'package:kmc/modal/chathistorymodal.dart';
 import 'package:kmc/modal/getmessage.dart';
-import 'package:kmc/config/colors.dart';
-import 'package:flutter/material.dart';
-import 'package:kmc/config/Apiconnectservices.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:pusher_client/pusher_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -81,10 +82,8 @@ class _MayorHMchatState extends State<MayorHMchat> {
     PusherClient pusher = PusherClient(
         "${Config.pusher_key}",
         PusherOptions(
-          auth: PusherAuth(pusher_authorize, headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + token!
-          }),
+          auth: PusherAuth(pusher_authorize,
+              headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token!}),
           cluster: "ap2",
           encrypted: true,
         ),
@@ -92,8 +91,7 @@ class _MayorHMchatState extends State<MayorHMchat> {
 
     pusher.onConnectionStateChange((state) {});
 
-    channel = pusher
-        .subscribe('private-message-' + '${widget.data['data']['conv_id']}');
+    channel = pusher.subscribe('private-message-' + '${widget.data['data']['conv_id']}');
 
     channel?.bind('newmessage', (onEvent) {
       dynamic ab = onEvent?.data;
@@ -154,7 +152,7 @@ class _MayorHMchatState extends State<MayorHMchat> {
                 children: <Widget>[
                   Text(
                     widget.data['data']['name'],
-                    style: Theme.of(context).textTheme.subtitle1,
+                    style: Theme.of(context).textTheme.titleMedium,
                     overflow: TextOverflow.clip,
                   ),
                   // Text(
@@ -207,16 +205,14 @@ class _MayorHMchatState extends State<MayorHMchat> {
                     padding: const EdgeInsets.all(15),
                     itemCount: data1.length,
                     itemBuilder: (ctx, i) {
-                      if ('${data1[i].sender_id}' !=
-                          '${userdata['data']['id']}') {
+                      if ('${data1[i].sender_id}' != '${userdata['data']['id']}') {
                         var v = {
                           'sender_name': data1[i].sender_name,
                           'message': data1[i].message,
                           'file': data1[i].file,
                           'image': data1[i].image,
                           'nepali_timestamp': data1[i].nepali_timestamp,
-                          'userimage':
-                              '$user_image${widget.data['data']['user_img']}'
+                          'userimage': '$user_image${widget.data['data']['user_img']}'
                         };
                         return ReceivedMessagesWidget(data: v);
                       } else {
@@ -248,10 +244,7 @@ class _MayorHMchatState extends State<MayorHMchat> {
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(35.0),
                                 boxShadow: [
-                                  BoxShadow(
-                                      offset: Offset(0, 3),
-                                      blurRadius: 5,
-                                      color: Colors.grey)
+                                  BoxShadow(offset: Offset(0, 3), blurRadius: 5, color: Colors.grey)
                                 ],
                               ),
                               child: Row(
@@ -267,9 +260,8 @@ class _MayorHMchatState extends State<MayorHMchat> {
                                       key: _fbKey,
                                       child: TextField(
                                         controller: message,
-                                        decoration: InputDecoration(
-                                            hintText: "Type ...",
-                                            border: InputBorder.none),
+                                        decoration:
+                                            InputDecoration(hintText: "Type ...", border: InputBorder.none),
                                       ),
                                     ),
                                   ),
@@ -299,8 +291,7 @@ class _MayorHMchatState extends State<MayorHMchat> {
                               },
                               child: Container(
                                 padding: const EdgeInsets.all(15.0),
-                                decoration: BoxDecoration(
-                                    color: white, shape: BoxShape.circle),
+                                decoration: BoxDecoration(color: white, shape: BoxShape.circle),
                                 child: Icon(
                                   Icons.send,
                                   color: primary,
@@ -391,10 +382,4 @@ class _MayorHMchatState extends State<MayorHMchat> {
   }
 }
 
-List<IconData> icons = [
-  Icons.image,
-  Icons.camera,
-  Icons.file_upload,
-  Icons.folder,
-  Icons.gif
-];
+List<IconData> icons = [Icons.image, Icons.camera, Icons.file_upload, Icons.folder, Icons.gif];

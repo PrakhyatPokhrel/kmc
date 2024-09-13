@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kmc/config/colors.dart';
 
 class ProfileConfirmDialog extends StatefulWidget {
   const ProfileConfirmDialog({
@@ -70,12 +69,12 @@ class _ProfileConfirmDialogState extends State<ProfileConfirmDialog> {
               Text(
                 'Are you sure you want to delete your account?'.tr,
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headline4,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
               const SizedBox(height: 22),
               Text(
                 "Please enter the following numbers to continue".tr,
-                style: Theme.of(context).textTheme.bodyText2,
+                style: Theme.of(context).textTheme.bodyMedium,
                 textAlign: TextAlign.center,
               ),
               if (widget.requireDigitFillUp)
@@ -83,7 +82,7 @@ class _ProfileConfirmDialogState extends State<ProfileConfirmDialog> {
                   padding: const EdgeInsets.only(top: 22),
                   child: Text(
                     randomNumber,
-                    style: Theme.of(context).textTheme.headline5,
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
                 ),
               const SizedBox(
@@ -121,18 +120,15 @@ class _ProfileConfirmDialogState extends State<ProfileConfirmDialog> {
                 width: Size.infinite.width,
                 padding: const EdgeInsets.symmetric(horizontal: 35),
                 child: new ElevatedButton(
-                  child: new Text(widget.title,
-                      style: TextStyle(color: Colors.white)),
+                  child: new Text(widget.title, style: TextStyle(color: Colors.white)),
                   style: ElevatedButton.styleFrom(
                     // primary: primary,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                     // disabledTextColor: Colors.white,
                   ),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      if (widget.requireDigitFillUp &&
-                          digitController.text != randomNumber) {
+                      if (widget.requireDigitFillUp && digitController.text != randomNumber) {
                         return;
                       }
                       widget.onConfirm();

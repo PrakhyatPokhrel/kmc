@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:kmc/components/chat_widgets/imageviewer.dart';
-import 'package:kmc/config/url.dart';
-// import 'package:kmc/pages/hellomayor/chatData.dart';
-import 'package:kmc/config/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kmc/components/chat_widgets/imageviewer.dart';
+// import 'package:kmc/pages/hellomayor/chatData.dart';
+import 'package:kmc/config/colors.dart';
+import 'package:kmc/config/url.dart';
 
 import 'mycircleavatar.dart';
 
@@ -30,14 +30,11 @@ class ReceivedMessagesWidget extends StatelessWidget {
             children: <Widget>[
               Text(
                 "${data['sender_name']}",
-                style: Theme.of(context).textTheme.caption,
+                style: Theme.of(context).textTheme.bodySmall,
               ),
               Container(
-                constraints: BoxConstraints(
-                    maxWidth: MediaQuery.of(context).size.width * .6),
-                padding: data['image'] != null
-                    ? const EdgeInsets.all(0)
-                    : const EdgeInsets.all(15.0),
+                constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * .6),
+                padding: data['image'] != null ? const EdgeInsets.all(0) : const EdgeInsets.all(15.0),
                 decoration: BoxDecoration(
                   color: Color(0xfff9f9f9),
                   borderRadius: BorderRadius.all(
@@ -50,8 +47,7 @@ class ReceivedMessagesWidget extends StatelessWidget {
                         width: 150,
                         child: GestureDetector(
                           onTap: () {
-                            Get.to(
-                                ImageViewer("$chatimageurl${data['image']}"));
+                            Get.to(ImageViewer("$chatimageurl${data['image']}"));
 
                             // showDialog(
                             //   context: context,
@@ -97,7 +93,7 @@ class ReceivedMessagesWidget extends StatelessWidget {
                         "${data['message']}",
                         style: Theme.of(context)
                             .textTheme
-                            .bodyText1!
+                            .bodyLarge!
                             .apply(color: Colors.black87, fontSizeFactor: 1.1),
                       ),
               ),

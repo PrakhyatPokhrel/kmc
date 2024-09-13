@@ -1,15 +1,15 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:get/get.dart';
 import 'package:kmc/config/Apiconnectservices.dart';
 import 'package:kmc/config/url.dart';
 import 'package:kmc/modal/chatlistmodal.dart';
 import 'package:kmc/pages/hellomayor/chatData.dart';
 import 'package:kmc/pages/hellomayor/janagunaso/gunasoJGchat.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:pusher_client/pusher_client.dart';
-import 'package:get/get.dart';
 
 class GunasoList extends StatefulWidget {
   @override
@@ -55,14 +55,8 @@ class _GunasoList extends State<GunasoList> {
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(color: Colors.black45),
           title: Text('Judicial_committee'.tr),
-          toolbarTextStyle: Theme.of(context)
-              .textTheme
-              .apply(bodyColor: Colors.black45)
-              .bodyText2,
-          titleTextStyle: Theme.of(context)
-              .textTheme
-              .apply(bodyColor: Colors.black45)
-              .headline6,
+          toolbarTextStyle: Theme.of(context).textTheme.apply(bodyColor: Colors.black45).bodyMedium,
+          titleTextStyle: Theme.of(context).textTheme.apply(bodyColor: Colors.black45).titleLarge,
           // actions: <Widget>[
           //   IconButton(
           //     icon: Icon(Icons.search),
@@ -77,8 +71,7 @@ class _GunasoList extends State<GunasoList> {
         body: FutureBuilder(
             future: messageApi(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting ||
-                  snapshot.data == null) {
+              if (snapshot.connectionState == ConnectionState.waiting || snapshot.data == null) {
                 return Container();
               } else if (snapshot.hasError) {
                 return Container(
@@ -94,9 +87,7 @@ class _GunasoList extends State<GunasoList> {
                         ListTile(
                           isThreeLine: true,
                           onLongPress: () {},
-                          onTap: () => {
-                            gunasoJGchatpage(snapshot.data.conversationlist[i])
-                          },
+                          onTap: () => {gunasoJGchatpage(snapshot.data.conversationlist[i])},
                           leading: Container(
                             width: 50,
                             height: 50,
@@ -108,17 +99,15 @@ class _GunasoList extends State<GunasoList> {
                               ),
                               boxShadow: [
                                 BoxShadow(
-                                    color: Colors.grey.withOpacity(.3),
-                                    offset: Offset(0, 5),
-                                    blurRadius: 25)
+                                    color: Colors.grey.withOpacity(.3), offset: Offset(0, 5), blurRadius: 25)
                               ],
                             ),
                             child: Stack(
                               children: <Widget>[
                                 Positioned.fill(
                                   child: CircleAvatar(
-                                    backgroundImage: NetworkImage(
-                                        "$user_image${snapshot.data.conversationlist[i].icon}"),
+                                    backgroundImage:
+                                        NetworkImage("$user_image${snapshot.data.conversationlist[i].icon}"),
                                   ),
                                 ),
                                 friendsList[i]['isOnline']
@@ -143,20 +132,13 @@ class _GunasoList extends State<GunasoList> {
                           ),
                           title: Text(
                             "${snapshot.data.conversationlist[i].name}",
-                            style: Theme.of(context).textTheme.bodyText1,
+                            style: Theme.of(context).textTheme.bodyLarge,
                           ),
                           subtitle: Text(
                             "${snapshot.data.conversationlist[i].last_message}",
-                            style: snapshot.data.conversationlist[i].seen_at !=
-                                    null
-                                ? Theme.of(context)
-                                    .textTheme
-                                    .subtitle1!
-                                    .apply(color: Colors.black87)
-                                : Theme.of(context)
-                                    .textTheme
-                                    .subtitle1!
-                                    .apply(color: Colors.black54),
+                            style: snapshot.data.conversationlist[i].seen_at != null
+                                ? Theme.of(context).textTheme.titleMedium!.apply(color: Colors.black87)
+                                : Theme.of(context).textTheme.titleMedium!.apply(color: Colors.black54),
                           ),
                           trailing: Container(
                             width: 70,
@@ -166,16 +148,13 @@ class _GunasoList extends State<GunasoList> {
                                 Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: <Widget>[
-                                    snapshot.data.conversationlist[i].seen_at !=
-                                            null
+                                    snapshot.data.conversationlist[i].seen_at != null
                                         ? Icon(
                                             Icons.check,
                                             size: 15,
                                           )
                                         : Container(height: 15, width: 15),
-                                    Text(snapshot.data.conversationlist[i]
-                                                .updated_at !=
-                                            ''
+                                    Text(snapshot.data.conversationlist[i].updated_at != ''
                                         ? "${snapshot.data.conversationlist[i].updated_at.substring(0, 7)}"
                                         : '')
                                   ],

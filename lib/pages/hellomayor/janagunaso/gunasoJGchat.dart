@@ -74,10 +74,8 @@ class _GunasoJGchatState extends State<GunasoJGchat> {
     PusherClient pusher = PusherClient(
       "${Config.pusher_key}",
       PusherOptions(
-        auth: PusherAuth(pusher_authorize, headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + token!
-        }),
+        auth: PusherAuth(pusher_authorize,
+            headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token!}),
         cluster: "ap2",
         encrypted: true,
       ),
@@ -91,8 +89,7 @@ class _GunasoJGchatState extends State<GunasoJGchat> {
     // });
     pusher.onConnectionStateChange((state) {});
 
-    channel = pusher
-        .subscribe('private-message-' + '${widget.data['data']['conv_id']}');
+    channel = pusher.subscribe('private-message-' + '${widget.data['data']['conv_id']}');
 
     channel?.bind('newmessage', (onEvent) {
       // dynamic a =
@@ -154,7 +151,7 @@ class _GunasoJGchatState extends State<GunasoJGchat> {
                 children: <Widget>[
                   Text(
                     widget.data['data']['name'],
-                    style: Theme.of(context).textTheme.subtitle1,
+                    style: Theme.of(context).textTheme.titleMedium,
                     overflow: TextOverflow.clip,
                   ),
                   // Text(
@@ -207,16 +204,14 @@ class _GunasoJGchatState extends State<GunasoJGchat> {
                     padding: const EdgeInsets.all(15),
                     itemCount: data1.length,
                     itemBuilder: (ctx, i) {
-                      if ('${data1[i].sender_id}' !=
-                          '${userdata['data']['id']}') {
+                      if ('${data1[i].sender_id}' != '${userdata['data']['id']}') {
                         var v = {
                           'sender_name': data1[i].sender_name,
                           'message': data1[i].message,
                           'file': data1[i].file,
                           'image': data1[i].image,
                           'nepali_timestamp': data1[i].nepali_timestamp,
-                          'userimage':
-                              '$user_image${widget.data['data']['image']}'
+                          'userimage': '$user_image${widget.data['data']['image']}'
                         };
                         return ReceivedMessagesWidget(data: v);
                       } else {
@@ -247,10 +242,7 @@ class _GunasoJGchatState extends State<GunasoJGchat> {
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(35.0),
                                 boxShadow: [
-                                  BoxShadow(
-                                      offset: Offset(0, 3),
-                                      blurRadius: 5,
-                                      color: Colors.grey)
+                                  BoxShadow(offset: Offset(0, 3), blurRadius: 5, color: Colors.grey)
                                 ],
                               ),
                               child: Row(
@@ -266,9 +258,8 @@ class _GunasoJGchatState extends State<GunasoJGchat> {
                                       key: _fbKey,
                                       child: TextField(
                                         controller: message,
-                                        decoration: InputDecoration(
-                                            hintText: "Type ...",
-                                            border: InputBorder.none),
+                                        decoration:
+                                            InputDecoration(hintText: "Type ...", border: InputBorder.none),
                                       ),
                                     ),
                                   ),
@@ -298,8 +289,7 @@ class _GunasoJGchatState extends State<GunasoJGchat> {
                               },
                               child: Container(
                                 padding: const EdgeInsets.all(15.0),
-                                decoration: BoxDecoration(
-                                    color: white, shape: BoxShape.circle),
+                                decoration: BoxDecoration(color: white, shape: BoxShape.circle),
                                 child: Icon(
                                   Icons.send,
                                   color: primary,
@@ -391,10 +381,4 @@ class _GunasoJGchatState extends State<GunasoJGchat> {
   }
 }
 
-List<IconData> icons = [
-  Icons.image,
-  Icons.camera,
-  Icons.file_upload,
-  Icons.folder,
-  Icons.gif
-];
+List<IconData> icons = [Icons.image, Icons.camera, Icons.file_upload, Icons.folder, Icons.gif];

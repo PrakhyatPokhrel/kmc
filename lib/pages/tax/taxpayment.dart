@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:get/get.dart';
 import 'package:khalti/khalti.dart';
 import 'package:kmc/components/InappBrowser.dart';
 import 'package:kmc/components/bottomNavBar.dart';
-import 'package:kmc/config/colors.dart';
 import 'package:kmc/config/Apiconnectservices.dart';
-import 'package:get/get.dart';
+import 'package:kmc/config/colors.dart';
 // import 'package:flutter_khalti/flutter_khalti.dart';
 
 class TaxPayment extends StatefulWidget {
@@ -45,8 +45,8 @@ class _TaxPaymentState extends State<TaxPayment> {
   @override
   var options = InAppBrowserClassOptions(
       crossPlatform: InAppBrowserOptions(hideUrlBar: false),
-      inAppWebViewGroupOptions: InAppWebViewGroupOptions(
-          crossPlatform: InAppWebViewOptions(javaScriptEnabled: true)));
+      inAppWebViewGroupOptions:
+          InAppWebViewGroupOptions(crossPlatform: InAppWebViewOptions(javaScriptEnabled: true)));
   int selected = 0;
 
   @override
@@ -64,14 +64,12 @@ class _TaxPaymentState extends State<TaxPayment> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('smart-tax'.tr,
-                        style: TextStyle(color: primary, fontSize: 22)),
+                    Text('smart-tax'.tr, style: TextStyle(color: primary, fontSize: 22)),
                     InkWell(
                         onTap: () {
                           Navigator.pop(context);
                         },
-                        child:
-                            Icon(Icons.arrow_back, color: primary, size: 28)),
+                        child: Icon(Icons.arrow_back, color: primary, size: 28)),
                   ],
                 ),
               ),
@@ -84,9 +82,7 @@ class _TaxPaymentState extends State<TaxPayment> {
                 children: [
                   Padding(
                       padding: EdgeInsets.all(8.0),
-                      child: Text(
-                          'का.म.न.पा सेवा कोड: ' +
-                              '${widget.data.data.bill.taxPayerId}',
+                      child: Text('का.म.न.पा सेवा कोड: ' + '${widget.data.data.bill.taxPayerId}',
                           style: TextStyle(color: primary, fontSize: 18))),
                   Container(
                     color: Colors.white,
@@ -97,8 +93,7 @@ class _TaxPaymentState extends State<TaxPayment> {
                         1: FlexColumnWidth(8),
                       },
                       border: TableBorder.all(color: Colors.grey),
-                      defaultVerticalAlignment:
-                          TableCellVerticalAlignment.middle,
+                      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
                       children: [
                         // TableRow(children: [
                         //   tableText('भुक्तान कोड:'),
@@ -126,8 +121,7 @@ class _TaxPaymentState extends State<TaxPayment> {
                         // ]),
                         TableRow(children: [
                           tableText('total_amount'.tr + ': '),
-                          tableText('${widget.data.data.bill.totalAmount}',
-                              last: {'last}'}),
+                          tableText('${widget.data.data.bill.totalAmount}', last: {'last}'}),
                         ]),
                       ],
                     ),
@@ -342,12 +336,9 @@ class _TaxPaymentState extends State<TaxPayment> {
 
                   Container(
                       child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 8.0, horizontal: 20),
-                    child: Text(
-                        'अनलाइन भुक्तानीका लागि तपाईंंको खाता भएको भुक्तानीको माध्यम चयन गर्नुहोस।',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: text, fontSize: 18)),
+                    padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
+                    child: Text('अनलाइन भुक्तानीका लागि तपाईंंको खाता भएको भुक्तानीको माध्यम चयन गर्नुहोस।',
+                        textAlign: TextAlign.center, style: TextStyle(color: text, fontSize: 18)),
                   )),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -368,8 +359,8 @@ class _TaxPaymentState extends State<TaxPayment> {
                           elevation: 0,
                           child: Padding(
                             padding: const EdgeInsets.all(20.0),
-                            child: Image.asset('assets/images/ConnectIPS.png',
-                                height: 100, fit: BoxFit.contain),
+                            child:
+                                Image.asset('assets/images/ConnectIPS.png', height: 100, fit: BoxFit.contain),
                           ),
                         ),
                       ),
@@ -385,8 +376,7 @@ class _TaxPaymentState extends State<TaxPayment> {
                           elevation: 0,
                           child: Padding(
                             padding: const EdgeInsets.all(20.0),
-                            child: Image.asset('assets/images/Khalti.png',
-                                height: 100, fit: BoxFit.contain),
+                            child: Image.asset('assets/images/Khalti.png', height: 100, fit: BoxFit.contain),
                           ),
                         ),
                       )
@@ -425,8 +415,7 @@ class _TaxPaymentState extends State<TaxPayment> {
                   //     )),
                   Container(
                       child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 16.0, horizontal: 20),
+                    padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 20),
                     child: Text('',
                         // 'यस सेवाको भुक्तानी माथि दिईएको स्मार्टपालिका सेवा कोड अन्य पे-मेन्ट प्रोवाइडर (जस्तै:- eSewa, Khalti) मा राखेर पनि गर्नसक्नुहुन्छ। ',
                         textAlign: TextAlign.center,
@@ -444,8 +433,7 @@ class _TaxPaymentState extends State<TaxPayment> {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ConstrainedBox(
-          constraints: new BoxConstraints(
-              maxHeight: MediaQuery.of(context).size.height * 0.3),
+          constraints: new BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.3),
           child: Text(textt,
               style: TextStyle(
                   color: last != null
@@ -499,21 +487,16 @@ class _TaxPaymentState extends State<TaxPayment> {
                         ),
                         Theme(
                           data: Theme.of(context).copyWith(
-                              textSelectionTheme: TextSelectionThemeData(
-                                  selectionColor: Color(0xff5C2D91))),
+                              textSelectionTheme: TextSelectionThemeData(selectionColor: Color(0xff5C2D91))),
                           child: TextFormField(
                             cursorColor: Color(0xff5C2D91),
-                            validator: (v) =>
-                                (v?.isEmpty ?? true) ? 'Required ' : null,
-                            style: Theme.of(context).textTheme.headline5,
+                            validator: (v) => (v?.isEmpty ?? true) ? 'Required ' : null,
+                            style: Theme.of(context).textTheme.headlineSmall,
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               label: Text(
                                 'Mobile Number',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText1!
-                                    .copyWith(
+                                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                                       color: Color(0xff5C2D91),
                                     ),
                               ),
@@ -534,15 +517,11 @@ class _TaxPaymentState extends State<TaxPayment> {
                         ),
                         TextFormField(
                           cursorColor: Color(0xff5C2D91),
-                          validator: (v) =>
-                              (v?.isEmpty ?? true) ? 'Required ' : null,
+                          validator: (v) => (v?.isEmpty ?? true) ? 'Required ' : null,
                           decoration: InputDecoration(
                             label: Text(
                               'Khalti MPIN',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText1!
-                                  .copyWith(
+                              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                                     color: Color(0xff5C2D91),
                                   ),
                             ),
@@ -560,7 +539,7 @@ class _TaxPaymentState extends State<TaxPayment> {
                           ),
                           obscureText: true,
                           keyboardType: TextInputType.number,
-                          style: Theme.of(context).textTheme.headline5,
+                          style: Theme.of(context).textTheme.headlineSmall,
                           controller: _pinController,
                         ),
                         const SizedBox(height: 24),
@@ -580,40 +559,22 @@ class _TaxPaymentState extends State<TaxPayment> {
                                           child: Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Container(
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height *
-                                                  0.1,
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.7,
+                                              height: MediaQuery.of(context).size.height * 0.1,
+                                              width: MediaQuery.of(context).size.width * 0.7,
                                               decoration: BoxDecoration(
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                      offset: Offset(0, 1),
-                                                      blurRadius: 1)
-                                                ],
-                                                border: Border.all(
-                                                    color: Colors.green),
+                                                boxShadow: [BoxShadow(offset: Offset(0, 1), blurRadius: 1)],
+                                                border: Border.all(color: Colors.green),
                                                 color: Colors.white,
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
+                                                borderRadius: BorderRadius.circular(20),
                                               ),
                                               child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(10.0),
+                                                padding: const EdgeInsets.all(10.0),
                                                 child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
+                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                   children: [
                                                     CircularProgressIndicator(
                                                       valueColor:
-                                                          AlwaysStoppedAnimation<
-                                                                  Color>(
-                                                              Color(
-                                                                  0xff5C2D91)),
+                                                          AlwaysStoppedAnimation<Color>(Color(0xff5C2D91)),
                                                     ),
                                                     Text(
                                                       "Initiating Payment",
@@ -621,8 +582,7 @@ class _TaxPaymentState extends State<TaxPayment> {
                                                         fontSize: 15,
                                                         letterSpacing: 1,
                                                         color: Colors.black,
-                                                        fontWeight:
-                                                            FontWeight.normal,
+                                                        fontWeight: FontWeight.normal,
                                                       ),
                                                     ),
                                                   ],
@@ -633,8 +593,7 @@ class _TaxPaymentState extends State<TaxPayment> {
                                         ),
                                       ));
                               try {
-                                final initiationModel =
-                                    await Khalti.service.initiatePayment(
+                                final initiationModel = await Khalti.service.initiatePayment(
                                   request: PaymentInitiationRequestModel(
                                     amount: khaltiAmount * 100,
 
@@ -658,12 +617,9 @@ class _TaxPaymentState extends State<TaxPayment> {
                                   builder: (context) {
                                     String? _otp;
                                     return AlertDialog(
-                                      title: const Text(
-                                          'पठाइएको ओ.टी.पी हाल्नुहोस् '),
+                                      title: const Text('पठाइएको ओ.टी.पी हाल्नुहोस् '),
                                       content: TextField(
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline5,
+                                        style: Theme.of(context).textTheme.headlineSmall,
                                         decoration: const InputDecoration(
                                           label: Text('OTP Code'),
                                         ),
@@ -672,8 +628,7 @@ class _TaxPaymentState extends State<TaxPayment> {
                                       actions: [
                                         SimpleDialogOption(
                                           child: const Text('OK'),
-                                          onPressed: () =>
-                                              Navigator.pop(context, _otp),
+                                          onPressed: () => Navigator.pop(context, _otp),
                                         )
                                       ],
                                     );
@@ -690,60 +645,34 @@ class _TaxPaymentState extends State<TaxPayment> {
                                               color: Colors.transparent,
                                               child: Center(
                                                 child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
+                                                  padding: const EdgeInsets.all(8.0),
                                                   child: Container(
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            0.1,
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.8,
+                                                    height: MediaQuery.of(context).size.height * 0.1,
+                                                    width: MediaQuery.of(context).size.width * 0.8,
                                                     decoration: BoxDecoration(
                                                       boxShadow: [
-                                                        BoxShadow(
-                                                            offset:
-                                                                Offset(0, 1),
-                                                            blurRadius: 1)
+                                                        BoxShadow(offset: Offset(0, 1), blurRadius: 1)
                                                       ],
-                                                      border: Border.all(
-                                                          color: Color(
-                                                              0xff5C2D91)),
+                                                      border: Border.all(color: Color(0xff5C2D91)),
                                                       color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20),
+                                                      borderRadius: BorderRadius.circular(20),
                                                     ),
                                                     child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              10.0),
+                                                      padding: const EdgeInsets.all(10.0),
                                                       child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceEvenly,
+                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                         children: [
                                                           CircularProgressIndicator(
-                                                            valueColor:
-                                                                AlwaysStoppedAnimation<
-                                                                        Color>(
-                                                                    Color(
-                                                                        0xff5C2D91)),
+                                                            valueColor: AlwaysStoppedAnimation<Color>(
+                                                                Color(0xff5C2D91)),
                                                           ),
                                                           Text(
                                                             "Verifying Payment",
                                                             style: TextStyle(
                                                               fontSize: 15,
                                                               letterSpacing: 1,
-                                                              color:
-                                                                  Colors.black,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
+                                                              color: Colors.black,
+                                                              fontWeight: FontWeight.normal,
                                                             ),
                                                           ),
                                                         ],
@@ -753,8 +682,7 @@ class _TaxPaymentState extends State<TaxPayment> {
                                                 ),
                                               ),
                                             ));
-                                    PaymentSuccessModel model =
-                                        await Khalti.service.confirmPayment(
+                                    PaymentSuccessModel model = await Khalti.service.confirmPayment(
                                       request: PaymentConfirmationRequestModel(
                                         confirmationCode: otpCode,
                                         token: initiationModel.token,
@@ -772,15 +700,13 @@ class _TaxPaymentState extends State<TaxPayment> {
                                           // print(res),
                                           if (res['status'] == true)
                                             {
-                                              EasyLoading.showSuccess(
-                                                  res['message']),
+                                              EasyLoading.showSuccess(res['message']),
                                               Navigator.pop(context),
                                               Get.off(BottomNavBar())
                                             }
                                           else
                                             {
-                                              EasyLoading.showError(
-                                                  res['message']),
+                                              EasyLoading.showError(res['message']),
                                               Navigator.pop(context),
                                             }
                                         });
@@ -803,8 +729,7 @@ class _TaxPaymentState extends State<TaxPayment> {
                               }
                             }
                           },
-                          child:
-                              Text('PAY ${widget.data!.data.bill.totalAmount}'),
+                          child: Text('PAY ${widget.data!.data.bill.totalAmount}'),
                         ),
                       ],
                     ),
@@ -829,23 +754,19 @@ class _TaxPaymentState extends State<TaxPayment> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
-            title: Text('प्रक्रियामा छ !',
-                textAlign: TextAlign.center, style: TextStyle(color: primary)),
+            title: Text('प्रक्रियामा छ !', textAlign: TextAlign.center, style: TextStyle(color: primary)),
             content: Text('यो सेवा प्रक्रियामा छ !',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, height: 1.5)),
+                textAlign: TextAlign.center, style: TextStyle(fontSize: 16, height: 1.5)),
             actions: [
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(tertiary),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
                     child: Text('cancel'.tr),
                   ),
                   onPressed: () {
