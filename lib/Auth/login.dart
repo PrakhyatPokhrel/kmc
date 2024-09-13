@@ -568,17 +568,44 @@ class _Login extends State<Login> {
                               title: Text('enter_mobile'.tr,
                                   style: TextStyle(color: primary, fontWeight: FontWeight.bold)),
                             ),
-                            new ListTile(
-                              title: new TextFormField(
-                                controller: phone,
-                                validator:
-                                    FormBuilderValidators.required(context, errorText: 'required_field'.tr),
-                                decoration: new InputDecoration(
-                                  hintText: 'mobilenumber'.tr,
+
+                            TextFormField(
+                              controller: phone,
+                              validator:
+                                  FormBuilderValidators.required(context, errorText: 'required_field'.tr),
+                              keyboardType: TextInputType.phone,
+                              decoration: InputDecoration(
+                                // labelStyle: TextStyle(color: primary, fontFamily: 'Mukta'),
+                                contentPadding: new EdgeInsets.symmetric(vertical: 18.0, horizontal: 15.0),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: primary, width: 2.0),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(12.0),
+                                  ),
                                 ),
-                                keyboardType: TextInputType.phone,
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: primary, width: 2.0),
+                                  borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                ),
+                                errorBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.redAccent),
+                                ),
+                                prefixIcon: Icon(Icons.phone, color: primary),
+
+                                hintText: 'mobilenumber'.tr,
                               ),
                             ),
+                            // new ListTile(
+                            //   title: new TextFormField(
+                            //     controller: phone,
+                            //     validator:
+                            //         FormBuilderValidators.required(context, errorText: 'required_field'.tr),
+                            //     decoration: new InputDecoration(
+                            //       hintText: 'mobilenumber'.tr,
+                            //     ),
+                            //     keyboardType: TextInputType.phone,
+                            //   ),
+                            // ),
                             // Padding(
                             //   padding: const EdgeInsets.all(8.0),
                             //   child: ElevatedButton(
@@ -599,9 +626,20 @@ class _Login extends State<Login> {
                             //     },
                             //   ),
                             // ),
+                            SizedBox(height: 12),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
+                                ElevatedButton(
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.all(Colors.redAccent),
+                                  ),
+                                  child: Text('cancel'.tr, style: TextStyle(color: textPrimaryLightColor)),
+                                  onPressed: () {
+                                    Get.back();
+                                  },
+                                ),
+                                SizedBox(width: 12),
                                 ElevatedButton(
                                   style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(primary),
@@ -617,16 +655,6 @@ class _Login extends State<Login> {
                                       EasyLoading.show(status: 'Please wait...'.tr);
                                       mobilenumsentforotp();
                                     }
-                                  },
-                                ),
-                                SizedBox(width: 6),
-                                ElevatedButton(
-                                  style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all(Colors.redAccent),
-                                  ),
-                                  child: Text('cancel'.tr, style: TextStyle(color: textPrimaryLightColor)),
-                                  onPressed: () {
-                                    Get.back();
                                   },
                                 ),
                               ],

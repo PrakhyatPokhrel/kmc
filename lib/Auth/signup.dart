@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
@@ -12,7 +11,6 @@ import 'package:kmc/pages/home/signUpOTP.dart';
 import 'package:kmc/utils/image_picker/image_picker_dialog.dart';
 
 import '../constants/constants.dart';
-import '../pages/sewa/sifarish_new/static_data/custom_regex_pattern.dart';
 
 class Signup extends StatefulWidget {
   @override
@@ -29,6 +27,8 @@ class _SignupState extends State<Signup> {
   // List<ImageInputAdapter> _images;
   XFile? imagefile;
   String? imageUploadURL;
+  bool isPasswordObscureText = true;
+  bool isConfirmPasswordObscureText = true;
 
   var name = TextEditingController();
   var set_password = TextEditingController();
@@ -75,21 +75,21 @@ class _SignupState extends State<Signup> {
     {"name": "१८", "value": "18"},
     {"name": "१९", "value": "19"},
 
-    // {"name": "२०", "value": "20"},
-    // {"name": "२१", "value": "21"},
+    {"name": "२०", "value": "20"},
+    {"name": "२१", "value": "21"},
 
-    // {"name": "२२", "value": "22"},
-    // {"name": "२३", "value": "23"},
-    // {"name": "२४", "value": "24"},
-    // {"name": "२५", "value": "25"},
-    // {"name": "२६", "value": "26"},
-    // {"name": "२७", "value": "27"},
-    // {"name": "२८", "value": "28"},
-    // {"name": "२९", "value": "29"},
+    {"name": "२२", "value": "22"},
+    {"name": "२३", "value": "23"},
+    {"name": "२४", "value": "24"},
+    {"name": "२५", "value": "25"},
+    {"name": "२६", "value": "26"},
+    {"name": "२७", "value": "27"},
+    {"name": "२८", "value": "28"},
+    {"name": "२९", "value": "29"},
 
-    // {"name": "३०", "value": "30"},
-    // {"name": "३१", "value": "31"},
-    // {"name": "३२", "value": "32"},
+    {"name": "३०", "value": "30"},
+    {"name": "३१", "value": "31"},
+    {"name": "३२", "value": "32"},
     // {"name": "९", "value": "9"},
     // {"name": "९", "value": "9"},
     // {"name": "९", "value": "9"},
@@ -100,6 +100,48 @@ class _SignupState extends State<Signup> {
   ];
 
   int? userID;
+
+  customTextField({
+    required TextEditingController controller,
+    required String hintText,
+    bool isPassword = false,
+    bool isConfirmPassword = false,
+    required IconData prefixIcon,
+    String? Function(String?)? validator,
+    TextInputType? keyboardType,
+    Widget? suffixIcon,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: TextFormField(
+        controller: controller,
+        validator: validator,
+        obscureText:
+            isConfirmPassword ? isConfirmPasswordObscureText : (isPassword ? isPasswordObscureText : false),
+        keyboardType: keyboardType,
+        decoration: InputDecoration(
+          // labelStyle: TextStyle(color: primary, fontFamily: 'Mukta'),
+          contentPadding: new EdgeInsets.symmetric(vertical: 18.0, horizontal: 15.0),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: primary, width: 2.0),
+            borderRadius: BorderRadius.all(
+              Radius.circular(12.0),
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: primary, width: 2.0),
+            borderRadius: BorderRadius.all(Radius.circular(12.0)),
+          ),
+          errorBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.redAccent),
+          ),
+          prefixIcon: Icon(prefixIcon, color: primary),
+          suffixIcon: suffixIcon,
+          hintText: hintText.tr,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -128,160 +170,362 @@ class _SignupState extends State<Signup> {
         ),
         body: SingleChildScrollView(
           child: Container(
-            padding: const EdgeInsets.only(bottom: 10.0),
+            padding: const EdgeInsets.only(bottom: 10.0, left: 12, right: 12),
             child: Column(
               children: [
+                GestureDetector(
+                  onTap: () {
+                    ImageHandler(onFilePickSuccess: (file) async {
+                      String imageName = await registerProfileImageUpload(file);
+                      if (imageName != "") {
+                        setState(() {
+                          imagefile = file;
+                          imageUploadURL = imageName;
+                        });
+                      }
+                    }).getImage(context);
+                  },
+                  child: imagefile != null
+                      ? Container(
+                          width: 120.0,
+                          height: 120.0,
+                          decoration: new BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                width: 3,
+                                color: Color(0xFF3B5CA5).withOpacity(0.6),
+                              )),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(60),
+                            child: Image.file(
+                              File(imagefile!.path),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        )
+                      : Container(
+                          width: 120.0,
+                          height: 120.0,
+                          decoration: new BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: new DecorationImage(
+                                image: new ExactAssetImage('assets/image.png'),
+                                fit: BoxFit.cover,
+                              ),
+                              border: Border.all(
+                                width: 3,
+                                color: Color(0xFF3B5CA5).withOpacity(0.6),
+                              )),
+                        ),
+                ),
+                SizedBox(height: 12),
                 FormBuilder(
                   key: _fbKey,
                   autovalidateMode: AutovalidateMode.disabled,
                   child: Column(
                     children: <Widget>[
-                      new ListTile(
-                        leading: Icon(Icons.person, color: primary),
-                        title: new TextFormField(
-                          controller: name,
-                          validator: FormBuilderValidators.required(context, errorText: 'required_field'.tr),
-                          decoration: new InputDecoration(
-                            hintText: 'NAME (English)'.tr,
-                          ),
-                          inputFormatters: [
-                            FilteringTextInputFormatter.allow(CustomRegexPattern.englishInput),
-                          ],
-                        ),
+                      // new ListTile(
+                      //   leading: Icon(Icons.person, color: primary),
+                      //   title: new TextFormField(
+                      //     controller: name,
+                      //     validator: FormBuilderValidators.required(context, errorText: 'required_field'.tr),
+                      //     decoration: new InputDecoration(
+                      //       hintText: 'NAME (English)'.tr,
+                      //     ),
+                      //     inputFormatters: [
+                      //       FilteringTextInputFormatter.allow(CustomRegexPattern.englishInput),
+                      //     ],
+                      //   ),
+                      // ),
+
+                      customTextField(
+                        controller: name,
+                        hintText: 'NAME (English)',
+                        prefixIcon: Icons.person,
+                        validator: FormBuilderValidators.required(context,
+                            errorText: 'required_'
+                                    'field'
+                                .tr),
+                        keyboardType: TextInputType.text,
                       ),
 
-                      new ListTile(
-                        leading: Icon(Icons.home, color: primary),
-                        title: new TextFormField(
-                          controller: address,
-                          validator: FormBuilderValidators.required(context, errorText: 'required_field'.tr),
-                          decoration: new InputDecoration(
-                            hintText: 'address'.tr,
-                          ),
-                        ),
+                      // new ListTile(
+                      //   leading: Icon(Icons.home, color: primary),
+                      //   title: new TextFormField(
+                      //     controller: address,
+                      //     validator: FormBuilderValidators.required(context, errorText: 'required_field'.tr),
+                      //     decoration: new InputDecoration(
+                      //       hintText: 'address'.tr,
+                      //     ),
+                      //   ),
+                      // ),
+
+                      customTextField(
+                        controller: email,
+                        hintText: 'EMAIL',
+                        prefixIcon: Icons.email,
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(context, errorText: 'required_field'.tr),
+                          FormBuilderValidators.email(context, errorText: 'email_validate'.tr),
+                        ]),
+                        keyboardType: TextInputType.emailAddress,
                       ),
-                      new ListTile(
-                        leading: Icon(
-                          Icons.email,
-                          color: primary,
-                        ),
-                        title: new TextFormField(
-                          validator: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(context, errorText: 'required_field'.tr),
-                            FormBuilderValidators.email(context, errorText: 'email_validate'.tr),
-                          ]),
-                          controller: email,
-                          decoration: new InputDecoration(
-                            hintText: 'EMAIL'.tr,
+                      // new ListTile(
+                      //   leading: Icon(
+                      //     Icons.email,
+                      //     color: primary,
+                      //   ),
+                      //   title: new TextFormField(
+                      //     validator: FormBuilderValidators.compose([
+                      //       FormBuilderValidators.required(context, errorText: 'required_field'.tr),
+                      //       FormBuilderValidators.email(context, errorText: 'email_validate'.tr),
+                      //     ]),
+                      //     controller: email,
+                      //     decoration: new InputDecoration(
+                      //       hintText: 'EMAIL'.tr,
+                      //     ),
+                      //     keyboardType: TextInputType.emailAddress,
+                      //   ),
+                      // ),
+                      customTextField(
+                        controller: mobile,
+                        hintText: 'MOBILE-NUM',
+                        prefixIcon: Icons.phone,
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(context, errorText: 'required_field'.tr),
+                          FormBuilderValidators.minLength(
+                            context,
+                            10,
+                            errorText: 'minLength'.tr,
                           ),
-                          keyboardType: TextInputType.emailAddress,
-                        ),
-                      ),
-                      new ListTile(
-                        leading: Icon(Icons.phone, color: primary),
-                        title: new TextFormField(
-                          controller: mobile,
-                          validator: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(context, errorText: 'required_field'.tr),
-                            FormBuilderValidators.minLength(
-                              context,
-                              10,
-                              errorText: 'minLength'.tr,
-                            ),
-                            FormBuilderValidators.maxLength(
-                              context,
-                              10,
-                              errorText: 'maxLength'.tr,
-                            ),
-                          ]),
-                          decoration: new InputDecoration(
-                            hintText: 'MOBILE-NUM'.tr,
+                          FormBuilderValidators.maxLength(
+                            context,
+                            10,
+                            errorText: 'maxLength'.tr,
                           ),
-                          keyboardType: TextInputType.phone,
-                        ),
+                        ]),
+                        keyboardType: TextInputType.phone,
                       ),
+                      // new ListTile(
+                      //   leading: Icon(Icons.phone, color: primary),
+                      //   title: new TextFormField(
+                      //     controller: mobile,
+                      //     validator: FormBuilderValidators.compose([
+                      //       FormBuilderValidators.required(context, errorText: 'required_field'.tr),
+                      //       FormBuilderValidators.minLength(
+                      //         context,
+                      //         10,
+                      //         errorText: 'minLength'.tr,
+                      //       ),
+                      //       FormBuilderValidators.maxLength(
+                      //         context,
+                      //         10,
+                      //         errorText: 'maxLength'.tr,
+                      //       ),
+                      //     ]),
+                      //     decoration: new InputDecoration(
+                      //       hintText: 'MOBILE-NUM'.tr,
+                      //     ),
+                      //     keyboardType: TextInputType.phone,
+                      //   ),
+                      // ),
                       // const Divider(
                       //   height: 1.0,
                       // ),
-                      Stack(
-                        children: <Widget>[
-                          Container(
-                            //padding: EdgeInsets.only(left: 44.0),
-                            padding: EdgeInsets.only(left: 30.0),
-                            margin: EdgeInsets.only(top: 5.0, left: 28.0, right: 16.0),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              //padding: EdgeInsets.only(left: 44.0),
+                              padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 4.0),
+                              margin: EdgeInsets.only(top: 6.0, left: 7.0, right: 7.0, bottom: 6.0),
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.rectangle,
+                                borderRadius: BorderRadius.circular(12.0),
+                                border: Border.all(
+                                  width: 2,
+                                  color: primary,
+                                ),
+                              ),
 
-                            child: DropdownButton(
-                              hint: Text('GENDER'.tr),
-                              isExpanded: true,
-                              iconSize: 30,
-                              underline: Container(),
-                              items: Constants.gender.map(
-                                (val) {
-                                  return DropdownMenuItem(
-                                    value: val["value"],
-                                    child: Text(val["name"]!),
-                                  );
-                                },
-                              ).toList(),
-                              value: _currentGender != null ? _currentGender : null,
-                              onChanged: (value) {
-                                setState(() {
-                                  _currentGender = value;
-                                });
-                              },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Icon(
+                                    Icons.attribution_outlined,
+                                    color: primary,
+                                  ),
+                                  SizedBox(
+                                    width: 16,
+                                  ),
+                                  Expanded(
+                                    child: DropdownButton(
+                                      hint: Text('GENDER'.tr),
+                                      isExpanded: true,
+                                      iconSize: 30,
+                                      underline: Container(),
+                                      items: Constants.gender.map(
+                                        (val) {
+                                          return DropdownMenuItem(
+                                            value: val["value"],
+                                            child: Text(val["name"]!),
+                                          );
+                                        },
+                                      ).toList(),
+                                      value: _currentGender != null ? _currentGender : null,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          _currentGender = value;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                          Container(
-                            margin: EdgeInsets.only(top: 42.0, left: 54.0, right: 20.0),
-                            child: Divider(
-                              color: Colors.black54,
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
-                            child: Icon(
-                              Icons.attribution_outlined,
-                              color: primary,
+                          Expanded(
+                            child: Container(
+                              //padding: EdgeInsets.only(left: 44.0),
+                              padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 4.0),
+                              margin: EdgeInsets.only(top: 6.0, left: 7.0, right: 7.0, bottom: 6.0),
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.rectangle,
+                                borderRadius: BorderRadius.circular(12.0),
+                                border: Border.all(
+                                  width: 2,
+                                  color: primary,
+                                ),
+                              ),
+
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Icon(
+                                    Icons.location_city,
+                                    color: primary,
+                                  ),
+                                  SizedBox(
+                                    width: 16,
+                                  ),
+                                  Expanded(
+                                    child: DropdownButton(
+                                      menuMaxHeight: 400,
+                                      hint: Text('Wardno'.tr),
+                                      isExpanded: true,
+                                      underline: Container(),
+                                      iconSize: 30,
+                                      items: _wards.map(
+                                        (val) {
+                                          return DropdownMenuItem(
+                                              value: val["value"],
+                                              child: Text(
+                                                val["name"]!,
+                                              ));
+                                        },
+                                      ).toList(),
+                                      value: _currentWard,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          _currentWard = value;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],
                       ),
-                      new ListTile(
-                        leading: Icon(
-                          Icons.lock,
-                          color: primary,
+                      // new ListTile(
+                      //   leading: Icon(
+                      //     Icons.lock,
+                      //     color: primary,
+                      //   ),
+                      //   title: new TextFormField(
+                      //       controller: set_password,
+                      //       validator: FormBuilderValidators.compose([
+                      //         FormBuilderValidators.required(context, errorText: 'required_field'.tr),
+                      //         FormBuilderValidators.minLength(
+                      //           context,
+                      //           6,
+                      //           errorText: 'minLength6'.tr,
+                      //         ),
+                      //       ]),
+                      //       decoration: new InputDecoration(
+                      //         hintText: 'set_password'.tr,
+                      //       ),
+                      //       obscureText: true),
+                      // ),
+                      customTextField(
+                        controller: set_password,
+                        hintText: 'set_password',
+                        prefixIcon: Icons.lock,
+                        isPassword: true,
+                        suffixIcon: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isPasswordObscureText = !isPasswordObscureText;
+                            });
+                          },
+                          child: Icon(
+                            isPasswordObscureText ? Icons.visibility : Icons.visibility_off,
+                            color: primary,
+                            size: 26.0,
+                          ),
                         ),
-                        title: new TextFormField(
-                            controller: set_password,
-                            validator: FormBuilderValidators.compose([
-                              FormBuilderValidators.required(context, errorText: 'required_field'.tr),
-                              FormBuilderValidators.minLength(
-                                context,
-                                6,
-                                errorText: 'minLength6'.tr,
-                              ),
-                            ]),
-                            decoration: new InputDecoration(
-                              hintText: 'set_password'.tr,
-                            ),
-                            obscureText: true),
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(context, errorText: 'required_field'.tr),
+                          FormBuilderValidators.minLength(
+                            context,
+                            6,
+                            errorText: 'minLength6'.tr,
+                          ),
+                        ]),
                       ),
-                      new ListTile(
-                        leading: Icon(
-                          Icons.lock,
-                          color: primary,
+                      // new ListTile(
+                      //   leading: Icon(
+                      //     Icons.lock,
+                      //     color: primary,
+                      //   ),
+                      //   title: new TextFormField(
+                      //       controller: re_password,
+                      //       validator: (val) {
+                      //         if (val!.isEmpty) return 'required_field'.tr;
+                      //         if (val != set_password.text) return 'password_match'.tr;
+                      //         return null;
+                      //       },
+                      //       decoration: new InputDecoration(
+                      //         hintText: 're_password'.tr,
+                      //       ),
+                      //       obscureText: true),
+                      // ),
+
+                      customTextField(
+                        controller: re_password,
+                        hintText: 're_password',
+                        prefixIcon: Icons.lock,
+                        isConfirmPassword: true,
+                        validator: (val) {
+                          if (val!.isEmpty) return 'required_field'.tr;
+                          if (val != set_password.text) return 'password_match'.tr;
+                          return null;
+                        },
+                        suffixIcon: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isConfirmPasswordObscureText = !isConfirmPasswordObscureText;
+                            });
+                          },
+                          child: Icon(
+                            isConfirmPasswordObscureText ? Icons.visibility : Icons.visibility_off,
+                            color: primary,
+                            size: 26.0,
+                          ),
                         ),
-                        title: new TextFormField(
-                            controller: re_password,
-                            validator: (val) {
-                              if (val!.isEmpty) return 'required_field'.tr;
-                              if (val != set_password.text) return 'password_match'.tr;
-                              return null;
-                            },
-                            decoration: new InputDecoration(
-                              hintText: 're_password'.tr,
-                            ),
-                            obscureText: true),
                       ),
                       //Checkbox
                       Row(children: [
@@ -304,100 +548,6 @@ class _SignupState extends State<Signup> {
                         ),
                       ]),
 
-                      checkboxValue == true
-                          ? Stack(
-                              children: <Widget>[
-                                Container(
-                                  padding: EdgeInsets.only(left: 30.0),
-                                  margin: EdgeInsets.only(top: 5.0, left: 28.0, right: 16.0),
-                                  // decoration: BoxDecoration(
-                                  //   border: Border.all(
-                                  //     color: Colors.black54,
-                                  //     width: 1.0,
-                                  //   ),
-                                  //   borderRadius: BorderRadius.circular(8.0),
-                                  // ),
-                                  child: DropdownButton(
-                                    menuMaxHeight: 400,
-                                    hint: Text('Wardno'.tr),
-                                    isExpanded: true,
-                                    underline: Container(),
-                                    iconSize: 30,
-                                    items: _wards.map(
-                                      (val) {
-                                        return DropdownMenuItem(
-                                            value: val["value"],
-                                            child: Text(
-                                              val["name"]!,
-                                            ));
-                                      },
-                                    ).toList(),
-                                    value: _currentWard,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        _currentWard = value;
-                                      });
-                                    },
-                                  ),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(
-                                    top: 42.0,
-                                    left: 54.0,
-                                    right: 20.0,
-                                    bottom: 12,
-                                  ),
-                                  child: Divider(
-                                    color: Colors.black54,
-                                  ),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
-                                  child: Icon(
-                                    Icons.location_city,
-                                    color: primary,
-                                  ),
-                                ),
-                              ],
-                            )
-                          : Container(),
-                      GestureDetector(
-                        onTap: () {
-                          ImageHandler(onFilePickSuccess: (file) async {
-                            String imageName = await registerProfileImageUpload(file);
-                            if (imageName != "") {
-                              setState(() {
-                                imagefile = file;
-                                imageUploadURL = imageName;
-                              });
-                            }
-                          }).getImage(context);
-                        },
-                        child: imagefile != null
-                            ? Container(
-                                width: 90.0,
-                                height: 90.0,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(50.0),
-                                  child: Image.file(
-                                    File(imagefile!.path),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              )
-                            : Container(
-                                width: 140.0,
-                                height: 140.0,
-                                decoration: new BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: new DecorationImage(
-                                    image: new ExactAssetImage('assets/image.png'),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                      ),
-
                       // ImageFormField<ImageInputAdapter>(
                       //   shouldAllowMultiple: false,
                       //   onSaved: (val) => _images = val,
@@ -419,7 +569,7 @@ class _SignupState extends State<Signup> {
 
                       SizedBox(height: 10),
 
-                      signupButton()
+                      signupButton(checkboxValue!),
                     ],
                   ),
                 ),
@@ -431,22 +581,25 @@ class _SignupState extends State<Signup> {
     );
   }
 
-  signupButton() {
+  signupButton(bool value) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: ElevatedButton(
-        style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(tertiary),
-            padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 16, horizontal: 35)),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
-            ))),
-        child: Text('SEND'.tr, style: TextStyle(color: textPrimaryLightColor, fontSize: 20)),
-        onPressed: () {
-          submit();
-          // Navigator.push(
-          //     context, MaterialPageRoute(builder: (context) => Otp()));
-        },
+      child: SizedBox(
+        width: double.infinity,
+        child: ElevatedButton(
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(value ? primary : shadowColor),
+              padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 16, horizontal: 35)),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ))),
+          child: Text('SEND'.tr, style: TextStyle(color: textPrimaryLightColor, fontSize: 20)),
+          onPressed: () {
+            submit();
+            // Navigator.push(
+            //     context, MaterialPageRoute(builder: (context) => Otp()));
+          },
+        ),
       ),
     );
     // return Center(

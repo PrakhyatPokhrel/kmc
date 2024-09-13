@@ -7,8 +7,7 @@ class Messages extends Translations {
   Map<String, Map<String, String>> get keys => {
         'en_US': {
           "ABOUT": "About",
-          "palika_name":
-              "${Config.palikaNameEnglish}\n${Config.palikaTypeEnglish}",
+          "palika_name": "${Config.palikaNameEnglish}\n${Config.palikaTypeEnglish}",
           "review": "Re-upload documents",
           "AboutThisApp": "About this App",
           "ACCIDENT": "Accident",
@@ -51,13 +50,11 @@ class Messages extends Translations {
           "on_progress": "Final Processing",
           "processingdocumenttitle": "Initial Processing",
           "paymentpendingtitle": "Payment Pending",
-          "processingdocumentbody":
-              "Your application is being processed! Thank you",
+          "processingdocumentbody": "Your application is being processed! Thank you",
           "paymentpendingbody":
               "Your application is ready.Please go to your ward office to pay and collect it.",
           "finalprocessingdocumenttitle": "Final Processing",
-          "finalprocessingdocumentbody":
-              "Your application is almost processed! Thank you",
+          "finalprocessingdocumentbody": "Your application is almost processed! Thank you",
           "EMERGENCY": "Emergency",
           "ENGLISH": "English",
           "event-reports": "Event Report",
@@ -241,6 +238,7 @@ class Messages extends Translations {
           "forgot": "Forgot Some Information",
           "fill_remember": "Fill the informations that you remember. ",
           "forget": "I forgot.",
+          "NAME (English)": "Name (English)",
           "house_owner": "House owner's Name ",
           "house_owner_number": "House owner's Contact",
           "type_password": "Type Password",
@@ -283,8 +281,7 @@ class Messages extends Translations {
           "documents": "Important Documents",
           "progress_percentage": "Progress Percentage",
           "register_business": "Register your business",
-          "new_register_text":
-              "Press the button below to register if you haven't already!",
+          "new_register_text": "Press the button below to register if you haven't already!",
           "password_required": "Password is required!",
           "mobile_required": "Mobile number is required !",
           "password_5": "Password should be at least 5 characters long.",
@@ -310,9 +307,8 @@ class Messages extends Translations {
           "change_password_successfully": "Change Password Successfully",
           "current_password": "Current Password",
           "new_password": "New Password",
-          "enter_mobile": "Enter your mobile number",
-          "msg_ask_otp":
-              "Please enter the OTP sent to your phone for more security.",
+          "enter_mobile": "Enter your Mobile Number",
+          "msg_ask_otp": "Please enter the OTP sent to your phone for more security.",
           "login_alert": "Please login to view this page!",
           "load_gallery": "Load from Gallery",
           "open_camera": "Open Camera",
@@ -331,8 +327,7 @@ class Messages extends Translations {
           "FAMILY_MEMBERS": "Family Members",
           "Welcome_Message": "Latest from this week!",
           // "Welcome_Message": " ${Config.palikaNameEnglish} this week !",
-          "Welcome_Message_2":
-              "Patients affected by the Covid-19 have been provided medicine and relief.",
+          "Welcome_Message_2": "Patients affected by the Covid-19 have been provided medicine and relief.",
           "view": "View",
           "Viewall_sifarish": "View All e-Sifarish",
           "departmnt": "Departments",
@@ -357,11 +352,10 @@ class Messages extends Translations {
           "jg_desc": "Voice your concerns and queries",
           "jankari": "Information",
           "wodapatra": "Citizen Charter",
-          "HowToUse": "How To Use",
+          "HowToUse": "How to use?",
           "AboutThisAppContent":
               "This smart mobile application of Kathmandu Metropolitan City is designed to minimize the distance between the citizens and public representatives/employees. Using this mobile app, both customers and representatives/employees can view, give or receive various information and services of the metropolis from the comfort of their homes. The app consists of modules such as digital Sifaris, hello mayor, public complaints, judicial committee, citizen charter, information/news, ward information, emergency services and others. This mobile app has a simple user experience and has an excellent security system.",
-          "wodapatra_desc":
-              "Access the citizen charter of your local government digitally",
+          "wodapatra_desc": "Access the citizen charter of your local government digitally",
           "ghatana_desc": "To easily register vital events online !",
           "enaksha_desc": "To easily perform tasks related to maps",
           "digital_profile": "Digital Profile",
@@ -407,26 +401,20 @@ class Messages extends Translations {
           "documentstatus": "Your application is being checked ! Thank you",
           "documentstatustitlereject": "Rejected",
           "documentstatusreject": "Your application has been rejected !!",
-          "role_check":
-              "This service is only available to verified household users.",
+          "role_check": "This service is only available to verified household users.",
           "upcoming_events": "Upcoming Events",
           "activities": "Activities",
-          "form_check":
-              "Your form will be checked and you will be notified after verification.",
+          "form_check": "Your form will be checked and you will be notified after verification.",
           "code_copied": "Code Copied !",
           "Verify": "Verify",
           'Enter_household_number': 'Please enter your household number...',
-          'upload_all_required_documents':
-              'Please upload all required documents',
+          'upload_all_required_documents': 'Please upload all required documents',
           'OTP_does_not_match': 'OTP does not match',
-          'server_error':
-              'Could not connect to the server, please try again later.',
-          'server_connection_error':
-              'Could not connect to the server, please try again later.',
+          'server_error': 'Could not connect to the server, please try again later.',
+          'server_connection_error': 'Could not connect to the server, please try again later.',
           "appointment_purpose": "Appointment Purpose",
           'no_internet_connection': 'No Internet Connection',
-          'email_or_password_incorrect':
-              'Email/number or Password is incorrect !',
+          'email_or_password_incorrect': 'Email/number or Password is incorrect !',
           "local_level": "Local Level",
           'Redirecting': 'Redirecting',
           'informational_response': "Informational Response",
@@ -468,8 +456,7 @@ class Messages extends Translations {
           "owner_house_number": "House Number",
           "no_data_found": "No Data Found",
           "no_data_found_toilet": "Unable to locate toilet within 3 kms.",
-          "no_data_found_tourist":
-              "Unable to locate tourist area within 3 kms.",
+          "no_data_found_tourist": "Unable to locate tourist area within 3 kms.",
           "empty_data": "No Data Found",
           "PurbaKarmachari": "Former Employee ",
           "rajpatra": "Gazette",
@@ -524,10 +511,8 @@ class Messages extends Translations {
           'minLength': "Min length should be 10",
           "patterh": "Please input matching mattern",
           "permission_error": "Permission Error",
-          "enable_camera_permission":
-              "Please enable camera permission in App Settings",
-          "enable_storage_permission":
-              "Please enable storage permission in App Settings",
+          "enable_camera_permission": "Please enable camera permission in App Settings",
+          "enable_storage_permission": "Please enable storage permission in App Settings",
           "nepali": "Nepali",
           'please_try_again_later': 'Problem! Please try again later',
           'name': 'Name',
@@ -543,8 +528,7 @@ class Messages extends Translations {
           'province': "Province",
           'nearby_toilet': "Nearby Toilet",
           'nearby_area': "Nearby Tourist Area",
-          'permission_request':
-              "Allow location permission for using this service",
+          'permission_request': "Allow location permission for using this service",
           'near_landmark': "Nearby Landmark",
           'phone_no': "This field must not be empty",
           'nepalikeyboard': "This field must not be empty"
@@ -553,12 +537,9 @@ class Messages extends Translations {
           "nepali": "नेपाली",
           "permission_error": "अनुमति त्रुटि",
           'please_try_again_later': 'समस्या! कृपया पछि पुन: प्रयास गर्नुहोस्',
-          "enable_camera_permission":
-              "कृपया एप सेटिङहरूमा क्यामेरा अनुमति दिनुहोस्",
-          "enable_storage_permission":
-              "कृपया एप सेटिङहरूमा स्टोरेज अनुमति दिनुहोस्",
-          "palika_name":
-              "${Config.palikaNameNepali}\n${Config.palikaTypeNepali}",
+          "enable_camera_permission": "कृपया एप सेटिङहरूमा क्यामेरा अनुमति दिनुहोस्",
+          "enable_storage_permission": "कृपया एप सेटिङहरूमा स्टोरेज अनुमति दिनुहोस्",
+          "palika_name": "${Config.palikaNameNepali}\n${Config.palikaTypeNepali}",
           "AboutThisApp": "यस एपका बारेमा",
           "pratinidhi": "प्रतिनिधि",
           "rajpatra": "राजपत्र",
@@ -773,8 +754,7 @@ class Messages extends Translations {
           "connect_google": " गूगलद्वारा जोडिनुहोस",
           "my_application": "मेरा आवेदनहरु",
           "application": "आवेदनहरु",
-          "info_safe":
-              "काठमाडौँ महानगरपालिका तपाईंको गोपनियताको कदर गर्दछ। तपाईंको डाटा हामीसँग सुरक्षित छ।",
+          "info_safe": "काठमाडौँ महानगरपालिका तपाईंको गोपनियताको कदर गर्दछ। तपाईंको डाटा हामीसँग सुरक्षित छ।",
           "login_check_text": "तपाईले लग-ईन गर्नु भएको छैन।",
           "login_request": "लग-ईन गर्नुहोस",
           "NEXT": "अर्को पेज ",
@@ -799,8 +779,7 @@ class Messages extends Translations {
           "set_password": "पासवर्ड सेट गर्नुहोस्",
           "re_password": "पासवर्ड सुनिश्चित गर्नुहोस्",
           "Gender": "लिङ्ग",
-          "password_match":
-              "पासवर्ड मिलेन। कृपया तल र माथी एउटै पासवर्ड राख्नुहोला।",
+          "password_match": "पासवर्ड मिलेन। कृपया तल र माथी एउटै पासवर्ड राख्नुहोला।",
           "name_validate": "आफ्नो नाम भर्नुहोस।",
           "email_validate": "कृपया आफ्नो मान्य इमेल प्रविष्ट गर्नुहोस्",
           "address_validate": "आफ्नो ठेगाना  भर्नुहोस।",
@@ -863,8 +842,7 @@ class Messages extends Translations {
           "current_password": "हालको पासवर्ड",
           "new_password": "नयाँ पासवर्ड",
           "enter_mobile": "आफ्नो मोबाइल नंबर हाल्नुहोस",
-          "msg_ask_otp":
-              "थप सुरक्षाको लागि तपाईंंको मोबाईलमा PIN No. पठाएका छौँ । कृपया त्यो लेख्नुहोस ।",
+          "msg_ask_otp": "थप सुरक्षाको लागि तपाईंंको मोबाईलमा PIN No. पठाएका छौँ । कृपया त्यो लेख्नुहोस ।",
           "login_alert": "यो पेज हेर्नलाई लग-ईन गर्नुहोस!",
           "load_gallery": "फोनबाट लोड गर्नुहोस",
           "open_camera": "क्यामरा खोल्नुहोस",
@@ -881,8 +859,7 @@ class Messages extends Translations {
           // "Welcome_Message": "${Config.palikaNameNepali}मा यो हप्ता!",
           "Welcome_Message": "ताजा समाचार/सूचनाहरू!",
 
-          "Welcome_Message_2":
-              "कोभिड विरामिहरुलाई औषधी तथा राहत व्यवस्थापन गरिएको छ।",
+          "Welcome_Message_2": "कोभिड विरामिहरुलाई औषधी तथा राहत व्यवस्थापन गरिएको छ।",
           "view": "पूरा हेर्नुहोस्",
           "Viewall_sifarish": "सबै ई-सिफारिशहरु हेर्नुहोस्",
           "departmnt": "विभाग तथा कार्यक्षेत्र",
@@ -895,8 +872,7 @@ class Messages extends Translations {
           "e_prasashan": "आ. प्रशासन",
           "sewas": "सेवाहरु",
           "sifaris": "ई-सिफारिश ",
-          "sewa_desc":
-              "जस्तै नागरिकता, कर, उपभोक्ता, घर/जग्गा/बाटो, पञ्जिकरण इत्यादी",
+          "sewa_desc": "जस्तै नागरिकता, कर, उपभोक्ता, घर/जग्गा/बाटो, पञ्जिकरण इत्यादी",
           "smart_tax": "स्मार्ट कर",
           "tax_desc": "कर दर्ता नं हाली सजिलै कर दर्ता गर्न सक्नुहुन्छ",
           "vital_desc": "घटना दर्ता आवेदन को लागी",
@@ -907,13 +883,11 @@ class Messages extends Translations {
           "jg_desc": "आफ्नो गुनासोहरु प्रतिनिधि समक्ष सजिलै राख्नुहोस्।",
           "jankari": "जानकारी",
           "wodapatra": "नागरिक वडापत्र",
-          "wodapatra_desc":
-              "वडाको सेवा/सुविधा बारे सम्पूर्ण जानकारी पाउनुहोस्।",
+          "wodapatra_desc": "वडाको सेवा/सुविधा बारे सम्पूर्ण जानकारी पाउनुहोस्।",
           "ghatana_desc": "सजिलै अनलाइन बाटै घटना दर्ता गर्नका लागि",
           "digital_profile": "डिजिटल प्रोफाइल",
           "dp_desc": "${Config.palikaTypeNepali}को तथ्यांकहरु थाहापाउनुहोस्।",
-          "rk_desc":
-              "${Config.palikaTypeNepali}को प्रतिनिधि/कर्मचारीहरु बारे थाहापाउनुहोस्।",
+          "rk_desc": "${Config.palikaTypeNepali}को प्रतिनिधि/कर्मचारीहरु बारे थाहापाउनुहोस्।",
           "enaksha_desc": "सजिलै नक्शा पास सम्बन्धी कार्य सम्पादन गर्नका लागि",
           "other_sewa": "अन्य जानकारी",
           "intro": "परिचय",
@@ -969,45 +943,35 @@ class Messages extends Translations {
           "documentstatustitle": "रुजु हुँदैछ",
           "on_progress": "अन्तिम प्रक्रियामा छ",
           "finalprocessingdocumenttitle": "अन्तिम प्रक्रियामा छ",
-          "finalprocessingdocumentbody":
-              "तपाईले पेश गर्नुभएको आवेदन अन्तिम प्रक्रियामा छ। धन्यवाद!",
+          "finalprocessingdocumentbody": "तपाईले पेश गर्नुभएको आवेदन अन्तिम प्रक्रियामा छ। धन्यवाद!",
           "postponeAlertTitle": "स्थगित गरिएको छ",
           "postpone": "स्थगित गरिएको छ",
-          "postponeAlertBody":
-              " तपाईले पेश गर्नुभएको आवेदन स्थगित गरिएको छ। धन्यवाद!",
+          "postponeAlertBody": " तपाईले पेश गर्नुभएको आवेदन स्थगित गरिएको छ। धन्यवाद!",
           "processingdocumenttitle": "सुरुवाती प्रक्रियामा छ",
-          "processingdocumentbody":
-              "तपाईले पेश गर्नुभएको आवेदन सुरुवाती प्रक्रियामा छ। धन्यवाद!",
-          "paymentpendingbody":
-              "तपाईको शिफारिस सफल भएको छ वडा  कार्यालय गएर भुक्तानी गरि शिफारिस लिनुहोला।",
+          "processingdocumentbody": "तपाईले पेश गर्नुभएको आवेदन सुरुवाती प्रक्रियामा छ। धन्यवाद!",
+          "paymentpendingbody": "तपाईको शिफारिस सफल भएको छ वडा  कार्यालय गएर भुक्तानी गरि शिफारिस लिनुहोला।",
           "paymentpendingtitle": "भुक्तानी गर्न बाकी",
           "documentstatus": "तपाईले पेश गर्नुभएको आवेदन रुजु हुँदैछ। धन्यवाद!",
           "documentstatustitlereject": " आवेदन अस्वीकार ",
           "documentstatusreject": "तपाइँको आवेदन रद्द गरिएको छ !",
-          "role_check":
-              "यो सेवा प्रमाणित घरधुरी प्रयोगकर्ताहरुको लागी मात्र उपलब्ध छ।",
+          "role_check": "यो सेवा प्रमाणित घरधुरी प्रयोगकर्ताहरुको लागी मात्र उपलब्ध छ।",
           "upcoming_events": "आगामी कार्यक्रम",
           "activities": "गतिविधि",
-          "form_check":
-              "तपाइँको फारम रुजु गरिनेछ र रुजुपछि तपाइँलाई जानकारी गरिनेछ ।",
+          "form_check": "तपाइँको फारम रुजु गरिनेछ र रुजुपछि तपाइँलाई जानकारी गरिनेछ ।",
           "code_copied": "कोड कपि भयो !",
           "Verify": "प्रमाणीकरण",
           'please_check_all_fields': 'कृपया सबै विवरण भर्नुहोस्',
           'Enter_household_number': 'कृपया घरघुरी नं भर्नुहोस्',
-          'upload_all_required_documents':
-              'कृपया सबै आवश्यक कागजात अपलोड गर्नुहोस्',
+          'upload_all_required_documents': 'कृपया सबै आवश्यक कागजात अपलोड गर्नुहोस्',
           'OTP_does_not_match': 'OTP मिलेन',
           "change_password_successfully": "पासवर्ड सफलतापूर्वक परिवर्तन भयो",
-          'server_error':
-              'सर्वरसंग सम्पर्क हुन सकेन, कृपयाँ केहि समयपछी पुन:प्रयास गर्नुहोला।',
-          'server_connection_error':
-              'सर्वरसंग सम्पर्क हुन सकेन, कृपयाँ केहि समयपछी पुन:प्रयास गर्नुहोला।',
+          'server_error': 'सर्वरसंग सम्पर्क हुन सकेन, कृपयाँ केहि समयपछी पुन:प्रयास गर्नुहोला।',
+          'server_connection_error': 'सर्वरसंग सम्पर्क हुन सकेन, कृपयाँ केहि समयपछी पुन:प्रयास गर्नुहोला।',
           'no_internet_connection': 'इन्टरनेट छैन',
           'email_or_password_incorrect': 'ईमेल/नम्बर वा पासवर्ड गलत छ!',
           'Redirecting': 'पुनर्निर्देशन गर्दै...',
           "Informational Response": 'सूचनात्मक प्रतिक्रिया',
-          'netwok_error_please_try_again':
-              'नेटवर्कमा समस्या आयो कृपया पुन प्रयास गर्नुहोस ',
+          'netwok_error_please_try_again': 'नेटवर्कमा समस्या आयो कृपया पुन प्रयास गर्नुहोस ',
           'file_upload_successful': 'फाइल अपलोड भयो',
           'file_download_successful': 'फाइल डाउनलोड भयो',
           'file_download_failed': 'फाइल डाउनलोड भएन',
@@ -1015,8 +979,7 @@ class Messages extends Translations {
           'mobile_num_not_found': 'मोबाइल नं फेला परेन !',
           "fingerPrint": "फिंगर प्रिन्ट सेटिङ्ग",
           "fingerprint_login": "फिंगर प्रिन्ट लग-ईन गर्न यहाँ थिच्नुहोस्",
-          "validation_field":
-              "कृपया नेपाली किबोर्ड प्रयोग गरी यो विवरण भर्नुहोस् !",
+          "validation_field": "कृपया नेपाली किबोर्ड प्रयोग गरी यो विवरण भर्नुहोस् !",
           "Tourism_site": "पर्यटकिय स्थल",
           "first_name": "सम्पति धनी को पहिलो नाम",
           "middle_name": "सम्पति धनी को बीचको नाम ",
@@ -1046,8 +1009,7 @@ class Messages extends Translations {
           "owner_house_number": "घर नम्बर",
           "no_data_found": "कुनै डाटा फेला परेन",
           "no_data_found_toilet": "३ कि.मि वरपर कुनैपनि शौचालय फेला परेन।",
-          "no_data_found_tourist":
-              "३ कि.मि वरपर कुनैपनि पर्यटकीय क्षेत्र फेला परेन।",
+          "no_data_found_tourist": "३ कि.मि वरपर कुनैपनि पर्यटकीय क्षेत्र फेला परेन।",
           "empty_data": "डाटा खाली छ",
           "PurbaKarmachari": "पूर्व कर्मचारी",
           "tax register message": "तपाईंको कर जानकारी दर्ता भएको छ",
