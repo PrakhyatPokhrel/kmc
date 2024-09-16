@@ -405,7 +405,11 @@ class _HomeState extends State<Home> {
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        titleText('in_palika_today'.tr, white, NewsList()),
+                                        titleText(
+                                          'in_palika_today'.tr,
+                                          white,
+                                          NewsList(isBackRequired: true),
+                                        ),
                                         // Row(
                                         //   children: [
                                         //     Text(
@@ -459,113 +463,6 @@ class _HomeState extends State<Home> {
                                           }
                                           return SizedBox.shrink();
                                         }),
-
-                                        // GetX<NewsController>(
-                                        //   init: NewsController(),
-                                        //   builder: (controller) {
-                                        //     if (controller.isLoading.value) {
-                                        //       return CarouselSlider.builder(
-                                        //         itemCount: 3,
-                                        //         itemBuilder: (context, index, realIndex) =>
-                                        //             buildCarouselShimmer(),
-                                        //         options: CarouselOptions(
-                                        //           height: 160,
-                                        //           autoPlay: true,
-                                        //           enlargeCenterPage: true,
-                                        //           enlargeStrategy: CenterPageEnlargeStrategy.height,
-                                        //         ),
-                                        //       );
-                                        //     } else if (controller.news.isNotEmpty) {
-                                        //       return CarouselSlider.builder(
-                                        //         itemCount: controller.news.length,
-                                        //         itemBuilder: (context, index, realIndex) {
-                                        //           return GestureDetector(
-                                        //             onTap: () {
-                                        //               Get.to(NewsDetailScreen(
-                                        //                 news: controller.news[index],
-                                        //               ));
-                                        //             },
-                                        //             child:
-                                        //                 buildSliderNews(index, controller.news[index].title),
-                                        //           );
-                                        //         },
-                                        //         options: CarouselOptions(
-                                        //             height: 160,
-                                        //             autoPlay: true,
-                                        //             enlargeCenterPage: true,
-                                        //             enlargeStrategy: CenterPageEnlargeStrategy.height,
-                                        //             onPageChanged: (index, reason) {}),
-                                        //       );
-                                        //     }
-                                        //     return SizedBox.shrink();
-                                        //   },
-                                        // ),
-
-                                        // FutureBuilder<List<NewsNoticeModelWordpress>>(
-                                        //   future: wordpressApi(),
-                                        //   builder: ((context, snapshot) {
-                                        //     if (snapshot.hasData) {
-                                        //       var news = snapshot.data!;
-                                        //       if (news.isNotEmpty) {
-                                        //         // return Row(
-                                        //         //   children: [
-                                        //         //     Expanded(
-                                        //         //       child: Text(
-                                        //         //         news.first.title,
-                                        //         //         overflow: TextOverflow
-                                        //         //             .ellipsis,
-                                        //         //         maxLines: 2,
-                                        //         //         style:
-                                        //         //             Theme.of(context)
-                                        //         //                 .textTheme
-                                        //         //                 .bodyLarge!
-                                        //         //                 .copyWith(
-                                        //         //                   color: Colors
-                                        //         //                       .white,
-                                        //         //                   fontWeight:
-                                        //         //                       FontWeight
-                                        //         //                           .normal,
-                                        //         //                   fontSize:
-                                        //         //                       16,
-                                        //         //                 ),
-                                        //         //       ),
-                                        //         //     ),
-                                        //         //   ],
-                                        //         // );
-                                        //         return CarouselSlider.builder(
-                                        //           itemCount: news.length,
-                                        //           itemBuilder: (context, index, realIndex) {
-                                        //             return GestureDetector(
-                                        //               onTap: () {
-                                        //                 Get.to(NewsDetailScreen(
-                                        //                   news: news[index],
-                                        //                 ));
-                                        //               },
-                                        //               child: buildSliderNews(index, news[index].title),
-                                        //             );
-                                        //           },
-                                        //           options: CarouselOptions(
-                                        //               height: 160,
-                                        //               autoPlay: true,
-                                        //               enlargeCenterPage: true,
-                                        //               enlargeStrategy: CenterPageEnlargeStrategy.height,
-                                        //               onPageChanged: (index, reason) {}),
-                                        //         );
-                                        //       }
-                                        //     }
-                                        //     return CarouselSlider.builder(
-                                        //       itemCount: 3,
-                                        //       itemBuilder: (context, index, realIndex) =>
-                                        //           buildCarouselShimmer(),
-                                        //       options: CarouselOptions(
-                                        //         height: 160,
-                                        //         autoPlay: true,
-                                        //         enlargeCenterPage: true,
-                                        //         enlargeStrategy: CenterPageEnlargeStrategy.height,
-                                        //       ),
-                                        //     );
-                                        //   }),
-                                        // ),
                                       ],
                                     ),
                                   ),
