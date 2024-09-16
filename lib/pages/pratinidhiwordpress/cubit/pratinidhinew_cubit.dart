@@ -31,6 +31,6 @@ class PratinidhinewCubit extends Cubit<PratinidhinewState> {
       }else{
         emit(PratinidhinewError("server_error".tr));
       }
-    }
+    } 
   }
 }

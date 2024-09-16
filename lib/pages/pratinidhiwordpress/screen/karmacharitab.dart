@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -74,7 +75,18 @@ class _KarmachariTabState extends State<KarmachariTabNew>
             child: new TabBarView(
               controller: _kTabController,
               children: <Widget>[
-                nagarKWidget(),
+                FutureBuilder(
+                  future: wardsgetpratinidhidataFromWordpress(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return ShimmerWidget().buildMovieShimmer();
+                    } else if (snapshot.hasError) {
+                      return Container();
+                    }
+                    return officialsGroupedWidget(snapshot.data as List);
+                  },
+                ),
+                // nagarKWidget(),
                 BlocBuilder<KarmachariwordpressCubit, KarmachariwordpressState>(
                   builder: (context, state) {
                     if (state is KarmachariwordpressInitial ||
@@ -900,126 +912,123 @@ class _KarmachariTabState extends State<KarmachariTabNew>
     );
   }
 
-  nagarKWidget() {
+  Widget officialsGroupedWidget(List data) {
+    // Group data by Designation
+    Map<String, List> groupedData = {};
+    for (var official in data) {
+      String designation = official["Designation"];
+      if (designation != "") {
+        if (!groupedData.containsKey(designation)) {
+          groupedData[designation] = [];
+        }
+        groupedData[designation]!.add(official);
+      }
+    }
+    String extractImageUrl(String imgTag) {
+      final RegExp regExp = RegExp(r'src="([^"]+)"');
+      final match = regExp.firstMatch(imgTag);
+      if (match != null) {
+        return match.group(1)!;
+      }
+      return '';
+    }
+
+    List<String> designations = groupedData.keys.toList();
+
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-      child: FutureBuilder<List>(
-          future: wardsgetpratinidhidata(),
-          builder: (BuildContext context, AsyncSnapshot snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return ShimmerWidget().buildMovieShimmer();
-            } else if (snapshot.hasError) {
-              return Container();
-            } else {
-              return ListView.builder(
-                  // reverse: true,
-                  // physics: const NeverScrollableScrollPhysics(),
-                  // scrollDirection: Axis.vertical,
-                  itemCount: snapshot.data.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                        // width: MediaQuery.of(context).size.width * 0.3,
-                        child: Column(
-                      children: [
-                        titletext(snapshot.data[index].head),
-                        Container(
-                          height: Get.height * 0.2,
-                          child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: snapshot.data[index].headdata.length,
-                              itemBuilder: (context, i) {
-                                if (snapshot.data[index].headdata.isEmpty) {
-                                  return Container(
-                                    child: Container(),
-                                  );
-                                } else {
-                                  return Row(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: GestureDetector(
-                                          onTap: () {},
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              CachedNetworkImage(
-                                                imageUrl:
-                                                    "${snapshot.data[index].headdata[i].icon}",
-                                                errorWidget:
-                                                    (context, url, error) =>
-                                                        ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          50.0),
-                                                  child: CircleAvatar(
-                                                    radius: 30,
-                                                    child: Image.asset(
-                                                      'assets/images/dummyuser.png',
-                                                      fit: BoxFit.contain,
-                                                    ),
-                                                  ),
-                                                ),
-                                                imageBuilder:
-                                                    (context, imageProvider) =>
-                                                        CircleAvatar(
-                                                  radius: 35,
-                                                  backgroundImage:
-                                                      imageProvider,
-                                                ),
-                                                placeholder: (context, url) =>
-                                                    CircularProgressIndicator(
-                                                  backgroundColor: tertiary,
-                                                ),
-                                              ),
-                                              Text(
-                                                snapshot.data[index].headdata[i]
-                                                    .name,
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  color: textPrimaryDarkColor,
-                                                  fontFamily: 'Mukta',
-                                                  height: 1.5,
-                                                  fontSize: 13.0,
-                                                ),
-                                              ),
-                                              Text(
-                                                snapshot.data[index].headdata[i]
-                                                    .designation,
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    color: primary,
-                                                    fontFamily: 'Mukta',
-                                                    fontSize: 14.0,
-                                                    height: 1),
-                                              ),
-                                              Text(
-                                                snapshot.data[index].headdata[i]
-                                                            .mobile !=
-                                                        null
-                                                    ? "${snapshot.data[index].headdata[i].mobile}"
-                                                    : "",
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    color: primary,
-                                                    fontFamily: 'Mukta',
-                                                    fontSize: 14.0,
-                                                    height: 1),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  );
-                                }
-                              }),
-                        )
-                      ],
-                    ));
-                  });
-            }
-          }),
+      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+      child: ListView.builder(
+        padding: EdgeInsets.zero,
+        itemCount: designations.length,
+        itemBuilder: (context, index) {
+          String designation = designations[index];
+          List officialsWithSameDesignation = groupedData[designation]!;
+
+          return Container(
+            // margin: EdgeInsets.only(bottom: 20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                titletext(designation),
+                SizedBox(height: 10.0),
+                Container(
+                  // color: Colors.red,
+                  height: Get.height * 0.166, // Adjust height based on design
+                  child: ListView.builder(
+                    padding: EdgeInsets.zero,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: officialsWithSameDesignation.length,
+                    itemBuilder: (context, i) {
+                      var official = officialsWithSameDesignation[i];
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              CachedNetworkImage(
+                                imageUrl: extractImageUrl(official["Photo"]),
+                                errorWidget: (context, url, error) => ClipRRect(
+                                  borderRadius: BorderRadius.circular(50.0),
+                                  child: CircleAvatar(
+                                    radius: 30,
+                                    child: Image.asset(
+                                      'assets/images/dummyuser.png',
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ),
+                                ),
+                                imageBuilder: (context, imageProvider) =>
+                                    CircleAvatar(
+                                  radius: 35,
+                                  backgroundImage: imageProvider,
+                                ),
+                                placeholder: (context, url) =>
+                                    CircularProgressIndicator(
+                                  backgroundColor: tertiary,
+                                ),
+                              ),
+                              Text(
+                                official["Title"],
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: textPrimaryDarkColor,
+                                  fontFamily: 'Mukta',
+                                  height: 1.5,
+                                  fontSize: 13.0,
+                                ),
+                              ),
+                              Text(
+                                official["Designation"],
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: primary,
+                                    fontFamily: 'Mukta',
+                                    fontSize: 14.0,
+                                    height: 1),
+                              ),
+                              Text(
+                                official["Phone"],
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: primary,
+                                    fontFamily: 'Mukta',
+                                    fontSize: 14.0,
+                                    height: 1),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

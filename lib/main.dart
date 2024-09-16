@@ -68,6 +68,8 @@ void main() async {
   await FlutterDownloader.initialize(debug: false);
   final FirebaseAnalytics firebaseAnalytics = FirebaseAnalytics.instance;
   await firebaseAnalytics.logAppOpen();
+  await FirebaseMessaging.instance.subscribeToTopic("news");
+
 
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
@@ -300,7 +302,7 @@ void handleMessage(RemoteMessage message) async {
         case 'emergency':
           Get.to(Emergency());
           break;
-        case 'ward':
+        case 'ward': 
           Get.to(Wodajankari());
           break;
         case 'staff':

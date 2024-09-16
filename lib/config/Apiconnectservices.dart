@@ -112,6 +112,14 @@ getTaxPayerDetail() async {
   }
 }
 
+Future wardsgetpratinidhidataFromWordpress() async {
+  _dio.interceptors.add(_dioCacheManager.interceptor);
+  var data = await _dio.get('https://kathmandu.gov.np/api/staff-api',
+      options: buildCacheOptions(Duration(days: 30), forceRefresh: true));
+
+  return data.data;
+}
+
 Future<List<Nagarkarmacharidata>> nagarKarmachari() async {
   _dio.interceptors.add(_dioCacheManager.interceptor);
   var data = await _dio.get(nagarkarmachari, options: _cacheOptions);
