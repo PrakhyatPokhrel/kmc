@@ -78,7 +78,7 @@ dependencies:
   equatable: ^2.0.5
   in_app_update: ^4.2.3
   image_cropper: ^3.0.1
-  ime_pay:
+#  ime_pay:
   map_launcher: ^2.5.0
   geolocator: ^10.1.0
   url_launcher: ^6.2.5

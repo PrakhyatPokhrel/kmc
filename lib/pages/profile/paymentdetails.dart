@@ -9,7 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/get.dart';
-import 'package:ime_pay/ime_pay.dart';
+// import 'package:ime_pay/ime_pay.dart';
 import 'package:khalti/khalti.dart';
 import 'package:kmc/components/InappBrowser.dart';
 import 'package:kmc/components/bottomNavBar.dart';
@@ -21,7 +21,6 @@ import 'package:kmc/modal/ward_esewa_modal.dart';
 import 'package:kmc/modal/ward_khalti_model.dart';
 import 'package:kmc/pages/profile/connect.dart';
 
-import '../../config/url.dart';
 import '../../constants/khalti_ward.dart';
 // import 'package:flutter_khalti/flutter_khalti.dart';
 
@@ -43,24 +42,21 @@ class _PaymentdetailsState extends State<Paymentdetails> {
   bool selfPaymentCheckbox = false;
   @override
   void initState() {
-    List<WardEsewaModel> esewaWard =
-        esewaCred.map((e) => WardEsewaModel.fromJson(e)).toList();
+    List<WardEsewaModel> esewaWard = esewaCred.map((e) => WardEsewaModel.fromJson(e)).toList();
     clinetId = esewaWard[widget.wardNumber - 1].clientId;
     secretKey = esewaWard[widget.wardNumber - 1].clientSecret;
 //khalti public key fetch
-    List<WardKhaltiModel> khaltiWard =
-        khaltiCred.map((e) => WardKhaltiModel.fromJson(e)).toList();
+    List<WardKhaltiModel> khaltiWard = khaltiCred.map((e) => WardKhaltiModel.fromJson(e)).toList();
     khaltiPublicKey = khaltiWard[widget.wardNumber - 1].clientPublic;
 
     super.initState();
   }
 
-  final String _chars =
-      'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+  final String _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
   Random _rnd = Random();
 
-  String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
-      length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+  String getRandomString(int length) =>
+      String.fromCharCodes(Iterable.generate(length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
 
   final _khaltiformKey = GlobalKey<FormState>();
   TextEditingController _pinController = TextEditingController();
@@ -89,8 +85,7 @@ class _PaymentdetailsState extends State<Paymentdetails> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('payment'.tr,
-                    style: TextStyle(color: primary, fontSize: 22)),
+                Text('payment'.tr, style: TextStyle(color: primary, fontSize: 22)),
                 InkWell(
                     onTap: () {
                       Navigator.pop(context);
@@ -166,8 +161,7 @@ class _PaymentdetailsState extends State<Paymentdetails> {
               ),
               Container(
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
+                  padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
                   child: Text(
                     'अनलाइन भुक्तानीका लागि तपाईंंको खाता भएको भुक्तानीको माध्यम चयन गर्नुहोस।',
                     textAlign: TextAlign.center,
@@ -295,8 +289,7 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                       onChanged: (value) async {
                         EasyLoading.show(status: 'Please wait...'.tr);
                         try {
-                          await offlinePayment(
-                              widget.data['entry_id'].toString());
+                          await offlinePayment(widget.data['entry_id'].toString());
                           setState(() {
                             selfPaymentCheckbox = !selfPaymentCheckbox;
                           });
@@ -307,8 +300,7 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                           // Get.off(BottomNavBar());
                         } catch (e) {
                           EasyLoading.dismiss();
-                          EasyLoading.showError(
-                              "प्रक्रिया  असफल भएको छ, फेरि प्रायस गर्नु होला");
+                          EasyLoading.showError("प्रक्रिया  असफल भएको छ, फेरि प्रायस गर्नु होला");
                         }
                       }),
                   SizedBox(width: 2),
@@ -316,8 +308,7 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                     onTap: () async {
                       EasyLoading.show(status: 'Please wait...'.tr);
                       try {
-                        await offlinePayment(
-                            widget.data['entry_id'].toString());
+                        await offlinePayment(widget.data['entry_id'].toString());
                         EasyLoading.dismiss();
                         Navigator.pop(context);
                         setState(() {
@@ -328,8 +319,7 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                         // EasyLoading.showSuccess("प्रक्रिया सफल भएको छ");
                       } catch (e) {
                         EasyLoading.dismiss();
-                        EasyLoading.showError(
-                            "प्रक्रिया  असफल भएको छ, फेरि प्रायस गर्नु होला");
+                        EasyLoading.showError("प्रक्रिया  असफल भएको छ, फेरि प्रायस गर्नु होला");
                       }
                     },
                     child: Text("अफलाइन (आफै गएर भुक्तानी गर्ने )",
@@ -351,8 +341,7 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                     ),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 16.0, horizontal: 16),
+                    padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -385,8 +374,7 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                   )),
               Container(
                   child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 16.0, horizontal: 20),
+                padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 20),
                 child: Text(
                   '',
                   // 'यस सेवाको भुक्तानी माथि दिईएको स्मार्टपालिका सेवा कोड अन्य पे-मेन्ट प्रोवाइडर (जस्तै:- eSewa, Khalti) मा राखेर पनि गर्नसक्नुहुन्छ। ',
@@ -435,11 +423,10 @@ class _PaymentdetailsState extends State<Paymentdetails> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
-            title: Text("प्रक्रिया सफल भएको छ",
-                textAlign: TextAlign.center, style: TextStyle(color: primary)),
+            title:
+                Text("प्रक्रिया सफल भएको छ", textAlign: TextAlign.center, style: TextStyle(color: primary)),
             content: Text(paymentSuccess,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, height: 1.5)),
+                textAlign: TextAlign.center, style: TextStyle(fontSize: 16, height: 1.5)),
             actions: [
               Center(
                 child: ElevatedButton(
@@ -450,8 +437,7 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                         borderRadius: BorderRadius.circular(20.0),
                       ))),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
                     child: Text('ठिक छ'),
                   ),
                   onPressed: () {
@@ -480,8 +466,7 @@ class _PaymentdetailsState extends State<Paymentdetails> {
         productId: "${widget.data["sp_pay_code"]}",
         productName: "${widget.data["pagetitle"]}-${getRandomString(10)}",
         productPrice: "$price",
-        callbackUrl:
-            Config.base_url + "/paymentmodule/mobile-app/verify/esewa/payment",
+        callbackUrl: Config.base_url + "/paymentmodule/mobile-app/verify/esewa/payment",
       ),
       onPaymentSuccess: (EsewaPaymentSuccessResult data) async {
         debugPrint(":::SUCCESS::: => $data");
@@ -554,14 +539,12 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('भुक्तानी गर्नुहोस्',
-                          style: TextStyle(color: primary, fontSize: 22)),
+                      Text('भुक्तानी गर्नुहोस्', style: TextStyle(color: primary, fontSize: 22)),
                       InkWell(
                           onTap: () {
                             Navigator.pop(context);
                           },
-                          child:
-                              Icon(Icons.arrow_back, color: primary, size: 28)),
+                          child: Icon(Icons.arrow_back, color: primary, size: 28)),
                     ],
                   ),
                 ),
@@ -581,12 +564,10 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                         ),
                         Theme(
                           data: Theme.of(context).copyWith(
-                              textSelectionTheme: TextSelectionThemeData(
-                                  selectionColor: Color(0xff5C2D91))),
+                              textSelectionTheme: TextSelectionThemeData(selectionColor: Color(0xff5C2D91))),
                           child: TextFormField(
                             cursorColor: Color(0xff5C2D91),
-                            validator: (v) =>
-                                (v?.isEmpty ?? true) ? 'Required ' : null,
+                            validator: (v) => (v?.isEmpty ?? true) ? 'Required ' : null,
                             // ignore: deprecated_member_use
                             style: Theme.of(context).textTheme.headlineSmall,
                             keyboardType: TextInputType.number,
@@ -618,8 +599,7 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                         ),
                         TextFormField(
                           cursorColor: Color(0xff5C2D91),
-                          validator: (v) =>
-                              (v?.isEmpty ?? true) ? 'Required ' : null,
+                          validator: (v) => (v?.isEmpty ?? true) ? 'Required ' : null,
                           decoration: InputDecoration(
                             label: Text(
                               'Khalti MPIN',
@@ -651,8 +631,7 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                         ),
                         const SizedBox(height: 24),
                         ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xff5C2D91)),
+                          style: ElevatedButton.styleFrom(backgroundColor: Color(0xff5C2D91)),
                           onPressed: () async {
                             if (_khaltiformKey.currentState!.validate()) {
                               showDialog(
@@ -665,40 +644,22 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                                           child: Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Container(
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height *
-                                                  0.1,
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.7,
+                                              height: MediaQuery.of(context).size.height * 0.1,
+                                              width: MediaQuery.of(context).size.width * 0.7,
                                               decoration: BoxDecoration(
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                      offset: Offset(0, 1),
-                                                      blurRadius: 1)
-                                                ],
-                                                border: Border.all(
-                                                    color: Colors.green),
+                                                boxShadow: [BoxShadow(offset: Offset(0, 1), blurRadius: 1)],
+                                                border: Border.all(color: Colors.green),
                                                 color: Colors.white,
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
+                                                borderRadius: BorderRadius.circular(20),
                                               ),
                                               child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(10.0),
+                                                padding: const EdgeInsets.all(10.0),
                                                 child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
+                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                   children: [
                                                     CircularProgressIndicator(
                                                       valueColor:
-                                                          AlwaysStoppedAnimation<
-                                                                  Color>(
-                                                              Color(
-                                                                  0xff5C2D91)),
+                                                          AlwaysStoppedAnimation<Color>(Color(0xff5C2D91)),
                                                     ),
                                                     Text(
                                                       "Initiating Payment",
@@ -706,8 +667,7 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                                                         fontSize: 15,
                                                         letterSpacing: 1,
                                                         color: Colors.black,
-                                                        fontWeight:
-                                                            FontWeight.normal,
+                                                        fontWeight: FontWeight.normal,
                                                       ),
                                                     ),
                                                   ],
@@ -718,13 +678,11 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                                         ),
                                       ));
                               try {
-                                final initiationModel =
-                                    await Khalti.service.initiatePayment(
+                                final initiationModel = await Khalti.service.initiatePayment(
                                   request: PaymentInitiationRequestModel(
                                     amount: price * 100,
                                     mobile: _mobileController.text,
-                                    productIdentity:
-                                        'Kathmandu Metroplitan City',
+                                    productIdentity: 'Kathmandu Metroplitan City',
                                     productName: 'Kathmandu Metroplitan City',
                                     transactionPin: _pinController.text,
                                     // productUrl:
@@ -743,8 +701,7 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                                   builder: (context) {
                                     String? _otp;
                                     return AlertDialog(
-                                      title: const Text(
-                                          'पठाइएको ओ.टी.पी हाल्नुहोस् '),
+                                      title: const Text('पठाइएको ओ.टी.पी हाल्नुहोस् '),
                                       content: TextField(
                                         style: Theme.of(context)
                                             .textTheme
@@ -758,8 +715,7 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                                       actions: [
                                         SimpleDialogOption(
                                           child: const Text('OK'),
-                                          onPressed: () =>
-                                              Navigator.pop(context, _otp),
+                                          onPressed: () => Navigator.pop(context, _otp),
                                         )
                                       ],
                                     );
@@ -776,60 +732,34 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                                               color: Colors.transparent,
                                               child: Center(
                                                 child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
+                                                  padding: const EdgeInsets.all(8.0),
                                                   child: Container(
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            0.1,
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.8,
+                                                    height: MediaQuery.of(context).size.height * 0.1,
+                                                    width: MediaQuery.of(context).size.width * 0.8,
                                                     decoration: BoxDecoration(
                                                       boxShadow: [
-                                                        BoxShadow(
-                                                            offset:
-                                                                Offset(0, 1),
-                                                            blurRadius: 1)
+                                                        BoxShadow(offset: Offset(0, 1), blurRadius: 1)
                                                       ],
-                                                      border: Border.all(
-                                                          color: Color(
-                                                              0xff5C2D91)),
+                                                      border: Border.all(color: Color(0xff5C2D91)),
                                                       color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20),
+                                                      borderRadius: BorderRadius.circular(20),
                                                     ),
                                                     child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              10.0),
+                                                      padding: const EdgeInsets.all(10.0),
                                                       child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceEvenly,
+                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                         children: [
                                                           CircularProgressIndicator(
-                                                            valueColor:
-                                                                AlwaysStoppedAnimation<
-                                                                        Color>(
-                                                                    Color(
-                                                                        0xff5C2D91)),
+                                                            valueColor: AlwaysStoppedAnimation<Color>(
+                                                                Color(0xff5C2D91)),
                                                           ),
                                                           Text(
                                                             "Verifying Payment",
                                                             style: TextStyle(
                                                               fontSize: 15,
                                                               letterSpacing: 1,
-                                                              color:
-                                                                  Colors.black,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
+                                                              color: Colors.black,
+                                                              fontWeight: FontWeight.normal,
                                                             ),
                                                           ),
                                                         ],
@@ -839,8 +769,7 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                                                 ),
                                               ),
                                             ));
-                                    PaymentSuccessModel model =
-                                        await Khalti.service.confirmPayment(
+                                    PaymentSuccessModel model = await Khalti.service.confirmPayment(
                                       request: PaymentConfirmationRequestModel(
                                         confirmationCode: otpCode,
                                         token: initiationModel.token,
@@ -848,21 +777,18 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                                       ),
                                     );
                                     var a = {
-                                      'sp_pay_code':
-                                          '${widget.data['sp_pay_code']}',
+                                      'sp_pay_code': '${widget.data['sp_pay_code']}',
                                       'token': model.token,
                                       'amount': model.amount,
                                       'ward': widget.wardNumber
                                     };
-                                    print(
-                                        "This is the response" + a.toString());
+                                    print("This is the response" + a.toString());
                                     khaltiverfyApi(a).then((res) => {
                                           if (res['status'] == true)
                                             {
                                               // EasyLoading.dismiss();
                                               // Navigator.pop(context),
-                                              paymentPendingAlert(
-                                                  "भुक्तानी सफल भएको छ")
+                                              paymentPendingAlert("भुक्तानी सफल भएको छ")
                                               // EasyLoading.showSuccess(
                                               //     "भुक्तानी सफल भएको छ"),
                                               // Navigator.pop(context),
@@ -870,8 +796,7 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                                             }
                                           else
                                             {
-                                              EasyLoading.showError(
-                                                  res['message']),
+                                              EasyLoading.showError(res['message']),
                                               Navigator.pop(context),
                                             }
                                         });
@@ -899,49 +824,49 @@ class _PaymentdetailsState extends State<Paymentdetails> {
             ));
   }
 
-  _payImePay() async {
-    EasyLoading.show(status: 'Please wait...'.tr);
-    var ward = widget.wardNumber;
-    var data = await initiateIMEPayment(widget.data['sp_pay_code'], ward);
-    print("Token is " + data['data']['TokenId'].toString());
-    print("Reference id is " + data['data']['RefId'].toString());
-
-    double pay_amount = widget.data['amount'].toDouble();
-    var refid = data['data']['RefId'].toString();
-    EasyLoading.dismiss();
-    ImePay imePay = ImePay(
-      merchantCode: 'CELLAPP',
-      module: 'CELLAPP',
-      userName: 'cellapp',
-      password: 'ime@1234',
-      amount: pay_amount,
-      merchantName: 'Cell App',
-      recordingServiceUrl: imepay_recording_url,
-      deliveryServiceUrl: imepay_new_delivery,
-      environment: ImePayEnvironment.TEST,
-      refId: refid,
-    );
-
-    imePay.startPayment(onSuccess: (ImePaySuccessResponse data) {
-      print(data.toString());
-
-      finalIMEPayment(
-          data.amount,
-          data.msisdn,
-          data.refId,
-          data.responseCode,
-          data.responseDescription!,
-          data.transactionId,
-          widget.data['sp_pay_code'],
-          ward,
-          data.hashCode,
-          context);
-    }, onFailure: (error) {
-      print(error);
-      EasyLoading.showError("भुक्तानी असफल भएको छ, फेरि प्रायस गर्नु होला");
-      Navigator.pop(context);
-    });
-  }
+  // _payImePay() async {
+  //   EasyLoading.show(status: 'Please wait...'.tr);
+  //   var ward = widget.wardNumber;
+  //   var data = await initiateIMEPayment(widget.data['sp_pay_code'], ward);
+  //   print("Token is " + data['data']['TokenId'].toString());
+  //   print("Reference id is " + data['data']['RefId'].toString());
+  //
+  //   double pay_amount = widget.data['amount'].toDouble();
+  //   var refid = data['data']['RefId'].toString();
+  //   EasyLoading.dismiss();
+  //   ImePay imePay = ImePay(
+  //     merchantCode: 'CELLAPP',
+  //     module: 'CELLAPP',
+  //     userName: 'cellapp',
+  //     password: 'ime@1234',
+  //     amount: pay_amount,
+  //     merchantName: 'Cell App',
+  //     recordingServiceUrl: imepay_recording_url,
+  //     deliveryServiceUrl: imepay_new_delivery,
+  //     environment: ImePayEnvironment.TEST,
+  //     refId: refid,
+  //   );
+  //
+  //   imePay.startPayment(onSuccess: (ImePaySuccessResponse data) {
+  //     print(data.toString());
+  //
+  //     finalIMEPayment(
+  //         data.amount,
+  //         data.msisdn,
+  //         data.refId,
+  //         data.responseCode,
+  //         data.responseDescription!,
+  //         data.transactionId,
+  //         widget.data['sp_pay_code'],
+  //         ward,
+  //         data.hashCode,
+  //         context);
+  //   }, onFailure: (error) {
+  //     print(error);
+  //     EasyLoading.showError("भुक्तानी असफल भएको छ, फेरि प्रायस गर्नु होला");
+  //     Navigator.pop(context);
+  //   });
+  // }
 
   notavailableAlert(context) {
     showDialog(
@@ -951,11 +876,9 @@ class _PaymentdetailsState extends State<Paymentdetails> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
-            title: Text('प्रक्रियामा छ !',
-                textAlign: TextAlign.center, style: TextStyle(color: primary)),
+            title: Text('प्रक्रियामा छ !', textAlign: TextAlign.center, style: TextStyle(color: primary)),
             content: Text('यो सेवा प्रक्रियामा छ !',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, height: 1.5)),
+                textAlign: TextAlign.center, style: TextStyle(fontSize: 16, height: 1.5)),
             actions: [
               Center(
                 child: ElevatedButton(
@@ -966,8 +889,7 @@ class _PaymentdetailsState extends State<Paymentdetails> {
                         borderRadius: BorderRadius.circular(20.0),
                       ))),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
                     child: Text('cancel'.tr),
                   ),
                   onPressed: () {

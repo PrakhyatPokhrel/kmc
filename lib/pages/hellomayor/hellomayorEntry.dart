@@ -135,29 +135,27 @@ class _HellomayorEntryState extends State<HellomayorEntry> {
                   children: <Widget>[
                     Center(
                       child: CircleAvatar(
-                        backgroundColor: light == true
-                            ? Colors.transparent
-                            : Colors.grey[550],
+                        backgroundColor: light == true ? Colors.transparent : Colors.grey[550],
                         radius: 58,
-                        child: CachedNetworkImage(
-                          imageUrl: mayordata?['image_url'],
-                          // imageUrl:
-                          //     'https://kathmandumetro.smartpalika.io/images/user/20191108024004.png',
-                          errorWidget: (context, url, error) => ClipRRect(
-                            borderRadius: BorderRadius.circular(350),
-                            child: Image.asset('assets/images/dummyuser.png',
-                                height: 200, width: 200, fit: BoxFit.cover),
-                          ),
-                          imageBuilder: (context, imageProvider) =>
-                              CircleAvatar(
-                            radius: 55,
-                            backgroundImage: imageProvider,
-                          ),
-                          placeholder: (context, url) =>
-                              CircularProgressIndicator(
-                            backgroundColor: tertiary,
-                          ),
-                        ),
+                        child: mayordata != null
+                            ? CachedNetworkImage(
+                                imageUrl: mayordata?['image_url'],
+                                // imageUrl:
+                                //     'https://kathmandumetro.smartpalika.io/images/user/20191108024004.png',
+                                errorWidget: (context, url, error) => ClipRRect(
+                                  borderRadius: BorderRadius.circular(350),
+                                  child: Image.asset('assets/images/dummyuser.png',
+                                      height: 200, width: 200, fit: BoxFit.cover),
+                                ),
+                                imageBuilder: (context, imageProvider) => CircleAvatar(
+                                  radius: 55,
+                                  backgroundImage: imageProvider,
+                                ),
+                                placeholder: (context, url) => CircularProgressIndicator(
+                                  backgroundColor: tertiary,
+                                ),
+                              )
+                            : CircularProgressIndicator(),
                       ),
                     ),
                     Text(
@@ -200,21 +198,19 @@ class _HellomayorEntryState extends State<HellomayorEntry> {
                     SizedBox(height: 10),
                     LayoutBuilder(builder: (context, constraints) {
                       if (constraints.maxWidth >= 500) {
-                        return Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              InkWell(
-                                  onTap: () {
-                                    pushchatpage();
-                                  },
-                                  child: ButtonCardTablet('chat', 'chat.svg')),
-                              InkWell(
-                                  onTap: () {
-                                    // pushchatpage();
-                                    _callNumber(mayordata['mobile']);
-                                  },
-                                  child: ButtonCardTablet('phone', 'call.svg')),
-                            ]);
+                        return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                          InkWell(
+                              onTap: () {
+                                pushchatpage();
+                              },
+                              child: ButtonCardTablet('chat', 'chat.svg')),
+                          InkWell(
+                              onTap: () {
+                                // pushchatpage();
+                                _callNumber(mayordata['mobile']);
+                              },
+                              child: ButtonCardTablet('phone', 'call.svg')),
+                        ]);
                       } else {
                         return Column(
                           children: [
@@ -237,8 +233,7 @@ class _HellomayorEntryState extends State<HellomayorEntry> {
                                     onTap: () {
                                       Get.to(BookAppointment());
                                     },
-                                    child: ButtonCard(
-                                        'अपोइन्टमेन्ट', 'meeting.svg')),
+                                    child: ButtonCard('अपोइन्टमेन्ट', 'meeting.svg')),
                               ],
                             ),
                             SizedBox(
@@ -286,8 +281,7 @@ class _HellomayorEntryState extends State<HellomayorEntry> {
                 EasyLoading.dismiss(),
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => UserHMChat({'data': datadetail})),
+                  MaterialPageRoute(builder: (context) => UserHMChat({'data': datadetail})),
                 )
               })
         });
