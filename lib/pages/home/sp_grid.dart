@@ -78,14 +78,12 @@ class SpGrid extends StatelessWidget {
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(tertiary),
-                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
+                      backgroundColor: MaterialStateProperty.all(tertiary),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
                     child: Text('cancel'.tr),
                   ),
                   onPressed: () {

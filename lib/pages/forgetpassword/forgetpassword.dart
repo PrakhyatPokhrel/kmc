@@ -33,23 +33,17 @@ class _ForgetPasswordState extends State<ForgetPassword> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Text('थप सुरक्षाको लागि कृपया आफ्नो पासवर्ड परिवर्तन गर्नुहोस्',
-                  style: TextStyle(
-                      color: primary,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24)),
+                  style: TextStyle(color: primary, fontWeight: FontWeight.bold, fontSize: 24)),
               SizedBox(
                 height: 20,
               ),
               new ListTile(
-                title: Text('enter_mobile'.tr,
-                    style:
-                        TextStyle(color: primary, fontWeight: FontWeight.bold)),
+                title: Text('enter_mobile'.tr, style: TextStyle(color: primary, fontWeight: FontWeight.bold)),
               ),
               new ListTile(
                 title: new TextFormField(
                   controller: phone,
-                  validator: FormBuilderValidators.required(context,
-                      errorText: 'required_field'.tr),
+                  validator: FormBuilderValidators.required(context, errorText: 'required_field'.tr),
                   decoration: new InputDecoration(
                     hintText: 'mobilenumber'.tr,
                   ),
@@ -60,10 +54,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all(primary),
+                    backgroundColor: MaterialStateProperty.all(primary),
                   ),
-                  child: Text('SEND'.tr,
-                      style: TextStyle(color: textPrimaryLightColor)),
+                  child: Text('SEND'.tr, style: TextStyle(color: textPrimaryLightColor)),
                   onPressed: () {
                     // if (_forgotKey.currentState.validate()) {
                     //   _forgotKey.currentState.save();
@@ -116,16 +109,13 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                           children: <Widget>[
                             new ListTile(
                               title: Text('enter_mobile'.tr,
-                                  style: TextStyle(
-                                      color: primary,
-                                      fontWeight: FontWeight.bold)),
+                                  style: TextStyle(color: primary, fontWeight: FontWeight.bold)),
                             ),
                             new ListTile(
                               title: new TextFormField(
                                 controller: phone,
-                                validator: FormBuilderValidators.required(
-                                    context,
-                                    errorText: 'required_field'.tr),
+                                validator:
+                                    FormBuilderValidators.required(context, errorText: 'required_field'.tr),
                                 decoration: new InputDecoration(
                                   hintText: 'mobilenumber'.tr,
                                 ),
@@ -136,12 +126,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                               padding: const EdgeInsets.all(8.0),
                               child: ElevatedButton(
                                 style: ButtonStyle(
-                                  backgroundColor:
-                                      WidgetStateProperty.all(primary),
+                                  backgroundColor: MaterialStateProperty.all(primary),
                                 ),
-                                child: Text('SEND'.tr,
-                                    style: TextStyle(
-                                        color: textPrimaryLightColor)),
+                                child: Text('SEND'.tr, style: TextStyle(color: textPrimaryLightColor)),
                                 onPressed: () {
                                   // if (_forgotKey.currentState.validate()) {
                                   //   _forgotKey.currentState.save();
@@ -164,15 +151,12 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                               children: <Widget>[
                                 new ListTile(
                                   title: Text('msg_ask_otp'.tr,
-                                      style: TextStyle(
-                                          color: primary,
-                                          fontWeight: FontWeight.bold)),
+                                      style: TextStyle(color: primary, fontWeight: FontWeight.bold)),
                                 ),
                                 new ListTile(
                                   title: new TextFormField(
                                     controller: otp,
-                                    validator: FormBuilderValidators.required(
-                                        context,
+                                    validator: FormBuilderValidators.required(context,
                                         errorText: 'required_field'.tr),
                                     decoration: new InputDecoration(
                                       hintText: 'पिन नं / PIN No',
@@ -184,16 +168,12 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: ElevatedButton(
                                     style: ButtonStyle(
-                                      backgroundColor:
-                                          WidgetStateProperty.all(primary),
+                                      backgroundColor: MaterialStateProperty.all(primary),
                                     ),
-                                    child: Text('SEND'.tr,
-                                        style: TextStyle(
-                                            color: textPrimaryLightColor)),
+                                    child: Text('SEND'.tr, style: TextStyle(color: textPrimaryLightColor)),
                                     onPressed: () {
                                       Get.back();
-                                      EasyLoading.show(
-                                          status: 'Please wait...'.tr);
+                                      EasyLoading.show(status: 'Please wait...'.tr);
 
                                       verifyotp();
                                     },
@@ -211,20 +191,15 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                   children: <Widget>[
                                     new ListTile(
                                       title: Text('change_password'.tr,
-                                          style: TextStyle(
-                                              color: primary,
-                                              fontWeight: FontWeight.bold)),
+                                          style: TextStyle(color: primary, fontWeight: FontWeight.bold)),
                                     ),
                                     new ListTile(
                                       title: new TextFormField(
                                         controller: passowrd,
                                         obscureText: true,
-                                        validator:
-                                            FormBuilderValidators.required(
-                                                context,
-                                                errorText: 'required_field'.tr),
-                                        decoration: new InputDecoration(
-                                            hintText: 'set_password'.tr),
+                                        validator: FormBuilderValidators.required(context,
+                                            errorText: 'required_field'.tr),
+                                        decoration: new InputDecoration(hintText: 'set_password'.tr),
                                       ),
                                     ),
                                     new ListTile(
@@ -232,10 +207,8 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                         controller: cpassword,
                                         obscureText: true,
                                         validator: (val) {
-                                          if (val!.isEmpty)
-                                            return "password_required".tr;
-                                          if (val != passowrd.text)
-                                            return "password_match".tr;
+                                          if (val!.isEmpty) return "password_required".tr;
+                                          if (val != passowrd.text) return "password_match".tr;
                                           return null;
                                         },
                                         decoration: new InputDecoration(
@@ -247,17 +220,13 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                       padding: const EdgeInsets.all(8.0),
                                       child: ElevatedButton(
                                         style: ButtonStyle(
-                                          backgroundColor:
-                                              WidgetStateProperty.all(
-                                                  primary),
+                                          backgroundColor: MaterialStateProperty.all(primary),
                                         ),
-                                        child: Text('SEND'.tr,
-                                            style: TextStyle(
-                                                color: textPrimaryLightColor)),
+                                        child:
+                                            Text('SEND'.tr, style: TextStyle(color: textPrimaryLightColor)),
                                         onPressed: () {
                                           Get.back();
-                                          EasyLoading.show(
-                                              status: 'Please wait...'.tr);
+                                          EasyLoading.show(status: 'Please wait...'.tr);
 
                                           setpassword();
                                         },
@@ -298,8 +267,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
             else
               {
                 EasyLoading.dismiss(),
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(SnackBar(content: Text('server_error'.tr))),
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('server_error'.tr))),
               }
           });
     }
@@ -324,8 +292,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
             else
               {
                 EasyLoading.dismiss(),
-                ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('OTP_does_not_match'.tr))),
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('OTP_does_not_match'.tr))),
                 forgotPasswordPopup()
               }
           });
@@ -351,8 +318,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
           else
             {
               EasyLoading.dismiss(),
-              ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('mobile_num_not_found'.tr))),
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('mobile_num_not_found'.tr))),
               forgotPasswordPopup()
             }
         });

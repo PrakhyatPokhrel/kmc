@@ -1,9 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:kmc/components/shimmer.dart';
 import 'package:kmc/config/Apiconnectservices.dart';
 import 'package:kmc/config/colors.dart';
 import 'package:kmc/modal/taxPayerDetail.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class LandEditPage extends StatefulWidget {
   @override
@@ -45,10 +45,7 @@ class _LandEditPageState extends State<LandEditPage> {
                         size: 80,
                       ),
                       Text("no_data_found".tr,
-                          style: TextStyle(
-                              height: 1.3,
-                              color: textPrimaryColor,
-                              fontSize: 16))
+                          style: TextStyle(height: 1.3, color: textPrimaryColor, fontSize: 16))
                     ],
                   )),
             );
@@ -64,10 +61,7 @@ class _LandEditPageState extends State<LandEditPage> {
                           size: 80,
                         ),
                         Text("no_data_found".tr,
-                            style: TextStyle(
-                                height: 1.3,
-                                color: textPrimaryColor,
-                                fontSize: 16))
+                            style: TextStyle(height: 1.3, color: textPrimaryColor, fontSize: 16))
                       ],
                     )));
           } else {
@@ -90,8 +84,7 @@ class _LandEditPageState extends State<LandEditPage> {
                           context: context,
                           builder: (ctx) => AlertDialog(
                             title: Text(
-                              snapshot
-                                  .data.data.taxdata.landDetail[index].kitta,
+                              snapshot.data.data.taxdata.landDetail[index].kitta,
                               style: TextStyle(
                                 color: primary,
                                 fontSize: 24.0,
@@ -99,316 +92,206 @@ class _LandEditPageState extends State<LandEditPage> {
                             ),
                             content: Table(
                               defaultColumnWidth: FixedColumnWidth(120.0),
-                              border: TableBorder.all(
-                                  color: text,
-                                  style: BorderStyle.solid,
-                                  width: 2),
+                              border: TableBorder.all(color: text, style: BorderStyle.solid, width: 2),
                               children: [
                                 TableRow(children: [
-                                  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                                snapshot
-                                                            .data
-                                                            .data
-                                                            .taxdata
-                                                            .landDetail[index]
-                                                            .landUnit ==
-                                                        "ropani_aana_paisa"
-                                                    ? "ropani".tr
-                                                    : "bigha".tr,
-                                                style:
-                                                    TextStyle(fontSize: 18.0)),
-                                          ),
-                                        )
-                                      ]),
-                                  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Flexible(
-                                          child: Center(
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Text(
-                                                  snapshot
-                                                              .data
-                                                              .data
-                                                              .taxdata
-                                                              .landDetail[index]
-                                                              .landUnit ==
-                                                          "ropani_aana_paisa"
-                                                      ? "${snapshot.data.data.taxdata.landDetail[index].areaRopani}"
-                                                      : "${snapshot.data.data.taxdata.landDetail[index].areaBigha}",
-                                                  style: TextStyle(
-                                                      fontSize: 18.0)),
-                                            ),
-                                          ),
-                                        )
-                                      ]),
+                                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                    Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                            snapshot.data.data.taxdata.landDetail[index].landUnit ==
+                                                    "ropani_aana_paisa"
+                                                ? "ropani".tr
+                                                : "bigha".tr,
+                                            style: TextStyle(fontSize: 18.0)),
+                                      ),
+                                    )
+                                  ]),
+                                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                    Flexible(
+                                      child: Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                              snapshot.data.data.taxdata.landDetail[index].landUnit ==
+                                                      "ropani_aana_paisa"
+                                                  ? "${snapshot.data.data.taxdata.landDetail[index].areaRopani}"
+                                                  : "${snapshot.data.data.taxdata.landDetail[index].areaBigha}",
+                                              style: TextStyle(fontSize: 18.0)),
+                                        ),
+                                      ),
+                                    )
+                                  ]),
                                 ]),
                                 TableRow(children: [
-                                  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                                snapshot
-                                                            .data
-                                                            .data
-                                                            .taxdata
-                                                            .landDetail[index]
-                                                            .landUnit ==
-                                                        "ropani_aana_paisa"
-                                                    ? "aana".tr
-                                                    : "katha".tr,
-                                                style:
-                                                    TextStyle(fontSize: 18.0)),
-                                          ),
-                                        )
-                                      ]),
-                                  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Flexible(
-                                          child: Center(
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Text(
-                                                  snapshot
-                                                              .data
-                                                              .data
-                                                              .taxdata
-                                                              .landDetail[index]
-                                                              .landUnit ==
-                                                          "ropani_aana_paisa"
-                                                      ? "${snapshot.data.data.taxdata.landDetail[index].areaAana}"
-                                                      : "${snapshot.data.data.taxdata.landDetail[index].areaKatha}",
-                                                  style: TextStyle(
-                                                      fontSize: 18.0)),
-                                            ),
-                                          ),
-                                        )
-                                      ]),
+                                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                    Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                            snapshot.data.data.taxdata.landDetail[index].landUnit ==
+                                                    "ropani_aana_paisa"
+                                                ? "aana".tr
+                                                : "katha".tr,
+                                            style: TextStyle(fontSize: 18.0)),
+                                      ),
+                                    )
+                                  ]),
+                                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                    Flexible(
+                                      child: Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                              snapshot.data.data.taxdata.landDetail[index].landUnit ==
+                                                      "ropani_aana_paisa"
+                                                  ? "${snapshot.data.data.taxdata.landDetail[index].areaAana}"
+                                                  : "${snapshot.data.data.taxdata.landDetail[index].areaKatha}",
+                                              style: TextStyle(fontSize: 18.0)),
+                                        ),
+                                      ),
+                                    )
+                                  ]),
                                 ]),
                                 TableRow(children: [
-                                  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                                snapshot
-                                                            .data
-                                                            .data
-                                                            .taxdata
-                                                            .landDetail[index]
-                                                            .landUnit ==
-                                                        "ropani_aana_paisa"
-                                                    ? "paisa".tr
-                                                    : "dhur".tr,
-                                                style:
-                                                    TextStyle(fontSize: 18.0)),
-                                          ),
-                                        )
-                                      ]),
-                                  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Flexible(
-                                          child: Center(
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Text(
-                                                  snapshot
-                                                              .data
-                                                              .data
-                                                              .taxdata
-                                                              .landDetail[index]
-                                                              .landUnit ==
-                                                          "ropani_aana_paisa"
-                                                      ? "${snapshot.data.data.taxdata.landDetail[index].areaPaisa}"
-                                                      : "${snapshot.data.data.taxdata.landDetail[index].areaDhur}",
-                                                  style: TextStyle(
-                                                      fontSize: 18.0)),
-                                            ),
-                                          ),
-                                        )
-                                      ]),
+                                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                    Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                            snapshot.data.data.taxdata.landDetail[index].landUnit ==
+                                                    "ropani_aana_paisa"
+                                                ? "paisa".tr
+                                                : "dhur".tr,
+                                            style: TextStyle(fontSize: 18.0)),
+                                      ),
+                                    )
+                                  ]),
+                                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                    Flexible(
+                                      child: Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                              snapshot.data.data.taxdata.landDetail[index].landUnit ==
+                                                      "ropani_aana_paisa"
+                                                  ? "${snapshot.data.data.taxdata.landDetail[index].areaPaisa}"
+                                                  : "${snapshot.data.data.taxdata.landDetail[index].areaDhur}",
+                                              style: TextStyle(fontSize: 18.0)),
+                                        ),
+                                      ),
+                                    )
+                                  ]),
                                 ]),
-                                snapshot.data.data.taxdata.landDetail[index]
-                                            .landUnit ==
-                                        "ropani_aana_paisa"
+                                snapshot.data.data.taxdata.landDetail[index].landUnit == "ropani_aana_paisa"
                                     ? TableRow(children: [
-                                        Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Center(
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
-                                                  child: Text("daam".tr,
-                                                      style: TextStyle(
-                                                          fontSize: 18.0)),
-                                                ),
-                                              )
-                                            ]),
-                                        Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Flexible(
-                                                child: Center(
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            8.0),
-                                                    child: Text(
-                                                        "${snapshot.data.data.taxdata.landDetail[index].areaDaam}",
-                                                        style: TextStyle(
-                                                            fontSize: 18.0)),
-                                                  ),
-                                                ),
-                                              )
-                                            ]),
+                                        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                          Center(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Text("daam".tr, style: TextStyle(fontSize: 18.0)),
+                                            ),
+                                          )
+                                        ]),
+                                        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                          Flexible(
+                                            child: Center(
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: Text(
+                                                    "${snapshot.data.data.taxdata.landDetail[index].areaDaam}",
+                                                    style: TextStyle(fontSize: 18.0)),
+                                              ),
+                                            ),
+                                          )
+                                        ]),
                                       ])
                                     : TableRow(),
                                 TableRow(children: [
-                                  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Flexible(
-                                          child: Center(
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Text("land_tole".tr,
-                                                  style: TextStyle(
-                                                      fontSize: 18.0)),
-                                            ),
-                                          ),
-                                        )
-                                      ]),
-                                  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Flexible(
-                                          child: Center(
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Text(
-                                                  "${snapshot.data.data.taxdata.landDetail[index].jaggaTole}",
-                                                  style: TextStyle(
-                                                      fontSize: 18.0)),
-                                            ),
-                                          ),
-                                        )
-                                      ]),
+                                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                    Flexible(
+                                      child: Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text("land_tole".tr, style: TextStyle(fontSize: 18.0)),
+                                        ),
+                                      ),
+                                    )
+                                  ]),
+                                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                    Flexible(
+                                      child: Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                              "${snapshot.data.data.taxdata.landDetail[index].jaggaTole}",
+                                              style: TextStyle(fontSize: 18.0)),
+                                        ),
+                                      ),
+                                    )
+                                  ]),
                                 ]),
                                 TableRow(children: [
-                                  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Flexible(
-                                          child: Center(
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Text("road_name".tr,
-                                                  style: TextStyle(
-                                                      fontSize: 18.0)),
-                                            ),
-                                          ),
-                                        )
-                                      ]),
-                                  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Flexible(
-                                          child: Center(
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Text(
-                                                  "${snapshot.data.data.taxdata.landDetail[index].sadakName}",
-                                                  style: TextStyle(
-                                                      fontSize: 18.0)),
-                                            ),
-                                          ),
-                                        )
-                                      ]),
+                                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                    Flexible(
+                                      child: Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text("road_name".tr, style: TextStyle(fontSize: 18.0)),
+                                        ),
+                                      ),
+                                    )
+                                  ]),
+                                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                    Flexible(
+                                      child: Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                              "${snapshot.data.data.taxdata.landDetail[index].sadakName}",
+                                              style: TextStyle(fontSize: 18.0)),
+                                        ),
+                                      ),
+                                    )
+                                  ]),
                                 ]),
                                 TableRow(children: [
-                                  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Flexible(
-                                          child: Center(
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Text("road_type".tr,
-                                                  style: TextStyle(
-                                                      fontSize: 18.0)),
-                                            ),
-                                          ),
-                                        )
-                                      ]),
-                                  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Flexible(
-                                          child: Center(
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Text(
-                                                  "${snapshot.data.data.taxdata.landDetail[index].sadakType}",
-                                                  style: TextStyle(
-                                                      fontSize: 18.0)),
-                                            ),
-                                          ),
-                                        )
-                                      ]),
+                                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                    Flexible(
+                                      child: Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text("road_type".tr, style: TextStyle(fontSize: 18.0)),
+                                        ),
+                                      ),
+                                    )
+                                  ]),
+                                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                    Flexible(
+                                      child: Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                              "${snapshot.data.data.taxdata.landDetail[index].sadakType}",
+                                              style: TextStyle(fontSize: 18.0)),
+                                        ),
+                                      ),
+                                    )
+                                  ]),
                                 ]),
                               ],
                             ),
                             actions: <Widget>[
                               ElevatedButton(
                                 style: ButtonStyle(
-                                    backgroundColor:
-                                        WidgetStateProperty.all(tertiary),
-                                    shape: WidgetStateProperty.all<
-                                            RoundedRectangleBorder>(
+                                    backgroundColor: MaterialStateProperty.all(tertiary),
+                                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                         RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20.0),
                                     ))),
                                 child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 16.0, vertical: 10),
+                                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
                                   child: Text('cancel'.tr),
                                 ),
                                 onPressed: () {

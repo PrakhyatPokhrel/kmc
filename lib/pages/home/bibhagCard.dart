@@ -58,25 +58,22 @@ class _BibhagCardState extends State<BibhagCard> {
     EasyLoading.show(status: 'Please wait...'.tr);
     Timer(Duration(milliseconds: 2000), () {
       EasyLoading.dismiss();
-      print("Yeah, this line is printed immediately");
-    setState(() {
-      specificbibagh = bibagh
-          .where((bibagh) =>
-              bibagh['name'].toLowerCase().contains(name.toLowerCase()))
-          .toList();
+      setState(() {
+        specificbibagh =
+            bibagh.where((bibagh) => bibagh['name'].toLowerCase().contains(name.toLowerCase())).toList();
 
-      if (specificbibagh.length == 0) {
-        not_available_Alert(context);
-      } else {
-        Get.to(Bibhag(data: json.encode(specificbibagh.first)));
-      }
+        if (specificbibagh.length == 0) {
+          not_available_Alert(context);
+        } else {
+          Get.to(Bibhag(data: json.encode(specificbibagh.first)));
+        }
 
-      // Navigator.push(
-      //     context,
-      //     MaterialPageRoute(
-      //         builder: (context) =>
-      //             Bibhag(data: json.encode(specificbibagh.first))));
-    });
+        // Navigator.push(
+        //     context,
+        //     MaterialPageRoute(
+        //         builder: (context) =>
+        //             Bibhag(data: json.encode(specificbibagh.first))));
+      });
     });
     // bibagh.map((e) => print(e.name)).toList();
     // bibagh.map((e) => print(e)).where((element) =>element['name']== );
@@ -150,23 +147,19 @@ not_available_Alert(context) {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
           ),
-          title: Text('डाटा छैन !',
-              textAlign: TextAlign.center, style: TextStyle(color: primary)),
+          title: Text('डाटा छैन !', textAlign: TextAlign.center, style: TextStyle(color: primary)),
           content: Text('यो सेवाको डाटा छैन !',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16, height: 1.5)),
+              textAlign: TextAlign.center, style: TextStyle(fontSize: 16, height: 1.5)),
           actions: [
             Center(
               child: ElevatedButton(
                 style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all(tertiary),
-                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
+                    backgroundColor: MaterialStateProperty.all(tertiary),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ))),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 16.0, vertical: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
                   child: Text('cancel'.tr),
                 ),
                 onPressed: () {

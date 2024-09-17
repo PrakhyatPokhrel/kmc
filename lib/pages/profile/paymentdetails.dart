@@ -431,9 +431,8 @@ class _PaymentdetailsState extends State<Paymentdetails> {
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(tertiary),
-                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
+                      backgroundColor: MaterialStateProperty.all(tertiary),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),
                   child: Padding(
@@ -883,9 +882,8 @@ class _PaymentdetailsState extends State<Paymentdetails> {
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(tertiary),
-                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
+                      backgroundColor: MaterialStateProperty.all(tertiary),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),
                   child: Padding(

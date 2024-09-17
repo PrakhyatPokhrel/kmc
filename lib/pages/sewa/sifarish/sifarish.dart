@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kmc/config/colors.dart';
+import 'package:get/get.dart';
 import 'package:kmc/config/Apiconnectservices.dart';
+import 'package:kmc/config/colors.dart';
 import 'package:kmc/pages/sewa/sewadata.dart';
 import 'package:kmc/pages/sewa/sifarish/allSifarish.dart';
 import 'package:kmc/pages/sewa/sifarish/sifarishList.dart';
-import 'package:get/get.dart';
 
 class Sifarish extends StatefulWidget {
   @override
@@ -35,8 +35,7 @@ class _SifarishState extends State<Sifarish> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('sifaris'.tr,
-                    style: TextStyle(color: primary, fontSize: 22)),
+                Text('sifaris'.tr, style: TextStyle(color: primary, fontSize: 22)),
                 InkWell(
                     onTap: () {
                       Navigator.pop(context);
@@ -88,9 +87,7 @@ class _SifarishState extends State<Sifarish> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       new ConstrainedBox(
-                        constraints: new BoxConstraints(
-                            maxHeight:
-                                MediaQuery.of(context).size.height * 0.2),
+                        constraints: new BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.2),
                         child: Text(
                             'palika-name'.tr +
                                 ' ' +
@@ -140,8 +137,7 @@ class _SifarishState extends State<Sifarish> {
             crossAxisCount: 2,
             children: List.generate(sifarishInsideData.length, (index) {
               return Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4),
+                padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4),
                 child: sewaCard(sifarishInsideData[index], index),
               );
             })),
@@ -162,8 +158,7 @@ class _SifarishState extends State<Sifarish> {
             crossAxisCount: 2,
             children: List.generate(sifarishInsideData.length, (index) {
               return Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4),
+                padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4),
                 child: sewaCard(sifarishInsideData[index], index),
               );
             })),
@@ -180,11 +175,7 @@ class _SifarishState extends State<Sifarish> {
         color: Colors.white,
         child: InkWell(
           onTap: () {
-            var datas = {
-              'title': data.title,
-              'icon': data.icon,
-              'index': index
-            };
+            var datas = {'title': data.title, 'icon': data.icon, 'index': index};
             Get.to(SifarishList(data: datas));
             // Navigator.push(
             //     context,
@@ -229,13 +220,10 @@ class _SifarishState extends State<Sifarish> {
           height: 40.0,
           child: new ElevatedButton(
             style: ButtonStyle(
-                minimumSize:
-                    WidgetStateProperty.all(Size(Get.width - 64, 60)),
-                backgroundColor: WidgetStateProperty.all(tertiary),
-                padding: WidgetStateProperty.all(
-                    EdgeInsets.symmetric(vertical: 16, horizontal: 35)),
-                shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
+                minimumSize: MaterialStateProperty.all(Size(Get.width - 64, 60)),
+                backgroundColor: MaterialStateProperty.all(tertiary),
+                padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 16, horizontal: 35)),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
                 ))),
             child: Padding(
@@ -248,8 +236,7 @@ class _SifarishState extends State<Sifarish> {
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                  child: Icon(Icons.arrow_forward_rounded,
-                      color: textPrimaryLightColor),
+                  child: Icon(Icons.arrow_forward_rounded, color: textPrimaryLightColor),
                 )
               ]),
             ),

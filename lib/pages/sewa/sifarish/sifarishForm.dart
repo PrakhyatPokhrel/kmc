@@ -42,11 +42,8 @@ class _SifarishFormState extends State<SifarishForm> {
     "woda_id": FormControl<String>(validators: [
       Validators.required,
     ]),
-    "phone": FormControl<String>(validators: [
-      Validators.required,
-      Validators.maxLength(10),
-      Validators.minLength(10)
-    ]),
+    "phone": FormControl<String>(
+        validators: [Validators.required, Validators.maxLength(10), Validators.minLength(10)]),
     "address": FormControl<String>(validators: [
       Validators.required,
     ]),
@@ -95,9 +92,7 @@ class _SifarishFormState extends State<SifarishForm> {
     if (sifarishlist!.fields != null) {
       for (var sifarishField in sifarishlist.fields!) {
         formMap[sifarishField.db_field] = FormControl<String>(validators: [
-          if (sifarishField.type != "photo" &&
-              sifarishField.type != "finger_print")
-            Validators.required,
+          if (sifarishField.type != "photo" && sifarishField.type != "finger_print") Validators.required,
         ]);
       }
     }
@@ -155,8 +150,7 @@ class _SifarishFormState extends State<SifarishForm> {
   }
 
   void _scrollToTop() {
-    _scrollController?.animateTo(0,
-        duration: Duration(seconds: 1), curve: Curves.linear);
+    _scrollController?.animateTo(0, duration: Duration(seconds: 1), curve: Curves.linear);
   }
 
   @override
@@ -335,8 +329,7 @@ class _SifarishFormState extends State<SifarishForm> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
-                    child: Text(widget.data.form_name,
-                        style: TextStyle(color: primary, fontSize: 22)),
+                    child: Text(widget.data.form_name, style: TextStyle(color: primary, fontSize: 22)),
                   ),
                   InkWell(
                       onTap: () {
@@ -363,8 +356,7 @@ class _SifarishFormState extends State<SifarishForm> {
                   return Theme(
                     data: ThemeData(
                         shadowColor: Colors.transparent,
-                        colorScheme: ColorScheme.light(primary: tertiary)
-                            .copyWith(secondary: tertiary)),
+                        colorScheme: ColorScheme.light(primary: tertiary).copyWith(secondary: tertiary)),
                     child: Stepper(
                       physics: ClampingScrollPhysics(),
                       controlsBuilder: (BuildContext context, onStepContinue) {
@@ -502,17 +494,14 @@ class _SifarishFormState extends State<SifarishForm> {
                                           "r_finger": uploadRightF,
                                         };
                                         for (var key in formMap.keys) {
-                                          datalist[key] =
-                                              this.form.control(key).value;
+                                          datalist[key] = this.form.control(key).value;
                                         }
                                         if (this.form.contains('count')) {
-                                          count =
-                                              this.form.control('count').value;
+                                          count = this.form.control('count').value;
                                         }
                                         var navigationdata;
                                         if (this.form.valid) {
-                                          EasyLoading.show(
-                                              status: 'Please wait...'.tr);
+                                          EasyLoading.show(status: 'Please wait...'.tr);
 
                                           basicinfoFormsubmitApi(datalist).then(
                                             (value) => {
@@ -525,33 +514,23 @@ class _SifarishFormState extends State<SifarishForm> {
                                               ppImagePath = "",
                                               leftFingerPath = "",
                                               rightFingerPath = "",
-                                              if (value?['required_documents']
-                                                      .length >
-                                                  0)
+                                              if (value?['required_documents'].length > 0)
                                                 {
-                                                  value['required_documents']
-                                                      .forEach(
+                                                  value['required_documents'].forEach(
                                                     (key, value) {
-                                                      requiredfiledlist = {
-                                                        'key': "$key",
-                                                        'value': "$value"
-                                                      };
-                                                      array.add(
-                                                          requiredfiledlist);
+                                                      requiredfiledlist = {'key': "$key", 'value': "$value"};
+                                                      array.add(requiredfiledlist);
                                                     },
                                                   ),
-                                                  value['mandatory_documents']
-                                                      .forEach((key) {
+                                                  value['mandatory_documents'].forEach((key) {
                                                     mandatorydocuments = {
                                                       'key': "$key",
                                                     };
 
-                                                    array1.add(
-                                                        mandatorydocuments);
+                                                    array1.add(mandatorydocuments);
                                                   }),
                                                 },
-                                              entry_id = value['data']['id']
-                                                  ['entry_id'],
+                                              entry_id = value['data']['id']['entry_id'],
                                               if (value['dhacha'].length >= 0)
                                                 {
                                                   // dhacha.add(value['dhacha']),
@@ -560,8 +539,7 @@ class _SifarishFormState extends State<SifarishForm> {
                                                 {
                                                   next(),
                                                   _scrollToTop(),
-                                                  FocusScope.of(context)
-                                                      .requestFocus(
+                                                  FocusScope.of(context).requestFocus(
                                                     FocusNode(),
                                                   )
                                                 }
@@ -578,8 +556,7 @@ class _SifarishFormState extends State<SifarishForm> {
                                           );
                                         }
                                       } else if (currentStep == 1) {
-                                        EasyLoading.show(
-                                            status: 'Please wait...'.tr);
+                                        EasyLoading.show(status: 'Please wait...'.tr);
                                         _scrollToTop();
                                         if (currentStep == 1 && count != null) {
                                           EasyLoading.dismiss();
@@ -607,30 +584,19 @@ class _SifarishFormState extends State<SifarishForm> {
                                                   'name': userdata['name'],
                                                   'mobile': userdata['mobile'],
                                                   'pagetitle': "सिफारिश सारांश",
-                                                  'formName':
-                                                      widget.data.form_name,
-                                                  'formNum':
-                                                      widget.data.form_id,
+                                                  'formName': widget.data.form_name,
+                                                  'formNum': widget.data.form_id,
                                                   'entry_id': entry_id,
-                                                  'reference_id': value['data']
-                                                      ['reference_id'],
-                                                  'amount': value['data']
-                                                      ['amount'],
-                                                  'sp_pay_code': value['data']
-                                                      ['sp_pay_code'],
-                                                  'item_type': value['data']
-                                                      ['item_type'],
-                                                  'pay_id': value['data']
-                                                      ['pay_id'],
-                                                  'secure_pay_code':
-                                                      value['data']
-                                                          ['secure_pay_code']
+                                                  'reference_id': value['data']['reference_id'],
+                                                  'amount': value['data']['amount'],
+                                                  'sp_pay_code': value['data']['sp_pay_code'],
+                                                  'item_type': value['data']['item_type'],
+                                                  'pay_id': value['data']['pay_id'],
+                                                  'secure_pay_code': value['data']['secure_pay_code']
                                                 },
                                                 EasyLoading.dismiss(),
-                                                if (value['data']['amount'] ==
-                                                        0 ||
-                                                    value['data']['amount'] ==
-                                                        0.0000)
+                                                if (value['data']['amount'] == 0 ||
+                                                    value['data']['amount'] == 0.0000)
                                                   {
                                                     alertboxcall(),
                                                   }
@@ -641,9 +607,7 @@ class _SifarishFormState extends State<SifarishForm> {
                                               },
                                             );
                                           } else {
-                                            EasyLoading.showError(
-                                                'upload_all_required_documents'
-                                                    .tr);
+                                            EasyLoading.showError('upload_all_required_documents'.tr);
                                           }
                                         }
                                       }
@@ -652,11 +616,9 @@ class _SifarishFormState extends State<SifarishForm> {
                                     icon: Icon(Icons.upload),
                                     label: Text('SEND'.tr),
                                     style: ButtonStyle(
-                                      shape: WidgetStateProperty.all<
-                                          RoundedRectangleBorder>(
+                                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                         RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(30.0),
+                                          borderRadius: BorderRadius.circular(30.0),
                                         ),
                                       ),
                                     ),
@@ -734,9 +696,7 @@ class _SifarishFormState extends State<SifarishForm> {
   bool complete = false;
 
   next() {
-    currentStep + 1 != spr.length
-        ? goTo(currentStep + 1)
-        : setState(() => complete = true);
+    currentStep + 1 != spr.length ? goTo(currentStep + 1) : setState(() => complete = true);
   }
 
   StepState _getState(int i) {
@@ -767,9 +727,7 @@ class _SifarishFormState extends State<SifarishForm> {
   labelText(text) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Text(text,
-          textAlign: TextAlign.left,
-          style: TextStyle(fontSize: 16, color: primary)),
+      child: Text(text, textAlign: TextAlign.left, style: TextStyle(fontSize: 16, color: primary)),
     );
   }
 
@@ -802,15 +760,12 @@ class _SifarishFormState extends State<SifarishForm> {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  snapshot.data.form_child == 1
-                      ? labelText(snapshot.data.childlabel)
-                      : Container(),
+                  snapshot.data.form_child == 1 ? labelText(snapshot.data.childlabel) : Container(),
                   snapshot.data.form_child == 1
                       ? ReactiveDropdownField<int>(
                           decoration: inputTheme(),
                           formControlName: 'count',
-                          validationMessages: (control) =>
-                              {'required': "validation_field".tr},
+                          validationMessages: (control) => {'required': "validation_field".tr},
                           items: [
                               DropdownMenuItem(
                                 value: 1,
@@ -844,19 +799,15 @@ class _SifarishFormState extends State<SifarishForm> {
                               labelText(snapshot.data.fields[index].name),
                               ReactiveTextField(
                                 inputFormatters: [
-                                  FilteringTextInputFormatter.allow(
-                                      RegExp("[\u0900-\u097F-/ ]+")),
+                                  FilteringTextInputFormatter.allow(RegExp("[\u0900-\u097F-/ ]+")),
                                 ],
-                                validationMessages: (control) =>
-                                    {'required': "validation_field".tr},
-                                formControlName:
-                                    '${snapshot.data.fields[index].db_field}',
+                                validationMessages: (control) => {'required': "validation_field".tr},
+                                formControlName: '${snapshot.data.fields[index].db_field}',
                                 decoration: inputTheme(),
                               ),
                             ],
                           );
-                        } else if (snapshot.data.fields[index].type ==
-                            "number") {
+                        } else if (snapshot.data.fields[index].type == "number") {
                           return Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -864,16 +815,13 @@ class _SifarishFormState extends State<SifarishForm> {
                               labelText(snapshot.data.fields[index].name),
                               ReactiveTextField(
                                 keyboardType: TextInputType.number,
-                                formControlName:
-                                    '${snapshot.data.fields[index].db_field}',
+                                formControlName: '${snapshot.data.fields[index].db_field}',
                                 decoration: inputTheme(),
-                                validationMessages: (control) =>
-                                    {'required': "validation_field".tr},
+                                validationMessages: (control) => {'required': "validation_field".tr},
                               ),
                             ],
                           );
-                        } else if (snapshot.data.fields[index].type ==
-                            "float") {
+                        } else if (snapshot.data.fields[index].type == "float") {
                           return Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -881,11 +829,9 @@ class _SifarishFormState extends State<SifarishForm> {
                               labelText(snapshot.data.fields[index].name),
                               ReactiveTextField(
                                 keyboardType: TextInputType.number,
-                                formControlName:
-                                    '${snapshot.data.fields[index].db_field}',
+                                formControlName: '${snapshot.data.fields[index].db_field}',
                                 decoration: inputTheme(),
-                                validationMessages: (control) =>
-                                    {'required': "validation_field".tr},
+                                validationMessages: (control) => {'required': "validation_field".tr},
                               ),
                             ],
                           );
@@ -900,10 +846,8 @@ class _SifarishFormState extends State<SifarishForm> {
                                   picker
                                       .showAdaptiveDatePicker(
                                           context: context,
-                                          initialDate:
-                                              picker.NepaliDateTime.now(),
-                                          firstDate:
-                                              picker.NepaliDateTime(1976),
+                                          initialDate: picker.NepaliDateTime.now(),
+                                          firstDate: picker.NepaliDateTime(1976),
                                           language: NepaliUtils().language,
                                           lastDate: picker.NepaliDateTime(2100))
                                       .then((value) {
@@ -923,24 +867,17 @@ class _SifarishFormState extends State<SifarishForm> {
                                     } else {
                                       month = "${value.month}";
                                     }
-                                    this
-                                            .form
-                                            .control(snapshot
-                                                .data.fields[index].db_field)
-                                            .value =
+                                    this.form.control(snapshot.data.fields[index].db_field).value =
                                         "${NepaliUnicode.convert("${value.year}")}/${NepaliUnicode.convert("$month")}/${NepaliUnicode.convert("$day")}";
                                   });
                                 },
-                                formControlName:
-                                    '${snapshot.data.fields[index].db_field}',
+                                formControlName: '${snapshot.data.fields[index].db_field}',
                                 decoration: inputTheme(),
-                                validationMessages: (control) =>
-                                    {'required': "validation_field".tr},
+                                validationMessages: (control) => {'required': "validation_field".tr},
                               ),
                             ],
                           );
-                        } else if (snapshot.data.fields[index].type ==
-                            "select") {
+                        } else if (snapshot.data.fields[index].type == "select") {
                           List v = [];
                           v = snapshot.data.fields[index].value;
 
@@ -950,8 +887,7 @@ class _SifarishFormState extends State<SifarishForm> {
                             children: [
                               labelText(snapshot.data.fields[index].name),
                               ReactiveDropdownField(
-                                formControlName:
-                                    '${snapshot.data.fields[index].db_field}',
+                                formControlName: '${snapshot.data.fields[index].db_field}',
                                 decoration: inputTheme(),
                                 // hint: Text('GENDER'.tr),
                                 isExpanded: true,
@@ -963,23 +899,17 @@ class _SifarishFormState extends State<SifarishForm> {
                                     );
                                   },
                                 ).toList(),
-                                validationMessages: (control) =>
-                                    {'required': "validation_field".tr},
+                                validationMessages: (control) => {'required': "validation_field".tr},
 
                                 onChanged: (value) {
                                   setState(() {
-                                    this
-                                        .form
-                                        .control(snapshot
-                                            .data.fields[index].db_field)
-                                        .value = value;
+                                    this.form.control(snapshot.data.fields[index].db_field).value = value;
                                   });
                                 },
                               ),
                             ],
                           );
-                        } else if (snapshot.data.fields[index].type ==
-                            "province") {
+                        } else if (snapshot.data.fields[index].type == "province") {
                           List v = [];
                           v = snapshot.data.fields[index].value;
 
@@ -989,8 +919,7 @@ class _SifarishFormState extends State<SifarishForm> {
                             children: [
                               labelText(snapshot.data.fields[index].name),
                               ReactiveDropdownField(
-                                formControlName:
-                                    '${snapshot.data.fields[index].db_field}',
+                                formControlName: '${snapshot.data.fields[index].db_field}',
                                 decoration: inputTheme(),
                                 // hint: Text('GENDER'.tr),
                                 isExpanded: true,
@@ -1002,8 +931,7 @@ class _SifarishFormState extends State<SifarishForm> {
                                     );
                                   },
                                 ).toList(),
-                                validationMessages: (control) =>
-                                    {'required': "validation_field".tr},
+                                validationMessages: (control) => {'required': "validation_field".tr},
                                 onChanged: (value) async {
                                   // this
                                   //     .form
@@ -1013,8 +941,7 @@ class _SifarishFormState extends State<SifarishForm> {
                                   setState(() {
                                     var a = int.parse('$value');
                                     districtforpro = _district['$a'];
-                                    Future.delayed(Duration(seconds: 3600),
-                                        () => 'Result');
+                                    Future.delayed(Duration(seconds: 3600), () => 'Result');
                                   });
 
                                   // });
@@ -1022,8 +949,7 @@ class _SifarishFormState extends State<SifarishForm> {
                               ),
                             ],
                           );
-                        } else if (snapshot.data.fields[index].type ==
-                            "district") {
+                        } else if (snapshot.data.fields[index].type == "district") {
                           List v = [];
                           v = snapshot.data.fields[index].value;
 
@@ -1036,8 +962,7 @@ class _SifarishFormState extends State<SifarishForm> {
                                   : Container(),
                               districtforpro != null
                                   ? ReactiveDropdownField(
-                                      formControlName:
-                                          '${snapshot.data.fields[index].db_field}',
+                                      formControlName: '${snapshot.data.fields[index].db_field}',
                                       decoration: inputTheme(),
                                       // hint: Text('GENDER'.tr),
                                       isExpanded: true,
@@ -1049,26 +974,19 @@ class _SifarishFormState extends State<SifarishForm> {
                                           );
                                         },
                                       ).toList(),
-                                      validationMessages: (control) =>
-                                          {'required': "validation_field".tr},
+                                      validationMessages: (control) => {'required': "validation_field".tr},
                                       onChanged: (value) {
-                                        this
-                                            .form
-                                            .control(snapshot
-                                                .data.fields[index].db_field)
-                                            .value = value;
+                                        this.form.control(snapshot.data.fields[index].db_field).value = value;
 
                                         setState(() {
-                                          locallevelfordist =
-                                              _localLevel[value];
+                                          locallevelfordist = _localLevel[value];
                                         });
                                       },
                                     )
                                   : Container()
                             ],
                           );
-                        } else if (snapshot.data.fields[index].type ==
-                            "local_level") {
+                        } else if (snapshot.data.fields[index].type == "local_level") {
                           List v = [];
                           v = snapshot.data.fields[index].value;
 
@@ -1081,8 +999,7 @@ class _SifarishFormState extends State<SifarishForm> {
                                   : Container(),
                               locallevelfordist != null
                                   ? ReactiveDropdownField(
-                                      formControlName:
-                                          '${snapshot.data.fields[index].db_field}',
+                                      formControlName: '${snapshot.data.fields[index].db_field}',
                                       decoration: inputTheme(),
                                       // hint: Text('GENDER'.tr),
                                       isExpanded: true,
@@ -1094,25 +1011,18 @@ class _SifarishFormState extends State<SifarishForm> {
                                           );
                                         },
                                       ).toList(),
-                                      validationMessages: (control) =>
-                                          {'required': "validation_field".tr},
+                                      validationMessages: (control) => {'required': "validation_field".tr},
                                       onChanged: (value) {
-                                        this
-                                            .form
-                                            .control(snapshot
-                                                .data.fields[index].db_field)
-                                            .value = value;
+                                        this.form.control(snapshot.data.fields[index].db_field).value = value;
                                       },
                                     )
                                   : Container(),
                             ],
                           );
-                        } else if (snapshot.data.fields[index].type ==
-                            "photo") {
+                        } else if (snapshot.data.fields[index].type == "photo") {
                           // print(snapshot.data.fields[index]);
                           return Padding(
-                            padding:
-                                const EdgeInsets.only(top: 5.0, bottom: 5.0),
+                            padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1125,24 +1035,19 @@ class _SifarishFormState extends State<SifarishForm> {
                                   child: ListTile(
                                     title: Text(
                                       '${snapshot.data.fields[index].name}',
-                                      style:
-                                          TextStyle(fontSize: 16, color: text),
+                                      style: TextStyle(fontSize: 16, color: text),
                                     ),
                                     trailing: Container(
                                       width: 70,
                                       child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           GestureDetector(
                                               onTap: () {
-                                                chooseimage(
-                                                    index, ImageType.passport);
+                                                chooseimage(index, ImageType.passport);
                                               },
-                                              child: Icon(Icons.camera_alt,
-                                                  color: primary, size: 27)),
+                                              child: Icon(Icons.camera_alt, color: primary, size: 27)),
                                         ],
                                       ),
                                     ),
@@ -1163,12 +1068,10 @@ class _SifarishFormState extends State<SifarishForm> {
                               ],
                             ),
                           );
-                        } else if (snapshot.data.fields[index].type ==
-                            "finger_print") {
+                        } else if (snapshot.data.fields[index].type == "finger_print") {
                           // print(snapshot.data.fields[index]);
                           return Padding(
-                            padding:
-                                const EdgeInsets.only(top: 5.0, bottom: 5.0),
+                            padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1181,40 +1084,31 @@ class _SifarishFormState extends State<SifarishForm> {
                                   child: ListTile(
                                     title: Text(
                                       '${snapshot.data.fields[index].name}',
-                                      style:
-                                          TextStyle(fontSize: 16, color: text),
+                                      style: TextStyle(fontSize: 16, color: text),
                                     ),
                                     trailing: Container(
                                       width: 70,
                                       child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           GestureDetector(
                                               onTap: () {
-                                                if (snapshot.data.fields[index]
-                                                        .name ==
-                                                    "औंला छाप दायाँ") {
-                                                  chooseimage(
-                                                      index, ImageType.rightF);
+                                                if (snapshot.data.fields[index].name == "औंला छाप दायाँ") {
+                                                  chooseimage(index, ImageType.rightF);
                                                 } else {
-                                                  chooseimage(
-                                                      index, ImageType.leftF);
+                                                  chooseimage(index, ImageType.leftF);
                                                 }
                                                 // chooseimage(index,
                                                 //     ImageType.passport);
                                               },
-                                              child: Icon(Icons.camera_alt,
-                                                  color: primary, size: 27)),
+                                              child: Icon(Icons.camera_alt, color: primary, size: 27)),
                                         ],
                                       ),
                                     ),
                                   ),
                                 ),
-                                snapshot.data.fields[index].name !=
-                                        "औंला छाप दायाँ"
+                                snapshot.data.fields[index].name != "औंला छाप दायाँ"
                                     ? leftFingerPath != ""
                                         ? Center(
                                             child: Container(
@@ -1269,31 +1163,26 @@ class _SifarishFormState extends State<SifarishForm> {
                     ReactiveTextField(
                       autofocus: false,
                       inputFormatters: [
-                        FilteringTextInputFormatter.allow(
-                            RegExp("[\u0900-\u097F ]+")),
+                        FilteringTextInputFormatter.allow(RegExp("[\u0900-\u097F ]+")),
                       ],
                       decoration: inputTheme(),
                       formControlName: 'name',
-                      validationMessages: (control) =>
-                          {'required': "validation_field".tr},
+                      validationMessages: (control) => {'required': "validation_field".tr},
                     ),
                     labelText('नागरिकता नं (नेपालीमा)'),
                     ReactiveTextField(
                       formControlName: 'citizenship_no',
                       inputFormatters: [
-                        FilteringTextInputFormatter.allow(
-                            RegExp("[\u0900-\u097F-/ ]+")),
+                        FilteringTextInputFormatter.allow(RegExp("[\u0900-\u097F-/ ]+")),
                       ],
                       decoration: inputTheme(),
-                      validationMessages: (control) =>
-                          {'required': "validation_field".tr},
+                      validationMessages: (control) => {'required': "validation_field".tr},
                     ),
                     labelText('GENDER'.tr),
                     ReactiveDropdownField(
                       hint: Text('Select ...'),
                       formControlName: 'gender',
-                      validationMessages: (control) =>
-                          {'required': "validation_field".tr},
+                      validationMessages: (control) => {'required': "validation_field".tr},
                       decoration: inputTheme(),
                       // hint: Text('GENDER'.tr),
                       isExpanded: true,
@@ -1311,8 +1200,7 @@ class _SifarishFormState extends State<SifarishForm> {
                         // });
                       },
                     ),
-                    labelText(
-                        'मोबाईल नं. (कृपया सही जानकारी प्रदान गर्नुहोला)'),
+                    labelText('मोबाईल नं. (कृपया सही जानकारी प्रदान गर्नुहोला)'),
                     ReactiveTextField(
                       inputFormatters: [
                         FilteringTextInputFormatter.allow(RegExp("[0-9]+")),
@@ -1320,34 +1208,28 @@ class _SifarishFormState extends State<SifarishForm> {
                       keyboardType: TextInputType.number,
                       formControlName: 'phone',
                       decoration: inputTheme(),
-                      validationMessages: (control) =>
-                          {'required': "validation_field".tr},
+                      validationMessages: (control) => {'required': "validation_field".tr},
                     ),
                     labelText('ईमेल (भए सम्म प्रदान गर्नुहोला)'),
                     ReactiveTextField(
                       keyboardType: TextInputType.emailAddress,
                       formControlName: 'email',
                       decoration: inputTheme(),
-                      validationMessages: (control) => {
-                        'email': 'कृपया आफ्नो मान्य इमेल प्रविष्ट गर्नुहोस्'
-                      },
+                      validationMessages: (control) => {'email': 'कृपया आफ्नो मान्य इमेल प्रविष्ट गर्नुहोस्'},
                     ),
                     labelText('टोल (नेपालीमा)'),
                     ReactiveTextField(
                       inputFormatters: [
-                        FilteringTextInputFormatter.allow(
-                            RegExp("[\u0900-\u097F-/ ]+")),
+                        FilteringTextInputFormatter.allow(RegExp("[\u0900-\u097F-/ ]+")),
                       ],
                       formControlName: 'address',
-                      validationMessages: (control) =>
-                          {'required': "validation_field".tr},
+                      validationMessages: (control) => {'required': "validation_field".tr},
                       decoration: inputTheme(),
                     ),
                     labelText('वडा नं.'),
                     ReactiveDropdownField(
                       hint: Text('Select ...'),
-                      validationMessages: (control) =>
-                          {'required': "validation_field".tr},
+                      validationMessages: (control) => {'required': "validation_field".tr},
                       formControlName: 'woda_id',
                       decoration: inputTheme(),
                       // hint: Text('GENDER'.tr),
@@ -1414,21 +1296,18 @@ class _SifarishFormState extends State<SifarishForm> {
                               width: 70,
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   GestureDetector(
                                       onTap: () {
                                         chooseimage(index, ImageType.none);
                                       },
-                                      child: Icon(Icons.camera_alt,
-                                          color: primary, size: 27)),
+                                      child: Icon(Icons.camera_alt, color: primary, size: 27)),
                                   GestureDetector(
                                       onTap: () {
                                         pdffilechooser(index);
                                       },
-                                      child: Icon(Icons.attach_file,
-                                          color: primary, size: 27))
+                                      child: Icon(Icons.attach_file, color: primary, size: 27))
                                 ],
                               ),
                             ),
@@ -1486,8 +1365,7 @@ class _SifarishFormState extends State<SifarishForm> {
                         '${dhacha[index].dhacha_name}',
                         style: TextStyle(fontSize: 16, color: text),
                       ),
-                      leading:
-                          Icon(Icons.file_present, color: primary, size: 27),
+                      leading: Icon(Icons.file_present, color: primary, size: 27),
                     );
                   })),
         ],
@@ -1498,9 +1376,7 @@ class _SifarishFormState extends State<SifarishForm> {
   titleText(title) {
     return Padding(
       padding: const EdgeInsets.only(top: 4.0),
-      child: Text('$title'.tr,
-          textAlign: TextAlign.start,
-          style: TextStyle(color: primary, fontSize: 18)),
+      child: Text('$title'.tr, textAlign: TextAlign.start, style: TextStyle(color: primary, fontSize: 18)),
     );
   }
 
@@ -1516,8 +1392,7 @@ class _SifarishFormState extends State<SifarishForm> {
               decoration: new BoxDecoration(
                   color: Colors.white,
                   borderRadius: new BorderRadius.only(
-                      topLeft: const Radius.circular(10.0),
-                      topRight: const Radius.circular(10.0))),
+                      topLeft: const Radius.circular(10.0), topRight: const Radius.circular(10.0))),
               child: new Wrap(
                 children: <Widget>[
                   GestureDetector(
@@ -1559,8 +1434,7 @@ class _SifarishFormState extends State<SifarishForm> {
   final ImagePicker _picker = ImagePicker();
 
   Future getImageFromGallery(index, type) async {
-    var image =
-        await _picker.pickImage(source: ImageSource.gallery, imageQuality: 25);
+    var image = await _picker.pickImage(source: ImageSource.gallery, imageQuality: 25);
     // final bytes = Io.File(image.path).readAsBytesSync();
     Uint8List imagebytes = await image!.readAsBytes();
     // String img64 = base64Encode(bytes);
@@ -1572,8 +1446,7 @@ class _SifarishFormState extends State<SifarishForm> {
     // };
     if (type == ImageType.passport) {
       //convert to bytes
-      String base64string =
-          base64.encode(imagebytes); //convert bytes to base64 string
+      String base64string = base64.encode(imagebytes); //convert bytes to base64 string
       print(base64string);
       setState(() {
         ppImagePath = image.path;
@@ -1581,8 +1454,7 @@ class _SifarishFormState extends State<SifarishForm> {
         // filepdf[index] = '';
       });
     } else if (type == ImageType.rightF) {
-      String base64string =
-          base64.encode(imagebytes); //convert bytes to base64 string
+      String base64string = base64.encode(imagebytes); //convert bytes to base64 string
       print(base64string);
       setState(() {
         rightFingerPath = image.path;
@@ -1590,8 +1462,7 @@ class _SifarishFormState extends State<SifarishForm> {
         // filepdf[index] = '';
       });
     } else if (type == ImageType.leftF) {
-      String base64string =
-          base64.encode(imagebytes); //convert bytes to base64 string
+      String base64string = base64.encode(imagebytes); //convert bytes to base64 string
       print(base64string);
       setState(() {
         leftFingerPath = image.path;
@@ -1626,37 +1497,16 @@ class _SifarishFormState extends State<SifarishForm> {
     // });
   }
 
-  List<dynamic> imageupload = [
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ''
-  ];
+  List<dynamic> imageupload = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
 
   Future getImageFromCamera(index, type) async {
-    var image =
-        await _picker.pickImage(source: ImageSource.camera, imageQuality: 25);
+    var image = await _picker.pickImage(source: ImageSource.camera, imageQuality: 25);
 
     Uint8List imagebytes = await image!.readAsBytes();
     // setState(() {
     if (type == ImageType.passport) {
       //convert to bytes
-      String base64string =
-          base64.encode(imagebytes); //convert bytes to base64 string
+      String base64string = base64.encode(imagebytes); //convert bytes to base64 string
       print(base64string);
       setState(() {
         ppImagePath = image.path;
@@ -1664,8 +1514,7 @@ class _SifarishFormState extends State<SifarishForm> {
         // filepdf[index] = '';
       });
     } else if (type == ImageType.rightF) {
-      String base64string =
-          base64.encode(imagebytes); //convert bytes to base64 string
+      String base64string = base64.encode(imagebytes); //convert bytes to base64 string
       print(base64string);
       setState(() {
         rightFingerPath = image.path;
@@ -1673,8 +1522,7 @@ class _SifarishFormState extends State<SifarishForm> {
         // filepdf[index] = '';
       });
     } else if (type == ImageType.leftF) {
-      String base64string =
-          base64.encode(imagebytes); //convert bytes to base64 string
+      String base64string = base64.encode(imagebytes); //convert bytes to base64 string
       print(base64string);
       setState(() {
         leftFingerPath = image.path;
@@ -1707,26 +1555,7 @@ class _SifarishFormState extends State<SifarishForm> {
     // });
   }
 
-  List<dynamic> filepdf = [
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ''
-  ];
+  List<dynamic> filepdf = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
 
   pdffilechooser(index) async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
@@ -1782,8 +1611,7 @@ class _SifarishFormState extends State<SifarishForm> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
-            title: Text('दर्ता सफल',
-                textAlign: TextAlign.center, style: TextStyle(color: primary)),
+            title: Text('दर्ता सफल', textAlign: TextAlign.center, style: TextStyle(color: primary)),
             content: Text(
                 'यो सेवा नि:शुल्क रहेको छ। तपाईले भर्नुभएको ई-सिफारिस काठमाडौँ महानगरपालिका वडा कार्यालयमा दर्ता भएको छ। आवेदन तथा दस्तावेज मान्य भएको खण्डमा सिफारिश प्रतिलिपि यसै एप्स वा ईमेलमार्फत पाउनुहुनेछ। दस्तावेज मान्य नभएमा त्यसको जानकारी पाउनुहुनेछ।',
                 textAlign: TextAlign.center,
@@ -1792,14 +1620,12 @@ class _SifarishFormState extends State<SifarishForm> {
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(tertiary),
-                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
+                      backgroundColor: MaterialStateProperty.all(tertiary),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
                     child: Text('ठिक छ'),
                   ),
                   onPressed: () {
@@ -1821,8 +1647,7 @@ class _SifarishFormState extends State<SifarishForm> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
-            title: Text('दर्ता सफल',
-                textAlign: TextAlign.center, style: TextStyle(color: primary)),
+            title: Text('दर्ता सफल', textAlign: TextAlign.center, style: TextStyle(color: primary)),
             content: Text(
               "यहाँको ई-सिफारिश प्रक्रियामा गएको छ । \nरुजु भएको खण्डमा भुक्तानीका लागि SMS प्राप्त गर्नुहुनेछ। \nकारणवस रुजु नभएको सच्चाउनका लागि जानकारी प्राप्त गर्नुहुनेछ।",
               textAlign: TextAlign.center,
@@ -1835,8 +1660,8 @@ class _SifarishFormState extends State<SifarishForm> {
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all(tertiary),
-                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                    backgroundColor: MaterialStateProperty.all(tertiary),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
@@ -1880,14 +1705,12 @@ class _SifarishFormState extends State<SifarishForm> {
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(tertiary),
-                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
+                      backgroundColor: MaterialStateProperty.all(tertiary),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
                     child: Text('धन्यबाद'),
                   ),
                   onPressed: () {

@@ -95,14 +95,12 @@ class _SecondProfileState extends State<SecondProfile> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('my_application'.tr,
-                          style: TextStyle(color: primary, fontSize: 22)),
+                      Text('my_application'.tr, style: TextStyle(color: primary, fontSize: 22)),
                       InkWell(
                           onTap: () {
                             Navigator.pop(context);
                           },
-                          child:
-                              Icon(Icons.arrow_back, color: primary, size: 28)),
+                          child: Icon(Icons.arrow_back, color: primary, size: 28)),
                     ],
                   ),
                 ),
@@ -123,10 +121,8 @@ class _SecondProfileState extends State<SecondProfile> {
                   Container(
                       child: FutureBuilder(
                           future: unApproved(),
-                          builder:
-                              (BuildContext context, AsyncSnapshot snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
+                          builder: (BuildContext context, AsyncSnapshot snapshot) {
+                            if (snapshot.connectionState == ConnectionState.waiting) {
                               return CustomSpinner();
                             } else if (snapshot.hasError) {
                               return CustomErrorCard();
@@ -139,21 +135,13 @@ class _SecondProfileState extends State<SecondProfile> {
                                         itemCount: snapshot.data.length,
                                         itemBuilder: (ctx, index) => InkWell(
                                           onTap: () {
-                                            if ('${snapshot.data[index]['status']}' ==
-                                                "review") {
+                                            if ('${snapshot.data[index]['status']}' == "review") {
                                               setState(() {
-                                                resubmitdoc =
-                                                    snapshot.data[index];
+                                                resubmitdoc = snapshot.data[index];
                                               });
-                                              if (snapshot.data[index]
-                                                          ['type'] ==
-                                                      "etax-house" ||
-                                                  snapshot.data[index]
-                                                          ['type'] ==
-                                                      "etax-land" ||
-                                                  snapshot.data[index]
-                                                          ['type'] ==
-                                                      "etax") {
+                                              if (snapshot.data[index]['type'] == "etax-house" ||
+                                                  snapshot.data[index]['type'] == "etax-land" ||
+                                                  snapshot.data[index]['type'] == "etax") {
                                                 Get.to(
                                                   DocuemntreuploadTaxPayer(
                                                     resubmitdoc,
@@ -166,33 +154,27 @@ class _SecondProfileState extends State<SecondProfile> {
                                                   ),
                                                 );
                                               }
-                                            } else if ('${snapshot.data[index]['status']}' ==
-                                                "rejected") {
+                                            } else if ('${snapshot.data[index]['status']}' == "rejected") {
                                               rejectalertboxcall();
                                             } else if ('${snapshot.data[index]['status']}' ==
                                                 "doc-verified") {
                                               actionsheet(
                                                 snapshot.data[index],
-                                                snapshot.data[index]
-                                                    ['form_label'],
+                                                snapshot.data[index]['form_label'],
                                                 snapshot.data[index]["woda_id"],
                                               );
-                                            } else if ('${snapshot.data[index]['status']}' ==
-                                                "paid") {
+                                            } else if ('${snapshot.data[index]['status']}' == "paid") {
                                               processingalertboxcall();
-                                            } else if ('${snapshot.data[index]['status']}' ==
-                                                "postpone") {
+                                            } else if ('${snapshot.data[index]['status']}' == "postpone") {
                                               postponeAlertBox();
                                             } else {
                                               alertboxcall();
                                             }
                                           },
                                           child: ListTile(
-                                            leading: Icon(Icons.file_copy,
-                                                color: primary, size: 30),
+                                            leading: Icon(Icons.file_copy, color: primary, size: 30),
                                             title: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
                                                 new Text(
                                                   '${snapshot.data[index]['form_label']}',
@@ -208,17 +190,11 @@ class _SecondProfileState extends State<SecondProfile> {
                                                 //             color: text))
                                                 // :
                                                 new Text(
-                                                  '${snapshot.data[index]['status']}'
-                                                      .tr,
+                                                  '${snapshot.data[index]['status']}'.tr,
                                                   style: TextStyle(
                                                     fontSize: 12,
-                                                    color: snapshot.data[index][
-                                                                    'status'] ==
-                                                                "review" ||
-                                                            snapshot.data[index]
-                                                                    [
-                                                                    'status'] ==
-                                                                "doc-verified"
+                                                    color: snapshot.data[index]['status'] == "review" ||
+                                                            snapshot.data[index]['status'] == "doc-verified"
                                                         ? Colors.red
                                                         : text,
                                                   ),
@@ -238,10 +214,8 @@ class _SecondProfileState extends State<SecondProfile> {
                   Container(
                       child: FutureBuilder(
                           future: approved(),
-                          builder:
-                              (BuildContext context, AsyncSnapshot snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
+                          builder: (BuildContext context, AsyncSnapshot snapshot) {
+                            if (snapshot.connectionState == ConnectionState.waiting) {
                               return CustomSpinner();
                             } else if (snapshot.hasError) {
                               return CustomErrorCard();
@@ -253,30 +227,22 @@ class _SecondProfileState extends State<SecondProfile> {
                                       itemCount: snapshot.data.length,
                                       itemBuilder: (ctx, index) => InkWell(
                                         onTap: () {
-                                          if (snapshot.data[index]['type'] ==
-                                              "etax") {
+                                          if (snapshot.data[index]['type'] == "etax") {
                                             Navigator.push(
                                               context,
                                               MaterialPageRoute(
-                                                builder: (context) =>
-                                                    PropertyEditHomePage(),
+                                                builder: (context) => PropertyEditHomePage(),
                                               ),
                                             );
-                                          } else if (snapshot.data[index]
-                                                  ['type'] ==
-                                              "land") {
-                                          } else if (snapshot.data[index]
-                                                  ['type'] ==
-                                              "house") {
-                                          } else if ('${snapshot.data[index]['status']}' ==
-                                              "on_progress") {
+                                          } else if (snapshot.data[index]['type'] == "land") {
+                                          } else if (snapshot.data[index]['type'] == "house") {
+                                          } else if ('${snapshot.data[index]['status']}' == "on_progress") {
                                             finalprocessingalertboxcall();
                                           } else if ("${snapshot.data[index]['status']}" ==
                                               "cash_payment_pending") {
                                             paymentPendingAlert();
                                           } else {
-                                            approvedactionsheet(
-                                                snapshot.data[index]);
+                                            approvedactionsheet(snapshot.data[index]);
                                           }
                                         },
                                         child: ListTile(
@@ -295,27 +261,20 @@ class _SecondProfileState extends State<SecondProfile> {
                                             },
                                           ),
                                           title: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               new Text(
-                                                '${snapshot.data[index]['form_label']}'
-                                                    .tr,
+                                                '${snapshot.data[index]['form_label']}'.tr,
                                                 style: TextStyle(
                                                   color: text,
                                                 ),
                                               ),
                                               new Text(
-                                                '${snapshot.data[index]['status']}'
-                                                    .tr,
+                                                '${snapshot.data[index]['status']}'.tr,
                                                 style: TextStyle(
                                                   fontSize: 12,
-                                                  color: snapshot.data[index]
-                                                                  ['status'] ==
-                                                              "review" ||
-                                                          snapshot.data[index]
-                                                                  ['status'] ==
-                                                              "doc-verified"
+                                                  color: snapshot.data[index]['status'] == "review" ||
+                                                          snapshot.data[index]['status'] == "doc-verified"
                                                       ? Colors.red
                                                       : text,
                                                 ),
@@ -335,6 +294,7 @@ class _SecondProfileState extends State<SecondProfile> {
           )),
     );
   }
+
   paymentPendingAlert() {
     showDialog(
         context: context,
@@ -343,23 +303,20 @@ class _SecondProfileState extends State<SecondProfile> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
-            title: Text('paymentpendingtitle'.tr,
-                textAlign: TextAlign.center, style: TextStyle(color: primary)),
+            title:
+                Text('paymentpendingtitle'.tr, textAlign: TextAlign.center, style: TextStyle(color: primary)),
             content: Text('paymentpendingbody'.tr,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, height: 1.5)),
+                textAlign: TextAlign.center, style: TextStyle(fontSize: 16, height: 1.5)),
             actions: [
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(tertiary),
-                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
+                      backgroundColor: MaterialStateProperty.all(tertiary),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
                     child: Text('ठिक छ'),
                   ),
                   onPressed: () {
@@ -382,8 +339,7 @@ class _SecondProfileState extends State<SecondProfile> {
               decoration: new BoxDecoration(
                   color: Colors.white,
                   borderRadius: new BorderRadius.only(
-                      topLeft: const Radius.circular(10.0),
-                      topRight: const Radius.circular(10.0))),
+                      topLeft: const Radius.circular(10.0), topRight: const Radius.circular(10.0))),
               child: new Wrap(
                 children: <Widget>[
                   GestureDetector(
@@ -408,10 +364,14 @@ class _SecondProfileState extends State<SecondProfile> {
                               'pay_id': res['data']['pay_id'],
                               'secure_pay_code': res['secure_pay_code'],
                             },
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>    Paymentdetails(
-                                data: navdata,
-                                wardNumber: wardNumber,
-                              ), )),
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Paymentdetails(
+                                    data: navdata,
+                                    wardNumber: wardNumber,
+                                  ),
+                                )),
                             // Get.to(
                             //   Paymentdetails(
                             //     data: navdata,
@@ -579,20 +539,17 @@ class _SecondProfileState extends State<SecondProfile> {
               ),
             ),
             content: Text('documentstatus'.tr,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, height: 1.5)),
+                textAlign: TextAlign.center, style: TextStyle(fontSize: 16, height: 1.5)),
             actions: [
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(tertiary),
-                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
+                      backgroundColor: MaterialStateProperty.all(tertiary),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
                     child: Text('ठिक छ'),
                   ),
                   onPressed: () {
@@ -616,20 +573,17 @@ class _SecondProfileState extends State<SecondProfile> {
             title: Text('finalprocessingdocumenttitle'.tr,
                 textAlign: TextAlign.center, style: TextStyle(color: primary)),
             content: Text('finalprocessingdocumentbody'.tr,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, height: 1.5)),
+                textAlign: TextAlign.center, style: TextStyle(fontSize: 16, height: 1.5)),
             actions: [
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(tertiary),
-                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
+                      backgroundColor: MaterialStateProperty.all(tertiary),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
                     child: Text('ठिक छ'),
                   ),
                   onPressed: () {
@@ -650,23 +604,20 @@ class _SecondProfileState extends State<SecondProfile> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
-            title: Text('postponeAlertTitle'.tr,
-                textAlign: TextAlign.center, style: TextStyle(color: primary)),
+            title:
+                Text('postponeAlertTitle'.tr, textAlign: TextAlign.center, style: TextStyle(color: primary)),
             content: Text('postponeAlertBody'.tr,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, height: 1.5)),
+                textAlign: TextAlign.center, style: TextStyle(fontSize: 16, height: 1.5)),
             actions: [
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(tertiary),
-                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
+                      backgroundColor: MaterialStateProperty.all(tertiary),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
                     child: Text('ठिक छ'),
                   ),
                   onPressed: () {
@@ -690,20 +641,17 @@ class _SecondProfileState extends State<SecondProfile> {
             title: Text('processingdocumenttitle'.tr,
                 textAlign: TextAlign.center, style: TextStyle(color: primary)),
             content: Text('processingdocumentbody'.tr,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, height: 1.5)),
+                textAlign: TextAlign.center, style: TextStyle(fontSize: 16, height: 1.5)),
             actions: [
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(tertiary),
-                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
+                      backgroundColor: MaterialStateProperty.all(tertiary),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
                     child: Text('ठिक छ'),
                   ),
                   onPressed: () {
@@ -727,20 +675,17 @@ class _SecondProfileState extends State<SecondProfile> {
             title: Text('documentstatustitlereject'.tr,
                 textAlign: TextAlign.center, style: TextStyle(color: primary)),
             content: Text('documentstatusreject'.tr,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, height: 1.5)),
+                textAlign: TextAlign.center, style: TextStyle(fontSize: 16, height: 1.5)),
             actions: [
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(tertiary),
-                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
+                      backgroundColor: MaterialStateProperty.all(tertiary),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
                     child: Text('ठिक छ'),
                   ),
                   onPressed: () {

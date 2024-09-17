@@ -1,20 +1,20 @@
 import 'dart:convert';
 
-import 'package:kmc/Auth/login.dart';
 import 'package:double_back_to_close/double_back_to_close.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:kmc/components/Drawer.dart';
-import 'package:kmc/config/colors.dart';
-import 'package:kmc/config/Apiconnectservices.dart';
 import 'package:get/get.dart';
+import 'package:kmc/Auth/login.dart';
+import 'package:kmc/components/Drawer.dart';
+import 'package:kmc/config/Apiconnectservices.dart';
+import 'package:kmc/config/colors.dart';
 import 'package:kmc/pages/hellomayor/hellomayorEntry.dart';
 import 'package:kmc/pages/hellomayor/janagunaso/gunasoEntry.dart';
 import 'package:kmc/pages/hellomayor/janagunaso/gunasolist.dart';
 import 'package:kmc/pages/hellomayor/mayorList.dart';
 import 'package:kmc/pages/hellomayor/nyayiksamiti/nyayikEntry.dart';
 import 'package:kmc/pages/hellomayor/nyayiksamiti/nyayiklist.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeChat extends StatefulWidget {
   @override
@@ -33,12 +33,9 @@ class SewaData {
 }
 
 final List<SewaData> sewaData = [
-  SewaData('hello_mayor', link + 'HelloMayor.svg', 'hm_desc', HellomayorEntry(),
-      true),
-  SewaData('janagunaso', link + 'JanaGunaso.svg', 'jg_desc', JanaGunasoEntry(),
-      true),
-  SewaData('Judicial_committee', link + 'JanaGunaso.svg', 'jg_desc',
-      NyayikEntry(), true),
+  SewaData('hello_mayor', link + 'HelloMayor.svg', 'hm_desc', HellomayorEntry(), true),
+  SewaData('janagunaso', link + 'JanaGunaso.svg', 'jg_desc', JanaGunasoEntry(), true),
+  SewaData('Judicial_committee', link + 'JanaGunaso.svg', 'jg_desc', NyayikEntry(), true),
 ];
 
 class _HomeChatState extends State<HomeChat> {
@@ -124,8 +121,7 @@ class _HomeChatState extends State<HomeChat> {
                               padding: const EdgeInsets.all(8.0),
                               child: InkWell(
                                 onTap: () {
-                                  if (loginstatus == false &&
-                                      sewaData[i].permit == true) {
+                                  if (loginstatus == false && sewaData[i].permit == true) {
                                     checklogin();
                                   } else {
                                     Get.to(sewaData[i].link);
@@ -180,15 +176,9 @@ class _HomeChatState extends State<HomeChat> {
                   children: [
                     Text('${data.title}'.tr,
                         style: TextStyle(
-                            height: 1.3,
-                            color: textPrimaryColor,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold)),
+                            height: 1.3, color: textPrimaryColor, fontSize: 18, fontWeight: FontWeight.bold)),
                     Text('${data.details}'.tr,
-                        style: TextStyle(
-                            height: 1.3,
-                            color: textPrimaryColor,
-                            fontSize: 13)),
+                        style: TextStyle(height: 1.3, color: textPrimaryColor, fontSize: 13)),
                   ],
                 ),
               ),
@@ -197,8 +187,7 @@ class _HomeChatState extends State<HomeChat> {
 
   navigation(context, index, data) {
     if (loginstatus == true) {
-      if (role['role_name'] == "resident" ||
-          role_desig['role_name'] == "internal_role") {
+      if (role['role_name'] == "resident" || role_desig['role_name'] == "internal_role") {
         if (data.title == 'hello_mayor') {
           if (ismayor == "TRUE") {
             Get.to(MayorList());
@@ -237,23 +226,19 @@ class _HomeChatState extends State<HomeChat> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
-            title: Text('LOGIN'.tr,
-                textAlign: TextAlign.center, style: TextStyle(color: primary)),
+            title: Text('LOGIN'.tr, textAlign: TextAlign.center, style: TextStyle(color: primary)),
             content: Text('login_alert'.tr,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, height: 1.5)),
+                textAlign: TextAlign.center, style: TextStyle(fontSize: 16, height: 1.5)),
             actions: [
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(tertiary),
-                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
+                      backgroundColor: MaterialStateProperty.all(tertiary),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
                     child: Text('LOGIN'.tr),
                   ),
                   onPressed: () {
@@ -274,23 +259,19 @@ class _HomeChatState extends State<HomeChat> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
-            title: Text('not_available'.tr,
-                textAlign: TextAlign.center, style: TextStyle(color: primary)),
+            title: Text('not_available'.tr, textAlign: TextAlign.center, style: TextStyle(color: primary)),
             content: Text('role_check'.tr,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, height: 1.5)),
+                textAlign: TextAlign.center, style: TextStyle(fontSize: 16, height: 1.5)),
             actions: [
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(tertiary),
-                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
+                      backgroundColor: MaterialStateProperty.all(tertiary),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
                     child: Text('cancel'.tr),
                   ),
                   onPressed: () {

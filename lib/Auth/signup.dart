@@ -436,11 +436,9 @@ class _SignupState extends State<Signup> {
       padding: const EdgeInsets.all(8.0),
       child: ElevatedButton(
         style: ButtonStyle(
-            backgroundColor: WidgetStateProperty.all(tertiary),
-            padding: WidgetStateProperty.all(
-                EdgeInsets.symmetric(vertical: 16, horizontal: 35)),
-            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
+            backgroundColor: MaterialStateProperty.all(tertiary),
+            padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 16, horizontal: 35)),
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0),
             ))),
         child: Text('SEND'.tr, style: TextStyle(color: textPrimaryLightColor, fontSize: 20)),

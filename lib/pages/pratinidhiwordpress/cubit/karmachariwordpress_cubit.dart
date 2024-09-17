@@ -10,8 +10,7 @@ class KarmachariwordpressCubit extends Cubit<KarmachariwordpressState> {
   KarmachariwordpressCubit() : super(KarmachariwordpressInitial());
   DioCacheManager _dioCacheManager = DioCacheManager(CacheConfig());
 
-  Dio _dio =
-      Dio(); //*dio chai cache ma api lai rakhna use gareko navaye http hunxa
+  Dio _dio = Dio(); //*dio chai cache ma api lai rakhna use gareko navaye http hunxa
   karmachariWordpressApi() async {
     _dio.interceptors.add(_dioCacheManager.interceptor);
     try {
@@ -23,8 +22,8 @@ class KarmachariwordpressCubit extends Cubit<KarmachariwordpressState> {
       // var newMap = groupBy(response.data, (Map obj) => obj['Designation']);
 
       // print(newMap);
-      var list = List<PratinidhiModelWordpress>.from(
-          response.data.map((x) => PratinidhiModelWordpress.fromMap(x)));
+      var list =
+          List<PratinidhiModelWordpress>.from(response.data.map((x) => PratinidhiModelWordpress.fromMap(x)));
       emit(KarmachariwordpressLoaded(list));
     } catch (e) {
       print(e);

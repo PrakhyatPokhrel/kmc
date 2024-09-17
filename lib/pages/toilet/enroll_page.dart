@@ -1,4 +1,6 @@
 import 'dart:io';
+
+import 'package:dio/dio.dart' as dio;
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -8,9 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:kmc/config/Apiconnectservices.dart';
 import 'package:kmc/config/colors.dart';
 import 'package:kmc/pages/toilet/image_picker_for_toilet.dart';
-import 'package:kmc/utils/image_picker/image_picker_dialog.dart';
 import 'package:reactive_forms/reactive_forms.dart' as reactive_forms;
-import 'package:dio/dio.dart' as dio;
 
 class EnrollPage extends StatefulWidget {
   const EnrollPage({Key? key}) : super(key: key);
@@ -67,8 +67,7 @@ class EnrollPageState extends State<EnrollPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('SIGNUP'.tr,
-                    style: TextStyle(color: primary, fontSize: 22)),
+                Text('SIGNUP'.tr, style: TextStyle(color: primary, fontSize: 22)),
                 InkWell(
                     onTap: () {
                       Navigator.pop(context);
@@ -84,8 +83,7 @@ class EnrollPageState extends State<EnrollPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18),
                 child: Text("enroll_desc".tr,
-                    style: TextStyle(
-                        height: 1.3, color: textPrimaryColor, fontSize: 16)),
+                    style: TextStyle(height: 1.3, color: textPrimaryColor, fontSize: 16)),
               ),
               const SizedBox(
                 height: 10,
@@ -99,8 +97,7 @@ class EnrollPageState extends State<EnrollPage> {
                       leading: Icon(Icons.location_city, color: primary),
                       title: TextFormField(
                         controller: name,
-                        validator: FormBuilderValidators.required(context,
-                            errorText: 'required_field'.tr),
+                        validator: FormBuilderValidators.required(context, errorText: 'required_field'.tr),
                         decoration: InputDecoration(
                           hintText: 'Organization-name'.tr,
                         ),
@@ -114,8 +111,7 @@ class EnrollPageState extends State<EnrollPage> {
                       leading: Icon(Icons.person, color: primary),
                       title: TextFormField(
                         controller: focalPerson,
-                        validator: FormBuilderValidators.required(context,
-                            errorText: 'required_field'.tr),
+                        validator: FormBuilderValidators.required(context, errorText: 'required_field'.tr),
                         decoration: InputDecoration(
                           hintText: 'focal_person'.tr,
                         ),
@@ -130,8 +126,7 @@ class EnrollPageState extends State<EnrollPage> {
                       leading: Icon(Icons.home, color: primary),
                       title: TextFormField(
                         controller: address,
-                        validator: FormBuilderValidators.required(context,
-                            errorText: 'required_field'.tr),
+                        validator: FormBuilderValidators.required(context, errorText: 'required_field'.tr),
                         decoration: InputDecoration(
                           hintText: '${'organization'.tr} ${'address'.tr}',
                         ),
@@ -144,10 +139,8 @@ class EnrollPageState extends State<EnrollPage> {
                       ),
                       title: TextFormField(
                         validator: FormBuilderValidators.compose([
-                          FormBuilderValidators.required(context,
-                              errorText: 'required_field'.tr),
-                          FormBuilderValidators.email(context,
-                              errorText: 'email_validate'.tr),
+                          FormBuilderValidators.required(context, errorText: 'required_field'.tr),
+                          FormBuilderValidators.email(context, errorText: 'email_validate'.tr),
                         ]),
                         controller: email,
                         decoration: InputDecoration(
@@ -161,8 +154,7 @@ class EnrollPageState extends State<EnrollPage> {
                       title: TextFormField(
                         controller: mobile,
                         validator: FormBuilderValidators.compose([
-                          FormBuilderValidators.required(context,
-                              errorText: 'required_field'.tr),
+                          FormBuilderValidators.required(context, errorText: 'required_field'.tr),
                           FormBuilderValidators.minLength(
                             context,
                             10,
@@ -182,13 +174,11 @@ class EnrollPageState extends State<EnrollPage> {
                     ),
                     ListTile(
                       leading: Transform.translate(
-                          offset: Offset(0, -22),
-                          child: Icon(Icons.info_sharp, color: primary)),
+                          offset: Offset(0, -22), child: Icon(Icons.info_sharp, color: primary)),
                       title: TextFormField(
                         controller: description,
                         validator: FormBuilderValidators.compose([
-                          FormBuilderValidators.required(context,
-                              errorText: 'required_field'.tr),
+                          FormBuilderValidators.required(context, errorText: 'required_field'.tr),
                           // FormBuilderValidators.minLength(
                           //   context,
                           //   10,
@@ -212,8 +202,7 @@ class EnrollPageState extends State<EnrollPage> {
                       title: TextFormField(
                         controller: websiteUrl,
                         validator: FormBuilderValidators.compose([
-                          FormBuilderValidators.required(context,
-                              errorText: 'required_field'.tr),
+                          FormBuilderValidators.required(context, errorText: 'required_field'.tr),
                           // FormBuilderValidators.minLength(
                           //   context,
                           //   10,
@@ -236,8 +225,7 @@ class EnrollPageState extends State<EnrollPage> {
                       children: <Widget>[
                         Container(
                           padding: const EdgeInsets.only(left: 44.0),
-                          margin: const EdgeInsets.only(
-                              top: 5.0, left: 28.0, right: 16.0),
+                          margin: const EdgeInsets.only(top: 5.0, left: 28.0, right: 16.0),
                           child: DropdownButton(
                             menuMaxHeight: 400,
                             hint: Text('toilet_type'.tr),
@@ -260,8 +248,7 @@ class EnrollPageState extends State<EnrollPage> {
                           ),
                         ),
                         Container(
-                          margin: const EdgeInsets.only(
-                              top: 16.0, left: 16.0, right: 16.0),
+                          margin: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
                           child: Icon(
                             Icons.location_city,
                             color: primary,
@@ -344,15 +331,13 @@ class EnrollPageState extends State<EnrollPage> {
                               // print(storage.isGranted);
 
                               // if(storage.isGranted){
-                              FilePickerResult? filePickerResult =
-                                  await FilePicker.platform.pickFiles(
+                              FilePickerResult? filePickerResult = await FilePicker.platform.pickFiles(
                                 type: FileType.custom,
                                 allowedExtensions: ['pdf'],
                                 allowMultiple: false,
                               );
                               if (filePickerResult != null) {
-                                XFile? file =
-                                    XFile(filePickerResult.files.single.path!);
+                                XFile? file = XFile(filePickerResult.files.single.path!);
                                 applicationFile = file;
                                 setState(() {});
                               }
@@ -384,9 +369,7 @@ class EnrollPageState extends State<EnrollPage> {
                           ),
                           Expanded(
                             child: Text(
-                              applicationFile != null
-                                  ? applicationFile!.name
-                                  : "Choose File",
+                              applicationFile != null ? applicationFile!.name : "Choose File",
                               style: TextStyle(
                                 fontSize: 16,
                                 color: text,
@@ -516,15 +499,12 @@ class EnrollPageState extends State<EnrollPage> {
         width: MediaQuery.of(context).size.width / 1.5,
         child: ElevatedButton(
           style: ButtonStyle(
-              backgroundColor: WidgetStateProperty.all(tertiary),
-              padding: WidgetStateProperty.all(
-                  EdgeInsets.symmetric(vertical: 5, horizontal: 35)),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
+              backgroundColor: MaterialStateProperty.all(tertiary),
+              padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 5, horizontal: 35)),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
               ))),
-          child: Text('SEND'.tr,
-              style: TextStyle(color: textPrimaryLightColor, fontSize: 20)),
+          child: Text('SEND'.tr, style: TextStyle(color: textPrimaryLightColor, fontSize: 20)),
           onPressed: () {
             submit();
 
@@ -567,17 +547,13 @@ class EnrollPageState extends State<EnrollPage> {
 
   void submit() async {
     if (_fbKey.currentState!.validate() == true) {
-      if (!(_currentType == null ||
-          applicationFile == null ||
-          imagefile == null)) {
+      if (!(_currentType == null || applicationFile == null || imagefile == null)) {
         EasyLoading.show(status: 'Please wait...'.tr);
 
         _fbKey.currentState?.save();
-        var logo = await dio.MultipartFile.fromFile(imagefile!.path,
-            filename: imagefile!.path);
-        var application = await dio.MultipartFile.fromFile(
-            applicationFile!.path,
-            filename: applicationFile!.name);
+        var logo = await dio.MultipartFile.fromFile(imagefile!.path, filename: imagefile!.path);
+        var application =
+            await dio.MultipartFile.fromFile(applicationFile!.path, filename: applicationFile!.name);
         var data = {
           "organization_name": name.text,
           "organization_description": description.text,
@@ -597,21 +573,16 @@ class EnrollPageState extends State<EnrollPage> {
           enrollOrganization(data).then((value) => {
                 EasyLoading.dismiss(),
                 if (value == true)
-                  {
-                    Get.back(),
-                    EasyLoading.showSuccess("Application sent for review")
-                  }
+                  {Get.back(), EasyLoading.showSuccess("Application sent for review")}
                 else
                   {
                     EasyLoading.dismiss(),
-                    EasyLoading.showError(
-                        'Please check all fields !! or try again later')
+                    EasyLoading.showError('Please check all fields !! or try again later')
                   }
               });
         } catch (e) {
           EasyLoading.dismiss();
-          EasyLoading.showError(
-              'Please check all fields !! or try again later');
+          EasyLoading.showError('Please check all fields !! or try again later');
         }
       } else {
         EasyLoading.showError('Please check all fields !! or try again later');

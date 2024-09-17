@@ -82,9 +82,9 @@ class _BibhagState extends State<Bibhag> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           ConstrainedBox(
-                            constraints:
-                                new BoxConstraints(maxWidth: Get.width * 0.7),
-                            child: Text('${navdata['name']}',
+                            constraints: new BoxConstraints(maxWidth: Get.width * 0.7),
+                            // child: Text('${navdata['name']}',
+                            child: Text('$data',
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(color: primary, fontSize: 22)),
@@ -103,8 +103,7 @@ class _BibhagState extends State<Bibhag> {
                                   onTap: () {
                                     Navigator.pop(context);
                                   },
-                                  child: Icon(Icons.arrow_back,
-                                      color: primary, size: 28)),
+                                  child: Icon(Icons.arrow_back, color: primary, size: 28)),
                             ],
                           ),
                         ],
@@ -175,8 +174,7 @@ class _BibhagState extends State<Bibhag> {
                   Expanded(
                     flex: 7,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 30.0, horizontal: 10.0),
+                      padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 10.0),
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -184,11 +182,8 @@ class _BibhagState extends State<Bibhag> {
                             Text(
                               '${navdata['title']}'.tr,
                               textAlign: TextAlign.justify,
-                              style: TextStyle(
-                                  height: 1.2,
-                                  color: primary,
-                                  fontSize: 20,
-                                  fontFamily: 'Mukta'),
+                              style:
+                                  TextStyle(height: 1.2, color: primary, fontSize: 20, fontFamily: 'Mukta'),
                             ),
                             SizedBox(height: 7),
                             new Container(
@@ -224,24 +219,18 @@ class _BibhagState extends State<Bibhag> {
                           ClipRRect(
                               borderRadius: BorderRadius.circular(50.0),
                               child: CachedNetworkImage(
-                                imageUrl:
-                                    "${navdata['bibhag_head']['user_img']}",
+                                imageUrl: "${navdata['bibhag_head']['user_img']}",
                                 // imageUrl:
                                 //     'https://kathmandumetro.smartpalika.io/images/user/20191108024004.png',
                                 errorWidget: (context, url, error) => ClipRRect(
                                     borderRadius: BorderRadius.circular(50.0),
-                                    child: Image.asset(
-                                        'assets/images/dummyuser.png',
-                                        height: 80,
-                                        width: 80,
-                                        fit: BoxFit.contain)),
-                                imageBuilder: (context, imageProvider) =>
-                                    CircleAvatar(
+                                    child: Image.asset('assets/images/dummyuser.png',
+                                        height: 80, width: 80, fit: BoxFit.contain)),
+                                imageBuilder: (context, imageProvider) => CircleAvatar(
                                   radius: 55,
                                   backgroundImage: imageProvider,
                                 ),
-                                placeholder: (context, url) =>
-                                    CircularProgressIndicator(
+                                placeholder: (context, url) => CircularProgressIndicator(
                                   backgroundColor: primary,
                                 ),
                               )),
@@ -295,8 +284,7 @@ class _BibhagState extends State<Bibhag> {
                           itemCount: subheadinglistdata.length,
                           itemBuilder: (context, i) {
                             return Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 4.0, vertical: 2),
+                              padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 2),
                               child: Row(
                                 children: [
                                   Column(children: [
@@ -310,39 +298,26 @@ class _BibhagState extends State<Bibhag> {
                                       child: Card(
                                         shape: RoundedRectangleBorder(
                                           side: BorderSide(
-                                            color: subIndex == i
-                                                ? primary
-                                                : Colors.white,
+                                            color: subIndex == i ? primary : Colors.white,
                                             width: 2.0,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(16.0),
+                                          borderRadius: BorderRadius.circular(16.0),
                                         ),
                                         elevation: 0,
                                         color: Colors.white,
                                         child: Padding(
                                           padding: const EdgeInsets.all(20),
                                           child: CachedNetworkImage(
-                                            imageUrl: subheadinglistdata[i]
-                                                ['icon'],
-                                            placeholder: (context, url) =>
-                                                Container(
+                                            imageUrl: subheadinglistdata[i]['icon'],
+                                            placeholder: (context, url) => Container(
                                               width: 19,
                                               height: 19,
                                               child: CircularProgressIndicator(
-                                                valueColor:
-                                                    AlwaysStoppedAnimation<
-                                                        Color>(Colors.white),
+                                                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                                               ),
                                             ),
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.09,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.09,
+                                            width: MediaQuery.of(context).size.width * 0.09,
+                                            height: MediaQuery.of(context).size.width * 0.09,
                                           ),
                                         ),
                                       ),
@@ -350,8 +325,7 @@ class _BibhagState extends State<Bibhag> {
                                     SizedBox(
                                       height: 5,
                                     ),
-                                    Text(subheadinglistdata[i]['text'],
-                                        style: TextStyle(color: text))
+                                    Text(subheadinglistdata[i]['text'], style: TextStyle(color: text))
                                   ]),
                                   SizedBox(
                                     width: 30.0,
@@ -370,8 +344,7 @@ class _BibhagState extends State<Bibhag> {
                           itemCount: subheadinglistdata.length,
                           itemBuilder: (context, i) {
                             return Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 4.0, vertical: 2),
+                              padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 2),
                               child: Column(children: [
                                 InkWell(
                                   onTap: () {
@@ -383,9 +356,7 @@ class _BibhagState extends State<Bibhag> {
                                   child: Card(
                                     shape: RoundedRectangleBorder(
                                       side: BorderSide(
-                                        color: subIndex == i
-                                            ? primary
-                                            : Colors.white,
+                                        color: subIndex == i ? primary : Colors.white,
                                         width: 2.0,
                                       ),
                                       borderRadius: BorderRadius.circular(16.0),
@@ -396,22 +367,15 @@ class _BibhagState extends State<Bibhag> {
                                       padding: const EdgeInsets.all(20),
                                       child: CachedNetworkImage(
                                         imageUrl: subheadinglistdata[i]['icon'],
-                                        placeholder: (context, url) =>
-                                            Container(
+                                        placeholder: (context, url) => Container(
                                           width: 19,
                                           height: 19,
                                           child: CircularProgressIndicator(
-                                            valueColor:
-                                                AlwaysStoppedAnimation<Color>(
-                                                    Colors.white),
+                                            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                                           ),
                                         ),
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.09,
-                                        height:
-                                            MediaQuery.of(context).size.width *
-                                                0.09,
+                                        width: MediaQuery.of(context).size.width * 0.09,
+                                        height: MediaQuery.of(context).size.width * 0.09,
                                       ),
                                     ),
                                   ),
@@ -419,8 +383,7 @@ class _BibhagState extends State<Bibhag> {
                                 SizedBox(
                                   height: 5,
                                 ),
-                                Text(subheadinglistdata[i]['text'],
-                                    style: TextStyle(color: text))
+                                Text(subheadinglistdata[i]['text'], style: TextStyle(color: text))
                               ]),
                             );
                           }),
@@ -472,8 +435,7 @@ class _BibhagState extends State<Bibhag> {
                   child: Scrollbar(
                       thumbVisibility: true,
                       controller: _scrollController,
-                      child: ListView(
-                          children: [Html(data: contentlist['html'])])),
+                      child: ListView(children: [Html(data: contentlist['html'])])),
                 ))
           ]))
         : Container();
@@ -541,9 +503,7 @@ class _BibhagState extends State<Bibhag> {
                                             width: 19,
                                             height: 19,
                                             child: CircularProgressIndicator(
-                                              valueColor:
-                                                  AlwaysStoppedAnimation<Color>(
-                                                      Colors.white),
+                                              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                                             ),
                                           )),
                                   title: new Text(orglist[i]['title']),
@@ -667,8 +627,7 @@ class _BibhagState extends State<Bibhag> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20.0),
                       child: CachedNetworkImage(
-                          imageUrl:
-                              'https://kathmandumetro.smartpalika.io/images/event/drinking-water.jpg',
+                          imageUrl: 'https://kathmandumetro.smartpalika.io/images/event/drinking-water.jpg',
                           height: 105,
                           width: 100,
                           fit: BoxFit.cover,
@@ -676,8 +635,7 @@ class _BibhagState extends State<Bibhag> {
                                 width: 19,
                                 height: 19,
                                 child: CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                      Colors.white),
+                                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                                 ),
                               )),
                     ),
@@ -699,15 +657,11 @@ class _BibhagState extends State<Bibhag> {
                           child: Text(data['heading'],
                               overflow: TextOverflow.ellipsis,
                               softWrap: false,
-                              style: TextStyle(
-                                  height: 1.3,
-                                  color: textPrimaryColor,
-                                  fontSize: 16)),
+                              style: TextStyle(height: 1.3, color: textPrimaryColor, fontSize: 16)),
                         ),
                         Row(children: [
                           Container(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 4.0, horizontal: 1),
+                              padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 1),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.0),
                                 color: white,
@@ -720,8 +674,7 @@ class _BibhagState extends State<Bibhag> {
                               )),
                           SizedBox(width: 10),
                           Container(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 4.0, horizontal: 1),
+                            padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 1),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10.0),
                               color: white,
@@ -756,8 +709,7 @@ class _BibhagState extends State<Bibhag> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20.0),
                       child: CachedNetworkImage(
-                          imageUrl:
-                              'https://kathmandumetro.smartpalika.io/images/event/drinking-water.jpg',
+                          imageUrl: 'https://kathmandumetro.smartpalika.io/images/event/drinking-water.jpg',
                           height: 105,
                           width: 100,
                           fit: BoxFit.cover,
@@ -765,8 +717,7 @@ class _BibhagState extends State<Bibhag> {
                                 width: 19,
                                 height: 19,
                                 child: CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                      Colors.white),
+                                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                                 ),
                               )),
                     ),
@@ -787,15 +738,11 @@ class _BibhagState extends State<Bibhag> {
                           child: Text(data['heading'],
                               overflow: TextOverflow.ellipsis,
                               softWrap: false,
-                              style: TextStyle(
-                                  height: 1.3,
-                                  color: textPrimaryColor,
-                                  fontSize: 16)),
+                              style: TextStyle(height: 1.3, color: textPrimaryColor, fontSize: 16)),
                         ),
                         Row(children: [
                           Container(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 4.0, horizontal: 1),
+                              padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 1),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.0),
                                 color: white,
@@ -808,8 +755,7 @@ class _BibhagState extends State<Bibhag> {
                               )),
                           SizedBox(width: 10),
                           Container(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 4.0, horizontal: 1),
+                            padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 1),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10.0),
                               color: white,
@@ -840,9 +786,7 @@ class _BibhagState extends State<Bibhag> {
             ),
             elevation: 0,
             backgroundColor: Colors.transparent,
-            child: name == 'bibhag'
-                ? contentBox(context, data)
-                : readMoreBox(context, data),
+            child: name == 'bibhag' ? contentBox(context, data) : readMoreBox(context, data),
           );
         });
   }
@@ -860,10 +804,7 @@ class _BibhagState extends State<Bibhag> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [
-                        BoxShadow(
-                            color: Colors.grey,
-                            offset: Offset(0, 5),
-                            blurRadius: 10),
+                        BoxShadow(color: Colors.grey, offset: Offset(0, 5), blurRadius: 10),
                       ]),
                   child: Column(
                     children: <Widget>[
@@ -874,26 +815,18 @@ class _BibhagState extends State<Bibhag> {
                             ClipRRect(
                                 borderRadius: BorderRadius.circular(50.0),
                                 child: CachedNetworkImage(
-                                  imageUrl:
-                                      "${navdata['bibhag_head']['user_img']}",
+                                  imageUrl: "${navdata['bibhag_head']['user_img']}",
                                   // imageUrl:
                                   //     'https://kathmandumetro.smartpalika.io/images/user/20191108024004.png',
-                                  errorWidget: (context, url, error) =>
-                                      ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(50.0),
-                                          child: Image.asset(
-                                              'assets/images/dummyuser.png',
-                                              height: 80,
-                                              width: 80,
-                                              fit: BoxFit.contain)),
-                                  imageBuilder: (context, imageProvider) =>
-                                      CircleAvatar(
+                                  errorWidget: (context, url, error) => ClipRRect(
+                                      borderRadius: BorderRadius.circular(50.0),
+                                      child: Image.asset('assets/images/dummyuser.png',
+                                          height: 80, width: 80, fit: BoxFit.contain)),
+                                  imageBuilder: (context, imageProvider) => CircleAvatar(
                                     radius: 55,
                                     backgroundImage: imageProvider,
                                   ),
-                                  placeholder: (context, url) =>
-                                      CircularProgressIndicator(
+                                  placeholder: (context, url) => CircularProgressIndicator(
                                     backgroundColor: primary,
                                   ),
                                 )),
@@ -910,11 +843,8 @@ class _BibhagState extends State<Bibhag> {
                             Text(
                               '${navdata['bibhag_head']['designation']}',
                               textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: primary,
-                                  fontFamily: 'Mukta',
-                                  fontSize: 16.0,
-                                  height: 1),
+                              style:
+                                  TextStyle(color: primary, fontFamily: 'Mukta', fontSize: 16.0, height: 1),
                             ),
                           ],
                         ),
@@ -924,9 +854,8 @@ class _BibhagState extends State<Bibhag> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             new ConstrainedBox(
-                              constraints: new BoxConstraints(
-                                  maxHeight:
-                                      MediaQuery.of(context).size.height * 0.2),
+                              constraints:
+                                  new BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.2),
                               child: Html(
                                 // defaultTextStyle: TextStyle(
                                 //   height: 1.5,
@@ -956,8 +885,7 @@ class _BibhagState extends State<Bibhag> {
                     onTap: () {
                       Navigator.of(context).pop();
                     },
-                    child:
-                        Image.asset('assets/images/icons/newIcons/cross.png')),
+                    child: Image.asset('assets/images/icons/newIcons/cross.png')),
               ),
             )
           ])
@@ -977,10 +905,7 @@ class _BibhagState extends State<Bibhag> {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
-                  BoxShadow(
-                      color: Colors.black,
-                      offset: Offset(0, 10),
-                      blurRadius: 10),
+                  BoxShadow(color: Colors.black, offset: Offset(0, 10), blurRadius: 10),
                 ]),
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -990,8 +915,7 @@ class _BibhagState extends State<Bibhag> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(20.0),
                       child: CachedNetworkImage(
-                          imageUrl:
-                              'https://kathmandumetro.smartpalika.io/images/event/drinking-water.jpg',
+                          imageUrl: 'https://kathmandumetro.smartpalika.io/images/event/drinking-water.jpg',
                           height: 80,
                           width: 80,
                           fit: BoxFit.cover,
@@ -999,8 +923,7 @@ class _BibhagState extends State<Bibhag> {
                                 width: 19,
                                 height: 19,
                                 child: CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                      Colors.white),
+                                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                                 ),
                               )),
                     ),
@@ -1024,15 +947,11 @@ class _BibhagState extends State<Bibhag> {
                               child: Text('palika-name'.tr,
                                   overflow: TextOverflow.ellipsis,
                                   // softWrap: true,
-                                  style: TextStyle(
-                                      height: 1.3,
-                                      color: textPrimaryColor,
-                                      fontSize: 16)),
+                                  style: TextStyle(height: 1.3, color: textPrimaryColor, fontSize: 16)),
                             ),
                             Row(children: [
                               Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 4.0, horizontal: 1),
+                                  padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 1),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10.0),
                                     color: white,
@@ -1045,8 +964,7 @@ class _BibhagState extends State<Bibhag> {
                                   )),
                               SizedBox(width: 10),
                               Container(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 4.0, horizontal: 1),
+                                padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 1),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10.0),
                                   color: white,
@@ -1060,8 +978,7 @@ class _BibhagState extends State<Bibhag> {
                               ),
                               SizedBox(width: 10),
                               Container(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 4.0, horizontal: 1),
+                                padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 1),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10.0),
                                   color: white,
@@ -1137,8 +1054,7 @@ class _BibhagState extends State<Bibhag> {
             child: SfCartesianChart(
                 primaryXAxis: CategoryAxis(),
                 tooltipBehavior: TooltipBehavior(enable: true),
-                legend:
-                    Legend(isVisible: true, position: LegendPosition.bottom),
+                legend: Legend(isVisible: true, position: LegendPosition.bottom),
                 series: <ChartSeries>[
                   // Renders spline chart
                   SplineSeries<SalesData, String>(
@@ -1197,9 +1113,8 @@ class _BibhagState extends State<Bibhag> {
                     SalesData('2013', 40),
                     SalesData('2014', 90)
                   ],
-                  dataLabelSettings: DataLabelSettings(
-                      isVisible: true,
-                      textStyle: TextStyle(color: Colors.white)),
+                  dataLabelSettings:
+                      DataLabelSettings(isVisible: true, textStyle: TextStyle(color: Colors.white)),
                   xValueMapper: (SalesData data, _) => data.year,
                   yValueMapper: (SalesData data, _) => data.sales,
                   // Explode the segments on tap

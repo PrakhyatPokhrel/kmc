@@ -1,22 +1,22 @@
 // ignore_for_file: unnecessary_statements
 
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:kmc/components/bottomNavBar.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:kmc/components/bottomNavBar.dart';
 import 'package:kmc/config/Apiconnectservices.dart';
 import 'package:kmc/config/colors.dart';
-import 'package:get/get.dart';
-import 'dart:io';
 
 class DocuemntreuploadTaxPayer extends StatefulWidget {
   final reupload;
   DocuemntreuploadTaxPayer(this.reupload);
   @override
-  _DocuemntreuploadTaxPayerState createState() =>
-      _DocuemntreuploadTaxPayerState();
+  _DocuemntreuploadTaxPayerState createState() => _DocuemntreuploadTaxPayerState();
 }
 
 class _DocuemntreuploadTaxPayerState extends State<DocuemntreuploadTaxPayer> {
@@ -87,8 +87,7 @@ class _DocuemntreuploadTaxPayerState extends State<DocuemntreuploadTaxPayer> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  child: Text("पुन: अपलोड",
-                      style: TextStyle(color: primary, fontSize: 22)),
+                  child: Text("पुन: अपलोड", style: TextStyle(color: primary, fontSize: 22)),
                 ),
                 InkWell(
                     onTap: () {
@@ -145,13 +144,9 @@ class _DocuemntreuploadTaxPayerState extends State<DocuemntreuploadTaxPayer> {
                             ),
                             trailing: GestureDetector(
                                 onTap: () {
-                                  chooseimage(
-                                      index,
-                                      widget.reupload['review_fields'][index]
-                                          ['field']);
+                                  chooseimage(index, widget.reupload['review_fields'][index]['field']);
                                 },
-                                child: Icon(Icons.camera_alt,
-                                    color: primary, size: 27)),
+                                child: Icon(Icons.camera_alt, color: primary, size: 27)),
                           ),
                         ),
                         imageupload[index] != ''
@@ -167,12 +162,9 @@ class _DocuemntreuploadTaxPayerState extends State<DocuemntreuploadTaxPayer> {
                                 width: 500,
                                 height: 300,
                                 child: CachedNetworkImage(
-                                  imageUrl:
-                                      '${widget.reupload['review_fields'][index]['document']}',
-                                  placeholder: (context, url) => Center(
-                                      child: CircularProgressIndicator()),
-                                  errorWidget: (context, url, error) =>
-                                      Center(child: Icon(Icons.error)),
+                                  imageUrl: '${widget.reupload['review_fields'][index]['document']}',
+                                  placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+                                  errorWidget: (context, url, error) => Center(child: Icon(Icons.error)),
                                 ),
                               ),
                         filepdf[index] != ''
@@ -200,8 +192,7 @@ class _DocuemntreuploadTaxPayerState extends State<DocuemntreuploadTaxPayer> {
           if (photolen < widget.reupload['review_fields'].length) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 backgroundColor: Colors.red,
-                content: Text(
-                    'कृपया सबै माथिका सबै डॉक्यूमेंट हरु अपलोड गर्नुहोस ।   ')));
+                content: Text('कृपया सबै माथिका सबै डॉक्यूमेंट हरु अपलोड गर्नुहोस ।   ')));
           } else {
             Get.off(BottomNavBar());
           }
@@ -209,11 +200,9 @@ class _DocuemntreuploadTaxPayerState extends State<DocuemntreuploadTaxPayer> {
         },
         // onPressed: onStepContinue,
         icon: Icon(Icons.send),
-        label: Text('SEND'.tr,
-            style: TextStyle(color: textPrimaryLightColor, fontSize: 15)),
+        label: Text('SEND'.tr, style: TextStyle(color: textPrimaryLightColor, fontSize: 15)),
         style: ButtonStyle(
-            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ))));
   }
@@ -230,8 +219,7 @@ class _DocuemntreuploadTaxPayerState extends State<DocuemntreuploadTaxPayer> {
               decoration: new BoxDecoration(
                   color: Colors.white,
                   borderRadius: new BorderRadius.only(
-                      topLeft: const Radius.circular(10.0),
-                      topRight: const Radius.circular(10.0))),
+                      topLeft: const Radius.circular(10.0), topRight: const Radius.circular(10.0))),
               child: new Wrap(
                 children: <Widget>[
                   GestureDetector(
@@ -297,9 +285,7 @@ class _DocuemntreuploadTaxPayerState extends State<DocuemntreuploadTaxPayer> {
   labelText(text) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Text(text,
-          textAlign: TextAlign.left,
-          style: TextStyle(fontSize: 16, color: primary)),
+      child: Text(text, textAlign: TextAlign.left, style: TextStyle(fontSize: 16, color: primary)),
     );
   }
 

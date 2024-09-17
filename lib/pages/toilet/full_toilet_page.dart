@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:galli_map/galli_map.dart';
 import 'package:get/get.dart';
 import 'package:kmc/config/Apiconnectservices.dart';
 // import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -10,8 +12,6 @@ import 'package:kmc/config/colors.dart';
 import 'package:kmc/modal/toilet_single_branch.dart';
 import 'package:map_launcher/map_launcher.dart' as mapLauncher;
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:easy_image_viewer/easy_image_viewer.dart';
-import 'package:galli_map/galli_map.dart';
 
 class FullToiletPage extends StatefulWidget {
   const FullToiletPage({Key? key, required this.data}) : super(key: key);
@@ -80,29 +80,23 @@ class _FullToiletPageState extends State<FullToiletPage> {
                                   Container(
                                     clipBehavior: Clip.antiAlias,
                                     decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
+                                        borderRadius: BorderRadius.circular(15.0),
                                         border: Border.all(color: primary)),
                                     child: CachedNetworkImage(
-                                        imageUrl:
-                                            '${widget.data.data.branches.organizationImage}',
+                                        imageUrl: '${widget.data.data.branches.organizationImage}',
                                         height: 100,
                                         width: 100,
                                         fit: BoxFit.fill,
-                                        errorWidget: (context, url, error) =>
-                                            ClipRRect(
+                                        errorWidget: (context, url, error) => ClipRRect(
                                                 child: Image.asset(
                                               'assets/images/Grey_Placeholder.png',
                                               fit: BoxFit.fill,
                                             )),
-                                        placeholder: (context, url) =>
-                                            Container(
+                                        placeholder: (context, url) => Container(
                                               width: 19,
                                               height: 19,
                                               child: CircularProgressIndicator(
-                                                valueColor:
-                                                    AlwaysStoppedAnimation<
-                                                        Color>(Colors.white),
+                                                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                                               ),
                                             )),
                                   ),
@@ -138,43 +132,32 @@ class _FullToiletPageState extends State<FullToiletPage> {
                                           '${widget.data.data.branches.organizationName},${widget.data.data.branches.location}',
                                           overflow: TextOverflow.ellipsis,
                                           softWrap: false,
-                                          style: TextStyle(
-                                              height: 1.3,
-                                              color: textPrimaryColor,
-                                              fontSize: 16)),
+                                          style:
+                                              TextStyle(height: 1.3, color: textPrimaryColor, fontSize: 16)),
                                     ),
                                     SizedBox(
                                       width: 150.0,
-                                      child: Text(
-                                          "Price: ${widget.data.data.branches.serviceType}",
+                                      child: Text("Price: ${widget.data.data.branches.serviceType}",
                                           overflow: TextOverflow.ellipsis,
                                           softWrap: false,
-                                          style: TextStyle(
-                                              height: 1.3,
-                                              color: textPrimaryColor,
-                                              fontSize: 16)),
+                                          style:
+                                              TextStyle(height: 1.3, color: textPrimaryColor, fontSize: 16)),
                                     ),
                                     SizedBox(
                                       width: 150.0,
-                                      child: Text(
-                                          "Type: ${widget.data.data.branches.category}",
+                                      child: Text("Type: ${widget.data.data.branches.category}",
                                           overflow: TextOverflow.ellipsis,
                                           softWrap: false,
-                                          style: TextStyle(
-                                              height: 1.3,
-                                              color: textPrimaryColor,
-                                              fontSize: 16)),
+                                          style:
+                                              TextStyle(height: 1.3, color: textPrimaryColor, fontSize: 16)),
                                     ),
                                     SizedBox(
                                       width: 150.0,
-                                      child: Text(
-                                          "Location: ${widget.data.data.branches.location}",
+                                      child: Text("Location: ${widget.data.data.branches.location}",
                                           overflow: TextOverflow.ellipsis,
                                           softWrap: false,
-                                          style: TextStyle(
-                                              height: 1.3,
-                                              color: textPrimaryColor,
-                                              fontSize: 16)),
+                                          style:
+                                              TextStyle(height: 1.3, color: textPrimaryColor, fontSize: 16)),
                                     ),
                                     SizedBox(
                                       height: 10,
@@ -197,12 +180,10 @@ class _FullToiletPageState extends State<FullToiletPage> {
                                     LimitedBox(
                                       maxWidth: 150.0,
                                       child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
                                           Visibility(
-                                            visible: widget.data.data.branches
-                                                .disabledStatus,
+                                            visible: widget.data.data.branches.disabledStatus,
                                             child: Row(
                                               children: [
                                                 AvailabilityIcon(
@@ -215,12 +196,8 @@ class _FullToiletPageState extends State<FullToiletPage> {
                                             ),
                                           ),
                                           Visibility(
-                                            visible: widget.data.data.branches
-                                                        .toiletType ==
-                                                    'male' ||
-                                                widget.data.data.branches
-                                                        .toiletType ==
-                                                    'all',
+                                            visible: widget.data.data.branches.toiletType == 'male' ||
+                                                widget.data.data.branches.toiletType == 'all',
                                             child: AvailabilityIcon(
                                               icon: 'male.svg',
                                             ),
@@ -229,12 +206,8 @@ class _FullToiletPageState extends State<FullToiletPage> {
                                             width: 10,
                                           ),
                                           Visibility(
-                                            visible: widget.data.data.branches
-                                                        .toiletType ==
-                                                    'female' ||
-                                                widget.data.data.branches
-                                                        .toiletType ==
-                                                    'all',
+                                            visible: widget.data.data.branches.toiletType == 'female' ||
+                                                widget.data.data.branches.toiletType == 'all',
                                             child: AvailabilityIcon(
                                               icon: 'female.svg',
                                             ),
@@ -328,10 +301,7 @@ class _FullToiletPageState extends State<FullToiletPage> {
                                   "${widget.data.data.branches.organizationName}",
                                   overflow: TextOverflow.ellipsis,
                                   softWrap: false,
-                                  style: TextStyle(
-                                      height: 1.3,
-                                      color: textPrimaryColor,
-                                      fontSize: 16),
+                                  style: TextStyle(height: 1.3, color: textPrimaryColor, fontSize: 16),
                                 ),
                                 CompanyDetailsText(
                                   text: '${widget.data.data.branches.category}',
@@ -340,8 +310,7 @@ class _FullToiletPageState extends State<FullToiletPage> {
                                   text: '${widget.data.data.branches.location}',
                                 ),
                                 CompanyDetailsText(
-                                  text:
-                                      '${widget.data.data.branches.organizationEmail}',
+                                  text: '${widget.data.data.branches.organizationEmail}',
                                 ),
                                 // CompanyDetailsText(text: 'siddartha@bank.com',),
                               ],
@@ -365,10 +334,8 @@ class _FullToiletPageState extends State<FullToiletPage> {
                     padding: const EdgeInsets.all(12.0),
                     child: Container(
                       width: double.infinity,
-                      child: Text(
-                          "${widget.data.data.branches.organizationDescription}",
-                          style:
-                              TextStyle(color: textPrimaryColor, fontSize: 14)),
+                      child: Text("${widget.data.data.branches.organizationDescription}",
+                          style: TextStyle(color: textPrimaryColor, fontSize: 14)),
                     ),
                   ),
                 ),
@@ -380,19 +347,16 @@ class _FullToiletPageState extends State<FullToiletPage> {
                   spacing: 5,
                   runSpacing: 5,
                   children: [
-                    for (var i = 0;
-                        i < widget.data.data.branches.branchImages.length;
-                        i++) ...[
+                    for (var i = 0; i < widget.data.data.branches.branchImages.length; i++) ...[
                       InkWell(
                         onTap: () {
                           // reviewController.dispose();
                           // complaintController.dispose();
-                          SingleImageProvider multiImageProvider =
-                              SingleImageProvider(CachedNetworkImageProvider(
+                          SingleImageProvider multiImageProvider = SingleImageProvider(
+                              CachedNetworkImageProvider(
                                   '${widget.data.data.branches.branchImages[i]['branch_photos']}'));
 
-                          showImageViewerPager(context, multiImageProvider,
-                              onPageChanged: (page) {
+                          showImageViewerPager(context, multiImageProvider, onPageChanged: (page) {
                             print("page changed to $page");
                           }, onViewerDismissed: (page) {
                             print("dismissed while on page $page");
@@ -405,10 +369,8 @@ class _FullToiletPageState extends State<FullToiletPage> {
                             // border: Border.all(color: primary)
                           ),
                           child: CachedNetworkImage(
-                              imageUrl:
-                                  '${widget.data.data.branches.branchImages[i]['branch_photos']}',
-                              height:
-                                  MediaQuery.of(context).size.width / 3 - 11,
+                              imageUrl: '${widget.data.data.branches.branchImages[i]['branch_photos']}',
+                              height: MediaQuery.of(context).size.width / 3 - 11,
                               width: MediaQuery.of(context).size.width / 3 - 11,
                               fit: BoxFit.cover,
                               errorWidget: (context, url, error) => ClipRRect(
@@ -420,8 +382,7 @@ class _FullToiletPageState extends State<FullToiletPage> {
                                     width: 19,
                                     height: 19,
                                     child: CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                          Colors.white),
+                                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                                     ),
                                   )),
                         ),
@@ -471,8 +432,7 @@ class _FullToiletPageState extends State<FullToiletPage> {
     );
   }
 
-  rating(context, double size, double spacing,
-      void Function(double) onRatingUpdate, double initialRating) {
+  rating(context, double size, double spacing, void Function(double) onRatingUpdate, double initialRating) {
     return RatingBar.builder(
       itemSize: size,
       initialRating: initialRating,
@@ -493,9 +453,7 @@ class _FullToiletPageState extends State<FullToiletPage> {
     double lat = double.parse(widget.data.data.branches.geoLocation.latitude);
     double long = double.parse(widget.data.data.branches.geoLocation.longitude);
     final GalliController controller = GalliController(
-        zoom: 18,
-        authKey: 'c9c7a4c0-2834-4282-94f7-f4c79c40ab0a',
-        initialPosition: LatLng(lat, long));
+        zoom: 18, authKey: 'c9c7a4c0-2834-4282-94f7-f4c79c40ab0a', initialPosition: LatLng(lat, long));
     return Container(
       height: 300.0,
       child: ClipRRect(
@@ -554,15 +512,11 @@ class _FullToiletPageState extends State<FullToiletPage> {
               child: Column(children: [
                 GestureDetector(
                   onTap: () async {
-                    double lat = double.parse(
-                        widget.data.data.branches.geoLocation.latitude);
-                    double long = double.parse(
-                        widget.data.data.branches.geoLocation.longitude);
-                    Position currentPosition =
-                        await Geolocator.getCurrentPosition();
+                    double lat = double.parse(widget.data.data.branches.geoLocation.latitude);
+                    double long = double.parse(widget.data.data.branches.geoLocation.longitude);
+                    Position currentPosition = await Geolocator.getCurrentPosition();
                     mapLauncher.MapLauncher.showDirections(
-                        origin: mapLauncher.Coords(currentPosition.latitude,
-                            currentPosition.longitude),
+                        origin: mapLauncher.Coords(currentPosition.latitude, currentPosition.longitude),
                         mapType: mapLauncher.MapType.google,
                         destination: mapLauncher.Coords(lat, long));
                     // Get.to(
@@ -572,8 +526,7 @@ class _FullToiletPageState extends State<FullToiletPage> {
                     //             );
                   },
                   child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 4.0, horizontal: 1),
+                      padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 1),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.0),
                         color: white,
@@ -671,8 +624,7 @@ class _FullToiletPageState extends State<FullToiletPage> {
                         "${widget.data.data.branches.organizationName}",
                         overflow: TextOverflow.ellipsis,
                         softWrap: false,
-                        style: TextStyle(
-                            height: 1.3, color: textPrimaryColor, fontSize: 16),
+                        style: TextStyle(height: 1.3, color: textPrimaryColor, fontSize: 16),
                       ),
                       SizedBox(
                         height: 10,
@@ -685,10 +637,9 @@ class _FullToiletPageState extends State<FullToiletPage> {
                         padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
                           style: ButtonStyle(
-                            backgroundColor: WidgetStateProperty.all(primary),
+                            backgroundColor: MaterialStateProperty.all(primary),
                           ),
-                          child: Text('SEND'.tr,
-                              style: TextStyle(color: textPrimaryLightColor)),
+                          child: Text('SEND'.tr, style: TextStyle(color: textPrimaryLightColor)),
                           onPressed: () {
                             postReview({
                               'branch_id': branchId.toString(),
@@ -739,9 +690,7 @@ class AvailabilityIcon extends StatelessWidget {
     return Container(
         padding: EdgeInsets.all(4),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.0),
-            color: white,
-            border: Border.all(color: primary)),
+            borderRadius: BorderRadius.circular(8.0), color: white, border: Border.all(color: primary)),
         child: SvgPicture.asset(
           "assets/images/icons/$icon",
           color: color ?? primary,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:kmc/components/bottomNavBar.dart';
 import 'package:kmc/config/colors.dart';
-import 'package:get/get.dart';
 
 class SifarishFailureDialog extends StatelessWidget {
   const SifarishFailureDialog({Key? key}) : super(key: key);
@@ -12,8 +12,7 @@ class SifarishFailureDialog extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30),
       ),
-      title: Text('सिफरिश पठाउन सकिएन',
-          textAlign: TextAlign.center, style: TextStyle(color: primary)),
+      title: Text('सिफरिश पठाउन सकिएन', textAlign: TextAlign.center, style: TextStyle(color: primary)),
       content: Text(
         "",
         textAlign: TextAlign.center,
@@ -26,8 +25,8 @@ class SifarishFailureDialog extends StatelessWidget {
         Center(
           child: ElevatedButton(
             style: ButtonStyle(
-              backgroundColor: WidgetStateProperty.all(tertiary),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+              backgroundColor: MaterialStateProperty.all(tertiary),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
                 ),

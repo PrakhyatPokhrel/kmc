@@ -42,8 +42,7 @@ class _NavDrawerState extends State<NavDrawer> {
 
   List<DrawerData> drawerData = [
     DrawerData('DASHBOARD', BottomNavBar(), Icons.home),
-    DrawerData('NOTIFICATION', Notifications(isBackRequired: true),
-        Icons.notifications),
+    DrawerData('NOTIFICATION', Notifications(isBackRequired: true), Icons.notifications),
     // DrawerData('suggestions', Suggestion(), Icons.pages),
     DrawerData('SETTINGS', Settings(), Icons.settings),
     DrawerData('AboutThisApp', AboutThisAppScreen(), Icons.info),
@@ -127,11 +126,9 @@ class _NavDrawerState extends State<NavDrawer> {
                                   height: 80, width: 80, fit: BoxFit.contain),
                             ),
 
-                            imageBuilder: (context, imageProvider) =>
-                                CircleAvatar(
+                            imageBuilder: (context, imageProvider) => CircleAvatar(
                               radius: 35,
-                              backgroundImage:
-                                  NetworkImage(userdata['user_img']),
+                              backgroundImage: NetworkImage(userdata['user_img']),
                             ),
                             // placeholder: (context, url) =>
                             //     CircularProgressIndicator(
@@ -157,8 +154,7 @@ class _NavDrawerState extends State<NavDrawer> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Image.asset('assets/images/sarkari_logo.png',
-                              height: 50, width: 50),
+                          child: Image.asset('assets/images/sarkari_logo.png', height: 50, width: 50),
                         ),
                         // Text(
                         //   AppLocalizations.of(context)
@@ -233,8 +229,7 @@ class _NavDrawerState extends State<NavDrawer> {
               ),
         title: new Text(
           '${i.title}'.tr,
-          style:
-              i.title == "HowToUse" ? TextStyle(color: primary) : TextStyle(),
+          style: i.title == "HowToUse" ? TextStyle(color: primary) : TextStyle(),
         ),
         onTap: () async {
           if (i.title == "LOGOUT") {
@@ -284,8 +279,7 @@ class _NavDrawerState extends State<NavDrawer> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
-            title: Text('दर्ता सफल',
-                textAlign: TextAlign.center, style: TextStyle(color: primary)),
+            title: Text('दर्ता सफल', textAlign: TextAlign.center, style: TextStyle(color: primary)),
             content: Text(
                 'यो सेवा नि:शुल्क रहेको छ। तपाईले भर्नुभएको ई-सिफारिस काठमाडौँ महानगरपालिका वडा कार्यालयमा दर्ता भएको छ। आवेदन तथा दस्तावेज मान्य भएको खण्डमा सिफारिश प्रतिलिपि यसै एप्स वा ईमेलमार्फत पाउनुहुनेछ। दस्तावेज मान्य नभएमा त्यसको जानकारी पाउनुहुनेछ।',
                 textAlign: TextAlign.center,
@@ -294,14 +288,12 @@ class _NavDrawerState extends State<NavDrawer> {
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(tertiary),
-                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
+                      backgroundColor: MaterialStateProperty.all(tertiary),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
                     child: Text('ठिक छ'),
                   ),
                   onPressed: () {
@@ -323,14 +315,14 @@ class _NavDrawerState extends State<NavDrawer> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
-            title: Text('Logout Successful!'.tr,
-                textAlign: TextAlign.center, style: TextStyle(color: primary)),
+            title:
+                Text('Logout Successful!'.tr, textAlign: TextAlign.center, style: TextStyle(color: primary)),
             actions: [
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all(tertiary),
-                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                    backgroundColor: MaterialStateProperty.all(tertiary),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),

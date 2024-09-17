@@ -42,8 +42,7 @@ class _PaymentState extends State<Payment> {
 
   @override
   void initState() {
-    List<WardEsewaModel> esewaWard =
-        esewaCred.map((e) => WardEsewaModel.fromJson(e)).toList();
+    List<WardEsewaModel> esewaWard = esewaCred.map((e) => WardEsewaModel.fromJson(e)).toList();
     clinetId = esewaWard[widget.ward - 1].clientId;
     secretKey = esewaWard[widget.ward - 1].clientSecret;
     super.initState();
@@ -57,18 +56,17 @@ class _PaymentState extends State<Payment> {
     super.dispose();
   }
 
-  final String _chars =
-      'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+  final String _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
   Random _rnd = Random();
 
-  String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
-      length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+  String getRandomString(int length) =>
+      String.fromCharCodes(Iterable.generate(length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
 
   @override
   var options = InAppBrowserClassOptions(
       crossPlatform: InAppBrowserOptions(hideUrlBar: false),
-      inAppWebViewGroupOptions: InAppWebViewGroupOptions(
-          crossPlatform: InAppWebViewOptions(javaScriptEnabled: true)));
+      inAppWebViewGroupOptions:
+          InAppWebViewGroupOptions(crossPlatform: InAppWebViewOptions(javaScriptEnabled: true)));
 
   @override
   Widget build(BuildContext context) {
@@ -77,8 +75,7 @@ class _PaymentState extends State<Payment> {
       children: [
         Padding(
             padding: EdgeInsets.all(8.0),
-            child: Text(
-                'का.म.न.पा सेवा कोड: ' + '${widget.data?['sp_pay_code']}',
+            child: Text('का.म.न.पा सेवा कोड: ' + '${widget.data?['sp_pay_code']}',
                 style: TextStyle(color: primary, fontSize: 18))),
         Container(
           color: Colors.white,
@@ -125,10 +122,8 @@ class _PaymentState extends State<Payment> {
         Container(
             child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
-          child: Text(
-              'अनलाइन भुक्तानीका लागि तपाईंंको खाता भएको भुक्तानीको माध्यम चयन गर्नुहोस।',
-              textAlign: TextAlign.center,
-              style: TextStyle(color: text, fontSize: 18)),
+          child: Text('अनलाइन भुक्तानीका लागि तपाईंंको खाता भएको भुक्तानीको माध्यम चयन गर्नुहोस।',
+              textAlign: TextAlign.center, style: TextStyle(color: text, fontSize: 18)),
         )),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
@@ -151,8 +146,7 @@ class _PaymentState extends State<Payment> {
                   elevation: 0,
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
-                    child: Image.asset('assets/images/esewa.png',
-                        height: 100, fit: BoxFit.contain),
+                    child: Image.asset('assets/images/esewa.png', height: 100, fit: BoxFit.contain),
                   ),
                 ),
               ),
@@ -170,8 +164,7 @@ class _PaymentState extends State<Payment> {
                   elevation: 0,
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
-                    child: Image.asset('assets/images/Khalti.png',
-                        height: 100, fit: BoxFit.contain),
+                    child: Image.asset('assets/images/Khalti.png', height: 100, fit: BoxFit.contain),
                   ),
                 ),
               ),
@@ -191,8 +184,7 @@ class _PaymentState extends State<Payment> {
                   elevation: 0,
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
-                    child: Image.asset('assets/images/ConnectIPS.png',
-                        height: 100, fit: BoxFit.contain),
+                    child: Image.asset('assets/images/ConnectIPS.png', height: 100, fit: BoxFit.contain),
                   ),
                 ),
               ),
@@ -206,20 +198,16 @@ class _PaymentState extends State<Payment> {
                 borderRadius: BorderRadius.circular(20.0),
                 border: Border.all(width: 0.5, color: text)),
             child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
+              padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('${widget.data['sp_pay_code']}',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: text, fontSize: 18)),
+                      textAlign: TextAlign.center, style: TextStyle(color: text, fontSize: 18)),
                   InkWell(
                       onTap: () {
-                        Clipboard.setData(ClipboardData(
-                            text: '${widget.data['sp_pay_code']}'));
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('code_copied'.tr)));
+                        Clipboard.setData(ClipboardData(text: '${widget.data['sp_pay_code']}'));
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('code_copied'.tr)));
                         // Toast.show('code_copied'.tr, context,
                         //     duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
                       },
@@ -246,12 +234,10 @@ class _PaymentState extends State<Payment> {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ConstrainedBox(
-          constraints: new BoxConstraints(
-              maxHeight: MediaQuery.of(context).size.height * 0.3),
+          constraints: new BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.3),
           child: Text(textt,
               overflow: TextOverflow.ellipsis,
-              style:
-                  TextStyle(color: last != null ? white : text, fontSize: 16)),
+              style: TextStyle(color: last != null ? white : text, fontSize: 16)),
         ),
       ),
     );
@@ -273,16 +259,13 @@ class _PaymentState extends State<Payment> {
         productId: "${widget.data["formNum"]}",
         productName: "${widget.data["pagetitle"]}-${getRandomString(10)}",
         productPrice: "$price",
-        callbackUrl:
-            "https://kathmandumetro.smartpalika.io/paymentmodule/mobile-app/verify/esewa/payment",
+        callbackUrl: "https://kathmandumetro.smartpalika.io/paymentmodule/mobile-app/verify/esewa/payment",
       ),
       onPaymentSuccess: (EsewaPaymentSuccessResult data) async {
         debugPrint(":::SUCCESS::: => $data");
         var a = data.toJson();
 
-        final spPayCode = <String, dynamic>{
-          "sp_pay_code": '${widget.data['sp_pay_code']}'
-        };
+        final spPayCode = <String, dynamic>{"sp_pay_code": '${widget.data['sp_pay_code']}'};
         a.addEntries(spPayCode.entries);
         EasyLoading.show(status: 'Please wait...'.tr);
 
@@ -347,14 +330,12 @@ class _PaymentState extends State<Payment> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('भुक्तानी गर्नुहोस्',
-                          style: TextStyle(color: primary, fontSize: 22)),
+                      Text('भुक्तानी गर्नुहोस्', style: TextStyle(color: primary, fontSize: 22)),
                       InkWell(
                           onTap: () {
                             Navigator.pop(context);
                           },
-                          child:
-                              Icon(Icons.arrow_back, color: primary, size: 28)),
+                          child: Icon(Icons.arrow_back, color: primary, size: 28)),
                     ],
                   ),
                 ),
@@ -374,21 +355,16 @@ class _PaymentState extends State<Payment> {
                         ),
                         Theme(
                           data: Theme.of(context).copyWith(
-                              textSelectionTheme: TextSelectionThemeData(
-                                  selectionColor: Color(0xff5C2D91))),
+                              textSelectionTheme: TextSelectionThemeData(selectionColor: Color(0xff5C2D91))),
                           child: TextFormField(
                             cursorColor: Color(0xff5C2D91),
-                            validator: (v) =>
-                                (v?.isEmpty ?? true) ? 'Required ' : null,
+                            validator: (v) => (v?.isEmpty ?? true) ? 'Required ' : null,
                             style: Theme.of(context).textTheme.headlineSmall,
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               label: Text(
                                 'Mobile Number',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyLarge!
-                                    .copyWith(
+                                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                                       color: Color(0xff5C2D91),
                                     ),
                               ),
@@ -409,15 +385,11 @@ class _PaymentState extends State<Payment> {
                         ),
                         TextFormField(
                           cursorColor: Color(0xff5C2D91),
-                          validator: (v) =>
-                              (v?.isEmpty ?? true) ? 'Required ' : null,
+                          validator: (v) => (v?.isEmpty ?? true) ? 'Required ' : null,
                           decoration: InputDecoration(
                             label: Text(
                               'Khalti MPIN',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge!
-                                  .copyWith(
+                              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                                     color: Color(0xff5C2D91),
                                   ),
                             ),
@@ -455,40 +427,22 @@ class _PaymentState extends State<Payment> {
                                           child: Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Container(
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height *
-                                                  0.1,
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.7,
+                                              height: MediaQuery.of(context).size.height * 0.1,
+                                              width: MediaQuery.of(context).size.width * 0.7,
                                               decoration: BoxDecoration(
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                      offset: Offset(0, 1),
-                                                      blurRadius: 1)
-                                                ],
-                                                border: Border.all(
-                                                    color: Colors.green),
+                                                boxShadow: [BoxShadow(offset: Offset(0, 1), blurRadius: 1)],
+                                                border: Border.all(color: Colors.green),
                                                 color: Colors.white,
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
+                                                borderRadius: BorderRadius.circular(20),
                                               ),
                                               child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(10.0),
+                                                padding: const EdgeInsets.all(10.0),
                                                 child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
+                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                   children: [
                                                     CircularProgressIndicator(
                                                       valueColor:
-                                                          AlwaysStoppedAnimation<
-                                                                  Color>(
-                                                              Color(
-                                                                  0xff5C2D91)),
+                                                          AlwaysStoppedAnimation<Color>(Color(0xff5C2D91)),
                                                     ),
                                                     Text(
                                                       "Initiating Payment",
@@ -496,8 +450,7 @@ class _PaymentState extends State<Payment> {
                                                         fontSize: 15,
                                                         letterSpacing: 1,
                                                         color: Colors.black,
-                                                        fontWeight:
-                                                            FontWeight.normal,
+                                                        fontWeight: FontWeight.normal,
                                                       ),
                                                     ),
                                                   ],
@@ -508,8 +461,7 @@ class _PaymentState extends State<Payment> {
                                         ),
                                       ));
                               try {
-                                final initiationModel =
-                                    await Khalti.service.initiatePayment(
+                                final initiationModel = await Khalti.service.initiatePayment(
                                   request: PaymentInitiationRequestModel(
                                     amount: price * 100,
                                     mobile: _mobileController.text,
@@ -532,12 +484,9 @@ class _PaymentState extends State<Payment> {
                                   builder: (context) {
                                     String? _otp;
                                     return AlertDialog(
-                                      title: const Text(
-                                          'पठाइएको ओ.टी.पी हाल्नुहोस् '),
+                                      title: const Text('पठाइएको ओ.टी.पी हाल्नुहोस् '),
                                       content: TextField(
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headlineSmall,
+                                        style: Theme.of(context).textTheme.headlineSmall,
                                         decoration: const InputDecoration(
                                           label: Text('OTP Code'),
                                         ),
@@ -546,8 +495,7 @@ class _PaymentState extends State<Payment> {
                                       actions: [
                                         SimpleDialogOption(
                                           child: const Text('OK'),
-                                          onPressed: () =>
-                                              Navigator.pop(context, _otp),
+                                          onPressed: () => Navigator.pop(context, _otp),
                                         )
                                       ],
                                     );
@@ -564,60 +512,34 @@ class _PaymentState extends State<Payment> {
                                               color: Colors.transparent,
                                               child: Center(
                                                 child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
+                                                  padding: const EdgeInsets.all(8.0),
                                                   child: Container(
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            0.1,
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.8,
+                                                    height: MediaQuery.of(context).size.height * 0.1,
+                                                    width: MediaQuery.of(context).size.width * 0.8,
                                                     decoration: BoxDecoration(
                                                       boxShadow: [
-                                                        BoxShadow(
-                                                            offset:
-                                                                Offset(0, 1),
-                                                            blurRadius: 1)
+                                                        BoxShadow(offset: Offset(0, 1), blurRadius: 1)
                                                       ],
-                                                      border: Border.all(
-                                                          color: Color(
-                                                              0xff5C2D91)),
+                                                      border: Border.all(color: Color(0xff5C2D91)),
                                                       color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20),
+                                                      borderRadius: BorderRadius.circular(20),
                                                     ),
                                                     child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              10.0),
+                                                      padding: const EdgeInsets.all(10.0),
                                                       child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceEvenly,
+                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                         children: [
                                                           CircularProgressIndicator(
-                                                            valueColor:
-                                                                AlwaysStoppedAnimation<
-                                                                        Color>(
-                                                                    Color(
-                                                                        0xff5C2D91)),
+                                                            valueColor: AlwaysStoppedAnimation<Color>(
+                                                                Color(0xff5C2D91)),
                                                           ),
                                                           Text(
                                                             "Verifying Payment",
                                                             style: TextStyle(
                                                               fontSize: 15,
                                                               letterSpacing: 1,
-                                                              color:
-                                                                  Colors.black,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
+                                                              color: Colors.black,
+                                                              fontWeight: FontWeight.normal,
                                                             ),
                                                           ),
                                                         ],
@@ -627,8 +549,7 @@ class _PaymentState extends State<Payment> {
                                                 ),
                                               ),
                                             ));
-                                    PaymentSuccessModel model =
-                                        await Khalti.service.confirmPayment(
+                                    PaymentSuccessModel model = await Khalti.service.confirmPayment(
                                       request: PaymentConfirmationRequestModel(
                                         confirmationCode: otpCode,
                                         token: initiationModel.token,
@@ -636,32 +557,28 @@ class _PaymentState extends State<Payment> {
                                       ),
                                     );
                                     var a = {
-                                      'sp_pay_code':
-                                          '${widget.data['sp_pay_code']}',
+                                      'sp_pay_code': '${widget.data['sp_pay_code']}',
                                       'token': model.token,
                                       'amount': model.amount,
-                                      'ward':widget.ward
+                                      'ward': widget.ward
                                     };
 
                                     khaltiverfyApi(a).then((res) => {
                                           if (res['status'] == true)
                                             {
-                                              EasyLoading.showSuccess(
-                                                  res['message']),
+                                              EasyLoading.showSuccess(res['message']),
                                               Navigator.pop(context),
                                               Get.off(BottomNavBar())
                                             }
                                           else
                                             {
-                                              EasyLoading.showError(
-                                                  res['message']),
+                                              EasyLoading.showError(res['message']),
                                               Navigator.pop(context),
                                             }
                                         });
                                     Map<String, dynamic> pdata = {};
 
                                     // jsonEncode(selectedmag);
-
                                   } catch (e) {
                                     SnackBar(content: Text("$e"));
 
@@ -676,8 +593,7 @@ class _PaymentState extends State<Payment> {
                               }
                             }
                           },
-                          child: Text(
-                              'PAY ${widget.data['amount'].split(".").first}'),
+                          child: Text('PAY ${widget.data['amount'].split(".").first}'),
                         ),
                       ],
                     ),
@@ -735,23 +651,19 @@ class _PaymentState extends State<Payment> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
-            title: Text('प्रक्रियामा छ !',
-                textAlign: TextAlign.center, style: TextStyle(color: primary)),
+            title: Text('प्रक्रियामा छ !', textAlign: TextAlign.center, style: TextStyle(color: primary)),
             content: Text('यो सेवा प्रक्रियामा छ !',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, height: 1.5)),
+                textAlign: TextAlign.center, style: TextStyle(fontSize: 16, height: 1.5)),
             actions: [
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(tertiary),
-                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
+                      backgroundColor: MaterialStateProperty.all(tertiary),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
                     child: Text('cancel'.tr),
                   ),
                   onPressed: () {

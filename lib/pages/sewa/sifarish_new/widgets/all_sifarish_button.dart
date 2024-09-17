@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kmc/config/colors.dart';
 import 'package:get/get.dart';
+import 'package:kmc/config/colors.dart';
 import 'package:kmc/pages/sewa/sifarish_new/screens/sifarish_list_screen.dart';
 import 'package:kmc/pages/sewa/sifarish_new/sifarish_list_cubit/sifarish_list_cubit.dart';
 
@@ -14,11 +14,10 @@ class AllSifarishButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ButtonStyle(
-        minimumSize: WidgetStateProperty.all(Size(Get.width - 64, 60)),
-        backgroundColor: WidgetStateProperty.all(tertiary),
-        padding: WidgetStateProperty.all(
-            EdgeInsets.symmetric(vertical: 16, horizontal: 35)),
-        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+        minimumSize: MaterialStateProperty.all(Size(Get.width - 64, 60)),
+        backgroundColor: MaterialStateProperty.all(tertiary),
+        padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 16, horizontal: 35)),
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.0),
           ),
@@ -41,8 +40,7 @@ class AllSifarishButton extends StatelessWidget {
         ],
       ),
       onPressed: () {
-        BlocProvider.of<SifarishListCubit>(context)
-            .getSifarishByType(SifarishTypeEnum.all);
+        BlocProvider.of<SifarishListCubit>(context).getSifarishByType(SifarishTypeEnum.all);
         Get.to(
           SifarishListScreen(
             sifarishTypeEnum: SifarishTypeEnum.all,

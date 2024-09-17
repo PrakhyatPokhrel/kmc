@@ -1,13 +1,13 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:galli_map/galli_map.dart';
 import 'package:get/get.dart';
 import 'package:kmc/components/custom_widget.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:galli_map/galli_map.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:kmc/config/Apiconnectservices.dart';
 import 'package:kmc/config/colors.dart';
 import 'package:kmc/modal/toilet_branch_model.dart';
@@ -48,8 +48,7 @@ class _AllToiletsState extends State<AllToilets> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('all_toilets'.tr,
-                    style: TextStyle(color: primary, fontSize: 22)),
+                Text('all_toilets'.tr, style: TextStyle(color: primary, fontSize: 22)),
                 InkWell(
                   onTap: () {
                     Navigator.pop(context);
@@ -159,15 +158,12 @@ class ToiletState extends State<ToiletWidget> {
         width: MediaQuery.of(context).size.width / 1.5,
         child: ElevatedButton(
           style: ButtonStyle(
-              backgroundColor: WidgetStateProperty.all(tertiary),
-              padding: WidgetStateProperty.all(
-                  const EdgeInsets.symmetric(vertical: 5, horizontal: 35)),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
+              backgroundColor: MaterialStateProperty.all(tertiary),
+              padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 5, horizontal: 35)),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
               ))),
-          child: Text('SEND'.tr,
-              style: TextStyle(color: textPrimaryLightColor, fontSize: 20)),
+          child: Text('SEND'.tr, style: TextStyle(color: textPrimaryLightColor, fontSize: 20)),
           onPressed: () {
             Get.to(AllOrganizationPage());
           },
@@ -181,11 +177,7 @@ class ToiletState extends State<ToiletWidget> {
       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 4),
       child: Text('$title'.tr,
           textAlign: TextAlign.start,
-          style: TextStyle(
-              color: primary,
-              fontSize: 17,
-              fontWeight: FontWeight.bold,
-              height: 1.5)),
+          style: TextStyle(color: primary, fontSize: 17, fontWeight: FontWeight.bold, height: 1.5)),
     );
   }
 
@@ -223,8 +215,7 @@ class ToiletState extends State<ToiletWidget> {
                         width: 19,
                         height: 19,
                         child: CircularProgressIndicator(
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(Colors.white),
+                          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                         ),
                       )),
             )));
@@ -249,8 +240,7 @@ class ToiletState extends State<ToiletWidget> {
                       size: 80,
                     ),
                     Text("no_data_found".tr,
-                        style: TextStyle(
-                            height: 1.3, color: textPrimaryColor, fontSize: 16))
+                        style: TextStyle(height: 1.3, color: textPrimaryColor, fontSize: 16))
                   ],
                 ));
           } else if (snapshot.data!.data.isEmpty) {
@@ -264,28 +254,23 @@ class ToiletState extends State<ToiletWidget> {
                       size: 80,
                     ),
                     Text("no_data_found".tr,
-                        style: TextStyle(
-                            height: 1.3, color: textPrimaryColor, fontSize: 16))
+                        style: TextStyle(height: 1.3, color: textPrimaryColor, fontSize: 16))
                   ],
                 ));
           } else {
             List<ToiletBranchModelData> filteredData = subIndex != 0
-                ? snapshot.data!.data
-                    .where((element) => element.organization.id == subIndex)
-                    .toList()
+                ? snapshot.data!.data.where((element) => element.organization.id == subIndex).toList()
                 : snapshot.data!.data;
             if (position != null) {
               filteredData.sort((a, b) {
                 final distanceA = calculateDistance(
                     LatLng(kDebugMode ? 27.69091887630131 : position!.latitude,
                         kDebugMode ? 85.32036235434515 : position!.longitude),
-                    LatLng(double.parse(a.geoLocation.latitude),
-                        double.parse(a.geoLocation.longitude)));
+                    LatLng(double.parse(a.geoLocation.latitude), double.parse(a.geoLocation.longitude)));
                 final distanceB = calculateDistance(
                     LatLng(kDebugMode ? 27.69091887630131 : position!.latitude,
                         kDebugMode ? 85.32036235434515 : position!.longitude),
-                    LatLng(double.parse(b.geoLocation.latitude),
-                        double.parse(b.geoLocation.longitude)));
+                    LatLng(double.parse(b.geoLocation.latitude), double.parse(b.geoLocation.longitude)));
                 return distanceA.compareTo(distanceB);
               });
             }
@@ -304,8 +289,7 @@ class ToiletState extends State<ToiletWidget> {
                             EasyLoading.show();
                             try {
                               ToiletSingleBranchModel data =
-                                  await toiletGetSingleBranch(
-                                      filteredData[index].id);
+                                  await toiletGetSingleBranch(filteredData[index].id);
                               EasyLoading.dismiss();
                               Get.to(FullToiletPage(data: data));
                             } catch (e) {
@@ -321,51 +305,39 @@ class ToiletState extends State<ToiletWidget> {
                             elevation: 0,
                             color: Colors.white,
                             child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 5, horizontal: 8),
+                                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
                                 child: Row(
                                     // mainAxisAlignment:
                                     //     MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Column(
                                         children: [
                                           ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(15.0),
+                                            borderRadius: BorderRadius.circular(15.0),
                                             child: CachedNetworkImage(
-                                                imageUrl: filteredData[index]
-                                                    .organization
-                                                    .organizationLogo,
+                                                imageUrl: filteredData[index].organization.organizationLogo,
                                                 height: 70,
                                                 width: 70,
                                                 fit: BoxFit.cover,
-                                                errorWidget:
-                                                    (context, url, error) =>
-                                                        ClipRRect(
-                                                            child: Image.asset(
-                                                          'assets/images/Grey_Placeholder.png',
-                                                          fit: BoxFit.fill,
-                                                        )),
-                                                placeholder: (context, url) =>
-                                                    const SizedBox(
+                                                errorWidget: (context, url, error) => ClipRRect(
+                                                        child: Image.asset(
+                                                      'assets/images/Grey_Placeholder.png',
+                                                      fit: BoxFit.fill,
+                                                    )),
+                                                placeholder: (context, url) => const SizedBox(
                                                       width: 19,
                                                       height: 19,
-                                                      child:
-                                                          CircularProgressIndicator(
+                                                      child: CircularProgressIndicator(
                                                         valueColor:
-                                                            AlwaysStoppedAnimation<
-                                                                    Color>(
-                                                                Colors.white),
+                                                            AlwaysStoppedAnimation<Color>(Colors.white),
                                                       ),
                                                     )),
                                           ),
                                           const SizedBox(
                                             height: 10,
                                           ),
-                                          rating(context,
-                                              filteredData[index].averageRating,
+                                          rating(context, filteredData[index].averageRating,
                                               ignoreGesture: true)
                                         ],
                                       ),
@@ -373,10 +345,8 @@ class ToiletState extends State<ToiletWidget> {
                                       Expanded(
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             // SizedBox(
                                             //   width: 170.0,
@@ -391,43 +361,32 @@ class ToiletState extends State<ToiletWidget> {
                                             //           fontSize: 16)),
                                             // ),
                                             Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
                                                 Column(
                                                   children: [
                                                     SizedBox(
                                                       width: 170.0,
-                                                      child: Text(
-                                                          filteredData[index]
-                                                              .location,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
+                                                      child: Text(filteredData[index].location,
+                                                          overflow: TextOverflow.ellipsis,
                                                           softWrap: false,
                                                           style: TextStyle(
                                                               height: 1.3,
-                                                              color:
-                                                                  textPrimaryColor,
+                                                              color: textPrimaryColor,
                                                               fontSize: 16)),
                                                     ),
                                                     LimitedBox(
                                                       maxWidth: 150.0,
                                                       child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
+                                                        mainAxisAlignment: MainAxisAlignment.start,
                                                         children: [
                                                           Visibility(
-                                                            visible: filteredData[
-                                                                    index]
-                                                                .disabledStatus,
+                                                            visible: filteredData[index].disabledStatus,
                                                             child: const Row(
                                                               children: [
                                                                 AvailabilityIcon(
                                                                   size: 15,
-                                                                  icon:
-                                                                      'disabled.svg',
+                                                                  icon: 'disabled.svg',
                                                                 ),
                                                                 SizedBox(
                                                                   width: 10,
@@ -436,16 +395,10 @@ class ToiletState extends State<ToiletWidget> {
                                                             ),
                                                           ),
                                                           Visibility(
-                                                            visible: filteredData[
-                                                                            index]
-                                                                        .toiletType ==
-                                                                    'male' ||
-                                                                filteredData[
-                                                                            index]
-                                                                        .toiletType ==
-                                                                    'all',
-                                                            child:
-                                                                const AvailabilityIcon(
+                                                            visible:
+                                                                filteredData[index].toiletType == 'male' ||
+                                                                    filteredData[index].toiletType == 'all',
+                                                            child: const AvailabilityIcon(
                                                               size: 15,
                                                               icon: 'male.svg',
                                                             ),
@@ -454,19 +407,12 @@ class ToiletState extends State<ToiletWidget> {
                                                             width: 10,
                                                           ),
                                                           Visibility(
-                                                            visible: filteredData[
-                                                                            index]
-                                                                        .toiletType ==
-                                                                    'female' ||
-                                                                filteredData[
-                                                                            index]
-                                                                        .toiletType ==
-                                                                    'all',
-                                                            child:
-                                                                const AvailabilityIcon(
+                                                            visible:
+                                                                filteredData[index].toiletType == 'female' ||
+                                                                    filteredData[index].toiletType == 'all',
+                                                            child: const AvailabilityIcon(
                                                               size: 15,
-                                                              icon:
-                                                                  'female.svg',
+                                                              icon: 'female.svg',
                                                             ),
                                                           ),
                                                           const SizedBox(
@@ -480,61 +426,32 @@ class ToiletState extends State<ToiletWidget> {
                                                   ],
                                                 ),
                                                 Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
+                                                  mainAxisSize: MainAxisSize.max,
                                                   children: [
                                                     InkWell(
                                                       onTap: () async {
-                                                        double lat =
-                                                            double.parse(
-                                                                filteredData[
-                                                                        index]
-                                                                    .geoLocation
-                                                                    .latitude);
-                                                        double long =
-                                                            double.parse(
-                                                                filteredData[
-                                                                        index]
-                                                                    .geoLocation
-                                                                    .longitude);
-                                                        var status =
-                                                            await Permission
-                                                                .location
-                                                                .request();
-                                                        if (status ==
-                                                            PermissionStatus
-                                                                .granted) {
+                                                        double lat = double.parse(
+                                                            filteredData[index].geoLocation.latitude);
+                                                        double long = double.parse(
+                                                            filteredData[index].geoLocation.longitude);
+                                                        var status = await Permission.location.request();
+                                                        if (status == PermissionStatus.granted) {
                                                           try {
-                                                            Position
-                                                                currentPosition =
-                                                                await Geolocator
-                                                                    .getCurrentPosition();
+                                                            Position currentPosition =
+                                                                await Geolocator.getCurrentPosition();
                                                             MapLauncher.showDirections(
-                                                                origin: Coords(
-                                                                    currentPosition
-                                                                        .latitude,
-                                                                    currentPosition
-                                                                        .longitude),
-                                                                mapType: Platform
-                                                                        .isIOS
-                                                                    ? MapType
-                                                                        .apple
-                                                                    : MapType
-                                                                        .google,
-                                                                destination:
-                                                                    Coords(lat,
-                                                                        long));
+                                                                origin: Coords(currentPosition.latitude,
+                                                                    currentPosition.longitude),
+                                                                mapType: Platform.isIOS
+                                                                    ? MapType.apple
+                                                                    : MapType.google,
+                                                                destination: Coords(lat, long));
                                                           } catch (e) {
-                                                            throw EasyLoading
-                                                                .showError(
-                                                                    "server_error"
-                                                                        .tr);
+                                                            throw EasyLoading.showError("server_error".tr);
                                                           }
                                                         } else {
-                                                          throw EasyLoading
-                                                              .showError(
-                                                                  "permission_request"
-                                                                      .tr);
+                                                          throw EasyLoading.showError(
+                                                              "permission_request".tr);
                                                         }
                                                       },
                                                       child: AvailabilityIcon(
@@ -549,13 +466,10 @@ class ToiletState extends State<ToiletWidget> {
                                                     SizedBox(
                                                       child: Text(
                                                           "${calculateDistance(LatLng(position == null ? 27.69091887630131 : position!.latitude, position == null ? 85.32036235434515 : position!.longitude), LatLng(double.parse(filteredData[index].geoLocation.latitude), double.parse(filteredData[index].geoLocation.longitude))).toStringAsFixed(2)} km",
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
+                                                          overflow: TextOverflow.ellipsis,
                                                           softWrap: false,
                                                           style: TextStyle(
-                                                              height: 1.3,
-                                                              color: primary,
-                                                              fontSize: 16)),
+                                                              height: 1.3, color: primary, fontSize: 16)),
                                                     ),
                                                   ],
                                                 ),
@@ -569,21 +483,13 @@ class ToiletState extends State<ToiletWidget> {
                                                 overflow: TextOverflow.ellipsis,
                                                 softWrap: false,
                                                 style: TextStyle(
-                                                    height: 1.3,
-                                                    color: textPrimaryColor,
-                                                    fontSize: 13)),
+                                                    height: 1.3, color: textPrimaryColor, fontSize: 13)),
                                             SizedBox(
-                                              child: Text(
-                                                  filteredData[index]
-                                                      .category
-                                                      .tr,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
+                                              child: Text(filteredData[index].category.tr,
+                                                  overflow: TextOverflow.ellipsis,
                                                   softWrap: false,
                                                   style: TextStyle(
-                                                      height: 1.3,
-                                                      color: textPrimaryColor,
-                                                      fontSize: 14)),
+                                                      height: 1.3, color: textPrimaryColor, fontSize: 14)),
                                             ),
 
                                             // SizedBox(
@@ -698,8 +604,7 @@ class ToiletState extends State<ToiletWidget> {
     );
   }
 
-  rating(context, double initialRating,
-      {bool ignoreGesture = false, int? size}) {
+  rating(context, double initialRating, {bool ignoreGesture = false, int? size}) {
     return RatingBar.builder(
       itemSize: 10,
       initialRating: initialRating,

@@ -19,8 +19,7 @@ class _PraKarmachariState extends State<PraKarmachari> {
   int _currentIndex = 0;
 
   Future<List<Pratinidhikarmacharidata>> getpratinidhidata() async {
-    List<Pratinidhikarmacharidata> pratinidhikarmacharilist =
-        await getpratinidhi();
+    List<Pratinidhikarmacharidata> pratinidhikarmacharilist = await getpratinidhi();
     return pratinidhikarmacharilist;
   }
 
@@ -46,8 +45,7 @@ class _PraKarmachariState extends State<PraKarmachari> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('prati_karma'.tr,
-                      style: TextStyle(color: primary, fontSize: 22)),
+                  Text('prati_karma'.tr, style: TextStyle(color: primary, fontSize: 22)),
                   InkWell(
                       onTap: () {
                         Navigator.pop(context);
@@ -85,8 +83,7 @@ class _PraKarmachariState extends State<PraKarmachari> {
           child: FutureBuilder(
               future: getpratinidhidata(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting ||
-                    snapshot.data == null) {
+                if (snapshot.connectionState == ConnectionState.waiting || snapshot.data == null) {
                   return ShimmerWidget().buildMovieShimmer();
                 } else {
                   return Container(
@@ -99,16 +96,13 @@ class _PraKarmachariState extends State<PraKarmachari> {
                             width: MediaQuery.of(context).size.width * 0.3,
                             child: GestureDetector(
                               onTap: () {
-                                modal(
-                                    context, snapshot.data[0].headdata[index]);
+                                modal(context, snapshot.data[0].headdata[index]);
                               },
                               child: Column(
                                 children: [
                                   CachedNetworkImage(
-                                    imageUrl:
-                                        "${snapshot.data[0].headdata[index].icon}",
-                                    errorWidget: (context, url, error) =>
-                                        ClipRRect(
+                                    imageUrl: "${snapshot.data[0].headdata[index].icon}",
+                                    errorWidget: (context, url, error) => ClipRRect(
                                       borderRadius: BorderRadius.circular(50.0),
                                       child: CircleAvatar(
                                         radius: 30,
@@ -118,13 +112,11 @@ class _PraKarmachariState extends State<PraKarmachari> {
                                         ),
                                       ),
                                     ),
-                                    imageBuilder: (context, imageProvider) =>
-                                        CircleAvatar(
+                                    imageBuilder: (context, imageProvider) => CircleAvatar(
                                       radius: 30,
                                       backgroundImage: imageProvider,
                                     ),
-                                    placeholder: (context, url) =>
-                                        CircularProgressIndicator(
+                                    placeholder: (context, url) => CircularProgressIndicator(
                                       backgroundColor: tertiary,
                                     ),
                                   ),
@@ -140,26 +132,17 @@ class _PraKarmachariState extends State<PraKarmachari> {
                                     ),
                                   ),
                                   Text(
-                                    snapshot
-                                        .data[0].headdata[index]?.designation,
+                                    snapshot.data[0].headdata[index]?.designation,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                        color: primary,
-                                        fontFamily: 'Mukta',
-                                        fontSize: 14.0,
-                                        height: 1),
+                                        color: primary, fontFamily: 'Mukta', fontSize: 14.0, height: 1),
                                   ),
-                                  snapshot.data[0].headdata[index]?.mobile !=
-                                          null
+                                  snapshot.data[0].headdata[index]?.mobile != null
                                       ? Text(
-                                          snapshot
-                                              .data[0].headdata[index]?.mobile,
+                                          snapshot.data[0].headdata[index]?.mobile,
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
-                                              color: primary,
-                                              fontFamily: 'Mukta',
-                                              fontSize: 14.0,
-                                              height: 1),
+                                              color: primary, fontFamily: 'Mukta', fontSize: 14.0, height: 1),
                                         )
                                       : Container()
                                 ],
@@ -231,10 +214,8 @@ class _PraKarmachariState extends State<PraKarmachari> {
                             child: Column(
                               children: [
                                 CachedNetworkImage(
-                                  imageUrl:
-                                      "${snapshot.data[1].headdata[index].icon}",
-                                  errorWidget: (context, url, error) =>
-                                      ClipRRect(
+                                  imageUrl: "${snapshot.data[1].headdata[index].icon}",
+                                  errorWidget: (context, url, error) => ClipRRect(
                                     borderRadius: BorderRadius.circular(50.0),
                                     child: CircleAvatar(
                                       radius: 30,
@@ -244,13 +225,11 @@ class _PraKarmachariState extends State<PraKarmachari> {
                                       ),
                                     ),
                                   ),
-                                  imageBuilder: (context, imageProvider) =>
-                                      CircleAvatar(
+                                  imageBuilder: (context, imageProvider) => CircleAvatar(
                                     radius: 30,
                                     backgroundImage: imageProvider,
                                   ),
-                                  placeholder: (context, url) =>
-                                      CircularProgressIndicator(
+                                  placeholder: (context, url) => CircularProgressIndicator(
                                     backgroundColor: tertiary,
                                   ),
                                 ),
@@ -269,21 +248,14 @@ class _PraKarmachariState extends State<PraKarmachari> {
                                   snapshot.data[1].headdata[index]?.designation,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                      color: primary,
-                                      fontFamily: 'Mukta',
-                                      fontSize: 14.0,
-                                      height: 1),
+                                      color: primary, fontFamily: 'Mukta', fontSize: 14.0, height: 1),
                                 ),
                                 snapshot.data[1].headdata[index]?.mobile != null
                                     ? Text(
-                                        snapshot
-                                            .data[1].headdata[index]?.mobile,
+                                        snapshot.data[1].headdata[index]?.mobile,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                            color: primary,
-                                            fontFamily: 'Mukta',
-                                            fontSize: 14.0,
-                                            height: 1),
+                                            color: primary, fontFamily: 'Mukta', fontSize: 14.0, height: 1),
                                       )
                                     : Container()
                               ],
@@ -329,19 +301,15 @@ class _PraKarmachariState extends State<PraKarmachari> {
                               child: ListView.builder(
                                   shrinkWrap: true,
                                   scrollDirection: Axis.horizontal,
-                                  itemCount: snapshot
-                                      .data[index].wodapratinidhi.length,
+                                  itemCount: snapshot.data[index].wodapratinidhi.length,
                                   itemBuilder: (context, i) {
-                                    if (snapshot
-                                        .data[index].wodapratinidhi.isEmpty) {
+                                    if (snapshot.data[index].wodapratinidhi.isEmpty) {
                                       return Container(
                                         child: Container(),
                                       );
                                     } else {
-                                      snapshot.data[index].wodapratinidhi.sort(
-                                          (b, a) => (a.designation ==
-                                                      "वडा अध्यक्ष" ||
-                                                  a.designation == "वडा अधयक्ष")
+                                      snapshot.data[index].wodapratinidhi.sort((b, a) =>
+                                          (a.designation == "वडा अध्यक्ष" || a.designation == "वडा अधयक्ष")
                                               ? 1
                                               : 0);
                                       return Row(
@@ -350,22 +318,15 @@ class _PraKarmachariState extends State<PraKarmachari> {
                                             padding: const EdgeInsets.all(8.0),
                                             child: GestureDetector(
                                               onTap: () {
-                                                modal(
-                                                    context,
-                                                    snapshot.data[index]
-                                                        .wodapratinidhi[i]);
+                                                modal(context, snapshot.data[index].wodapratinidhi[i]);
                                               },
                                               child: Column(
                                                 children: [
                                                   CachedNetworkImage(
                                                     imageUrl:
                                                         "${snapshot.data[index].wodapratinidhi[i].icon}",
-                                                    errorWidget:
-                                                        (context, url, error) =>
-                                                            ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              50.0),
+                                                    errorWidget: (context, url, error) => ClipRRect(
+                                                      borderRadius: BorderRadius.circular(50.0),
                                                       child: CircleAvatar(
                                                         radius: 30,
                                                         child: Image.asset(
@@ -374,26 +335,19 @@ class _PraKarmachariState extends State<PraKarmachari> {
                                                         ),
                                                       ),
                                                     ),
-                                                    imageBuilder: (context,
-                                                            imageProvider) =>
-                                                        CircleAvatar(
+                                                    imageBuilder: (context, imageProvider) => CircleAvatar(
                                                       radius: 30,
-                                                      backgroundImage:
-                                                          imageProvider,
+                                                      backgroundImage: imageProvider,
                                                     ),
-                                                    placeholder: (context,
-                                                            url) =>
-                                                        CircularProgressIndicator(
+                                                    placeholder: (context, url) => CircularProgressIndicator(
                                                       backgroundColor: tertiary,
                                                     ),
                                                   ),
                                                   Text(
-                                                    snapshot.data[index]
-                                                        .wodapratinidhi[i].name,
+                                                    snapshot.data[index].wodapratinidhi[i].name,
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
-                                                      color:
-                                                          textPrimaryDarkColor,
+                                                      color: textPrimaryDarkColor,
                                                       fontFamily: 'Mukta',
                                                       height: 1.5,
                                                       fontSize: 13.0,
@@ -408,19 +362,13 @@ class _PraKarmachariState extends State<PraKarmachari> {
                                                         fontSize: 14.0,
                                                         height: 1),
                                                   ),
-                                                  snapshot
-                                                              .data[index]
-                                                              .wodapratinidhi[i]
-                                                              .mobile !=
-                                                          null
+                                                  snapshot.data[index].wodapratinidhi[i].mobile != null
                                                       ? Text(
                                                           "${snapshot.data[index].wodapratinidhi[i].mobile}",
-                                                          textAlign:
-                                                              TextAlign.center,
+                                                          textAlign: TextAlign.center,
                                                           style: TextStyle(
                                                               color: primary,
-                                                              fontFamily:
-                                                                  'Mukta',
+                                                              fontFamily: 'Mukta',
                                                               fontSize: 14.0,
                                                               height: 1),
                                                         )
@@ -486,15 +434,10 @@ class _PraKarmachariState extends State<PraKarmachari> {
                 Text(
                   data.designation,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: primary,
-                      fontFamily: 'Mukta',
-                      fontSize: 14.0,
-                      height: 1),
+                  style: TextStyle(color: primary, fontFamily: 'Mukta', fontSize: 14.0, height: 1),
                 ),
                 new ButtonBar(
-                  mainAxisSize: MainAxisSize
-                      .min, // this will take space as minimum as posible(to center)
+                  mainAxisSize: MainAxisSize.min, // this will take space as minimum as posible(to center)
                   children: <Widget>[
                     // new RaisedButton(
                     //   child: new Text(translate(context, 'chat')),
@@ -505,7 +448,7 @@ class _PraKarmachariState extends State<PraKarmachari> {
                     new ElevatedButton(
                       child: new Text('call'.tr),
                       style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all(primary),
+                        backgroundColor: MaterialStateProperty.all(primary),
                       ),
                       onPressed: () {
                         _callNumber(data.mobile);

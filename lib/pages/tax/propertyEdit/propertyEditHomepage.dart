@@ -1,11 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:kmc/config/Apiconnectservices.dart';
 import 'package:kmc/config/colors.dart';
 import 'package:kmc/modal/taxPayerDetail.dart';
 import 'package:kmc/pages/tax/propertyEdit/gharEditPage.dart';
 import 'package:kmc/pages/tax/propertyEdit/landEditPage.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PropertyEditHomePage extends StatefulWidget {
@@ -75,8 +75,7 @@ class _PropertyEditHomePageState extends State<PropertyEditHomePage> {
                         borderRadius: BorderRadius.circular(20.0),
                         border: Border.all(width: 0.5, color: text)),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 16),
+                      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -84,8 +83,7 @@ class _PropertyEditHomePageState extends State<PropertyEditHomePage> {
                             children: [
                               Text("tax_id".tr,
                                   textAlign: TextAlign.center,
-                                  style:
-                                      TextStyle(color: primary, fontSize: 14)),
+                                  style: TextStyle(color: primary, fontSize: 14)),
                               SizedBox(
                                 width: 5.0,
                               ),
@@ -98,8 +96,7 @@ class _PropertyEditHomePageState extends State<PropertyEditHomePage> {
                                       ))
                                   : Text(": " + taxPayerID!,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          color: primary, fontSize: 14)),
+                                      style: TextStyle(color: primary, fontSize: 14)),
                             ],
                           ),
                           SizedBox(
@@ -107,12 +104,9 @@ class _PropertyEditHomePageState extends State<PropertyEditHomePage> {
                           ),
                           InkWell(
                               onTap: () {
-                                Clipboard.setData(ClipboardData(
-                                    text: taxPayerID != null
-                                        ? taxPayerID!
-                                        : " "));
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
+                                Clipboard.setData(
+                                    ClipboardData(text: taxPayerID != null ? taxPayerID! : " "));
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                   content: Text(
                                     "tax_id ".tr + "copied",
                                     style: TextStyle(
@@ -157,15 +151,12 @@ class _PropertyEditHomePageState extends State<PropertyEditHomePage> {
       padding: const EdgeInsets.all(8.0),
       child: ElevatedButton(
         style: ButtonStyle(
-            backgroundColor: WidgetStateProperty.all(tertiary),
-            padding: WidgetStateProperty.all(
-                EdgeInsets.symmetric(vertical: 16, horizontal: 100)),
-            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
+            backgroundColor: MaterialStateProperty.all(tertiary),
+            padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 16, horizontal: 100)),
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0),
             ))),
-        child: Text('SEND'.tr,
-            style: TextStyle(color: textPrimaryLightColor, fontSize: 20)),
+        child: Text('SEND'.tr, style: TextStyle(color: textPrimaryLightColor, fontSize: 20)),
         onPressed: () {
           if (_site == "home") {
             // Get.to(GharRegister(

@@ -1,9 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:kmc/components/shimmer.dart';
 import 'package:kmc/config/Apiconnectservices.dart';
 import 'package:kmc/config/colors.dart';
 import 'package:kmc/modal/taxPayerDetail.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class GharEditPage extends StatefulWidget {
   @override
@@ -51,8 +51,7 @@ class _GharEditPageState extends State<GharEditPage> {
                       size: 80,
                     ),
                     Text("no_data_found".tr,
-                        style: TextStyle(
-                            height: 1.3, color: textPrimaryColor, fontSize: 16))
+                        style: TextStyle(height: 1.3, color: textPrimaryColor, fontSize: 16))
                   ],
                 )),
           );
@@ -68,10 +67,7 @@ class _GharEditPageState extends State<GharEditPage> {
                         size: 80,
                       ),
                       Text("no_data_found".tr,
-                          style: TextStyle(
-                              height: 1.3,
-                              color: textPrimaryColor,
-                              fontSize: 16))
+                          style: TextStyle(height: 1.3, color: textPrimaryColor, fontSize: 16))
                     ],
                   )));
         } else {
@@ -107,261 +103,202 @@ class _GharEditPageState extends State<GharEditPage> {
                           title: Row(
                             children: [
                               Text(
-                                snapshot
-                                    .data.data.taxdata.houseDetail[index].type,
-                                style:
-                                    TextStyle(color: primary, fontSize: 24.0),
+                                snapshot.data.data.taxdata.houseDetail[index].type,
+                                style: TextStyle(color: primary, fontSize: 24.0),
                               ),
                               SizedBox(
                                 width: 10.0,
                               ),
                               Text(
                                 "${snapshot.data.data.taxdata.houseDetail[index].id}",
-                                style:
-                                    TextStyle(color: primary, fontSize: 24.0),
+                                style: TextStyle(color: primary, fontSize: 24.0),
                               ),
                             ],
                           ),
                           content: Table(
                             defaultColumnWidth: FixedColumnWidth(140.0),
-                            border: TableBorder.all(
-                                color: text,
-                                style: BorderStyle.solid,
-                                width: 2),
+                            border: TableBorder.all(color: text, style: BorderStyle.solid, width: 2),
                             children: [
                               TableRow(children: [
-                                Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Flexible(
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text("talla".tr,
-                                                style:
-                                                    TextStyle(fontSize: 18.0)),
-                                          ),
-                                        ),
-                                      )
-                                    ]),
-                                Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Flexible(
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                                "${snapshot.data.data.taxdata.houseDetail[index].talla}",
-                                                style:
-                                                    TextStyle(fontSize: 18.0)),
-                                          ),
-                                        ),
-                                      )
-                                    ]),
+                                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                  Flexible(
+                                    child: Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text("talla".tr, style: TextStyle(fontSize: 18.0)),
+                                      ),
+                                    ),
+                                  )
+                                ]),
+                                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                  Flexible(
+                                    child: Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text("${snapshot.data.data.taxdata.houseDetail[index].talla}",
+                                            style: TextStyle(fontSize: 18.0)),
+                                      ),
+                                    ),
+                                  )
+                                ]),
                               ]),
                               TableRow(children: [
-                                Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Flexible(
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text("land_area".tr,
-                                                style:
-                                                    TextStyle(fontSize: 18.0)),
-                                          ),
-                                        ),
-                                      )
-                                    ]),
-                                Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Flexible(
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                                "${snapshot.data.data.taxdata.houseDetail[index].landArea}",
-                                                style:
-                                                    TextStyle(fontSize: 18.0)),
-                                          ),
-                                        ),
-                                      )
-                                    ]),
+                                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                  Flexible(
+                                    child: Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text("land_area".tr, style: TextStyle(fontSize: 18.0)),
+                                      ),
+                                    ),
+                                  )
+                                ]),
+                                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                  Flexible(
+                                    child: Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                            "${snapshot.data.data.taxdata.houseDetail[index].landArea}",
+                                            style: TextStyle(fontSize: 18.0)),
+                                      ),
+                                    ),
+                                  )
+                                ]),
                               ]),
                               TableRow(children: [
-                                Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Flexible(
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text("total_land_area".tr,
-                                                style:
-                                                    TextStyle(fontSize: 18.0)),
-                                          ),
-                                        ),
-                                      )
-                                    ]),
-                                Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Flexible(
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                                "${snapshot.data.data.taxdata.houseDetail[index].totalLandArea}",
-                                                style:
-                                                    TextStyle(fontSize: 18.0)),
-                                          ),
-                                        ),
-                                      )
-                                    ]),
+                                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                  Flexible(
+                                    child: Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text("total_land_area".tr, style: TextStyle(fontSize: 18.0)),
+                                      ),
+                                    ),
+                                  )
+                                ]),
+                                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                  Flexible(
+                                    child: Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                            "${snapshot.data.data.taxdata.houseDetail[index].totalLandArea}",
+                                            style: TextStyle(fontSize: 18.0)),
+                                      ),
+                                    ),
+                                  )
+                                ]),
                               ]),
                               TableRow(children: [
-                                Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Flexible(
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text("construction_date".tr,
-                                                style:
-                                                    TextStyle(fontSize: 18.0)),
-                                          ),
-                                        ),
-                                      )
-                                    ]),
-                                Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Flexible(
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                                "${snapshot.data.data.taxdata.houseDetail[index].constructionDate}",
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    TextStyle(fontSize: 18.0)),
-                                          ),
-                                        ),
-                                      )
-                                    ]),
+                                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                  Flexible(
+                                    child: Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text("construction_date".tr, style: TextStyle(fontSize: 18.0)),
+                                      ),
+                                    ),
+                                  )
+                                ]),
+                                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                  Flexible(
+                                    child: Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                            "${snapshot.data.data.taxdata.houseDetail[index].constructionDate}",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(fontSize: 18.0)),
+                                      ),
+                                    ),
+                                  )
+                                ]),
                               ]),
                               TableRow(children: [
-                                Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Flexible(
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text("ghar_banot".tr,
-                                                style:
-                                                    TextStyle(fontSize: 18.0)),
-                                          ),
-                                        ),
-                                      )
-                                    ]),
-                                Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Flexible(
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                                "${snapshot.data.data.taxdata.houseDetail[index].gharBanot}",
-                                                style:
-                                                    TextStyle(fontSize: 18.0)),
-                                          ),
-                                        ),
-                                      )
-                                    ]),
+                                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                  Flexible(
+                                    child: Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text("ghar_banot".tr, style: TextStyle(fontSize: 18.0)),
+                                      ),
+                                    ),
+                                  )
+                                ]),
+                                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                  Flexible(
+                                    child: Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                            "${snapshot.data.data.taxdata.houseDetail[index].gharBanot}",
+                                            style: TextStyle(fontSize: 18.0)),
+                                      ),
+                                    ),
+                                  )
+                                ]),
                               ]),
                               TableRow(children: [
-                                Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Flexible(
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text("Ghar_usage".tr,
-                                                style:
-                                                    TextStyle(fontSize: 18.0)),
-                                          ),
-                                        ),
-                                      )
-                                    ]),
-                                Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Flexible(
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                                "${snapshot.data.data.taxdata.houseDetail[index].gharUsage}",
-                                                style:
-                                                    TextStyle(fontSize: 18.0)),
-                                          ),
-                                        ),
-                                      )
-                                    ]),
+                                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                  Flexible(
+                                    child: Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text("Ghar_usage".tr, style: TextStyle(fontSize: 18.0)),
+                                      ),
+                                    ),
+                                  )
+                                ]),
+                                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                  Flexible(
+                                    child: Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                            "${snapshot.data.data.taxdata.houseDetail[index].gharUsage}",
+                                            style: TextStyle(fontSize: 18.0)),
+                                      ),
+                                    ),
+                                  )
+                                ]),
                               ]),
                               TableRow(children: [
-                                Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Flexible(
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text("prayokarta".tr,
-                                                style:
-                                                    TextStyle(fontSize: 18.0)),
-                                          ),
-                                        ),
-                                      )
-                                    ]),
-                                Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Flexible(
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                                "${snapshot.data.data.taxdata.houseDetail[index].prayokarta}",
-                                                style:
-                                                    TextStyle(fontSize: 18.0)),
-                                          ),
-                                        ),
-                                      )
-                                    ]),
+                                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                  Flexible(
+                                    child: Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text("prayokarta".tr, style: TextStyle(fontSize: 18.0)),
+                                      ),
+                                    ),
+                                  )
+                                ]),
+                                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                  Flexible(
+                                    child: Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                            "${snapshot.data.data.taxdata.houseDetail[index].prayokarta}",
+                                            style: TextStyle(fontSize: 18.0)),
+                                      ),
+                                    ),
+                                  )
+                                ]),
                               ]),
                             ],
                           ),
                           actions: <Widget>[
                             ElevatedButton(
                               style: ButtonStyle(
-                                  backgroundColor:
-                                      WidgetStateProperty.all(tertiary),
-                                  shape: WidgetStateProperty.all<
-                                          RoundedRectangleBorder>(
+                                  backgroundColor: MaterialStateProperty.all(tertiary),
+                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                       RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20.0),
                                   ))),
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 16.0, vertical: 10),
+                                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
                                 child: Text('cancel'.tr),
                               ),
                               onPressed: () {

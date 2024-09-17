@@ -61,8 +61,7 @@ class _WodajankariState extends State<Wodajankari> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('ward-info'.tr,
-                    style: TextStyle(color: primary, fontSize: 22)),
+                Text('ward-info'.tr, style: TextStyle(color: primary, fontSize: 22)),
                 InkWell(
                     onTap: () {
                       Navigator.pop(context);
@@ -150,9 +149,7 @@ class _WodajankariState extends State<Wodajankari> {
               child: Column(
                 children: [
                   Text('Wardno'.tr,
-                      style: TextStyle(
-                          fontSize: 18,
-                          color: subIndex == index ? primary : text)),
+                      style: TextStyle(fontSize: 18, color: subIndex == index ? primary : text)),
                   Text(('$index'.tr),
                       style: TextStyle(
                           fontSize: 18,
@@ -168,11 +165,7 @@ class _WodajankariState extends State<Wodajankari> {
       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 4),
       child: Text('$title'.tr,
           textAlign: TextAlign.start,
-          style: TextStyle(
-              color: primary,
-              fontSize: 17,
-              fontWeight: FontWeight.bold,
-              height: 1.5)),
+          style: TextStyle(color: primary, fontSize: 17, fontWeight: FontWeight.bold, height: 1.5)),
     );
   }
 
@@ -193,11 +186,8 @@ class _WodajankariState extends State<Wodajankari> {
             child: Text(
               'Wardno'.tr + ' ' + '$subIndex'.tr + ' ' + 'digitalprofile'.tr,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: primary,
-                  fontFamily: 'Mukta',
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.0),
+              style:
+                  TextStyle(color: primary, fontFamily: 'Mukta', fontWeight: FontWeight.bold, fontSize: 18.0),
             ),
           ),
           Padding(
@@ -294,21 +284,14 @@ class _WodajankariState extends State<Wodajankari> {
           // mapType: MapType.hybrid,
           initialCameraPosition: CameraPosition(
               bearing: 0,
-              target: LatLng(
-                  double.parse(
-                      value == null ? '27.76481' : value[indexvalue].wodalati),
-                  double.parse(
-                      value == null ? '85.30078' : value[indexvalue].wodalong)),
+              target: LatLng(double.parse(value == null ? '27.76481' : value[indexvalue].wodalati),
+                  double.parse(value == null ? '85.30078' : value[indexvalue].wodalong)),
               tilt: 0,
               zoom: 11.5),
           markers: placedetail(
-              double.parse(
-                  value == null ? '85.30078' : value[indexvalue].wodalati),
-              double.parse(
-                  value == null ? '27.76481' : value[indexvalue].wodalong),
-              value == null
-                  ? 'काठमाडौँ महानगरपालिका'
-                  : value[indexvalue].address),
+              double.parse(value == null ? '85.30078' : value[indexvalue].wodalati),
+              double.parse(value == null ? '27.76481' : value[indexvalue].wodalong),
+              value == null ? 'काठमाडौँ महानगरपालिका' : value[indexvalue].address),
           onMapCreated: (GoogleMapController controller) {
             _controller.complete(controller);
             setState(() {
@@ -343,8 +326,7 @@ class _WodajankariState extends State<Wodajankari> {
   }
 
   employeeSection(index) {
-    return BlocBuilder<WodaJankariCubit, WodaJankariState>(
-        builder: (context, state) {
+    return BlocBuilder<WodaJankariCubit, WodaJankariState>(builder: (context, state) {
       if (state is WodaJankariInitial || state is WodaJankariLoading) {
         return Container();
       } else if (state is WodaJankariFetched) {
@@ -352,17 +334,12 @@ class _WodajankariState extends State<Wodajankari> {
         return SingleChildScrollView(
           child: Column(
             children: [
-              wodajankari[indexvalue].pratinidhi!.length > 0
-                  ? titleText('pratinidhi'.tr)
-                  : titleText(''),
+              wodajankari[indexvalue].pratinidhi!.length > 0 ? titleText('pratinidhi'.tr) : titleText(''),
               Container(
-                height: Get.height *
-                    0.12 *
-                    wodajankari[indexvalue].pratinidhi!.length,
+                height: Get.height * 0.12 * wodajankari[indexvalue].pratinidhi!.length,
                 child: Card(
                   elevation: 0,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0)),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
                   child: GridView.count(
                     padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                     primary: false,
@@ -383,42 +360,29 @@ class _WodajankariState extends State<Wodajankari> {
                                 padding: const EdgeInsets.all(0.0),
                                 child: GestureDetector(
                                   onTap: () {
-                                    modal(
-                                        context,
-                                        wodajankari[indexvalue]
-                                            .pratinidhi![index]);
+                                    modal(context, wodajankari[indexvalue].pratinidhi![index]);
                                   },
                                   child: Column(
                                     children: [
                                       CachedNetworkImage(
                                         imageUrl:
                                             "${wodajankari[indexvalue].pratinidhi![index].user_img_url}",
-                                        errorWidget: (context, url, error) =>
-                                            ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(50.0),
-                                          child: Image.asset(
-                                              'assets/images/dummyuser.png',
-                                              height: 80,
-                                              width: 80,
-                                              fit: BoxFit.contain),
+                                        errorWidget: (context, url, error) => ClipRRect(
+                                          borderRadius: BorderRadius.circular(50.0),
+                                          child: Image.asset('assets/images/dummyuser.png',
+                                              height: 80, width: 80, fit: BoxFit.contain),
                                         ),
-                                        imageBuilder:
-                                            (context, imageProvider) =>
-                                                CircleAvatar(
+                                        imageBuilder: (context, imageProvider) => CircleAvatar(
                                           radius: 25,
                                           backgroundImage: imageProvider,
                                         ),
-                                        placeholder: (context, url) =>
-                                            CircularProgressIndicator(
+                                        placeholder: (context, url) => CircularProgressIndicator(
                                           backgroundColor: primary,
                                         ),
                                       ),
                                       SizedBox(height: 5),
                                       Text(
-                                        wodajankari[indexvalue]
-                                            .pratinidhi![index]
-                                            .name!,
+                                        wodajankari[indexvalue].pratinidhi![index].name!,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: textPrimaryDarkColor,
@@ -428,28 +392,16 @@ class _WodajankariState extends State<Wodajankari> {
                                         ),
                                       ),
                                       Text(
-                                        wodajankari[indexvalue]
-                                                .pratinidhi![index]
-                                                .designation ??
-                                            '',
+                                        wodajankari[indexvalue].pratinidhi![index].designation ?? '',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                            color: primary,
-                                            fontFamily: 'Mukta',
-                                            fontSize: 14.0,
-                                            height: 1),
+                                            color: primary, fontFamily: 'Mukta', fontSize: 14.0, height: 1),
                                       ),
                                       Text(
-                                        wodajankari[indexvalue]
-                                                .pratinidhi![index]
-                                                .mobile ??
-                                            '',
+                                        wodajankari[indexvalue].pratinidhi![index].mobile ?? '',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                            color: primary,
-                                            fontFamily: 'Mukta',
-                                            fontSize: 14.0,
-                                            height: 1),
+                                            color: primary, fontFamily: 'Mukta', fontSize: 14.0, height: 1),
                                       ),
                                     ],
                                   ),
@@ -606,8 +558,7 @@ class _WodajankariState extends State<Wodajankari> {
   }
 
   employeeSection1(index) {
-    return BlocBuilder<WodaJankariCubit, WodaJankariState>(
-        builder: (context, state) {
+    return BlocBuilder<WodaJankariCubit, WodaJankariState>(builder: (context, state) {
       if (state is WodaJankariInitial || state is WodaJankariLoading) {
         return Container();
       } else if (state is WodaJankariFetched) {
@@ -615,26 +566,19 @@ class _WodajankariState extends State<Wodajankari> {
         return SingleChildScrollView(
           child: Column(
             children: [
-              wodajankari[indexvalue].karmachari!.length > 0
-                  ? titleText('karmachari'.tr)
-                  : titleText(''),
+              wodajankari[indexvalue].karmachari!.length > 0 ? titleText('karmachari'.tr) : titleText(''),
               Container(
-                  height: Get.height *
-                      0.16 *
-                      wodajankari[indexvalue].karmachari!.length,
+                  height: Get.height * 0.16 * wodajankari[indexvalue].karmachari!.length,
                   child: Card(
                     elevation: 0,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0)),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
                     child: GridView.count(
                         padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                         primary: false,
                         scrollDirection: Axis.vertical,
                         childAspectRatio: 3 / 2,
                         crossAxisCount: 2,
-                        children: List.generate(
-                            wodajankari[indexvalue].karmachari!.length,
-                            (index) {
+                        children: List.generate(wodajankari[indexvalue].karmachari!.length, (index) {
                           return Padding(
                               padding: const EdgeInsets.all(0.0),
                               child: Column(
@@ -648,33 +592,22 @@ class _WodajankariState extends State<Wodajankari> {
                                           CachedNetworkImage(
                                             imageUrl:
                                                 "${wodajankari[indexvalue].karmachari![index].user_img}",
-                                            errorWidget:
-                                                (context, url, error) =>
-                                                    ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(50.0),
-                                              child: Image.asset(
-                                                  'assets/images/dummyuser.png',
-                                                  height: 80,
-                                                  width: 80,
-                                                  fit: BoxFit.contain),
+                                            errorWidget: (context, url, error) => ClipRRect(
+                                              borderRadius: BorderRadius.circular(50.0),
+                                              child: Image.asset('assets/images/dummyuser.png',
+                                                  height: 80, width: 80, fit: BoxFit.contain),
                                             ),
-                                            imageBuilder:
-                                                (context, imageProvider) =>
-                                                    CircleAvatar(
+                                            imageBuilder: (context, imageProvider) => CircleAvatar(
                                               radius: 25,
                                               backgroundImage: imageProvider,
                                             ),
-                                            placeholder: (context, url) =>
-                                                CircularProgressIndicator(
+                                            placeholder: (context, url) => CircularProgressIndicator(
                                               backgroundColor: tertiary,
                                             ),
                                           ),
                                           SizedBox(height: 5),
                                           Text(
-                                            wodajankari[indexvalue]
-                                                .karmachari![index]
-                                                .name!,
+                                            wodajankari[indexvalue].karmachari![index].name!,
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               color: textPrimaryDarkColor,
@@ -684,10 +617,7 @@ class _WodajankariState extends State<Wodajankari> {
                                             ),
                                           ),
                                           Text(
-                                            wodajankari[indexvalue]
-                                                    .karmachari![index]
-                                                    .mobile ??
-                                                '',
+                                            wodajankari[indexvalue].karmachari![index].mobile ?? '',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                                 color: primary,
@@ -696,10 +626,7 @@ class _WodajankariState extends State<Wodajankari> {
                                                 height: 1),
                                           ),
                                           Text(
-                                            wodajankari[indexvalue]
-                                                    .karmachari![index]
-                                                    .designation ??
-                                                '',
+                                            wodajankari[indexvalue].karmachari![index].designation ?? '',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                                 color: primary,
@@ -855,31 +782,24 @@ class _WodajankariState extends State<Wodajankari> {
           return SingleChildScrollView(
             child: Column(
               children: [
-                snapshot.data[indexvalue].users.length > 0
-                    ? titleText('karyapalika'.tr)
-                    : titleText(''),
+                snapshot.data[indexvalue].users.length > 0 ? titleText('karyapalika'.tr) : titleText(''),
                 Container(
-                    height: Get.height *
-                        0.12 *
-                        snapshot.data[indexvalue].users.length,
+                    height: Get.height * 0.12 * snapshot.data[indexvalue].users.length,
                     child: Card(
                       elevation: 0,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0)),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
                       child: GridView.count(
                           padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                           primary: false,
                           scrollDirection: Axis.vertical,
                           childAspectRatio: 3 / 2,
                           crossAxisCount: 2,
-                          children: List.generate(
-                              snapshot.data[indexvalue].users.length, (index) {
+                          children: List.generate(snapshot.data[indexvalue].users.length, (index) {
                             return Padding(
                                 padding: const EdgeInsets.all(0.0),
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
                                     children: [
                                       Padding(
                                         padding: const EdgeInsets.all(0.0),
@@ -888,32 +808,22 @@ class _WodajankariState extends State<Wodajankari> {
                                             CachedNetworkImage(
                                               imageUrl:
                                                   "${snapshot.data[indexvalue].users[index].user_img_url}",
-                                              errorWidget:
-                                                  (context, url, error) =>
-                                                      ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(50.0),
-                                                child: Image.asset(
-                                                    'assets/images/dummyuser.png',
-                                                    height: 80,
-                                                    width: 80,
-                                                    fit: BoxFit.contain),
+                                              errorWidget: (context, url, error) => ClipRRect(
+                                                borderRadius: BorderRadius.circular(50.0),
+                                                child: Image.asset('assets/images/dummyuser.png',
+                                                    height: 80, width: 80, fit: BoxFit.contain),
                                               ),
-                                              imageBuilder:
-                                                  (context, imageProvider) =>
-                                                      CircleAvatar(
+                                              imageBuilder: (context, imageProvider) => CircleAvatar(
                                                 radius: 25,
                                                 backgroundImage: imageProvider,
                                               ),
-                                              placeholder: (context, url) =>
-                                                  CircularProgressIndicator(
+                                              placeholder: (context, url) => CircularProgressIndicator(
                                                 backgroundColor: tertiary,
                                               ),
                                             ),
                                             SizedBox(height: 5),
                                             Text(
-                                              snapshot.data[indexvalue]
-                                                  .users[index].name,
+                                              snapshot.data[indexvalue].users[index].name,
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                 color: textPrimaryDarkColor,
@@ -923,9 +833,7 @@ class _WodajankariState extends State<Wodajankari> {
                                               ),
                                             ),
                                             Text(
-                                              snapshot.data[indexvalue]
-                                                      .users[index].mobile ??
-                                                  '',
+                                              snapshot.data[indexvalue].users[index].mobile ?? '',
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                   color: primary,
@@ -951,8 +859,7 @@ class _WodajankariState extends State<Wodajankari> {
     return Text(
       a,
       textAlign: TextAlign.left,
-      style: TextStyle(
-          color: textPrimaryColor, fontFamily: 'Mukta', fontSize: 14.0),
+      style: TextStyle(color: textPrimaryColor, fontFamily: 'Mukta', fontSize: 14.0),
     );
   }
 
@@ -993,15 +900,10 @@ class _WodajankariState extends State<Wodajankari> {
                 Text(
                   data.designation,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: primary,
-                      fontFamily: 'Mukta',
-                      fontSize: 14.0,
-                      height: 1),
+                  style: TextStyle(color: primary, fontFamily: 'Mukta', fontSize: 14.0, height: 1),
                 ),
                 new ButtonBar(
-                  mainAxisSize: MainAxisSize
-                      .min, // this will take space as minimum as posible(to center)
+                  mainAxisSize: MainAxisSize.min, // this will take space as minimum as posible(to center)
                   children: <Widget>[
                     // new RaisedButton(
                     //   child: new Text(translate(context, 'chat')),
@@ -1012,7 +914,7 @@ class _WodajankariState extends State<Wodajankari> {
                     new ElevatedButton(
                       child: new Text('call'.tr),
                       style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all(primary),
+                        backgroundColor: MaterialStateProperty.all(primary),
                       ),
                       onPressed: () {
                         _callNumber(data.mobile);

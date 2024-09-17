@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -19,14 +18,12 @@ class KarmachariTabNew extends StatefulWidget {
   State<KarmachariTabNew> createState() => _KarmachariTabState();
 }
 
-class _KarmachariTabState extends State<KarmachariTabNew>
-    with TickerProviderStateMixin {
+class _KarmachariTabState extends State<KarmachariTabNew> with TickerProviderStateMixin {
   TabController? _kTabController;
   int _kCurrentIndex = 0;
   void initState() {
     super.initState();
-    _kTabController =
-        new TabController(vsync: this, length: 2, initialIndex: _kCurrentIndex);
+    _kTabController = new TabController(vsync: this, length: 2, initialIndex: _kCurrentIndex);
   }
 
   RegExp regExp = RegExp(r"https?://(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}\b/?");
@@ -42,11 +39,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
       children: [
         SizedBox(
           height: 50,
+          width: double.infinity,
           child: Material(
             color: Colors.transparent,
             child: TabBar(
-              onTap: ((index) =>
-                  {_kCurrentIndex = index, print(_kCurrentIndex)}),
+              onTap: ((index) => {_kCurrentIndex = index, print(_kCurrentIndex)}),
               controller: _kTabController,
               indicatorColor: primary,
               indicatorWeight: 3.0,
@@ -89,107 +86,74 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                 // nagarKWidget(),
                 BlocBuilder<KarmachariwordpressCubit, KarmachariwordpressState>(
                   builder: (context, state) {
-                    if (state is KarmachariwordpressInitial ||
-                        state is KarmachariwordpressLoading) {
+                    if (state is KarmachariwordpressInitial || state is KarmachariwordpressLoading) {
                       return CustomSpinner();
                     }
                     if (state is KarmachariwordpressLoaded) {
-                      var ward1 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं १')
-                          .toList();
-                      var ward2 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं २')
-                          .toList();
-                      var ward3 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं ३')
-                          .toList();
-                      var ward4 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं ४')
-                          .toList();
-                      var ward5 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं ५')
-                          .toList();
-                      var ward6 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं ६')
-                          .toList();
-                      var ward7 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं ७')
-                          .toList();
-                      var ward8 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं ८')
-                          .toList();
-                      var ward9 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं ९')
-                          .toList();
-                      var ward10 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं १०')
-                          .toList();
-                      var ward11 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं ११')
-                          .toList();
-                      var ward12 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं १२')
-                          .toList();
-                      var ward13 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं १३')
-                          .toList();
-                      var ward14 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं १४')
-                          .toList();
-                      var ward15 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं १५')
-                          .toList();
-                      var ward16 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं १६')
-                          .toList();
-                      var ward17 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं १७')
-                          .toList();
-                      var ward18 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं १८')
-                          .toList();
-                      var ward19 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं १९')
-                          .toList();
-                      var ward20 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं २०')
-                          .toList();
-                      var ward21 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं २१')
-                          .toList();
-                      var ward22 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं २२')
-                          .toList();
-                      var ward23 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं २३')
-                          .toList();
-                      var ward24 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं २४')
-                          .toList();
-                      var ward25 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं २५')
-                          .toList();
-                      var ward26 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं २६')
-                          .toList();
-                      var ward27 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं २७')
-                          .toList();
-                      var ward28 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं २८')
-                          .toList();
-                      var ward29 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं २९')
-                          .toList();
-                      var ward30 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं ३०')
-                          .toList();
-                      var ward31 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं ३१')
-                          .toList();
-                      var ward32 = state.pratinidhiModel
-                          .where((element) => element.section == 'वडा नं ३२')
-                          .toList();
+                      var ward1 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं १').toList();
+                      var ward2 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं २').toList();
+                      var ward3 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं ३').toList();
+                      var ward4 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं ४').toList();
+                      var ward5 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं ५').toList();
+                      var ward6 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं ६').toList();
+                      var ward7 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं ७').toList();
+                      var ward8 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं ८').toList();
+                      var ward9 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं ९').toList();
+                      var ward10 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं १०').toList();
+                      var ward11 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं ११').toList();
+                      var ward12 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं १२').toList();
+                      var ward13 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं १३').toList();
+                      var ward14 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं १४').toList();
+                      var ward15 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं १५').toList();
+                      var ward16 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं १६').toList();
+                      var ward17 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं १७').toList();
+                      var ward18 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं १८').toList();
+                      var ward19 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं १९').toList();
+                      var ward20 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं २०').toList();
+                      var ward21 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं २१').toList();
+                      var ward22 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं २२').toList();
+                      var ward23 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं २३').toList();
+                      var ward24 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं २४').toList();
+                      var ward25 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं २५').toList();
+                      var ward26 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं २६').toList();
+                      var ward27 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं २७').toList();
+                      var ward28 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं २८').toList();
+                      var ward29 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं २९').toList();
+                      var ward30 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं ३०').toList();
+                      var ward31 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं ३१').toList();
+                      var ward32 =
+                          state.pratinidhiModel.where((element) => element.section == 'वडा नं ३२').toList();
                       return SingleChildScrollView(
                         child: Column(
                           children: [
@@ -198,14 +162,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं १')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं १')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward1[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward1[index].title,
@@ -220,14 +181,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं २')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं २')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward2[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward2[index].title,
@@ -242,14 +200,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं ३')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं ३')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward3[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward3[index].title,
@@ -264,14 +219,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 123,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं ४')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं ४')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward4[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward4[index].title,
@@ -286,14 +238,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं ५')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं ५')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward5[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward5[index].title,
@@ -308,14 +257,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं ६')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं ६')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward6[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward6[index].title,
@@ -330,14 +276,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं ७')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं ७')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward7[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward7[index].title,
@@ -352,14 +295,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं ८')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं ८')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward8[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward8[index].title,
@@ -374,14 +314,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं ९')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं ९')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward9[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward9[index].title,
@@ -396,14 +333,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं १०')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं १०')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward10[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward10[index].title,
@@ -418,14 +352,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं ११')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं ११')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward11[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward11[index].title,
@@ -440,14 +371,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं १२')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं १२')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward12[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward12[index].title,
@@ -462,14 +390,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं १३')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं १३')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward13[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward13[index].title,
@@ -484,14 +409,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं १४')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं १४')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward14[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward14[index].title,
@@ -506,14 +428,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं १५')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं १५')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward15[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward15[index].title,
@@ -528,14 +447,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं १६')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं १६')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward16[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward16[index].title,
@@ -550,14 +466,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं १७')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं १७')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward17[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward17[index].title,
@@ -572,14 +485,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं १८')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं १८')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward18[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward18[index].title,
@@ -594,14 +504,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं १९')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं १९')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward19[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward19[index].title,
@@ -616,14 +523,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं २०')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं २०')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward20[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward20[index].title,
@@ -638,14 +542,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं २१')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं २१')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward21[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward21[index].title,
@@ -660,14 +561,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं २२')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं २२')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward22[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward22[index].title,
@@ -682,14 +580,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं २३')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं २३')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward23[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward23[index].title,
@@ -704,14 +599,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं २४')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं २४')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward24[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward24[index].title,
@@ -726,14 +618,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं २५')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं २५')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward25[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward25[index].title,
@@ -748,14 +637,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं २६')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं २६')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward26[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward26[index].title,
@@ -770,14 +656,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं २७')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं २७')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward27[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward27[index].title,
@@ -792,14 +675,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं २८')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं २८')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward28[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward28[index].title,
@@ -814,14 +694,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं २९')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं २९')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward29[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward29[index].title,
@@ -836,14 +713,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं ३०')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं ३०')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward30[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward30[index].title,
@@ -858,14 +732,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं ३१')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं ३१')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward31[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward31[index].title,
@@ -880,14 +751,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                               height: 110,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: (state.pratinidhiModel.where(
-                                    (element) =>
-                                        element.section == 'वडा नं ३२')).length,
+                                itemCount: (state.pratinidhiModel
+                                    .where((element) => element.section == 'वडा नं ३२')).length,
                                 itemBuilder: (context, index) {
                                   String inputString = ward32[index].photo;
-                                  String url = regExp
-                                      .stringMatch(inputString)
-                                      .toString();
+                                  String url = regExp.stringMatch(inputString).toString();
                                   return PratinidhiCard(
                                     index: index,
                                     title: ward32[index].title,
@@ -916,14 +784,27 @@ class _KarmachariTabState extends State<KarmachariTabNew>
     // Group data by Designation
     Map<String, List> groupedData = {};
     for (var official in data) {
-      String designation = official["Designation"];
-      if (designation != "") {
+      String designation = official["Designation"].trim();
+      designation = designation.replaceAll(RegExp(r'[()]'), '');
+      if (designation == "विभागिय प्रमुख" ||
+          designation == "विभागीय प्रमुख" ||
+          designation == "प्रमुख" ||
+          designation == "विभगीय प्रमुख") designation = "विभागीय प्रमुख";
+
+      if (designation != "" && official["Section"] != "") {
         if (!groupedData.containsKey(designation)) {
           groupedData[designation] = [];
         }
         groupedData[designation]!.add(official);
+      } else if (designation == "प्रमुख प्रशासकिय अधिकृत") {
+        if (!groupedData.containsKey(designation)) {
+          groupedData[designation] = [];
+        }
+
+        groupedData[designation]!.add(official);
       }
     }
+
     String extractImageUrl(String imgTag) {
       final RegExp regExp = RegExp(r'src="([^"]+)"');
       final match = regExp.firstMatch(imgTag);
@@ -946,14 +827,17 @@ class _KarmachariTabState extends State<KarmachariTabNew>
 
           return Container(
             // margin: EdgeInsets.only(bottom: 20.0),
+
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              // crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 titletext(designation),
                 SizedBox(height: 10.0),
                 Container(
-                  // color: Colors.red,
+                  width: double.infinity,
                   height: Get.height * 0.166, // Adjust height based on design
+                  //height: Get.height * 0.2,
                   child: ListView.builder(
                     padding: EdgeInsets.zero,
                     scrollDirection: Axis.horizontal,
@@ -979,13 +863,11 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                                     ),
                                   ),
                                 ),
-                                imageBuilder: (context, imageProvider) =>
-                                    CircleAvatar(
+                                imageBuilder: (context, imageProvider) => CircleAvatar(
                                   radius: 35,
                                   backgroundImage: imageProvider,
                                 ),
-                                placeholder: (context, url) =>
-                                    CircularProgressIndicator(
+                                placeholder: (context, url) => CircularProgressIndicator(
                                   backgroundColor: tertiary,
                                 ),
                               ),
@@ -999,23 +881,25 @@ class _KarmachariTabState extends State<KarmachariTabNew>
                                   fontSize: 13.0,
                                 ),
                               ),
-                              Text(
-                                official["Designation"],
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: primary,
-                                    fontFamily: 'Mukta',
-                                    fontSize: 14.0,
-                                    height: 1),
-                              ),
+                              // Text(
+                              //   official["Designation"],
+                              //   textAlign: TextAlign.center,
+                              //   style:
+                              //       TextStyle(color: primary, fontFamily: 'Mukta', fontSize: 14.0, height: 1),
+                              // ),
+                              official["Section"] != ""
+                                  ? Text(
+                                      official["Section"],
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: primary, fontFamily: 'Mukta', fontSize: 14.0, height: 1),
+                                    )
+                                  : SizedBox.shrink(),
                               Text(
                                 official["Phone"],
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: primary,
-                                    fontFamily: 'Mukta',
-                                    fontSize: 14.0,
-                                    height: 1),
+                                style:
+                                    TextStyle(color: primary, fontFamily: 'Mukta', fontSize: 14.0, height: 1),
                               ),
                             ],
                           ),

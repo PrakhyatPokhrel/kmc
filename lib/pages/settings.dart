@@ -1,14 +1,14 @@
 import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:kmc/Auth/login.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:kmc/Auth/login.dart';
+import 'package:kmc/components/bottomNavBar.dart';
+import 'package:kmc/config/colors.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toggle_switch/toggle_switch.dart';
-import 'package:kmc/components/bottomNavBar.dart';
-import 'package:kmc/config/colors.dart';
-import 'package:get/get.dart';
 
 class Settings extends StatefulWidget {
   @override
@@ -42,9 +42,7 @@ class _SettingsState extends State<Settings> {
     storage.clear();
 
     Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => new BottomNavBar()),
-        (route) => false);
+        context, MaterialPageRoute(builder: (context) => new BottomNavBar()), (route) => false);
   }
 
   sharedprefvalue() async {
@@ -87,8 +85,7 @@ class _SettingsState extends State<Settings> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('SETTINGS'.tr,
-                    style: TextStyle(color: primary, fontSize: 22)),
+                Text('SETTINGS'.tr, style: TextStyle(color: primary, fontSize: 22)),
                 InkWell(
                     onTap: () {
                       Navigator.pop(context);
@@ -108,74 +105,64 @@ class _SettingsState extends State<Settings> {
                   Row(children: [
                     userdata != null
                         ? Padding(
-                            padding:
-                                const EdgeInsets.only(bottom: 10, right: 10),
+                            padding: const EdgeInsets.only(bottom: 10, right: 10),
                             child: userdata == null
                                 ? Container()
                                 : CachedNetworkImage(
                                     imageUrl: '${userdata['user_img']}',
-                                    errorWidget: (context, url, error) =>
-                                        Text("error"),
-                                    imageBuilder: (context, imageProvider) =>
-                                        CircleAvatar(
+                                    errorWidget: (context, url, error) => Text("error"),
+                                    imageBuilder: (context, imageProvider) => CircleAvatar(
                                       radius: 35,
                                       backgroundImage: imageProvider,
                                     ),
                                   ))
                         : Container(),
-                    Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(userdata != null ? userdata['name'] : '',
-                              style: TextStyle(fontSize: 18, height: 1)),
-                          Text(
-                            userdata != null ? userdata['email'] : '',
-                            style: TextStyle(height: 1.3),
-                          )
-                        ])
+                    Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                      Text(userdata != null ? userdata['name'] : '',
+                          style: TextStyle(fontSize: 18, height: 1)),
+                      Text(
+                        userdata != null ? userdata['email'] : '',
+                        style: TextStyle(height: 1.3),
+                      )
+                    ])
                   ]),
                   // Divider(),
                   headerText('GENERALSETTINGS'.tr),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Icon(Icons.settings, size: 30),
-                        ),
-                        Text('LANGUAGE'.tr,
-                            style: TextStyle(fontSize: 18, height: 1)),
-                        SizedBox(width: 30),
-                        ToggleSwitch(
-                            initialLabelIndex: indexvalue,
-                            minWidth: 90.0,
-                            changeOnTap: true,
-                            cornerRadius: 20,
-                            activeBgColor: [primary],
-                            inactiveBgColor: Colors.grey.shade300,
-                            labels: ['नेपाली', 'English'],
-                            icons: [Icons.language_sharp, Icons.language],
-                            onToggle: (index) {
-                              if (index == 0) {
-                                // setlangindex('np');
-                                setState(() {
-                                  var locale = Locale('hi',
-                                      'IN'); // translations will be displayed in that local
-                                  Get.updateLocale(locale);
-                                });
-                                setsharedpref('hi', index);
-                                indexvalue = index!;
-                              } else {
-                                setState(() {
-                                  var locale = Locale('en',
-                                      'US'); // translations will be displayed in that local
-                                  Get.updateLocale(locale);
-                                });
-                                setsharedpref('en', index);
-                                indexvalue = index!;
-                              }
-                            }),
-                      ]),
+                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Icon(Icons.settings, size: 30),
+                    ),
+                    Text('LANGUAGE'.tr, style: TextStyle(fontSize: 18, height: 1)),
+                    SizedBox(width: 30),
+                    ToggleSwitch(
+                        initialLabelIndex: indexvalue,
+                        minWidth: 90.0,
+                        changeOnTap: true,
+                        cornerRadius: 20,
+                        activeBgColor: [primary],
+                        inactiveBgColor: Colors.grey.shade300,
+                        labels: ['नेपाली', 'English'],
+                        icons: [Icons.language_sharp, Icons.language],
+                        onToggle: (index) {
+                          if (index == 0) {
+                            // setlangindex('np');
+                            setState(() {
+                              var locale = Locale('hi', 'IN'); // translations will be displayed in that local
+                              Get.updateLocale(locale);
+                            });
+                            setsharedpref('hi', index);
+                            indexvalue = index!;
+                          } else {
+                            setState(() {
+                              var locale = Locale('en', 'US'); // translations will be displayed in that local
+                              Get.updateLocale(locale);
+                            });
+                            setsharedpref('en', index);
+                            indexvalue = index!;
+                          }
+                        }),
+                  ]),
                   Divider(),
                   headerText('OTHERSETTINGS'.tr),
                   // GestureDetector(
@@ -194,26 +181,23 @@ class _SettingsState extends State<Settings> {
                   //               style: TextStyle(fontSize: 18, height: 1)),
                   //         ])),
 
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Icon(Icons.lock, size: 30),
-                        ),
-                        Text('change_password'.tr,
-                            style: TextStyle(fontSize: 18, height: 1)),
-                        SizedBox(width: 120),
-                        GestureDetector(
-                          onTap: () {
-                            changePasswordPopup(context, _formKey);
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Icon(Icons.arrow_forward, size: 20),
-                          ),
-                        )
-                      ]),
+                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Icon(Icons.lock, size: 30),
+                    ),
+                    Text('change_password'.tr, style: TextStyle(fontSize: 18, height: 1)),
+                    SizedBox(width: 120),
+                    GestureDetector(
+                      onTap: () {
+                        changePasswordPopup(context, _formKey);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Icon(Icons.arrow_forward, size: 20),
+                      ),
+                    )
+                  ]),
                   //logout
                   Row(
                       // mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -226,29 +210,20 @@ class _SettingsState extends State<Settings> {
                         loginlout == true
                             ? ElevatedButton(
                                 style: ButtonStyle(
-                                  backgroundColor:
-                                      WidgetStateProperty.all(primary),
+                                  backgroundColor: MaterialStateProperty.all(primary),
                                 ),
-                                child: Text('LOGOUT'.tr,
-                                    style: TextStyle(
-                                        color: textPrimaryLightColor)),
+                                child: Text('LOGOUT'.tr, style: TextStyle(color: textPrimaryLightColor)),
                                 onPressed: () {
                                   logout();
                                 },
                               )
                             : ElevatedButton(
                                 style: ButtonStyle(
-                                  backgroundColor:
-                                      WidgetStateProperty.all(primary),
+                                  backgroundColor: MaterialStateProperty.all(primary),
                                 ),
-                                child: Text('LOGIN'.tr,
-                                    style: TextStyle(
-                                        color: textPrimaryLightColor)),
+                                child: Text('LOGIN'.tr, style: TextStyle(color: textPrimaryLightColor)),
                                 onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => Login()));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
                                 },
                               ),
                       ])
@@ -262,8 +237,7 @@ class _SettingsState extends State<Settings> {
   }
 
   headerText(text) {
-    return Text(text,
-        textAlign: TextAlign.left, style: TextStyle(fontSize: 18, height: 2));
+    return Text(text, textAlign: TextAlign.left, style: TextStyle(fontSize: 18, height: 2));
   }
 }
 
@@ -295,8 +269,7 @@ changePasswordPopup(context, _formKey) {
                   children: <Widget>[
                     new ListTile(
                       title: Text('change_password'.tr,
-                          style: TextStyle(
-                              color: primary, fontWeight: FontWeight.bold)),
+                          style: TextStyle(color: primary, fontWeight: FontWeight.bold)),
                     ),
                     Divider(),
                     new ListTile(
@@ -320,14 +293,11 @@ changePasswordPopup(context, _formKey) {
                       padding: const EdgeInsets.all(8.0),
                       child: ElevatedButton(
                         style: ButtonStyle(
-                          backgroundColor: WidgetStateProperty.all(primary),
+                          backgroundColor: MaterialStateProperty.all(primary),
                         ),
-                        child: Text('SEND'.tr,
-                            style: TextStyle(color: textPrimaryLightColor)),
+                        child: Text('SEND'.tr, style: TextStyle(color: textPrimaryLightColor)),
                         onPressed: () {
-                          if (_formKey.currentState.validate()) {
-                            
-                          }
+                          if (_formKey.currentState.validate()) {}
                         },
                       ),
                     )

@@ -13,16 +13,14 @@ class KarmachariTab extends StatefulWidget {
   _KarmachariTabState createState() => _KarmachariTabState();
 }
 
-class _KarmachariTabState extends State<KarmachariTab>
-    with TickerProviderStateMixin {
+class _KarmachariTabState extends State<KarmachariTab> with TickerProviderStateMixin {
   TabController? _kTabController;
   int _kCurrentIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    _kTabController =
-        new TabController(vsync: this, length: 3, initialIndex: _kCurrentIndex);
+    _kTabController = new TabController(vsync: this, length: 3, initialIndex: _kCurrentIndex);
   }
 
   Future<List<Nagarkarmacharidata>> wardsgetpratinidhidata() async {
@@ -58,8 +56,7 @@ class _KarmachariTabState extends State<KarmachariTab>
           child: Material(
             color: Colors.transparent,
             child: TabBar(
-              onTap: ((index) =>
-                  {_kCurrentIndex = index, print(_kCurrentIndex)}),
+              onTap: ((index) => {_kCurrentIndex = index, print(_kCurrentIndex)}),
               controller: _kTabController,
               indicatorColor: primary,
               indicatorWeight: 3.0,
@@ -134,11 +131,9 @@ class _KarmachariTabState extends State<KarmachariTab>
                           height: Get.height * 0.2,
                           child: ListView.builder(
                               scrollDirection: Axis.horizontal,
-                              itemCount:
-                                  snapshot.data[index].wodapratinidhi.length,
+                              itemCount: snapshot.data[index].wodapratinidhi.length,
                               itemBuilder: (context, i) {
-                                if (snapshot
-                                    .data[index].wodapratinidhi.isEmpty) {
+                                if (snapshot.data[index].wodapratinidhi.isEmpty) {
                                   return Container(
                                     child: Container(),
                                   );
@@ -149,22 +144,14 @@ class _KarmachariTabState extends State<KarmachariTab>
                                         padding: const EdgeInsets.all(8.0),
                                         child: GestureDetector(
                                           onTap: () {
-                                            modal(
-                                                context,
-                                                snapshot.data[index]
-                                                    .wodapratinidhi[i]);
+                                            modal(context, snapshot.data[index].wodapratinidhi[i]);
                                           },
                                           child: Column(
                                             children: [
                                               CachedNetworkImage(
-                                                imageUrl:
-                                                    "${snapshot.data[index].wodapratinidhi[i].icon}",
-                                                errorWidget:
-                                                    (context, url, error) =>
-                                                        ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          50.0),
+                                                imageUrl: "${snapshot.data[index].wodapratinidhi[i].icon}",
+                                                errorWidget: (context, url, error) => ClipRRect(
+                                                  borderRadius: BorderRadius.circular(50.0),
                                                   child: CircleAvatar(
                                                     radius: 30,
                                                     child: Image.asset(
@@ -173,15 +160,11 @@ class _KarmachariTabState extends State<KarmachariTab>
                                                     ),
                                                   ),
                                                 ),
-                                                imageBuilder:
-                                                    (context, imageProvider) =>
-                                                        CircleAvatar(
+                                                imageBuilder: (context, imageProvider) => CircleAvatar(
                                                   radius: 35,
-                                                  backgroundImage:
-                                                      imageProvider,
+                                                  backgroundImage: imageProvider,
                                                 ),
-                                                placeholder: (context, url) =>
-                                                    CircularProgressIndicator(
+                                                placeholder: (context, url) => CircularProgressIndicator(
                                                   backgroundColor: tertiary,
                                                 ),
                                               ),
@@ -193,8 +176,7 @@ class _KarmachariTabState extends State<KarmachariTab>
                                               //       Colors.transparent,
                                               // ),
                                               Text(
-                                                snapshot.data[index]
-                                                    .wodapratinidhi[i].name,
+                                                snapshot.data[index].wodapratinidhi[i].name,
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                   color: textPrimaryDarkColor,
@@ -204,10 +186,7 @@ class _KarmachariTabState extends State<KarmachariTab>
                                                 ),
                                               ),
                                               Text(
-                                                snapshot
-                                                    .data[index]
-                                                    .wodapratinidhi[i]
-                                                    .designation,
+                                                snapshot.data[index].wodapratinidhi[i].designation,
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                     color: primary,
@@ -216,10 +195,7 @@ class _KarmachariTabState extends State<KarmachariTab>
                                                     height: 1),
                                               ),
                                               Text(
-                                                snapshot.data[index]
-                                                                .wodapratinidhi[
-                                                            i] !=
-                                                        null
+                                                snapshot.data[index].wodapratinidhi[i] != null
                                                     ? "${snapshot.data[index].wodapratinidhi[i].mobile}"
                                                     : "",
                                                 textAlign: TextAlign.center,
@@ -287,24 +263,15 @@ class _KarmachariTabState extends State<KarmachariTab>
                                         padding: const EdgeInsets.all(8.0),
                                         child: GestureDetector(
                                           onTap: () {
-                                            modal(
-                                                context,
-                                                snapshot
-                                                    .data[index].headdata[i]);
+                                            modal(context, snapshot.data[index].headdata[i]);
                                           },
                                           child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
                                             children: [
                                               CachedNetworkImage(
-                                                imageUrl:
-                                                    "${snapshot.data[index].headdata[i].icon}",
-                                                errorWidget:
-                                                    (context, url, error) =>
-                                                        ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          50.0),
+                                                imageUrl: "${snapshot.data[index].headdata[i].icon}",
+                                                errorWidget: (context, url, error) => ClipRRect(
+                                                  borderRadius: BorderRadius.circular(50.0),
                                                   child: CircleAvatar(
                                                     radius: 30,
                                                     child: Image.asset(
@@ -313,21 +280,16 @@ class _KarmachariTabState extends State<KarmachariTab>
                                                     ),
                                                   ),
                                                 ),
-                                                imageBuilder:
-                                                    (context, imageProvider) =>
-                                                        CircleAvatar(
+                                                imageBuilder: (context, imageProvider) => CircleAvatar(
                                                   radius: 35,
-                                                  backgroundImage:
-                                                      imageProvider,
+                                                  backgroundImage: imageProvider,
                                                 ),
-                                                placeholder: (context, url) =>
-                                                    CircularProgressIndicator(
+                                                placeholder: (context, url) => CircularProgressIndicator(
                                                   backgroundColor: tertiary,
                                                 ),
                                               ),
                                               Text(
-                                                snapshot.data[index].headdata[i]
-                                                    .name,
+                                                snapshot.data[index].headdata[i].name,
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                   color: textPrimaryDarkColor,
@@ -337,8 +299,7 @@ class _KarmachariTabState extends State<KarmachariTab>
                                                 ),
                                               ),
                                               Text(
-                                                snapshot.data[index].headdata[i]
-                                                    .designation,
+                                                snapshot.data[index].headdata[i].designation,
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                     color: primary,
@@ -347,9 +308,7 @@ class _KarmachariTabState extends State<KarmachariTab>
                                                     height: 1),
                                               ),
                                               Text(
-                                                snapshot.data[index].headdata[i]
-                                                            .mobile !=
-                                                        null
+                                                snapshot.data[index].headdata[i].mobile != null
                                                     ? "${snapshot.data[index].headdata[i].mobile}"
                                                     : "",
                                                 textAlign: TextAlign.center,
@@ -418,22 +377,14 @@ class _KarmachariTabState extends State<KarmachariTab>
                                           padding: const EdgeInsets.all(8.0),
                                           child: GestureDetector(
                                             onTap: () {
-                                              modal(
-                                                  context,
-                                                  snapshot
-                                                      .data[index].headdata[i]);
+                                              modal(context, snapshot.data[index].headdata[i]);
                                             },
                                             child: Column(
                                               children: [
                                                 CachedNetworkImage(
-                                                  imageUrl:
-                                                      "${snapshot.data[index].headdata[i].icon}",
-                                                  errorWidget:
-                                                      (context, url, error) =>
-                                                          ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            50.0),
+                                                  imageUrl: "${snapshot.data[index].headdata[i].icon}",
+                                                  errorWidget: (context, url, error) => ClipRRect(
+                                                    borderRadius: BorderRadius.circular(50.0),
                                                     child: CircleAvatar(
                                                       radius: 30,
                                                       child: Image.asset(
@@ -442,21 +393,16 @@ class _KarmachariTabState extends State<KarmachariTab>
                                                       ),
                                                     ),
                                                   ),
-                                                  imageBuilder: (context,
-                                                          imageProvider) =>
-                                                      CircleAvatar(
+                                                  imageBuilder: (context, imageProvider) => CircleAvatar(
                                                     radius: 35,
-                                                    backgroundImage:
-                                                        imageProvider,
+                                                    backgroundImage: imageProvider,
                                                   ),
-                                                  placeholder: (context, url) =>
-                                                      CircularProgressIndicator(
+                                                  placeholder: (context, url) => CircularProgressIndicator(
                                                     backgroundColor: tertiary,
                                                   ),
                                                 ),
                                                 Text(
-                                                  snapshot.data[index]
-                                                      .headdata[i].name,
+                                                  snapshot.data[index].headdata[i].name,
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
                                                     color: textPrimaryDarkColor,
@@ -466,8 +412,7 @@ class _KarmachariTabState extends State<KarmachariTab>
                                                   ),
                                                 ),
                                                 Text(
-                                                  snapshot.data[index]
-                                                      .headdata[i].designation,
+                                                  snapshot.data[index].headdata[i].designation,
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
                                                       color: primary,
@@ -476,11 +421,7 @@ class _KarmachariTabState extends State<KarmachariTab>
                                                       height: 1),
                                                 ),
                                                 Text(
-                                                  snapshot
-                                                              .data[index]
-                                                              .headdata[i]
-                                                              .mobile !=
-                                                          null
+                                                  snapshot.data[index].headdata[i].mobile != null
                                                       ? "${snapshot.data[index].headdata[i].mobile}"
                                                       : "",
                                                   textAlign: TextAlign.center,
@@ -572,15 +513,10 @@ class _KarmachariTabState extends State<KarmachariTab>
                 Text(
                   data.designation,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: primary,
-                      fontFamily: 'Mukta',
-                      fontSize: 14.0,
-                      height: 1),
+                  style: TextStyle(color: primary, fontFamily: 'Mukta', fontSize: 14.0, height: 1),
                 ),
                 new ButtonBar(
-                  mainAxisSize: MainAxisSize
-                      .min, // this will take space as minimum as posible(to center)
+                  mainAxisSize: MainAxisSize.min, // this will take space as minimum as posible(to center)
                   children: <Widget>[
                     // new RaisedButton(
                     //   child: new Text(translate(context, 'chat')),
@@ -591,7 +527,7 @@ class _KarmachariTabState extends State<KarmachariTab>
                     new ElevatedButton(
                       child: new Text('call'.tr),
                       style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all(primary),
+                        backgroundColor: MaterialStateProperty.all(primary),
                       ),
                       onPressed: () {
                         _callNumber(data.mobile);

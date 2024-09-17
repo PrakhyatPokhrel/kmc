@@ -80,18 +80,15 @@ class _HomeState extends State<Home> {
       if (a != null) {
         setState(() {
           if (a == 'hi') {
-            var locale = Locale(
-                'hi', 'IN'); // translations will be displayed in that local
+            var locale = Locale('hi', 'IN'); // translations will be displayed in that local
             Get.updateLocale(locale);
           } else {
-            var locale = Locale(
-                'en', 'US'); // translations will be displayed in that local
+            var locale = Locale('en', 'US'); // translations will be displayed in that local
             Get.updateLocale(locale);
           }
         });
       } else {
-        var locale =
-            Locale('hi', 'IN'); // translations will be displayed in that local
+        var locale = Locale('hi', 'IN'); // translations will be displayed in that local
         Get.updateLocale(locale);
       }
     });
@@ -146,12 +143,10 @@ class _HomeState extends State<Home> {
     SharedPreferences pref = await SharedPreferences.getInstance();
     // AppLocalizations.of(context).load(Locale(language));
     if (language == 'hi') {
-      var locale =
-          Locale('hi', 'IN'); // translations will be displayed in that local
+      var locale = Locale('hi', 'IN'); // translations will be displayed in that local
       Get.updateLocale(locale);
     } else {
-      var locale =
-          Locale('en', 'US'); // translations will be displayed in that local
+      var locale = Locale('en', 'US'); // translations will be displayed in that local
       Get.updateLocale(locale);
     }
 
@@ -207,8 +202,7 @@ class _HomeState extends State<Home> {
                                   children: [
                                     Container(
                                       child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(50.0),
+                                        borderRadius: BorderRadius.circular(50.0),
                                         child: Image.asset(
                                           'assets/images/kmcappicon.png',
                                           height: 55,
@@ -312,31 +306,23 @@ class _HomeState extends State<Home> {
                                                   return Container();
                                                 } else if (snapshot.hasData) {
                                                   return Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(4),
+                                                    padding: const EdgeInsets.all(4),
                                                     child: snapshot.data != 0
                                                         ? Text(
-                                                            'application'.tr ==
-                                                                    'Applications'
-                                                                ? snapshot.data
-                                                                    .toString()
-                                                                : NepaliUnicode
-                                                                    .convert(
-                                                                    snapshot
-                                                                        .data
-                                                                        .toString(),
+                                                            'application'.tr == 'Applications'
+                                                                ? snapshot.data.toString()
+                                                                : NepaliUnicode.convert(
+                                                                    snapshot.data.toString(),
                                                                   ),
                                                             style: TextStyle(
-                                                              color:
-                                                                  Colors.white,
+                                                              color: Colors.white,
                                                               fontSize: 12,
                                                             ),
                                                           )
                                                         : Text(
                                                             "0",
                                                             style: TextStyle(
-                                                              color:
-                                                                  Colors.white,
+                                                              color: Colors.white,
                                                               fontSize: 12,
                                                             ),
                                                           ),
@@ -346,8 +332,7 @@ class _HomeState extends State<Home> {
                                                 }
                                               },
                                             ),
-                                            position:
-                                                badge.BadgePosition.topEnd(
+                                            position: badge.BadgePosition.topEnd(
                                               top: -3,
                                               end: -3,
                                             ),
@@ -401,14 +386,12 @@ class _HomeState extends State<Home> {
                               padding: const EdgeInsets.only(left: 8.0),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Expanded(
                                     flex: 9,
                                     child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           "in_palika_today".tr,
@@ -421,8 +404,7 @@ class _HomeState extends State<Home> {
                                         SizedBox(
                                           height: 8,
                                         ),
-                                        FutureBuilder<
-                                                List<NewsNoticeModelWordpress>>(
+                                        FutureBuilder<List<NewsNoticeModelWordpress>>(
                                             future: wordpressApi(),
                                             builder: ((context, snapshot) {
                                               if (snapshot.hasData) {
@@ -433,21 +415,13 @@ class _HomeState extends State<Home> {
                                                       Expanded(
                                                         child: Text(
                                                           news.first.title,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
+                                                          overflow: TextOverflow.ellipsis,
                                                           maxLines: 2,
                                                           style:
-                                                              Theme.of(context)
-                                                                  .textTheme
-                                                                  .bodyLarge!
-                                                                  .copyWith(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .normal,
-                                                                    fontSize:
-                                                                        16,
+                                                              Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                                                    color: Colors.white,
+                                                                    fontWeight: FontWeight.normal,
+                                                                    fontSize: 16,
                                                                   ),
                                                         ),
                                                       ),
@@ -492,13 +466,11 @@ class _HomeState extends State<Home> {
                                             padding: EdgeInsets.zero,
                                             backgroundColor: white,
                                             shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(16),
+                                              borderRadius: BorderRadius.circular(16),
                                             ),
                                           ),
                                           child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
+                                            mainAxisAlignment: MainAxisAlignment.center,
                                             children: <Widget>[
                                               Text(
                                                 'view'.tr,
@@ -578,9 +550,7 @@ class _HomeState extends State<Home> {
                                 // width: MediaQuery.of(context).size.width * 0.3,
                                 child: Column(
                                   children: [
-                                    titleText(
-                                        '${sewa[index].title}'.tr,
-                                        index == 0 ? white : primary,
+                                    titleText('${sewa[index].title}'.tr, index == 0 ? white : primary,
                                         sewa[index].link
                                         // != null
                                         //     ? sewa[index].link
@@ -588,9 +558,7 @@ class _HomeState extends State<Home> {
                                         ),
                                     SizedBox(height: 6),
                                     Container(
-                                      height:
-                                          MediaQuery.of(context).size.width *
-                                              0.32,
+                                      height: MediaQuery.of(context).size.width * 0.32,
                                       child: ListView.separated(
                                         shrinkWrap: true,
                                         separatorBuilder: (context, index) {
@@ -604,28 +572,17 @@ class _HomeState extends State<Home> {
                                         itemBuilder: (context, i) {
                                           return InkWell(
                                             onTap: () {
-                                              if (sewa[index]
-                                                      .sewadata[i]
-                                                      .details ==
-                                                  '') {
+                                              if (sewa[index].sewadata[i].details == '') {
                                                 showDialog(
                                                   context: context,
-                                                  builder:
-                                                      (BuildContext context) {
+                                                  builder: (BuildContext context) {
                                                     return AlertDialog(
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(30),
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(30),
                                                       ),
-                                                      title: Text(
-                                                          'service_not_available'
-                                                              .tr,
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: TextStyle(
-                                                              color: primary)),
+                                                      title: Text('service_not_available'.tr,
+                                                          textAlign: TextAlign.center,
+                                                          style: TextStyle(color: primary)),
                                                       // content: Text('login_alert'.tr,
                                                       //     textAlign: TextAlign.center,
                                                       //     style: TextStyle(fontSize: 16, height: 1.5)),
@@ -634,34 +591,23 @@ class _HomeState extends State<Home> {
                                                           child: ElevatedButton(
                                                             style: ButtonStyle(
                                                               backgroundColor:
-                                                                  WidgetStateProperty
-                                                                      .all(
-                                                                          tertiary),
-                                                              shape: WidgetStateProperty
-                                                                  .all<
-                                                                      RoundedRectangleBorder>(
+                                                                  MaterialStateProperty.all(tertiary),
+                                                              shape: MaterialStateProperty.all<
+                                                                  RoundedRectangleBorder>(
                                                                 RoundedRectangleBorder(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              20.0),
+                                                                  borderRadius: BorderRadius.circular(20.0),
                                                                 ),
                                                               ),
                                                             ),
                                                             child: Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .symmetric(
-                                                                horizontal:
-                                                                    16.0,
+                                                              padding: const EdgeInsets.symmetric(
+                                                                horizontal: 16.0,
                                                                 vertical: 10,
                                                               ),
-                                                              child: Text(
-                                                                  'cancel'.tr),
+                                                              child: Text('cancel'.tr),
                                                             ),
                                                             onPressed: () {
-                                                              Navigator.pop(
-                                                                  context);
+                                                              Navigator.pop(context);
                                                               Get.back();
                                                             },
                                                           ),
@@ -671,82 +617,47 @@ class _HomeState extends State<Home> {
                                                   },
                                                 );
                                               } else {
-                                                if (sewa[index]
-                                                            .sewadata[i]
-                                                            .title !=
-                                                        "" &&
-                                                    sewa[index]
-                                                            .sewadata[i]
-                                                            .title !=
-                                                        "" &&
-                                                    sewa[index]
-                                                            .sewadata[i]
-                                                            .title !=
-                                                        "" &&
-                                                    sewa[index]
-                                                            .sewadata[i]
-                                                            .title !=
-                                                        "digital_profile") {
-                                                  navigation(context, i,
-                                                      sewa[index].sewadata[i]);
+                                                if (sewa[index].sewadata[i].title != "" &&
+                                                    sewa[index].sewadata[i].title != "" &&
+                                                    sewa[index].sewadata[i].title != "" &&
+                                                    sewa[index].sewadata[i].title != "digital_profile") {
+                                                  navigation(context, i, sewa[index].sewadata[i]);
                                                 } else {
                                                   showDialog(
                                                     context: context,
-                                                    builder:
-                                                        (BuildContext context) {
+                                                    builder: (BuildContext context) {
                                                       return AlertDialog(
-                                                        shape:
-                                                            RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(30),
+                                                        shape: RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius.circular(30),
                                                         ),
-                                                        title: Text(
-                                                            'service_not_available'
-                                                                .tr,
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                            style: TextStyle(
-                                                                color:
-                                                                    primary)),
+                                                        title: Text('service_not_available'.tr,
+                                                            textAlign: TextAlign.center,
+                                                            style: TextStyle(color: primary)),
                                                         // content: Text('login_alert'.tr,
                                                         //     textAlign: TextAlign.center,
                                                         //     style: TextStyle(fontSize: 16, height: 1.5)),
                                                         actions: [
                                                           Center(
-                                                            child:
-                                                                ElevatedButton(
-                                                              style:
-                                                                  ButtonStyle(
+                                                            child: ElevatedButton(
+                                                              style: ButtonStyle(
                                                                 backgroundColor:
-                                                                    WidgetStateProperty
-                                                                        .all(
-                                                                            tertiary),
-                                                                shape: WidgetStateProperty
-                                                                    .all<
-                                                                        RoundedRectangleBorder>(
+                                                                    MaterialStateProperty.all(tertiary),
+                                                                shape: MaterialStateProperty.all<
+                                                                    RoundedRectangleBorder>(
                                                                   RoundedRectangleBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            20.0),
+                                                                    borderRadius: BorderRadius.circular(20.0),
                                                                   ),
                                                                 ),
                                                               ),
                                                               child: Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                        .symmetric(
-                                                                  horizontal:
-                                                                      16.0,
+                                                                padding: const EdgeInsets.symmetric(
+                                                                  horizontal: 16.0,
                                                                   vertical: 10,
                                                                 ),
-                                                                child: Text(
-                                                                    'cancel'
-                                                                        .tr),
+                                                                child: Text('cancel'.tr),
                                                               ),
                                                               onPressed: () {
-                                                                Navigator.pop(
-                                                                    context);
+                                                                Navigator.pop(context);
                                                               },
                                                             ),
                                                           ),
@@ -798,28 +709,22 @@ class _HomeState extends State<Home> {
                                 SizedBox(height: 6),
 
                                 Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 6, right: 6),
+                                  padding: const EdgeInsets.only(left: 6, right: 6),
                                   child: LayoutBuilder(
-                                    builder: (BuildContext context,
-                                        BoxConstraints constraints) {
+                                    builder: (BuildContext context, BoxConstraints constraints) {
                                       if (constraints.maxWidth >= 500.0) {
                                         return Container(
                                           height: Get.height * 0.50,
                                           child: GridView.count(
                                               // scrollDirection: Axis.vertical,
-                                              physics:
-                                                  NeverScrollableScrollPhysics(),
+                                              physics: NeverScrollableScrollPhysics(),
                                               primary: false,
                                               childAspectRatio: 1,
                                               crossAxisCount: 3,
-                                              children: List.generate(
-                                                  gridData.length, (index) {
+                                              children: List.generate(gridData.length, (index) {
                                                 return Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
-                                                  child: SpGrid(
-                                                      data: gridData[index]),
+                                                  padding: const EdgeInsets.all(8.0),
+                                                  child: SpGrid(data: gridData[index]),
                                                 );
                                               })),
                                         );
@@ -828,8 +733,7 @@ class _HomeState extends State<Home> {
                                           height: Get.height * 0.3,
                                           child: GridView.count(
                                             // scrollDirection: Axis.vertical,
-                                            physics:
-                                                NeverScrollableScrollPhysics(),
+                                            physics: NeverScrollableScrollPhysics(),
                                             primary: false,
                                             childAspectRatio: 1,
                                             crossAxisCount: 3,
@@ -850,13 +754,10 @@ class _HomeState extends State<Home> {
                                   ),
                                 ),
                                 //Department/ Bibhag
-                                titleText(
-                                    'departmnt'.tr, primary, BibaghList()),
+                                titleText('departmnt'.tr, primary, BibaghList()),
                                 SizedBox(height: 6),
                                 Container(
-                                  height: MediaQuery.of(context).size.width *
-                                      0.3 *
-                                      2.15,
+                                  height: MediaQuery.of(context).size.width * 0.3 * 2.15,
                                   child: GridView.count(
                                     scrollDirection: Axis.horizontal,
                                     shrinkWrap: true,
@@ -868,8 +769,7 @@ class _HomeState extends State<Home> {
                                     children: List.generate(
                                       homeData.length,
                                       (index) {
-                                        return BibhagCard(
-                                            data: homeData[index]);
+                                        return BibhagCard(data: homeData[index]);
                                       },
                                     ),
                                   ),
@@ -934,8 +834,7 @@ class _HomeState extends State<Home> {
           padding: const EdgeInsets.only(top: 4.0),
           child: Text(title,
               textAlign: TextAlign.start,
-              style: TextStyle(
-                  color: _color, fontSize: 18, fontWeight: FontWeight.bold)),
+              style: TextStyle(color: _color, fontSize: 18, fontWeight: FontWeight.bold)),
         ),
         Icon(Icons.chevron_left, color: _color),
         Icon(Icons.chevron_right, color: _color),
@@ -1004,23 +903,19 @@ class _HomeState extends State<Home> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
-            title: Text('LOGIN'.tr,
-                textAlign: TextAlign.center, style: TextStyle(color: primary)),
+            title: Text('LOGIN'.tr, textAlign: TextAlign.center, style: TextStyle(color: primary)),
             content: Text('login_alert'.tr,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, height: 1.5)),
+                textAlign: TextAlign.center, style: TextStyle(fontSize: 16, height: 1.5)),
             actions: [
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(tertiary),
-                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
+                      backgroundColor: MaterialStateProperty.all(tertiary),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
                     child: Text('LOGIN'.tr),
                   ),
                   onPressed: () {
@@ -1042,23 +937,19 @@ class _HomeState extends State<Home> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
-            title: Text('not_available'.tr,
-                textAlign: TextAlign.center, style: TextStyle(color: primary)),
+            title: Text('not_available'.tr, textAlign: TextAlign.center, style: TextStyle(color: primary)),
             content: Text('role_check'.tr,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, height: 1.5)),
+                textAlign: TextAlign.center, style: TextStyle(fontSize: 16, height: 1.5)),
             actions: [
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(tertiary),
-                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
+                      backgroundColor: MaterialStateProperty.all(tertiary),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ))),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
                     child: Text('cancel'.tr),
                   ),
                   onPressed: () {
@@ -1096,10 +987,7 @@ class CurvePainter extends CustomPainter {
     path.moveTo(0, 0);
     path.lineTo(0, size.height);
     path.quadraticBezierTo(
-        size.width * 0.5,
-        outterCurve ? size.height + 110 : size.height - 110,
-        size.width,
-        size.height);
+        size.width * 0.5, outterCurve ? size.height + 110 : size.height - 110, size.width, size.height);
     path.lineTo(size.width, 0);
     path.close();
 

@@ -22,8 +22,7 @@ class SignUpOTP extends StatefulWidget {
   _SignUpOTPState createState() => _SignUpOTPState();
 }
 
-class _SignUpOTPState extends State<SignUpOTP>
-    with SingleTickerProviderStateMixin {
+class _SignUpOTPState extends State<SignUpOTP> with SingleTickerProviderStateMixin {
   // Constants
   final int time = 180;
   late AnimationController _controller;
@@ -71,8 +70,7 @@ class _SignUpOTPState extends State<SignUpOTP>
     return new Text(
       "Verification Code",
       textAlign: TextAlign.center,
-      style: new TextStyle(
-          fontSize: 28.0, color: Colors.black, fontWeight: FontWeight.bold),
+      style: new TextStyle(fontSize: 28.0, color: Colors.black, fontWeight: FontWeight.bold),
     );
   }
 
@@ -83,8 +81,7 @@ class _SignUpOTPState extends State<SignUpOTP>
       child: new Text(
         "msg_ask_otp".tr,
         textAlign: TextAlign.center,
-        style: new TextStyle(
-            fontSize: 20.0, color: Colors.black, fontWeight: FontWeight.w600),
+        style: new TextStyle(fontSize: 20.0, color: Colors.black, fontWeight: FontWeight.w600),
       ),
     );
   }
@@ -147,15 +144,12 @@ class _SignUpOTPState extends State<SignUpOTP>
       child: new Container(
         height: 32,
         width: 120,
-        decoration: BoxDecoration(
-            color: primary,
-            shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.circular(32)),
+        decoration:
+            BoxDecoration(color: primary, shape: BoxShape.rectangle, borderRadius: BorderRadius.circular(32)),
         alignment: Alignment.center,
         child: new Text(
           "Resend OTP",
-          style:
-              new TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          style: new TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
       ),
       onTap: () {
@@ -310,7 +304,7 @@ class _SignUpOTPState extends State<SignUpOTP>
   resendotp() {
     var data = {
       // 'user_id': widget.user_id,
-      'phone':widget.mobile,
+      'phone': widget.mobile,
     };
     resendEmailOtp(data);
   }
@@ -324,11 +318,9 @@ class _SignUpOTPState extends State<SignUpOTP>
         },
         // onPressed: onStepContinue,
         icon: Icon(Icons.send),
-        label: Text('SEND'.tr,
-            style: TextStyle(color: textPrimaryLightColor, fontSize: 15)),
+        label: Text('SEND'.tr, style: TextStyle(color: textPrimaryLightColor, fontSize: 15)),
         style: ButtonStyle(
-            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ))));
   }
@@ -338,17 +330,15 @@ class _SignUpOTPState extends State<SignUpOTP>
   void initState() {
     totalTimeInSeconds = time;
     super.initState();
-    _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: time))
-          ..addStatusListener((status) {
-            if (status == AnimationStatus.dismissed) {
-              setState(() {
-                _hideResendButton = !_hideResendButton!;
-              });
-            }
+    _controller = AnimationController(vsync: this, duration: Duration(seconds: time))
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.dismissed) {
+          setState(() {
+            _hideResendButton = !_hideResendButton!;
           });
-    _controller.reverse(
-        from: _controller.value == 0.0 ? 1.0 : _controller.value);
+        }
+      });
+    _controller.reverse(from: _controller.value == 0.0 ? 1.0 : _controller.value);
     _startCountdown();
   }
 
@@ -357,12 +347,14 @@ class _SignUpOTPState extends State<SignUpOTP>
     _controller.dispose();
     super.dispose();
   }
+
   bool isEmail(String input) {
     final emailRegex = RegExp(
       r'^[\w-]+(\.[\w-]+)*@[a-zA-Z\d-]+(\.[a-zA-Z\d-]+)*\.[a-zA-Z\d-]{2,}$',
     );
     return emailRegex.hasMatch(input);
   }
+
   hitloginapi() async {
     // var passdata;
     // var otp;
@@ -370,7 +362,10 @@ class _SignUpOTPState extends State<SignUpOTP>
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    var data = {  isEmail(widget.mobile)?'email':'phone': widget.mobile, 'password': '${widget.password}',};
+    var data = {
+      isEmail(widget.mobile) ? 'email' : 'phone': widget.mobile,
+      'password': '${widget.password}',
+    };
     // var data = {
     //   'email': 'sadmin.waling@cellapp.co',
     //   'password': 'SPmaster&\$80'
@@ -380,7 +375,7 @@ class _SignUpOTPState extends State<SignUpOTP>
     //   'password': 'w6XEbSYxdaCvVqIz'
     // };
     // var data = {'email': 'kalpana@smartpalika.org', 'password': 'Y9mCgz5frRWvu6He'};
-  
+
     loginApi(data).then((value) {
       //storage.setItem('user', json.encode(value['data'])),
       if (value["token"] != null) {
@@ -396,9 +391,7 @@ class _SignUpOTPState extends State<SignUpOTP>
         Future.delayed(Duration(milliseconds: 5000), () {
           tokenregisterApi();
           Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => new BottomNavBar()),
-              (route) => false);
+              context, MaterialPageRoute(builder: (context) => new BottomNavBar()), (route) => false);
 
           EasyLoading.dismiss();
         });
@@ -524,8 +517,7 @@ class _SignUpOTPState extends State<SignUpOTP>
       _hideResendButton = true;
       totalTimeInSeconds = time;
     });
-    _controller.reverse(
-        from: _controller.value == 0.0 ? 1.0 : _controller.value);
+    _controller.reverse(from: _controller.value == 0.0 ? 1.0 : _controller.value);
   }
 
   void clearOtp() {
@@ -564,12 +556,8 @@ class OtpTimer extends StatelessWidget {
         builder: (BuildContext context, child) {
           return new Text(
             timerString,
-            style: new TextStyle(
-                fontSize: fontSize,
-                color: timeColor,
-                fontWeight: FontWeight.w600),
+            style: new TextStyle(fontSize: fontSize, color: timeColor, fontWeight: FontWeight.w600),
           );
         });
   }
 }
-
