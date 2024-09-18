@@ -61,12 +61,9 @@ import '../modal/nearby_places.dart';
 import '../pages/home/signUpOTP.dart';
 
 DioCacheManager _dioCacheManager = DioCacheManager(CacheConfig());
-Options _cacheOptions =
-    buildCacheOptions(Duration(days: 30), forceRefresh: true);
-Dio _dio =
-    Dio(); //*dio chai cache ma api lai rakhna use gareko navaye http hunxa
-Options _cacheOption =
-    buildCacheOptions(Duration(days: 1), forceRefresh: false);
+Options _cacheOptions = buildCacheOptions(Duration(days: 30), forceRefresh: true);
+Dio _dio = Dio(); //*dio chai cache ma api lai rakhna use gareko navaye http hunxa
+Options _cacheOption = buildCacheOptions(Duration(days: 1), forceRefresh: false);
 Future<List<Pratinidhikarmacharidata>> getpratinidhi() async {
   _dio.interceptors.add(_dioCacheManager.interceptor);
   var data = await _dio.get(pratinidhiandkarmachari, options: _cacheOptions);
@@ -79,8 +76,7 @@ Future<List<Pratinidhikarmacharidata>> getpratinidhi() async {
   pref.setString('mayor', mayor);
   pref.setString('vicemayor', vicemayor);
   mayorvicemayor();
-  var karmachari =
-      list.map((e) => Pratinidhikarmacharidata.fromJson(e)).toList();
+  var karmachari = list.map((e) => Pratinidhikarmacharidata.fromJson(e)).toList();
   return karmachari;
 }
 
@@ -99,8 +95,7 @@ Future<List<Wodapratinidhi>> getpratinidhiwoda() async {
 //taxpayer infromation
 getTaxPayerDetail() async {
   _dio.interceptors.add(_dioCacheManager.interceptor);
-  var res =
-      await _dio.get(getTaxPayerlist, options: Options(headers: _setHeaders()));
+  var res = await _dio.get(getTaxPayerlist, options: Options(headers: _setHeaders()));
 
   var data = res.data;
 
@@ -116,7 +111,6 @@ Future wardsgetpratinidhidataFromWordpress() async {
   _dio.interceptors.add(_dioCacheManager.interceptor);
   var data = await _dio.get('https://kathmandu.gov.np/api/staff-api',
       options: buildCacheOptions(Duration(days: 30), forceRefresh: true));
-
   return data.data;
 }
 
@@ -134,8 +128,7 @@ Future<List<Nagarkarmacharidata>> nagarKarmachari() async {
     }
   }
 
-  var nagarkarmachariapi =
-      list.map((e) => Nagarkarmacharidata.fromJson(e)).toList();
+  var nagarkarmachariapi = list.map((e) => Nagarkarmacharidata.fromJson(e)).toList();
   return nagarkarmachariapi;
 }
 
@@ -152,8 +145,7 @@ Future<List<Nagarkarmacharidata>> exkarmachariApi() async {
   var data = await _dio.get(exkarmachari, options: _cacheOptions);
   List<dynamic> list = data.data['data'];
 
-  var nagarkarmachariapi =
-      list.map((e) => Nagarkarmacharidata.fromJson(e)).toList();
+  var nagarkarmachariapi = list.map((e) => Nagarkarmacharidata.fromJson(e)).toList();
   return nagarkarmachariapi;
 }
 
@@ -181,7 +173,7 @@ getToken() async {
 }
 
 Map<String, String> _setHeaders() => {
-      'Content-Type': 'application/json', 
+      'Content-Type': 'application/json',
       'content-type': 'application/json',
       'accept': 'application/json',
       'Authorization': 'Bearer $token',
@@ -199,8 +191,7 @@ Future<Chatlist?> mayorchatlistAPI() async {
   } else {
     getToken();
     _dio.interceptors.add(_dioCacheManager.interceptor);
-    http.Response response =
-        await http.get(Uri.parse(mayorchatlist), headers: _setHeaders());
+    http.Response response = await http.get(Uri.parse(mayorchatlist), headers: _setHeaders());
     dynamic list = response.body;
     if (response.statusCode == 200) {
       var hellomayor = Chatlist.fromJson(json.decode(list));
@@ -224,14 +215,12 @@ Future<Userchat?> openhellomayorfromuserAPI() async {
     // _dio.options.headers[HttpHeaders.authorizationHeader] = _setHeaders();
     // Response data =
     //     await _dio.get(HMchatfromuser, options: _cacheOptions);
-    http.Response response =
-        await http.get(Uri.parse(hMchatfromuser), headers: _setHeaders());
+    http.Response response = await http.get(Uri.parse(hMchatfromuser), headers: _setHeaders());
     if (response.statusCode == 200) {
       // EasyLoading.dismiss();
 
       dynamic list = response.body;
-      var hellomayor =
-          list != null ? Userchat.fromJson(json.decode(list)) : null;
+      var hellomayor = list != null ? Userchat.fromJson(json.decode(list)) : null;
       return hellomayor!;
     } else {
       EasyLoading.dismiss();
@@ -244,8 +233,7 @@ Future<Userchat?> openhellomayorfromuserAPI() async {
 Future<Getmessage?> getMsgFromUserHMApi() async {
   getToken();
 
-  http.Response response =
-      await http.get(Uri.parse(getMsgFromUserHM), headers: _setHeaders());
+  http.Response response = await http.get(Uri.parse(getMsgFromUserHM), headers: _setHeaders());
 
   dynamic list = response.body;
   if (response.statusCode == 200) {
@@ -281,8 +269,7 @@ initiateIMEPayment(sp_pay_code, int ward) async {
   var dio = await Dio();
   dio.options.headers = _setHeaders();
   try {
-    var response = await dio.post(imepay_initialize,
-        data: {'sp_pay_code': sp_pay_code, 'ward': ward});
+    var response = await dio.post(imepay_initialize, data: {'sp_pay_code': sp_pay_code, 'ward': ward});
     print(response.data['data']['TokenId'].toString());
     return response.data;
   } on DioError catch (e) {
@@ -291,8 +278,8 @@ initiateIMEPayment(sp_pay_code, int ward) async {
   }
 }
 
-finalIMEPayment(amount, msisdn, refId, responseCode, String responseDescription,
-    transactionId, sifarisCode, ward, hash, context) async {
+finalIMEPayment(amount, msisdn, refId, responseCode, String responseDescription, transactionId, sifarisCode,
+    ward, hash, context) async {
   var dio = await Dio();
   dio.options.headers = _setHeaders();
   try {
@@ -336,8 +323,7 @@ Future<Chatlist?> gunasochatlistAPI() async {
     EasyLoading.showError('no_internet_connection'.tr);
   } else {
     getToken();
-    http.Response response =
-        await http.get(Uri.parse(gunasochatlist), headers: _setHeaders());
+    http.Response response = await http.get(Uri.parse(gunasochatlist), headers: _setHeaders());
     dynamic list = response.body;
     if (response.statusCode == 200) {
       var gunaso = Chatlist.fromJson(json.decode(list));
@@ -363,8 +349,7 @@ Future<Userchat?> opengunasofromuserAPI() async {
       // _dio.options.headers[HttpHeaders.authorizationHeader] = _setHeaders();
       // Response data =
       //     await _dio.get(JGchatfromuser, options: _cacheOptions);
-      http.Response response =
-          await http.get(Uri.parse(jGchatfromuser), headers: _setHeaders());
+      http.Response response = await http.get(Uri.parse(jGchatfromuser), headers: _setHeaders());
 
       dynamic list = response.body;
       if (response.statusCode == 200) {
@@ -388,8 +373,7 @@ Future<Getmessage?> getMsgFromUserJGApi() async {
   getToken();
   _dio.interceptors.add(_dioCacheManager.interceptor);
 
-  http.Response response =
-      await http.get(Uri.parse(getMsgFromUserJG), headers: _setHeaders());
+  http.Response response = await http.get(Uri.parse(getMsgFromUserJG), headers: _setHeaders());
   dynamic list = response.body;
 
   if (response.statusCode == 200) {
@@ -443,8 +427,7 @@ Future<Chatlist?> nyayikchatlistAPI() async {
     EasyLoading.showError('no_internet_connection'.tr);
   } else {
     getToken();
-    http.Response response =
-        await http.get(Uri.parse(nyayikchatlist), headers: _setHeaders());
+    http.Response response = await http.get(Uri.parse(nyayikchatlist), headers: _setHeaders());
 
     dynamic list = response.body;
     if (response.statusCode == 200) {
@@ -472,8 +455,7 @@ Future<Userchat?> opennyayikfromuserAPI() async {
     // _dio.options.headers[HttpHeaders.authorizationHeader] = _setHeaders();
     // Response data =
     //     await _dio.get(NSchatfromuser, options: _cacheOptions);
-    http.Response response =
-        await http.get(Uri.parse(NSchatfromuser), headers: _setHeaders());
+    http.Response response = await http.get(Uri.parse(NSchatfromuser), headers: _setHeaders());
     if (response.statusCode == 200) {
       dynamic list = response.body;
 
@@ -498,8 +480,7 @@ Future<Getmessage?> getMsgFromUserNSApi() async {
     getToken();
     _dio.interceptors.add(_dioCacheManager.interceptor);
 
-    http.Response response =
-        await http.get(Uri.parse(getMsgFromUserNS), headers: _setHeaders());
+    http.Response response = await http.get(Uri.parse(getMsgFromUserNS), headers: _setHeaders());
 
     dynamic list = response.body;
     var nyayik = Getmessage.fromJson(json.decode(list));
@@ -548,8 +529,7 @@ dynamic ismayorcheck;
 checkmayorAPi() async {
   getToken();
   SharedPreferences pref = await SharedPreferences.getInstance();
-  http.Response response =
-      await http.get(Uri.parse(checkmayor), headers: _setHeaders());
+  http.Response response = await http.get(Uri.parse(checkmayor), headers: _setHeaders());
 
   if (response.statusCode == 200) {
     pref.setString("ismayor", json.decode(response.body));
@@ -559,9 +539,8 @@ checkmayorAPi() async {
 
 Future<List<ChathistoryfromMayorside>?> getchathistoryApifromMayor(id) async {
   getToken();
-  http.Response response = await http.get(
-      Uri.parse(mayorchathistory + id + '/upmessage'),
-      headers: _setHeaders());
+  http.Response response =
+      await http.get(Uri.parse(mayorchathistory + id + '/upmessage'), headers: _setHeaders());
   List<dynamic> list = json.decode(response.body);
 
   if (response.statusCode == 200) {
@@ -572,9 +551,8 @@ Future<List<ChathistoryfromMayorside>?> getchathistoryApifromMayor(id) async {
 
 Future<List<ChathistoryfromMayorside>?> getchathistoryApifromGunaso(id) async {
   getToken();
-  http.Response response = await http.get(
-      Uri.parse(gunasochathistory + id + '/upmessage'),
-      headers: _setHeaders());
+  http.Response response =
+      await http.get(Uri.parse(gunasochathistory + id + '/upmessage'), headers: _setHeaders());
   List<dynamic> list = json.decode(response.body);
 
   if (response.statusCode == 200) {
@@ -585,9 +563,8 @@ Future<List<ChathistoryfromMayorside>?> getchathistoryApifromGunaso(id) async {
 
 Future<List<ChathistoryfromMayorside>?> getchathistoryApifromNyayik(id) async {
   getToken();
-  http.Response response = await http.get(
-      Uri.parse(nyayikchathistory + id + '/upmessage'),
-      headers: _setHeaders());
+  http.Response response =
+      await http.get(Uri.parse(nyayikchathistory + id + '/upmessage'), headers: _setHeaders());
   List<dynamic> list = json.decode(response.body);
 
   if (response.statusCode == 200) {
@@ -599,8 +576,7 @@ Future<List<ChathistoryfromMayorside>?> getchathistoryApifromNyayik(id) async {
 checkvicemayorAPi() async {
   getToken();
   SharedPreferences pref = await SharedPreferences.getInstance();
-  http.Response response =
-      await http.get(Uri.parse(checkupamayor), headers: _setHeaders());
+  http.Response response = await http.get(Uri.parse(checkupamayor), headers: _setHeaders());
 
   if (response.statusCode == 200) {
     pref.setString("isvicemayor", json.decode(response.body));
@@ -610,8 +586,7 @@ checkvicemayorAPi() async {
 checksuchanaAPi() async {
   getToken();
   SharedPreferences pref = await SharedPreferences.getInstance();
-  http.Response response =
-      await http.get(Uri.parse(checksuchana), headers: _setHeaders());
+  http.Response response = await http.get(Uri.parse(checksuchana), headers: _setHeaders());
 
   if (response.statusCode == 200) {
     pref.setString("issuchana", json.decode(response.body));
@@ -619,8 +594,8 @@ checksuchanaAPi() async {
 }
 
 taxRegisterotpAPi(data) async {
-  http.Response response = await http.post(Uri.parse(taxRegisterOTP),
-      headers: _setHeaders(), body: jsonEncode(data));
+  http.Response response =
+      await http.post(Uri.parse(taxRegisterOTP), headers: _setHeaders(), body: jsonEncode(data));
 
   if (response.statusCode == 200) {
     return json.decode(response.body);
@@ -664,8 +639,7 @@ verifyotpFogotAPi(data) async {
 }
 
 passUpdateApi(data) async {
-  http.Response response =
-      await http.post(Uri.parse(updatepassword), body: jsonEncode(data));
+  http.Response response = await http.post(Uri.parse(updatepassword), body: jsonEncode(data));
 
   if (response.statusCode == 200) {
     return json.decode(response.body);
@@ -748,8 +722,7 @@ loginApi(data) async {
     if (response.statusCode == 200) {
       final FirebaseAnalytics firebaseAnalytics = FirebaseAnalytics.instance;
       await firebaseAnalytics.logLogin();
-      await firebaseAnalytics.setUserProperty(
-          name: "Name", value: jsonDecode(response.body)['data']['name']);
+      await firebaseAnalytics.setUserProperty(name: "Name", value: jsonDecode(response.body)['data']['name']);
       await firebaseAnalytics.setUserProperty(
           name: "Email", value: jsonDecode(response.body)['data']['email']);
       dynamic d = json.decode(response.body);
@@ -1017,8 +990,7 @@ upload(imageFile) async {
     var request = new http.MultipartRequest("POST", uri);
 
     // multipart that takes file
-    var multipartFile = new http.MultipartFile('file', stream, length,
-        filename: basename(imageFile.path));
+    var multipartFile = new http.MultipartFile('file', stream, length, filename: basename(imageFile.path));
 
     // add file to multipart
     request.files.add(multipartFile);
@@ -1057,8 +1029,7 @@ citizenshipupload(imageFile, field) async {
     var request = new http.MultipartRequest("POST", uri);
 
     // multipart that takes file
-    var multipartFile = new http.MultipartFile(field, stream, length,
-        filename: basename(imageFile.path));
+    var multipartFile = new http.MultipartFile(field, stream, length, filename: basename(imageFile.path));
 
     // add file to multipart
     request.files.add(multipartFile);
@@ -1098,8 +1069,7 @@ Future<bool> profileupdateimage(imageFile) async {
   request.headers.addAll(_setHeaders());
 
   // multipart that takes file
-  var multipartFile = new http.MultipartFile('file', stream, length,
-      filename: basename(imageFile.path));
+  var multipartFile = new http.MultipartFile('file', stream, length, filename: basename(imageFile.path));
 
   // add file to multipart
   request.files.add(multipartFile);
@@ -1150,8 +1120,7 @@ Future<String> registerProfileImageUpload(imageFile) async {
   });
 
   // multipart that takes file
-  var multipartFile = new http.MultipartFile('file', stream, length,
-      filename: basename(imageFile.path));
+  var multipartFile = new http.MultipartFile('file', stream, length, filename: basename(imageFile.path));
 
   // add file to multipart
   request.files.add(multipartFile);
@@ -1276,8 +1245,8 @@ Future<List<SifarishModel>> newSifarishListApi() async {
           forceRefresh: true,
           options: Options(headers: _setHeaders()),
         ));
-    List<SifarishModel> sifarishlist = List<SifarishModel>.from(
-        (response.data['data'].map((x) => SifarishModel.fromMap(x))));
+    List<SifarishModel> sifarishlist =
+        List<SifarishModel>.from((response.data['data'].map((x) => SifarishModel.fromMap(x))));
     return sifarishlist;
   } on DioError catch (dioError) {
     throw CustomException(
@@ -1292,16 +1261,15 @@ Future<List<SifarishModel>> newSifarishListApi() async {
   } on Error catch (e) {
     print(e);
     throw CustomException(
-      message:
-          "Invalid data format. This will be fixed shortly. Please, try again later",
+      message: "Invalid data format. This will be fixed shortly. Please, try again later",
     );
   }
 }
 
 Future<BasicformModal?> sifarishbasicFormfieldWithIdApi(data) async {
   getToken();
-  http.Response response = await http.post(Uri.parse(sifarishbasicform),
-      body: jsonEncode(data), headers: _setHeaders());
+  http.Response response =
+      await http.post(Uri.parse(sifarishbasicform), body: jsonEncode(data), headers: _setHeaders());
 
   print(token);
 
@@ -1326,8 +1294,8 @@ Future<BasicformModal?> sifarishbasicFormfieldWithIdApi(data) async {
 
 Future<BasicformModal?> sifarishchildFormfieldWithIdApi(data) async {
   getToken();
-  http.Response response = await http.post(Uri.parse(getchildsifarishfield),
-      body: jsonEncode(data), headers: _setHeaders());
+  http.Response response =
+      await http.post(Uri.parse(getchildsifarishfield), body: jsonEncode(data), headers: _setHeaders());
 
   if (response.statusCode == 200) {
     dynamic list = json.decode(response.body);
@@ -1351,8 +1319,7 @@ Future<List<Receiptmodal>?> receiptApi() async {
     EasyLoading.showError('no_internet_connection'.tr);
   } else {
     getToken();
-    http.Response response =
-        await http.get(Uri.parse(receipt), headers: _setHeaders());
+    http.Response response = await http.get(Uri.parse(receipt), headers: _setHeaders());
 
     if (response.statusCode == 200) {
       var status = json.decode(response.body);
@@ -1378,8 +1345,8 @@ Future basicinfoFormsubmitApi(data) async {
   // var check = jsonEncode(data);
 
   try {
-    http.Response response = await http.post(Uri.parse(saveSifaris),
-        body: jsonEncode(data), headers: _setHeaders());
+    http.Response response =
+        await http.post(Uri.parse(saveSifaris), body: jsonEncode(data), headers: _setHeaders());
 
     dynamic list = json.decode(response.body);
     if (response.statusCode == 200) {
@@ -1402,8 +1369,8 @@ Future basicinfoFormsubmitApi(data) async {
 childinfoFormsubmitApi(data) async {
   getToken();
 
-  http.Response response = await http.post(Uri.parse(childsifarishstore),
-      body: jsonEncode(data), headers: _setHeaders());
+  http.Response response =
+      await http.post(Uri.parse(childsifarishstore), body: jsonEncode(data), headers: _setHeaders());
 
   dynamic list = json.decode(response.body);
 
@@ -1423,8 +1390,8 @@ childinfoFormsubmitApi(data) async {
 taxRegisterSubmit(data) async {
   getToken();
 
-  http.Response response = await http.post(Uri.parse(taxRegisterSumbit),
-      body: jsonEncode(data), headers: _setHeaders());
+  http.Response response =
+      await http.post(Uri.parse(taxRegisterSumbit), body: jsonEncode(data), headers: _setHeaders());
 
   dynamic res = json.decode(response.body);
 
@@ -1445,8 +1412,8 @@ taxRegisterSubmit(data) async {
 registerProperty(data) async {
   getToken();
 
-  http.Response response = await http.post(Uri.parse(landRegisterVerify),
-      body: jsonEncode(data), headers: _setHeaders());
+  http.Response response =
+      await http.post(Uri.parse(landRegisterVerify), body: jsonEncode(data), headers: _setHeaders());
 
   dynamic res = json.decode(response.body);
 
@@ -1538,50 +1505,49 @@ Future<List<Publicplacess>> villagedatasearchApi(datas, wodaid) async {
       wardfilterdata.add(item);
     }
   }
-  var publicplaces =
-      wardfilterdata.map((e) => Publicplacess.fromJson(e)).toList();
+  var publicplaces = wardfilterdata.map((e) => Publicplacess.fromJson(e)).toList();
   return publicplaces;
 }
 
 Future<ToiletBranchModel> getToiletBranches() async {
-  try{
-  // _dio.interceptors.add(_dioCacheManager.interceptor);
-  var data = await _dio.get(toiletGetBranchesUrl);
-  print(data);
-  ToiletBranchModel organizationModel=toiletBranchModelFromJson(data.data);
-  
-  return organizationModel;}
-  catch(e){
-      rethrow;
+  try {
+    // _dio.interceptors.add(_dioCacheManager.interceptor);
+    var data = await _dio.get(toiletGetBranchesUrl);
+    print(data);
+    ToiletBranchModel organizationModel = toiletBranchModelFromJson(data.data);
+
+    return organizationModel;
+  } catch (e) {
+    rethrow;
   }
-  
 }
-Future<List<NearbyToiletsModel>> getToiletWithinRadius(double lat,double lng) async {
-  try{
-  // _dio.interceptors.add(_dioCacheManager.interceptor);
-  var data = await _dio.get("$getAllToiletRange/$lat/$lng");
-  print(data);
-  List<NearbyToiletsModel> organizationModel=nearbyToiletsModelFromJson(data.data);
-  
-  return organizationModel;}
-  catch(e){
-      rethrow;
+
+Future<List<NearbyToiletsModel>> getToiletWithinRadius(double lat, double lng) async {
+  try {
+    // _dio.interceptors.add(_dioCacheManager.interceptor);
+    var data = await _dio.get("$getAllToiletRange/$lat/$lng");
+    print(data);
+    List<NearbyToiletsModel> organizationModel = nearbyToiletsModelFromJson(data.data);
+
+    return organizationModel;
+  } catch (e) {
+    rethrow;
   }
-  
 }
+
 Future<ToiletSingleBranchModel> toiletGetSingleBranch(int branchId) async {
-  try{
-  // _dio.interceptors.add(_dioCacheManager.interceptor);
-  var data = await _dio.get("$toiletGetSingleBranchUrl/$branchId");
-  print(data);
-  ToiletSingleBranchModel organizationModel=toiletSingleBranchModelFromJson(data.data);
-  
-  return organizationModel;}
-  catch(e){
-      rethrow;
+  try {
+    // _dio.interceptors.add(_dioCacheManager.interceptor);
+    var data = await _dio.get("$toiletGetSingleBranchUrl/$branchId");
+    print(data);
+    ToiletSingleBranchModel organizationModel = toiletSingleBranchModelFromJson(data.data);
+
+    return organizationModel;
+  } catch (e) {
+    rethrow;
   }
-  
 }
+
 Future<OrganizationModel> toiletGetOrganization({String? url}) async {
   try {
     // _dio.interceptors.add(_dioCacheManager.interceptor);
@@ -1595,36 +1561,36 @@ Future<OrganizationModel> toiletGetOrganization({String? url}) async {
   }
 }
 
-Future<bool> postReview(Map<String,String> body) async {
-  try{
-  // _dio.interceptors.add(_dioCacheManager.interceptor);
-  var data = await _dio.post(postToiletReviewUrl,data: body);
-if(data.statusCode==200){
-    return true;}
-    else{
+Future<bool> postReview(Map<String, String> body) async {
+  try {
+    // _dio.interceptors.add(_dioCacheManager.interceptor);
+    var data = await _dio.post(postToiletReviewUrl, data: body);
+    if (data.statusCode == 200) {
+      return true;
+    } else {
       return false;
-    }}
-  catch(e){
-    if(e is DioError){
-      
+    }
+  } catch (e) {
+    if (e is DioError) {
       print(e.response!.data);
-    }   
-      rethrow;
+    }
+    rethrow;
   }
 }
-Future<bool> enrollOrganization(Map<String,dynamic> body) async {
-  try{
-    FormData formData=FormData.fromMap(body);
-  // _dio.interceptors.add(_dioCacheManager.interceptor);
 
-  var data = await _dio.post(postOrganizationFormUrl,data: formData);
-if(data.statusCode==200){
-    return true;}
-    else{
+Future<bool> enrollOrganization(Map<String, dynamic> body) async {
+  try {
+    FormData formData = FormData.fromMap(body);
+    // _dio.interceptors.add(_dioCacheManager.interceptor);
+
+    var data = await _dio.post(postOrganizationFormUrl, data: formData);
+    if (data.statusCode == 200) {
+      return true;
+    } else {
       return false;
-    }}
-  catch(e){
-      rethrow;
+    }
+  } catch (e) {
+    rethrow;
   }
 }
 
@@ -1634,8 +1600,7 @@ Future<List<Yojanalist>?> yojanaAPis(value) async {
 
   List<dynamic> list = data.data['data'];
 
-  var yojanalistwithid =
-      list = list.where((o) => o["woda_id"] == int.parse(value)).toList();
+  var yojanalistwithid = list = list.where((o) => o["woda_id"] == int.parse(value)).toList();
 
   var datas = yojanalistwithid.map((e) => Yojanalist.fromJson(e)).toList();
   return datas;
@@ -1657,8 +1622,8 @@ fileupload(imageFile, id, docName) async {
     request.headers.addAll(_setHeaders());
 
     // multipart that takes file
-    var multipartFile = new http.MultipartFile('doc$docName', stream, length,
-        filename: basename(imageFile.path));
+    var multipartFile =
+        new http.MultipartFile('doc$docName', stream, length, filename: basename(imageFile.path));
     request.fields['entry_id'] = '$id';
 
     // add file to multipart
@@ -1717,8 +1682,7 @@ fileuploadvitalko(imageFile, id, index) async {
   request.headers.addAll(_setHeaders());
 
   // multipart that takes file
-  var multipartFile = new http.MultipartFile('doc$index', stream, length,
-      filename: basename(imageFile.path));
+  var multipartFile = new http.MultipartFile('doc$index', stream, length, filename: basename(imageFile.path));
   request.fields['entry_id'] = '$id';
 
   // add file to multipart
@@ -1747,8 +1711,7 @@ fileuploadTaxDocument(imageFile, id, field) async {
   request.headers.addAll(_setHeaders());
 
   // multipart that takes file
-  var multipartFile = new http.MultipartFile('$field', stream, length,
-      filename: basename(imageFile.path));
+  var multipartFile = new http.MultipartFile('$field', stream, length, filename: basename(imageFile.path));
   request.fields['owner_id'] = '$id';
 
   // add file to multipart
@@ -1845,8 +1808,7 @@ fileuploadSifarishDocument(imageFile, id, fields) async {
   request.headers.addAll(_setHeaders());
 
   // multipart that takes file
-  var multipartFile = new http.MultipartFile('$fields', stream, length,
-      filename: basename(imageFile.path));
+  var multipartFile = new http.MultipartFile('$fields', stream, length, filename: basename(imageFile.path));
   request.fields['entry_id'] = '$id';
 
   // add file to multipart
@@ -1875,8 +1837,7 @@ childsifarishdocsupload(imageFile, id, index) async {
   request.headers.addAll(_setHeaders());
 
   // multipart that takes file
-  var multipartFile = new http.MultipartFile('doc$index', stream, length,
-      filename: basename(imageFile.path));
+  var multipartFile = new http.MultipartFile('doc$index', stream, length, filename: basename(imageFile.path));
   request.fields['child_id'] = '$id';
 
   // add file to multipart
@@ -1897,8 +1858,7 @@ Future<List<Emergencydata>?> emergencyAPitest(value) async {
   print(data.data['data']);
   if (data.data['data'] != null) {
     List<dynamic> list = data.data['data'];
-    var emergencynumberdata =
-        list.map((e) => Emergencydata.fromJson(e)).toList();
+    var emergencynumberdata = list.map((e) => Emergencydata.fromJson(e)).toList();
     List law = list == [] ? [] : list.where((o) => o['type'] == value).toList();
 
     return list == [] ? [] : law.map((e) => Emergencydata.fromJson(e)).toList();
@@ -1933,8 +1893,8 @@ Future<List<PalikaIntroData>> palikaintroApi() async {
 
 sifarishpayment(data) async {
   getToken();
-  http.Response response = await http.post(Uri.parse(sifarispaymentdetail),
-      body: jsonEncode(data), headers: _setHeaders());
+  http.Response response =
+      await http.post(Uri.parse(sifarispaymentdetail), body: jsonEncode(data), headers: _setHeaders());
 
   if (response.statusCode == 200) {
     dynamic list = json.decode(response.body);
@@ -1952,8 +1912,7 @@ sifarishpayment(data) async {
 
 Future<int> applicationCountApi() async {
   getToken();
-  http.Response response = await http.get(Uri.parse(applicatoinCountApiLink),
-      headers: _setHeaders());
+  http.Response response = await http.get(Uri.parse(applicatoinCountApiLink), headers: _setHeaders());
 
   if (response.statusCode == 200) {
     dynamic list = json.decode(response.body);
@@ -2023,8 +1982,7 @@ dynamic personalnotificationhistoryAPi() async {
 
 //get district
 Future<AddressModal> getAddressFromJson() async {
-  final String addressJson =
-      await rootBundle.loadString('assets/json/address.json');
+  final String addressJson = await rootBundle.loadString('assets/json/address.json');
   var res = await jsonDecode(addressJson);
   AddressModal address = AddressModal.fromMap(res);
   return address;
@@ -2279,8 +2237,7 @@ sendTaxIdForPayment(data) async {
 sifarishstatusApi(data) async {
   getToken();
 
-  http.Response response =
-      await http.get(Uri.parse(sifarishstatus), headers: _setHeaders());
+  http.Response response = await http.get(Uri.parse(sifarishstatus), headers: _setHeaders());
   // print(token);
   if (response.statusCode == 200) {
     if (data == "unapproved") {
@@ -2332,8 +2289,7 @@ Future<bool> dowloadButton(imageUrl) async {
   // Directory tempDir = await DownloadsPathProvider.downloadsDirectory;
   try {
     String appDocDir = Platform.isAndroid
-        ? await ExternalPath.getExternalStoragePublicDirectory(
-            ExternalPath.DIRECTORY_DOWNLOADS) //FOR ANDROID
+        ? await ExternalPath.getExternalStoragePublicDirectory(ExternalPath.DIRECTORY_DOWNLOADS) //FOR ANDROID
         : await getApplicationDocumentsDirectory().then((value) => value.path);
     String? downloadResult = await FlutterDownloader.enqueue(
       url: imageUrl,
@@ -2380,9 +2336,7 @@ Future getCountries() async {
 
 Future getDistrict() async {
   _dio.interceptors.add(_dioCacheManager.interceptor);
-  var response = await _dio.get(
-      "https://dash.sipshala.com/api/province-district",
-      options: _cacheOptions);
+  var response = await _dio.get("https://dash.sipshala.com/api/province-district", options: _cacheOptions);
   var list = response.data;
 
   return list["districts"];
@@ -2390,8 +2344,7 @@ Future getDistrict() async {
 
 Future getLocalLevel() async {
   _dio.interceptors.add(_dioCacheManager.interceptor);
-  var response = await _dio.get("https://dash.sipshala.com/api/district-local",
-      options: _cacheOptions);
+  var response = await _dio.get("https://dash.sipshala.com/api/district-local", options: _cacheOptions);
   try {
     switch (response.statusCode) {
       case 200:
@@ -2559,9 +2512,7 @@ Future<List<Eventsapi>?> eventsAPis() async {
   var data = await _dio.get(events, options: _cacheOptions);
   List<dynamic> list = data.data['data'];
 
-  var eventsapidata = data.data['data'] == []
-      ? null
-      : list.map((e) => Eventsapi.fromJson(e)).toList();
+  var eventsapidata = data.data['data'] == [] ? null : list.map((e) => Eventsapi.fromJson(e)).toList();
   return eventsapidata;
 }
 
@@ -2746,8 +2697,8 @@ Future<List<NewsNoticeModelWordpress>> wordpressApi() async {
   try {
     var response = await _dio.get(wordpressKMCApiLink,
         options: buildCacheOptions(Duration(days: 30), forceRefresh: true));
-    var list = List<NewsNoticeModelWordpress>.from(
-        response.data.map((x) => NewsNoticeModelWordpress.fromMap(x)));
+    var list =
+        List<NewsNoticeModelWordpress>.from(response.data.map((x) => NewsNoticeModelWordpress.fromMap(x)));
     return list;
   } catch (e) {
     print(e);
@@ -2909,12 +2860,10 @@ maintain(context) async {
                           SizedBox(height: 20),
                           Expanded(
                             child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 20.0),
+                              padding: const EdgeInsets.symmetric(horizontal: 20.0),
                               child: Text(
                                 'आदरणीय प्रयोगकर्ताहरू,हाम्रो सर्भर मर्मत र अप्डेट भइरहेको छ। सर्भर  अप्डेटको कारण हुनगयको असुविधाको लागि हामी क्षमाप्रार्थी छौं।',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 18),
+                                style: TextStyle(color: Colors.white, fontSize: 18),
                               ),
                             ),
                           ),
@@ -2929,8 +2878,6 @@ maintain(context) async {
         });
   }
 }
-
-
 
 Future<dynamic> offlinePayment(String id) async {
   _dio.options.headers = _setHeaders();

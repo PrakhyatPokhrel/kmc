@@ -1,6 +1,3 @@
-import 'dart:async';
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -32,8 +29,9 @@ class _BibhagCardState extends State<BibhagCard> {
     }
   }
 
-  var bibagh = [];
-  List specificbibagh = [];
+  List bibagh = [];
+  // List specificbibagh = [];
+  dynamic specificbibagh;
   dynamic bibaghdata;
 
   @override
@@ -41,11 +39,12 @@ class _BibhagCardState extends State<BibhagCard> {
     super.initState();
     checklogindata();
 
-    fetchapis();
+    // fetchapis();
   }
 
   fetchapis() async {
-    bibagh = await getBibagh();
+    // bibagh = await getBibagh();
+    bibagh = await wardsgetpratinidhidataFromWordpress();
     // setState(() {});
     // getBibagh().then((value) => {
     //       setState(() {
@@ -55,26 +54,73 @@ class _BibhagCardState extends State<BibhagCard> {
   }
 
   filterdata(name, context) {
-    EasyLoading.show(status: 'Please wait...'.tr);
-    Timer(Duration(milliseconds: 2000), () {
-      EasyLoading.dismiss();
-      setState(() {
-        specificbibagh =
-            bibagh.where((bibagh) => bibagh['name'].toLowerCase().contains(name.toLowerCase())).toList();
+    // Timer(Duration(milliseconds: 2000), () {
 
-        if (specificbibagh.length == 0) {
-          not_available_Alert(context);
-        } else {
-          Get.to(Bibhag(data: json.encode(specificbibagh.first)));
-        }
+    setState(() {
+      // specificbibagh =
+      //     bibagh.where((bibagh) => bibagh['name'].toLowerCase().contains(name.toLowerCase())).toList();
 
-        // Navigator.push(
-        //     context,
-        //     MaterialPageRoute(
-        //         builder: (context) =>
-        //             Bibhag(data: json.encode(specificbibagh.first))));
-      });
+      switch (name) {
+        case 'प्रशासन':
+          specificbibagh = bibagh[0];
+          EasyLoading.dismiss();
+          break;
+        case 'शिक्षा':
+          specificbibagh = bibagh.firstWhere((bibagh) => bibagh['Section'].contains("शिक्षा विभाग"));
+          EasyLoading.dismiss();
+          break;
+        case 'स्वास्थ्य':
+          specificbibagh = bibagh.firstWhere((bibagh) => bibagh['Section'].contains("स्वास्थ्य विभाग"));
+          EasyLoading.dismiss();
+          break;
+        case 'सूचना प्रविधि':
+          specificbibagh = bibagh.firstWhere((bibagh) => bibagh['Section'].contains("सूचना प्रबिधि बिभाग"));
+          EasyLoading.dismiss();
+          break;
+        case 'राजस्व':
+          specificbibagh = bibagh.firstWhere((bibagh) => bibagh['Section'].contains("राजश्‍व बिभाग"));
+          EasyLoading.dismiss();
+          break;
+        case 'सहरी व्यवस्थापन':
+          specificbibagh = bibagh.firstWhere((bibagh) => bibagh['Section'].contains("शहरी व्यवस्थापन बिभाग"));
+          EasyLoading.dismiss();
+          break;
+        case 'बित्त':
+          specificbibagh = bibagh.firstWhere((bibagh) => bibagh['Section'].contains("वित्त विभाग"));
+          EasyLoading.dismiss();
+          break;
+        case 'सार्वजनिक निर्माण':
+          specificbibagh =
+              bibagh.firstWhere((bibagh) => bibagh['Section'].contains("सार्वजनिक निर्माण विभाग"));
+          EasyLoading.dismiss();
+          break;
+        case 'सामाजिक विकास':
+          specificbibagh = bibagh.firstWhere((bibagh) => bibagh['Section'].contains("सामाजिक विकास बिभाग"));
+          EasyLoading.dismiss();
+          break;
+        case 'वातावरण':
+          specificbibagh = bibagh.firstWhere((bibagh) => bibagh['Section'].contains("वातावरण विभाग"));
+          EasyLoading.dismiss();
+          break;
+        case 'कृषि':
+          specificbibagh =
+              bibagh.firstWhere((bibagh) => bibagh['Section'].contains("कृषि तथा पशुपक्षी विभाग"));
+          EasyLoading.dismiss();
+          break;
+        default:
+          EasyLoading.dismiss();
+          specificbibagh = null;
+      }
+
+      // if (specificbibagh.length == 0) {
+      if (specificbibagh == null) {
+        not_available_Alert(context);
+      } else {
+        //Get.to(Bibhag(data: json.encode(specificbibagh.first)));
+        Get.to(Bibhag(data: specificbibagh));
+      }
     });
+    // });
     // bibagh.map((e) => print(e.name)).toList();
     // bibagh.map((e) => print(e)).where((element) =>element['name']== );
     // for (var data in bibagh) {
@@ -88,7 +134,10 @@ class _BibhagCardState extends State<BibhagCard> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
+      onTap: () async {
+        EasyLoading.show(status: 'Please wait...'.tr);
+        // await fetchapis();
+        bibagh = await wardsgetpratinidhidataFromWordpress();
         filterdata(widget.data.nepaliname, context);
       },
       child: Card(

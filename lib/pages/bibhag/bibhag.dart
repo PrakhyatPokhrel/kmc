@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -7,10 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:kmc/config/colors.dart';
 import 'package:kmc/pages/bibhag/html.dart';
-import 'package:kmc/pages/bibhag/overview/Overview.dart';
-import 'package:kmc/pages/bibhag/sanstha/sanstha.dart';
-import 'package:kmc/pages/bibhag/sewaharu/sewaharu.dart';
-import 'package:kmc/pages/bibhag/upasakha/upasakha.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class Bibhag extends StatefulWidget {
@@ -41,21 +35,36 @@ class _BibhagState extends State<Bibhag> {
   void initState() {
     super.initState();
     setState(() {
-      navdata = json.decode(this.data);
+      // navdata = json.decode(this.data);
+      navdata = data;
 
-      overview = navdata['static_data']['overview'];
-      organization = navdata['static_data']['organization'];
-      upashaka = navdata['static_data']['upashaka'];
-      services = navdata['static_data']['services'];
-      subheadinglistdata.add(navdata['static_data']['overview']);
-      subheadinglistdata.add(navdata['static_data']['organization']);
-      subheadinglistdata.add(navdata['static_data']['upashaka']);
-      subheadinglistdata.add(navdata['static_data']['services']);
+      if (navdata['Section'] == '') {
+        navdata['Section'] = "प्रशासन शाखा";
+      }
+
+      // overview = navdata['static_data']['overview'];
+      // organization = navdata['static_data']['organization'];
+      // upashaka = navdata['static_data']['upashaka'];
+      // services = navdata['static_data']['services'];
+      // subheadinglistdata.add(navdata['static_data']['overview']);
+      // subheadinglistdata.add(navdata['static_data']['organization']);
+      // subheadinglistdata.add(navdata['static_data']['upashaka']);
+      // subheadinglistdata.add(navdata['static_data']['services']);
     });
     // print('a$subheadinglist');
   }
 
   final ScrollController _scrollController = ScrollController();
+
+  String extractImageUrl(String imgTag) {
+    final RegExp regExp = RegExp(r'src="([^"]+)"');
+    final match = regExp.firstMatch(imgTag);
+    if (match != null) {
+      return match.group(1)!;
+    }
+    return '';
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -84,7 +93,7 @@ class _BibhagState extends State<Bibhag> {
                           ConstrainedBox(
                             constraints: new BoxConstraints(maxWidth: Get.width * 0.7),
                             // child: Text('${navdata['name']}',
-                            child: Text('$data',
+                            child: Text('${navdata['Section']}',
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(color: primary, fontSize: 22)),
@@ -110,7 +119,7 @@ class _BibhagState extends State<Bibhag> {
                       ),
                     ),
                     topCard(),
-                    scrollDiv(),
+                    // scrollDiv(),
                     // Card(
                     //     shape: RoundedRectangleBorder(
                     //       borderRadius: BorderRadius.circular(30.0),
@@ -118,32 +127,34 @@ class _BibhagState extends State<Bibhag> {
                     //     elevation: 0,
                     //     color: Colors.white,
                     //     child:
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          subIndex == 0
-                              ? OverView(data: overview)
-                              : subIndex == 1
-                                  ? Sanstha(data: organization)
-                                  : subIndex == 2
-                                      ? UpaSakha(data: upashaka)
-                                      : subIndex == 3
-                                          ? Sewaharu(data: services)
-                                          : Container(),
-                          // navdata['static_data'].length != 0
-                          //     ? detailsDiv(context, navdata['static_data'])
-                          //     : Container(),
-                          // navdata['static_data'].length != 0
-                          //     ? contentdiv(context, navdata['static_data'])
-                          //     : Container(),
-                          // navdata['static_data'].length != 0
-                          //     ? orgDiv(context, navdata['static_data'])
-//Others
-                        ],
-                        // )
-                      ),
-                    ),
+
+                    ////[Org]//
+//                     Padding(
+//                       padding: const EdgeInsets.all(8.0),
+//                       child: Column(
+//                         children: [
+//                           subIndex == 0
+//                               ? OverView(data: overview)
+//                               : subIndex == 1
+//                                   ? Sanstha(data: organization)
+//                                   : subIndex == 2
+//                                       ? UpaSakha(data: upashaka)
+//                                       : subIndex == 3
+//                                           ? Sewaharu(data: services)
+//                                           : Container(),
+//                           // navdata['static_data'].length != 0
+//                           //     ? detailsDiv(context, navdata['static_data'])
+//                           //     : Container(),
+//                           // navdata['static_data'].length != 0
+//                           //     ? contentdiv(context, navdata['static_data'])
+//                           //     : Container(),
+//                           // navdata['static_data'].length != 0
+//                           //     ? orgDiv(context, navdata['static_data'])
+// //Others
+//                         ],
+//                         // )
+//                       ),
+//                     ),
                     // SizedBox(height: 10),
                     // graphsection(),
                     // SizedBox(height: 10),
@@ -159,113 +170,224 @@ class _BibhagState extends State<Bibhag> {
   }
 
   topCard() {
-    return navdata['bibhag_head'] != null
-        ? Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30.0),
-            ),
-            elevation: 0,
-            color: Colors.white,
-            child: Container(
-              padding: EdgeInsets.fromLTRB(10, 4, 10, 10),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Expanded(
-                    flex: 7,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 10.0),
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              '${navdata['title']}'.tr,
-                              textAlign: TextAlign.justify,
-                              style:
-                                  TextStyle(height: 1.2, color: primary, fontSize: 20, fontFamily: 'Mukta'),
-                            ),
-                            SizedBox(height: 7),
-                            new Container(
-                              // constraints: new BoxConstraints(
-                              //     maxHeight:
-                              //         MediaQuery.of(context).size.height *
-                              //             0.0),
-                              child: InkWell(
-                                onTap: () {
-                                  popUp(context, navdata, 'more');
-                                  // Get.to(link);
-                                },
-                                child: Text(
-                                  '${navdata['banner_text']}',
-                                  style: TextStyle(
-                                    fontSize: 16.0,
-                                  ),
-                                  maxLines: 4,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
+    return Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30.0),
+        ),
+        elevation: 0,
+        color: Colors.white,
+        child: Container(
+          padding: EdgeInsets.fromLTRB(10, 4, 10, 4),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Expanded(
+                flex: 7,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 10.0),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          //'${navdata['title']}'.tr,
+                          '${navdata['Section']}'.tr,
+                          textAlign: TextAlign.justify,
+                          style: TextStyle(height: 1.2, color: primary, fontSize: 20, fontFamily: 'Mukta'),
+                        ),
+                        SizedBox(height: 7),
+                        new Container(
+                          // constraints: new BoxConstraints(
+                          //     maxHeight:
+                          //         MediaQuery.of(context).size.height *
+                          //             0.0),
+                          child: InkWell(
+                            onTap: () {
+                              // popUp(context, navdata, 'more');
+                              // Get.to(link);
+                            },
+                            child: Text(
+                              '${navdata['Section']}मा यहाँलाई स्वागत गर्दछु ,साथै यस '
+                              '${navdata['Section']}मा के-कस्ता सामाग्री '
+                              'राख्दा उपयुक्त हुन्छ, सुझावको अपेक्षा राख्दछु ।',
+                              style: TextStyle(
+                                fontSize: 16.0,
                               ),
-                            ),
-                          ]),
-                    ),
-                  ),
-                  // Expanded(flex: 1, child: Container()),
-                  Expanded(
-                    flex: 3,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          ClipRRect(
-                              borderRadius: BorderRadius.circular(50.0),
-                              child: CachedNetworkImage(
-                                imageUrl: "${navdata['bibhag_head']['user_img']}",
-                                // imageUrl:
-                                //     'https://kathmandumetro.smartpalika.io/images/user/20191108024004.png',
-                                errorWidget: (context, url, error) => ClipRRect(
-                                    borderRadius: BorderRadius.circular(50.0),
-                                    child: Image.asset('assets/images/dummyuser.png',
-                                        height: 80, width: 80, fit: BoxFit.contain)),
-                                imageBuilder: (context, imageProvider) => CircleAvatar(
-                                  radius: 55,
-                                  backgroundImage: imageProvider,
-                                ),
-                                placeholder: (context, url) => CircularProgressIndicator(
-                                  backgroundColor: primary,
-                                ),
-                              )),
-                          SizedBox(
-                            height: 3,
-                          ),
-                          Text(
-                            "${navdata['bibhag_head']['name']}",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: text,
-                              fontFamily: 'Mukta',
-                              height: 1.5,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w600,
+                              maxLines: 5,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                          Text(
-                            '${navdata['bibhag_head']['designation']}',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: text,
-                              fontFamily: 'Mukta',
-                              fontSize: 12.0,
-                              height: 1,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+                        ),
+                      ]),
+                ),
               ),
-            ))
-        : Container();
+              // Expanded(flex: 1, child: Container()),
+              Expanded(
+                flex: 3,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      ClipRRect(
+                          borderRadius: BorderRadius.circular(50.0),
+                          child: CachedNetworkImage(
+                            // imageUrl: "${navdata['bibhag_head']['user_img']}",
+                            imageUrl: "${extractImageUrl(navdata['Photo'])}",
+                            // imageUrl:
+                            //     'https://kathmandumetro.smartpalika.io/images/user/20191108024004.png',
+                            errorWidget: (context, url, error) => ClipRRect(
+                                borderRadius: BorderRadius.circular(50.0),
+                                child: Image.asset('assets/images/dummyuser.png',
+                                    height: 80, width: 80, fit: BoxFit.contain)),
+                            imageBuilder: (context, imageProvider) => CircleAvatar(
+                              radius: 55,
+                              backgroundImage: imageProvider,
+                            ),
+                            placeholder: (context, url) => CircularProgressIndicator(
+                              backgroundColor: primary,
+                            ),
+                          )),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      Text(
+                        // "${navdata['bibhag_head']['name']}",
+                        "${navdata['Title']}",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: text,
+                          fontFamily: 'Mukta',
+                          height: 1.5,
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Text(
+                        // '${navdata['bibhag_head']['designation']}',
+                        '${navdata['Designation']}',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: text,
+                          fontFamily: 'Mukta',
+                          fontSize: 12.0,
+                          height: 1,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ));
+    // return navdata['bibhag_head'] != null
+    // return navdata['bibhag_head'] != null
+    //     ? Card(
+    //         shape: RoundedRectangleBorder(
+    //           borderRadius: BorderRadius.circular(30.0),
+    //         ),
+    //         elevation: 0,
+    //         color: Colors.white,
+    //         child: Container(
+    //           padding: EdgeInsets.fromLTRB(10, 4, 10, 10),
+    //           child: Row(
+    //             crossAxisAlignment: CrossAxisAlignment.start,
+    //             children: <Widget>[
+    //               Expanded(
+    //                 flex: 7,
+    //                 child: Padding(
+    //                   padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 10.0),
+    //                   child: Column(
+    //                       mainAxisAlignment: MainAxisAlignment.start,
+    //                       crossAxisAlignment: CrossAxisAlignment.start,
+    //                       children: <Widget>[
+    //                         Text(
+    //                           '${navdata['title']}'.tr,
+    //                           textAlign: TextAlign.justify,
+    //                           style:
+    //                               TextStyle(height: 1.2, color: primary, fontSize: 20, fontFamily: 'Mukta'),
+    //                         ),
+    //                         SizedBox(height: 7),
+    //                         new Container(
+    //                           // constraints: new BoxConstraints(
+    //                           //     maxHeight:
+    //                           //         MediaQuery.of(context).size.height *
+    //                           //             0.0),
+    //                           child: InkWell(
+    //                             onTap: () {
+    //                               // popUp(context, navdata, 'more');
+    //                               // Get.to(link);
+    //                             },
+    //                             child: Text(
+    //                               'Hello there, this is static text.',
+    //                               style: TextStyle(
+    //                                 fontSize: 16.0,
+    //                               ),
+    //                               maxLines: 4,
+    //                               overflow: TextOverflow.ellipsis,
+    //                             ),
+    //                           ),
+    //                         ),
+    //                       ]),
+    //                 ),
+    //               ),
+    //               // Expanded(flex: 1, child: Container()),
+    //               Expanded(
+    //                 flex: 3,
+    //                 child: Padding(
+    //                   padding: const EdgeInsets.all(8.0),
+    //                   child: Column(
+    //                     children: [
+    //                       ClipRRect(
+    //                           borderRadius: BorderRadius.circular(50.0),
+    //                           child: CachedNetworkImage(
+    //                             imageUrl: "${navdata['bibhag_head']['user_img']}",
+    //                             // imageUrl:
+    //                             //     'https://kathmandumetro.smartpalika.io/images/user/20191108024004.png',
+    //                             errorWidget: (context, url, error) => ClipRRect(
+    //                                 borderRadius: BorderRadius.circular(50.0),
+    //                                 child: Image.asset('assets/images/dummyuser.png',
+    //                                     height: 80, width: 80, fit: BoxFit.contain)),
+    //                             imageBuilder: (context, imageProvider) => CircleAvatar(
+    //                               radius: 55,
+    //                               backgroundImage: imageProvider,
+    //                             ),
+    //                             placeholder: (context, url) => CircularProgressIndicator(
+    //                               backgroundColor: primary,
+    //                             ),
+    //                           )),
+    //                       SizedBox(
+    //                         height: 3,
+    //                       ),
+    //                       Text(
+    //                         "${navdata['bibhag_head']['name']}",
+    //                         textAlign: TextAlign.center,
+    //                         style: TextStyle(
+    //                           color: text,
+    //                           fontFamily: 'Mukta',
+    //                           height: 1.5,
+    //                           fontSize: 16.0,
+    //                           fontWeight: FontWeight.w600,
+    //                         ),
+    //                       ),
+    //                       Text(
+    //                         '${navdata['bibhag_head']['designation']}',
+    //                         textAlign: TextAlign.center,
+    //                         style: TextStyle(
+    //                           color: text,
+    //                           fontFamily: 'Mukta',
+    //                           fontSize: 12.0,
+    //                           height: 1,
+    //                         ),
+    //                       ),
+    //                     ],
+    //                   ),
+    //                 ),
+    //               ),
+    //             ],
+    //           ),
+    //         ))
+    //     : Container();
   }
 
   scrollDiv() {

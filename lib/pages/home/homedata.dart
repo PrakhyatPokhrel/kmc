@@ -31,14 +31,14 @@ final List<HomeData> homeData = [
   HomeData('Health', link + 'Swasthya_Full.svg', 'स्वास्थ्य'),
   HomeData('Notices', link + 'SuchanaPrawidhi.svg', 'सूचना प्रविधि'),
   HomeData('Revenue', link + 'Lekhaa.svg', 'राजस्व'),
-  HomeData('Law / Human Rights', link + 'Kaanun.svg', 'कानून तथा मानव अधिकार'),
+  // HomeData('Law / Human Rights', link + 'Kaanun.svg', 'कानून तथा मानव अधिकार'),
   HomeData('Urban Management', link + 'PurwadharBikash.svg', 'सहरी व्यवस्थापन'),
-  HomeData(
-      'Public Construction', link + 'Punarnirmaan.svg', 'सार्वजनिक निर्माण'),
+  HomeData('Public Construction', link + 'Punarnirmaan.svg', 'सार्वजनिक निर्माण'),
   HomeData('Finance', link + 'Rojgaar.svg', 'बित्त'),
   HomeData('Social Development', link + 'Yojanaa.svg', 'सामाजिक विकास'),
   // HomeData('Cooperative', link + 'sahakari.png', 'सहकारी'),
-  HomeData('Environment / Agri', link + 'Krishi_Full.svg', 'वातावरण तथा कृषि'),
+  HomeData('Environment ', link + 'environment.svg', 'वातावरण'),
+  HomeData('Agri', link + 'Krishi_Full.svg', 'कृषि'),
   // HomeData('Disaster Mgmt', link + '', 'विपद व्यवस्थापन'),
   // HomeData('Heritage and Tourism', link + '', 'सम्पदा तथा पर्यटन'),
 ];
@@ -54,7 +54,7 @@ class Sewa {
 final List<Sewa> sewa = [
   Sewa('sanchar', link + 'Sifaarish.svg', sewaData.sublist(3, 6), null),
   Sewa('sewas', link + 'Sifaarish.svg', sewaData.sublist(0, 2), Sifarish()),
-  Sewa('jankari', link + 'Sifaarish.svg', sewaData.sublist(6,9), null),
+  Sewa('jankari', link + 'Sifaarish.svg', sewaData.sublist(6, 9), null),
 ];
 
 class SewaData {
@@ -68,28 +68,21 @@ class SewaData {
 
 final List<SewaData> sewaData = [
   //first
-  SewaData('sifaris', link + 'Sifaarish.svg', 'sewa_desc',
-      SifarishDashboardScreen(), true),
+  SewaData('sifaris', link + 'Sifaarish.svg', 'sewa_desc', SifarishDashboardScreen(), true),
   SewaData('smart_tax', link + 'SmartTax.svg', 'tax_desc', TaxAppView(), true),
   //Tax();
 
   SewaData('event-reports', link + 'vital.svg', 'vital_desc', '', true),
 
   //2nd
-  SewaData('hello_mayor', link + 'HelloMayor.svg', 'hm_desc', HellomayorEntry(),
-      true),
-  SewaData('janagunaso', link + 'JanaGunaso.svg', 'jg_desc', JanaGunasoEntry(),
-      true),
-  SewaData('Judicial_committee', link + 'JanaGunaso.svg', 'jg_desc',
-      NyayikEntry(), true),
+  SewaData('hello_mayor', link + 'HelloMayor.svg', 'hm_desc', HellomayorEntry(), true),
+  SewaData('janagunaso', link + 'JanaGunaso.svg', 'jg_desc', JanaGunasoEntry(), true),
+  SewaData('Judicial_committee', link + 'JanaGunaso.svg', 'jg_desc', NyayikEntry(), true),
 
   //3rd
-  SewaData('prati_karma', link + 'karmachari.svg', 'rk_desc', PratinidhiWordpress(),
-      false),
-  SewaData('wodapatra', link + 'NagarikWadapatra.svg', 'wodapatra_desc',
-      CitizenCharter(), false),
-  SewaData('digital_profile', link + 'DigitalProfile.svg', 'dp_desc',
-      Digitalprofile(), false),
+  SewaData('prati_karma', link + 'karmachari.svg', 'rk_desc', PratinidhiWordpress(), false),
+  SewaData('wodapatra', link + 'NagarikWadapatra.svg', 'wodapatra_desc', CitizenCharter(), false),
+  SewaData('digital_profile', link + 'DigitalProfile.svg', 'dp_desc', Digitalprofile(), false),
 ];
 
 class GridData {
