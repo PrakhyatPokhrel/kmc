@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
 import 'package:kmc/components/custom_spinner.dart';
 import 'package:kmc/pages/pratinidhiwordpress/screen/pratinidhiwordpress.dart';
@@ -847,7 +848,9 @@ class _KarmachariTabState extends State<KarmachariTabNew> with TickerProviderSta
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: GestureDetector(
-                          onTap: () {},
+                          onTap: () async {
+                            await FlutterPhoneDirectCaller.callNumber(official["Phone"]);
+                          },
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
